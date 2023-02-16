@@ -1,0 +1,144 @@
+# mvn archetype:generate -DgroupId=com.farhad.example -DartifactId=double-dispatch -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+#
+## Visitor Pattern
+#
+# The Visitor pattern allows us to add new behavior to the existing classes without modifying them.
+#
+# Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
+#
+# The Visitor pattern suggests that you place the new behavior into a separate class called visitor, instead of trying 
+# to integrate it into existing classes. 
+#
+# The original object that had to perform the behavior is now passed to one of the visitor’s methods as an argument, 
+# providing the method access to all necessary data contained within the object.
+#
+# Now, what if that behavior can be executed over objects of different classes? For example, in our case with XML export, 
+# the actual implementation will probably be a little bit different across various node classes. Thus, the visitor class 
+# may define not one, but a set of methods, each of which could take arguments of different types, like this:
+#
+#   class ExportVisitor implements Visitor is
+#       method doForCity(City c) { ... }
+#       method doForIndustry(Industry f) { ... }
+#       method doForSightSeeing(SightSeeing ss) { ... }
+#       // ...
+#
+# But how exactly would we call these methods, especially when dealing with the whole graph?
+#
+# These methods have different signatures, so we can’t use polymorphism. To pick a proper visitor method that’s able to process 
+# a given object, we’d need to check its class. Doesn’t this sound like a nightmare?
+#
+#   foreach (Node node in graph)
+#       if (node instanceof City)
+#           exportVisitor.doForCity((City) node)
+#       if (node instanceof Industry)
+#           exportVisitor.doForIndustry((Industry) node)
+#       // ...
+#   } 
+#
+# You might ask, why don’t we use method overloading? That’s when you give all methods the same name, even if they support different 
+# sets of parameters. Unfortunately, even assuming that our programming language supports it at all (as Java and C# do), it won’t 
+# help us. Since the exact class of a node object is unknown in advance, the overloading mechanism won’t be able to determine the 
+# correct method to execute. It’ll default to the method that takes an object of the base Node class.
+#
+# However, the Visitor pattern addresses this problem. It uses a technique called Double Dispatch, which helps to execute the proper 
+# method on an object without cumbersome conditionals. 
+#
+# Instead of letting the client select a proper version of the method to call, how about we delegate this choice to objects we’re 
+# passing to the visitor as an argument?
+#
+# Since the objects know their own classes, they’ll be able to pick a proper method on the visitor less awkwardly. They “accept” a visitor 
+# and tell it what visiting method should be executed.
+#
+#   // Client code
+#   foreach (Node node in graph)
+#       node.accept(exportVisitor)
+#   
+#   // City
+#   class City is
+#       method accept(Visitor v) is
+#           v.doForCity(this)
+#       // ...
+#   
+#   // Industry
+#   class Industry is
+#       method accept(Visitor v) is
+#           v.doForIndustry(this)
+#       // ...
+#
+# We had to change the node classes after all. But at least the change is trivial and it lets us add further behaviors without 
+# altering the code once again.
+#
+# Now, if we extract a common interface for all visitors, all existing nodes can work with any visitor you introduce into 
+# the app. If you find yourself introducing a new behavior related to nodes, all you have to do is implement a new visitor 
+# class.
+#
+# NOTE:  In the DDD world, the Strategy pattern is often named Policy.
+# NOTE:  To properly use the Policy pattern, it's often a good idea to pass it as an argument.  This approach follows the 
+#        Tell, Don't Ask principle which supports better encapsulation.
+#
+# Group employees by department
+#
+#  Map<Department,List<Employee>> byDept = 
+#                   employees.stream().collect( groupingBy( Employee::getDepartment ) )
+#
+# Partition students into passing and failing
+#
+#  Map<Boolean, List<Students>> passingFailing = 
+#                                students.stream().collect( partitioningBy(  
+#                                                                           s -> s.getGrade() >= PASS_THRESHOLD ) )                
+#
+# Classify people by state and city
+#
+#   Map<String,Map<String,List<Person>>> peopleByStateAndCity = 
+#                                personStream.collect( 
+#                                             groupingBy( 
+#                                                   Person::getState, 
+#                                                   groupingBy( Person::getCity ) ) )
+#   
+# lns  = names.parallelStream().c0llectr( groupingBy( String::length ) );
+# lns.forEach( ( key, ns ) -> out.println( key + ":\t" + 
+#                                           ns.stream().collect( joining( ", " ) ) ) );
+#
+#
+## Composition
+#    
+#     f: X --> Y
+#     g: Y --> Z
+#   g0f: X --> Z
+#     
+#   Function<String,Integer> f = String::length
+#   Function<Integer, Float> g = Integer::floatValue ;
+#   Function h = g.compose(f) ;
+#
+## 
+#
+#   Function<String,String>  m = s -> s.toUpperCase();
+#   Function<String,Integer> f = String::length;
+#   Function g = f.andThen(Integer::reverse);
+#
+#   Function id = Function.identity();
+#
+## Curry
+#
+#   Function<String , UnaryOperator<String>> curried = s1 -> s2 -> s1.concat( " " ).concat( s2 ) ;
+#
+#   UnaryOperator<String> me = curried.apply( "farhad" );
+#   out.println( me.apply( "Curry" ) );
+#   out.println( me.apply( "Ok" ) );
+#
+#
+#   public interface Curry {
+#         static <T,U,R> Function<U, R> curry(BiFunction<T, U, R> bi, T t) {
+#                return u -> bi.apply(t ,u);
+#         }
+#   }
+#
+#   BiFunction<String, Integer, Float> bi = ( s, i ) -> ( s.length() + i ) / 2.0f;
+#
+#   Function<Integer, Float> part = Curry.curry(bi, "hello");
+#
+#   out.println( part.apply( 10 ) );
+#   out.println( part.apply( 22 ) );
+
+
+
