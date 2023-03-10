@@ -18,6 +18,7 @@
 		<delombok-maven-plugin.version>1.18.20.0</delombok-maven-plugin.version>
 		<lombok.version>1.18.26</lombok.version>
 		<slf4j.version>2.0.6</slf4j.version>
+		<guava.version>31.1-jre</guava.version>
 	</properties>
 
 	<dependencyManagement>
@@ -32,6 +33,12 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>		
 		<!-- tag::joda[] -->
 		<dependency>
 			<groupId>joda-time</groupId>
