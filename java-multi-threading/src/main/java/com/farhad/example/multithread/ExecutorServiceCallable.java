@@ -3,13 +3,16 @@ package com.farhad.example.multithread;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.farhad.example.work.CalcResult;
 import com.farhad.example.work.CallableTask;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,32 +21,35 @@ import lombok.extern.slf4j.Slf4j;
 public class ExecutorServiceCallable {
     
 
-    public void submitCallableWithExecutor( CallableTask...tasks ) throws InterruptedException, ExecutionException {
+    public void submitCallableTasksWithExecutor( CallableTask...tasks ) throws InterruptedException, ExecutionException {
 
         ExecutorService executorService = null;
 
         try {
             
             executorService = Executors.newFixedThreadPool(tasks.length);
-            List<Future<Double>> taskFutureList = new ArrayList<>();
+            List<Future<CalcResult>> taskFutureList = new ArrayList<>();
 
             for (CallableTask callableTask : tasks) {
                 
-                Future<Double> taskFuture = executorService.submit(() -> {
-                    log.info("Starting Task: {} in thread: {}", callableTask.name(), Thread.currentThread().getName());
-                    Double res =  callableTask.call();
-                    log.info("Ending Task: {} in thread: {}", callableTask.name(), Thread.currentThread().getName());
+                taskFutureList.add( executorService.submit(() -> {
+                                        log.info("Starting Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+                                        CalcResult res =  callableTask.call();
+                                        log.info("Ending Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
 
-                    return res ;
-                });
-                taskFutureList.add(taskFuture);
+                                        return res ;
+                                    }) );
             }
 
-            for (Future<Double> future : taskFutureList) {
+            for (Future<CalcResult> future : taskFutureList) {
                 
                 // get Double result from Future when it becomes available
 
-                Double taskResult = future.get();
+                CalcResult taskResult = future.get();
 
                 log.info("Task {} returned value {}", taskResult);
             }
@@ -53,19 +59,60 @@ public class ExecutorServiceCallable {
         }
     }
 
-    public void submitCallableWithExecutor2( CallableTask...tasks ) throws InterruptedException, ExecutionException, TimeoutException {
+    public void submitCallableTasksWithCompletionService(CallableTask... tasks) {
+
+        ExecutorService executorService = null;
+        CompletionService<CalcResult> taskCompletionService = null;
+
+        try {
+
+            executorService = Executors.newFixedThreadPool(tasks.length);
+            taskCompletionService = new  ExecutorCompletionService<>(executorService);
+
+            for (CallableTask callableTask : tasks) {
+
+                taskCompletionService.submit(callableTask);
+                
+            }
+            int tasksSubmited = tasks.length;
+            for (int tasksHandled = 0; tasksHandled < tasksSubmited; tasksHandled++) {
+                
+                log.info("Try to take from Completion Service");
+
+                // blocks till atleast one task is completed and results availble
+                Future<CalcResult> calcResultFuture = taskCompletionService.take();
+
+                log.info("result for a task available. trying  to get it");
+
+                CalcResult calcResult = calcResultFuture.get();
+                log.info("Task {} Complated. Result: {}", tasksHandled, calcResult);
+
+
+            }
+        } catch (InterruptedException e) {
+            log.error("Interrupted Exception ");
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            log.error("get() threw Exception ");
+            e.printStackTrace();
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
+    public void submitCallableTasksWithExecutorInvokeAll( CallableTask...tasks ) throws InterruptedException, ExecutionException, TimeoutException {
 
         ExecutorService executorService = null;
 
         try {
             
             executorService = Executors.newFixedThreadPool(tasks.length);
-            List<Callable<Double>> callableTaskList = new ArrayList<>();
+            List<Callable<CalcResult>> callableTaskList = new ArrayList<>();
 
             for (CallableTask callableTask : tasks) {
                 callableTaskList.add( () ->  {
                     log.info("Starting Task: {} in thread: {}", callableTask.name(), Thread.currentThread().getName());
-                    Double res =  callableTask.call();
+                    CalcResult res =  callableTask.call();
                     log.info("Ending Task: {} in thread: {}", callableTask.name(), Thread.currentThread().getName());
 
                     return res ;
@@ -73,13 +120,13 @@ public class ExecutorServiceCallable {
                 });
             }
 
-            List<Future<Double>> callableTaskFutureList =  executorService.invokeAll(callableTaskList);
+            List<Future<CalcResult>> callableTaskFutureList =  executorService.invokeAll(callableTaskList);
 
-            for (Future<Double> future : callableTaskFutureList) {
+            for (Future<CalcResult> future : callableTaskFutureList) {
                 
                 // get Double result from Future when it becomes available
 
-                Double taskResult = future.get(4, TimeUnit.SECONDS);
+                CalcResult taskResult = future.get(4, TimeUnit.SECONDS);
 
                 log.info("Task returned value {}", taskResult);
             }

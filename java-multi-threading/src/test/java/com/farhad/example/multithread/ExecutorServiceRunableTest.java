@@ -21,7 +21,7 @@ public class ExecutorServiceRunableTest {
 
         Instant start = Instant.now() ;
 
-        new ExecutorServiceRunable().doExecuteWithExecutor(task1, task2);
+        new ExecutorServiceRunable().doExecuteTasksWithExecutor(task1, task2);
 
         log.info("doExxecuteRunableTaskWithExecutorTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
 
@@ -35,7 +35,7 @@ public class ExecutorServiceRunableTest {
 
         Instant start = Instant.now() ;
 
-        new ExecutorServiceRunable().doSubmitWithExecutor(task1, task2);
+        new ExecutorServiceRunable().doSubmitTasksWithExecutor(task1, task2);
 
         log.info("doExxecuteRunableTaskWithExecutorTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
     }

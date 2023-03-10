@@ -21,7 +21,7 @@ public class ExecutorServiceRunable {
      * Use an ExecutorService to execute 2 Runnables that call expensive task
      * @throws InterruptedException
      */
-    public void doExecuteWithExecutor(RunableTask... tasks) throws InterruptedException {
+    public void doExecuteTasksWithExecutor(RunableTask... tasks) throws InterruptedException {
 
         ExecutorService executorService = null; 
 
@@ -47,7 +47,7 @@ public class ExecutorServiceRunable {
     /**
      * Use an ExecutorService to execute 2 Runnables that call expensive
      */
-    public void doSubmitWithExecutor(RunableTask... tasks) {
+    public void doSubmitTasksWithExecutor(RunableTask... tasks) {
 
         ExecutorService executorService = null; 
         List<Future<?>> futures = new ArrayList<>();
@@ -76,7 +76,7 @@ public class ExecutorServiceRunable {
          * @throws ExecutionException
          * @throws InterruptedException
      */
-    public void doSubmitWithExecutor1(RunableTask... tasks) throws InterruptedException, ExecutionException {
+    public void doSubmitTasksWithExecutor1(RunableTask... tasks) throws InterruptedException, ExecutionException {
 
         ExecutorService executorService = null; 
         List<Future<?>> futures = new ArrayList<>();
@@ -104,7 +104,7 @@ public class ExecutorServiceRunable {
         }
     }
 
-    public void doSubmitWithExecutor2(RunableTask... tasks) throws InterruptedException {
+    public void doSubmitTasksWithExecutor2(RunableTask... tasks) throws InterruptedException {
 
         CountDownLatch _latch = new CountDownLatch(tasks.length);
         ExecutorService executorService = null; 

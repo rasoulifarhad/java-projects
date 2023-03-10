@@ -18,14 +18,14 @@ public class ExpensiveCallableTask implements CallableTask {
         return String.format("expensive task # %s ", id).toString()  ;
     }
     @Override
-    public Double call() throws Exception {
+    public CalcResult call() throws Exception {
 
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return ThreadLocalRandom.current().nextDouble() * 100;
+        return CalcResult.of(ThreadLocalRandom.current().nextDouble() * 100 );
     }
     
 }
