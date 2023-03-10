@@ -77,4 +77,13 @@ The implementation is ExecutorCompletionService who’s based on an ExecutorServ
     }
   }
   ```
+  
+People use the Future returned by submit to process results and this is NOT correct usage. 
+ 
+  https://www.javaspecialists.eu/archive/Issue214-CountingCompletionService.html
+  
+  See also
+   * FutureTask
+   * RunnableFuture
+
 From https://baptiste-wicht.com/posts/2010/09/java-concurrency-part-7-executors-and-thread-pools.html
