@@ -1,5 +1,101 @@
 ## Executor Service
 
+**Thread and Runnable Definitions**
+
+Thread is a class that starts new independent activity and performs instructions supplied by Runnable.
+
+  ``` 
+  - Thread is one who start instructions
+  - Runable is just a set of instructions
+  ```
+  
+**Execute New Thread**
+
+Thread is an entity that is attached to the OS so this is why it's a heavy class.
+
+Runnable is just a set of instructions — so this is why it's lightweight.
+
+  ```
+  ( new Thread() ).run();   // run in current thread
+  ( new Thread() ).start(); // run in new thread
+  ```
+
+**Reuse Thread**
+
+Many runnables (tasks) run inside one single thread:
+
+  ```
+  List<Runnable> tasks = new ArrayList<>();
+  ( new Thread( () -> {
+         for (Runnable task : tasks) {
+            task.run();
+         }            
+  })).start();
+
+  ```
+**Stop Thread**
+
+Don not use depricated methods to stop thread.(stop/suspend/resume)
+
+You have to create interruption design by using interrupt() or isInterrupted() 
+
+  ```
+  ( new Thread( () -> {
+        while ( true ) {
+            // process of logic
+            if( Thread.currentThread().isInterrupted() ) {
+                // handle exiting
+                break;
+            }
+        }   
+  })).start();
+  ```
+  
+**Thread Daemon**
+
+Thread can be a daemon.
+
+Daemon threads are interrupted instantly even the final part won't be executed. So such threads can be attached to resources. Otherwise, they can be the reason for resource or/and memory leaks.
+
+  ```
+  Thread thread = ( new Thread( () -> {
+                        try {
+                           // working with resource  
+                        } finally{
+                           // resource.close();
+                           // might won't work because finally if deamon been interrupted  
+                        }
+                }));
+  thread.setDaemon(true);
+  thread.start();
+  ```
+
+**Thread Pool**
+
+As long as the Thread instance is heavy it makes sense to reuse the same Thread using ThreadPool class.
+
+You can use different ThreadPool implementations depending on your thread.
+
+  * Fixed Thread Pool
+  * Cached Thread Pool
+  * ..
+
+In order to use the best Thread Pool for your application you need to understand next things:
+
+  * If your thread does a lot of computation like video rendering, encryption, etc., then it eats processes that run that thread.
+  * If your thread runs not related to CPU activity like networking calls, memory calls, etc., then it won't consume the CPU that runs its thread.
+
+Relying on this knowledge you might make the next conclusions:
+
+  * Having high CPU consumable tasks don't allocate more threads than CPU cores
+  * Having low CPU consumable tasks you can have a number of threads more than CPU cores (but proportion depends on the specific situation).
+  
+**Executor Service**
+
+Thread can execute instructions inside the current running thread by using Run() method.
+
+To run instructions in a new activity, Thread provides Start() method.
+
 A thread pool is represented by an instance of the class ExecutorService.
 
 With an ExecutorService, you can submit task that will be completed in the future.
