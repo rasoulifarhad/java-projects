@@ -1,10 +1,14 @@
 package com.farhad.example.multithread;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -68,7 +72,14 @@ public class ExecutorServiceCallableTest {
     @Test
     public void submitDivideByZeroWithExecutorWhitGet() throws InterruptedException, ExecutionException {
 
-        new ExecutorServiceCallable().submitDivideByZeroWithExecutorWhitGet();
+        Exception  exception =   
+        assertThrows(ExecutionException.class, () -> {
+            new ExecutorServiceCallable().submitDivideByZeroWithExecutorWhitGet();
+        });
+        log.info("Exception thrown: {}", exception.getMessage());
+
+        assertInstanceOf(ArithmeticException.class, exception.getCause());
+       
     }
 
     /**
@@ -92,18 +103,18 @@ public class ExecutorServiceCallableTest {
         ExpensiveCallableTask task2 = new ExpensiveCallableTask();
         ExpensiveCallableTask task3 = new ExpensiveCallableTask();
         ExpensiveCallableTask task4 = new ExpensiveCallableTask();
-
         
         BlockingQueue<Runnable> queue = new SynchronousQueue<>();
-        ExecutorService executorService = null;
 
+        final ExecutorService executorService = new ThreadPoolExecutor(2, 2, 0, TimeUnit.MILLISECONDS, queue);
         try {
-            executorService = new ThreadPoolExecutor(2, 2, 0, TimeUnit.MILLISECONDS, queue);
 
             Instant start = Instant.now() ;
-    
-            new ExecutorServiceCallable().submitCallableTasks(executorService, task1, task2, task3, task4);
-    
+            Exception  exception =   
+                            assertThrows(RejectedExecutionException.class, () -> {
+                                new ExecutorServiceCallable().submitCallableTasks(executorService, task1, task2, task3, task4);
+                            });
+            log.info("Exception thrown: {}", exception.getMessage());
             log.info("executorServiceWithSynchronousQueueTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
                 
         } finally {
