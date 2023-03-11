@@ -1,0 +1,191 @@
+## Java Time
+
+**When Did an Event Happen?**
+
+Philosophy and quantum physics aside, we may treat time as a one-dimensional metric, a real number value. This value keeps growing when time passes by. If one event appeared after another, we assign greater time to that event. Two events happening simultaneously have the same time value. For practical reasons, in computer systems we store time in a discrete integer, mainly because computer clocks tick discretely. Therefore we can store time as an integer value. By convention, we assign time = 0 to January 1st, 1970 but in Java we increment this value every millisecond, not second like in UNIX time. Historically using 32-bit signed integer in UNIX time will cause year 2038 problem. Thus, Java stores time in 64-bit integer, which is sufficient even if you increment it a thousand times more often. That being said, the simplest, yet valid way of storing time in Java is... 
+
+long primitive:
+
+```
+long timestamp = System.currentTimeMillis();
+```
+
+**Date**
+
+The very first approach to wrap long in a more meaningful object was java.util.date
+Date now = new Date();
+
+**java.time.Instant**
+
+A great alternative to Data is  java.time.Instant.
+
+It does precisely what it claims: stores an instant in time.
+
+Instant does not have date or calendar related methods, its toString() uses familiar ISO format in UTC time zone (more on that later), and most importantly: it's immutable.
+
+If you want to remember when a particular event happened, Instant is the best you can get in plain Java:
+
+```
+Instant now = Instant.now();
+Instant later = now.plusSeconds(60);
+```
+
+Notice that Instant does not have plusMinutes(), plusHours(), and so on. Minutes, hours, and days are concepts related to calendar systems, whereas Instant is geographically and culturally agnostic.
+
+**Human Readable Calendars With ZonedDateTime**
+
+Sometimes you do need a human representation of an instant in time. This includes month, day of week, current hour, and so on.
+
+But, here is a major complication: date and time vary across countries and regions. 
+
+Instant is simple and universal, but not very useful for human beings; it's just a number. If you have business logic related to a calendar, like:
+
+```
+  ...must happen during office hours...
+  ...up to one day...
+  ...two business days...
+  ...valid for up to one year...
+
+```
+
+...then you must use some calendar system.
+
+**java.time.ZoneDateTime** is the best alternative to the absolutely awful java.util.Calendar. 
+
+You can create ZoneDateTime from Instant only by providing a time zone. Otherwise, default system time zone is used which you have no control over. 
+
+Converting Instant to ZonedDateTime in any way without providing explicit ZoneId is probably a bug: 
+
+```
+Instant now = Instant.now();
+System.out.println(now);
+
+ZonedDateTime dateTime = ZonedDateTime.ofInstant(
+        now,
+        ZoneId.of("Europe/Warsaw")
+    );
+
+System.out.println(dateTime);
+```
+
+**Calendar Misconceptions**
+
+Some people believe that the time difference between two locations is always constant. 
+
+Example: 
+
+```
+LocalDate localDate = LocalDate.of(2016, Month.AUGUST, 5);
+LocalTime localTime = LocalTime.of(10, 21);
+LocalDateTime local = LocalDateTime.of(localDate, localTime);
+ZonedDateTime warsaw = ZonedDateTime.of(local, ZoneId.of("Europe/Warsaw"));
+
+ZonedDateTime sydney = warsaw.withZoneSameInstant(ZoneId.of("Australia/Sydney"));
+
+System.out.println(warsaw);
+System.out.println(sydney);
+```
+
+The output reveals that the difference between Warsaw and Sydney is exactly 8 hours:
+
+```
+2016-08-05T10:21+02:00[Europe/Warsaw]
+2016-08-05T18:21+10:00[Australia/Sydney]
+```
+
+Or is it? Change August to February and the difference becomes 10 hours:
+
+```
+2016-02-05T10:21+01:00[Europe/Warsaw]
+2016-02-05T20:21+11:00[Australia/Sydney]
+```
+
+Example 
+
+```
+LocalDate localDate = LocalDate.of(2014, Month.FEBRUARY, 5);
+LocalTime localTime = LocalTime.of(10, 21);
+LocalDateTime local = LocalDateTime.of(localDate, localTime);
+ZonedDateTime warsaw = ZonedDateTime.of(local, ZoneId.of("Europe/Warsaw"));
+
+ZonedDateTime moscow = warsaw.withZoneSameInstant(ZoneId.of("Europe/Moscow"));
+
+System.out.println(warsaw);
+System.out.println(moscow);
+```
+
+The time difference between Warsaw and Moscow on February 5th, 2014 was three hours:
+
+```
+2014-02-05T10:21+01:00[Europe/Warsaw]
+2014-02-05T13:21+04:00[Europe/Moscow]
+```
+
+But, the difference on the exact same day a year later is two hours:
+
+```
+2015-02-05T10:21+01:00[Europe/Warsaw]
+2015-02-05T12:21+03:00[Europe/Moscow]
+```
+
+Another common misconception about dates is that a day is 24 hours. This is again related to daylight savings time:
+
+```
+LocalDate localDate = LocalDate.of(2017, Month.MARCH, 26);
+LocalTime localTime = LocalTime.of(1, 0);
+ZonedDateTime warsaw = ZonedDateTime.of(localDate, localTime, ZoneId.of("Europe/Warsaw"));
+
+ZonedDateTime oneDayLater = warsaw.plusDays(1);
+
+Duration duration = Duration.between(warsaw, oneDayLater);
+System.out.println(duration);
+```
+
+What do you know, the difference between 1 AM on March 26th and 27th, 2017 is... 23 hours (PT23H). But if you change the time zone to  Australia/Sydney you'll get the familiar 24 hours because nothing special happens that day in Sydney. That special day in Sydney happens to be the 2nd of April, 2017:
+
+```
+LocalDate localDate = LocalDate.of(2017, Month.APRIL, 2);
+LocalTime localTime = LocalTime.of(1, 0);
+ZonedDateTime warsaw = ZonedDateTime.of(localDate, localTime, ZoneId.of("Australia/Sydney"));
+```
+
+This actually results in one day being equal to... 25 hours. But not in Brisbane ("Australia/Brisbane"), a thousand km north of Sydney, which does not observe DST. 
+
+Why is all of this important? When you make an agreement with your client that something is supposed to take one day vs. 24 hours this may actually make a huge difference on certain days. You must be precise, otherwise your system will become inconsistent twice a year. And, don't get me started on leap second.
+
+**Storing and Transmitting Time**
+
+By default, you should store and send time either as a timestamp (long value) or as an ISO 8601 which is basically what Instant.toString() does as per the documentation. I prefer long value as it is more compact, but you may need a more readable format in some text encoding like JSON. Also long is timezone-agnostic so you are not pretending that the timezone you send/store has any meaning. This applies both to transmitting time and storing it in database.
+
+There are cases where you may want to send full calendar information, including timezone. For example, when you build a chatting application, you might want to tell the client what the local time was when the message was sent if your friend lives in a different timezone. Otherwise, you know it was sent at 10 AM your time, but what was the time in your friend's location? Another example is an airline ticket booking website. You want to tell your clients when a flight departs and arrives in local time and it's only the server that knows the exact timezone at departure and destination.
+
+**Local Time and Date**
+
+Sometimes you want to express date or time without any specific time zone. For example, my birthday is:
+
+```
+//1985-12-25
+LocalDate.of(1985, Month.DECEMBER, 25)
+```
+
+I will celebrate my birthday that day no matter where I am. This means the party will start at approximately:
+
+```
+//20:00
+LocalTime.of(20, 0, 0)
+```
+
+...irrespective to time zone. I can even say that my birthday party this year will be precisely at:
+
+```
+//2016-12-25T20:00
+LocalDateTime party = LocalDateTime.of(
+        LocalDate.of(2016, Month.DECEMBER, 25),
+        LocalTime.of(20, 0, 0)
+);
+```
+
+But, as long as I don't provide you with a location, you don't know what the time zone I live in is, and thus don't know what the actual start time is. It's impossible (or very foolish) to convert from LocalDateTime to Instant or ZoneDateTime (which both point to a precise moment in time) without giving a time zone. So, local times are useful, but they don't really represent any moment in time.
+
+from:
+  https://dzone.com/articles/guide-to-time-and-date-in-java-part-1
