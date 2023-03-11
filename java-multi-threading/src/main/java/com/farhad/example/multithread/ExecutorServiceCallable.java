@@ -290,6 +290,8 @@ public class ExecutorServiceCallable {
      * 
      *   final CompletableFuture<BigDecimal> future = CompletableFuture.supplyAsync(this::calculate, executorService);
      * 
+     * CompletableFuture extends Future so everything works as it used to.
+     * 
      * @param tasks
      * @throws InterruptedException
      * @throws ExecutionException
