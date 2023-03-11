@@ -40,4 +40,28 @@ public class ExecutorServiceRunableTest {
         log.info("doExxecuteRunableTaskWithExecutorTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
     }
 
+    @Test
+    public void doExecuteDivideByZeroWithExecutorTest() throws InterruptedException {
+
+
+        Instant start = Instant.now() ;
+
+        new ExecutorServiceRunable().doExecuteDivideByZeroWithExecutor();
+
+        log.info("doExecuteDivideByZeroWithExecutorTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
+
+    }
+
+    @Test
+    public void doSubmitDivideByZeroWithExecutorTest() throws InterruptedException {
+
+
+        Instant start = Instant.now() ;
+
+        new ExecutorServiceRunable().doSubmitDivideByZeroWithExecutor();
+
+        log.info("doSubmitDivideByZeroWithExecutorTest tooks {} ms", ChronoUnit.MILLIS.between(start, Instant.now()));
+
+    }
+
 }

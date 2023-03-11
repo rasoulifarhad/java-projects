@@ -22,25 +22,40 @@ import lombok.extern.slf4j.Slf4j;
  *      else
  */
 @Slf4j
-public class RecurringJob implements Runnable {
+public class RecurringJob implements Runnable, AutoCloseable {
 
+    // private volatile boolean stop = false;
+    private final Thread jobThread;
     public RecurringJob() {
 
-        final Thread jobThread = new Thread(this, "RecurringJob");
+        jobThread = new Thread(this, "RecurringJob");
         jobThread.start();
     }
+
+    // @Override
+    // public void run() {
+        
+    //     while (true) {
+            
+    //         job();
+    //         try {
+    //             TimeUnit.SECONDS.sleep(1);
+    //         } catch (InterruptedException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+    // }
 
     @Override
     public void run() {
         
-        while (true) {
-            
-            job();
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            while ( true/*!stop*/) {
+                job();
+               TimeUnit.SECONDS.sleep(1);
             }
+        } catch (InterruptedException e) {
+            log.info("Interrupted, closing");
         }
     }
 
@@ -53,5 +68,12 @@ public class RecurringJob implements Runnable {
         }
 
     }
+
+    @Override
+    public void close() throws Exception {
+        jobThread.interrupt();
+        // stop = true;
+    }
+    
     
 }

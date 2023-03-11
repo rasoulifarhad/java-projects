@@ -152,4 +152,45 @@ public class ExecutorServiceRunable {
 
     }
 
+    public void doExecuteDivideByZeroWithExecutor() throws InterruptedException {
+
+        ExecutorService executorService = null; 
+
+        try {
+            executorService =  Executors.newFixedThreadPool(1);
+            executorService.execute( () -> {
+                log.info("Starting divide by zero in thread: {}", Thread.currentThread().getName()); 
+                log.info("1 / 0 : {}", 1 / 0);
+                log.info("Ending divide by zero in thread: {}", Thread.currentThread().getName());
+
+            } );
+                
+        } finally {
+            executorService.shutdown();
+            executorService.awaitTermination(5, TimeUnit.SECONDS);
+        }
+
+    }
+
+    public void doSubmitDivideByZeroWithExecutor() throws InterruptedException {
+
+        ExecutorService executorService = null; 
+
+        try {
+            executorService =  Executors.newFixedThreadPool(1);
+            executorService.submit( () -> {
+                log.info("Starting divide by zero in thread: {}", Thread.currentThread().getName()); 
+                log.info("1 / 0 : {}", 1 / 0);
+                log.info("Ending divide by zero in thread: {}", Thread.currentThread().getName());
+
+            } );
+                
+        } finally {
+            executorService.shutdown();
+            executorService.awaitTermination(5, TimeUnit.SECONDS);
+        }
+
+    }
+
+
 }

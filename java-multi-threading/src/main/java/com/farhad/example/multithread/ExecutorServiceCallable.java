@@ -20,6 +20,40 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExecutorServiceCallable {
     
+    public void submitCallableTasks( ExecutorService executorService, CallableTask...tasks ) throws InterruptedException, ExecutionException {
+
+        try {
+            
+            List<Future<CalcResult>> taskFutureList = new ArrayList<>();
+
+            for (CallableTask callableTask : tasks) {
+                
+                taskFutureList.add( executorService.submit(() -> {
+                                        log.info("Starting Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+                                        CalcResult res =  callableTask.call();
+                                        log.info("Ending Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+
+                                        return res ;
+                                    }) );
+            }
+
+            for (Future<CalcResult> future : taskFutureList) {
+                
+                // get Double result from Future when it becomes available
+
+                CalcResult taskResult = future.get();
+
+                log.info("Task {} returned value {}", taskResult);
+            }
+
+        } finally {
+        }
+    }
+
 
     public void submitCallableTasksWithExecutor( CallableTask...tasks ) throws InterruptedException, ExecutionException {
 
@@ -37,6 +71,64 @@ public class ExecutorServiceCallable {
                                                                     callableTask.name(), 
                                                                     Thread.currentThread().getName());
                                         CalcResult res =  callableTask.call();
+                                        log.info("Ending Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+
+                                        return res ;
+                                    }) );
+            }
+
+            for (Future<CalcResult> future : taskFutureList) {
+                
+                // get Double result from Future when it becomes available
+
+                CalcResult taskResult = future.get();
+
+                log.info("Task {} returned value {}", taskResult);
+            }
+
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
+    public void submitCallableTasksWithExecutorChangeThreadName( CallableTask...tasks ) throws InterruptedException, ExecutionException {
+
+        ExecutorService executorService = null;
+
+        try {
+            
+            executorService = Executors.newFixedThreadPool(tasks.length);
+            List<Future<CalcResult>> taskFutureList = new ArrayList<>();
+
+            for (CallableTask callableTask : tasks) {
+                
+                taskFutureList.add( executorService.submit(() -> {
+                                        log.info("Starting Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+
+                                        final Thread currentThread = Thread.currentThread() ;
+                                        final String oldName = currentThread.getName();
+                                        currentThread.setName("Processing-" + callableTask.name());
+
+                                        CalcResult res ;
+
+                                        try {
+
+                                            log.info("Starting Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+                                            res =  callableTask.call();
+                                            
+                                            log.info("Ending Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+                                        } finally {
+                                            currentThread.setName(oldName);
+                                        }
+
                                         log.info("Ending Task: {} in thread: {}", 
                                                                     callableTask.name(), 
                                                                     Thread.currentThread().getName());
@@ -129,6 +221,110 @@ public class ExecutorServiceCallable {
                 CalcResult taskResult = future.get(4, TimeUnit.SECONDS);
 
                 log.info("Task returned value {}", taskResult);
+            }
+
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
+    public void submitDivideByZeroWithExecutorWhithoutGet() throws InterruptedException, ExecutionException {
+
+        ExecutorService executorService = null;
+
+        try {
+            
+            executorService = Executors.newFixedThreadPool(1);
+            Future<Integer> future = executorService.submit(() -> {
+
+                                        log.info("Starting divide by zero in thread: {}", 
+                                                                    Thread.currentThread().getName());
+                                        int res = 1/0 ;
+                                        log.info("Ending divide by zero in thread: {}", 
+                                                                    Thread.currentThread().getName());
+                                        return res ;
+                                    }) ;
+            // int taskResult = future.get();
+            // log.info("Task divide by zero returned value {}", taskResult);
+            
+
+        } finally {
+            executorService.shutdown();
+        }
+
+    }
+
+    public void submitDivideByZeroWithExecutorWhitGet() throws InterruptedException, ExecutionException {
+
+        ExecutorService executorService = null;
+
+        try {
+            
+            executorService = Executors.newFixedThreadPool(1);
+            Future<Integer> future = executorService.submit(() -> {
+
+                                        log.info("Starting divide by zero in thread: {}", 
+                                                                    Thread.currentThread().getName());
+                                        int res = 1/0 ;
+                                        log.info("Ending divide by zero in thread: {}", 
+                                                                    Thread.currentThread().getName());
+                                        return res ;
+                                    }) ;
+            int taskResult = future.get();
+            log.info("Task divide by zero returned value {}", taskResult);
+            
+
+        } finally {
+            executorService.shutdown();
+        }
+
+    }
+
+    /**
+     * 
+     * Instead of: 
+     * 
+     *    final Future<BigDecimal> future = executorService.submit(this::calculate);
+     * 
+     * we do :
+     * 
+     *   final CompletableFuture<BigDecimal> future = CompletableFuture.supplyAsync(this::calculate, executorService);
+     * 
+     * @param tasks
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    public void submitCallableTasksWithCompletableFuture( CallableTask...tasks ) throws InterruptedException, ExecutionException {
+
+        ExecutorService executorService = null;
+
+        try {
+            
+            executorService = Executors.newFixedThreadPool(tasks.length);
+            List<Future<CalcResult>> taskFutureList = new ArrayList<>();
+
+            for (CallableTask callableTask : tasks) {
+                
+                taskFutureList.add( executorService.submit(() -> {
+                                        log.info("Starting Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+                                        CalcResult res =  callableTask.call();
+                                        log.info("Ending Task: {} in thread: {}", 
+                                                                    callableTask.name(), 
+                                                                    Thread.currentThread().getName());
+
+                                        return res ;
+                                    }) );
+            }
+
+            for (Future<CalcResult> future : taskFutureList) {
+                
+                // get Double result from Future when it becomes available
+
+                CalcResult taskResult = future.get();
+
+                log.info("Task {} returned value {}", taskResult);
             }
 
         } finally {
