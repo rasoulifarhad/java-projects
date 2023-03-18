@@ -326,3 +326,72 @@ Please look at the generic type of returned futures.
 
 **From:**
   https://nurkiewicz.com/2013/05/java-8-definitive-guide-to.html
+  
+Notes:
+
+**Controlling Callback's Thread Pool**
+
+As long as the lambda expression inside all of the operators like thenApply is cheap, we don't really care who calls it.
+
+There are two techniques to control which thread executes our callbacks and transformations. Notice that these solutions are only needed if your transformations are costly. Otherwise the difference is negligible. So first of all we can choose the *Async versions of operators, e.g.:
+
+```
+future.thenApplyAsync(s -> {
+    log.info("Second transformation");
+    return s.length();
+});
+```
+
+This time the second transformation was automatically off-loaded to our friend, ForkJoinPool.commonPool():
+
+```
+pool-1-thread-1                  | First transformation
+ForkJoinPool.commonPool-worker-1 | Second transformation
+```
+
+But we don't like commonPool so we supply our own:
+
+```
+future.thenApplyAsync(s -> {
+    log.info("Second transformation");
+    return s.length();
+}, pool2);
+```
+
+Notice that different thread pool was used (pool-1 vs. pool-2):
+
+```
+pool-1-thread-1 | First transformation
+pool-2-thread-1 | Second transformation
+```
+
+**Treating Callback Like Another Computation Step**
+
+If you are having troubles with long-running callbacks and transformations, you should simply use another explicit CompletableFuture, like here:
+
+```
+//Imagine this is slow and costly
+CompletableFuture<Integer> strLen(String s) {
+    return CompletableFuture.supplyAsync(
+            () -> s.length(),
+            pool2);
+}
+
+//...
+
+CompletableFuture<Integer> intFuture = future.thenCompose(s -> strLen(s));
+```
+
+This approach is more explicit. Knowing that our transformation has significant cost we don't risk running it on some arbitrary or uncontrolled thread. Instead we explicitly model it as asynchronous operation from String to CompletableFuture<Integer>. However we must replace thenApply() with thenCompose(), otherwise we'll end up with CompletableFuture<CompletableFuture<Integer>>.
+
+But what if our transformation does not have a version that plays well with nested CompletableFuture, e.g. applyToEither() that waits for the first Future to complete and applies a transformation?
+
+```
+CompletableFuture<CompletableFuture<Integer>> poor = future1.applyToEither(future2, s -> strLen(s));
+```
+
+There is a handy trick for "unwrapping" such obscure data structure called flatten, easily implemented using flatMap(identity) (or flatMap(x -> x)). In our case flatMap() is called thenCompose (duh!):
+
+```
+CompletableFuture<Integer> good = poor.thenCompose(x -> x);
+```

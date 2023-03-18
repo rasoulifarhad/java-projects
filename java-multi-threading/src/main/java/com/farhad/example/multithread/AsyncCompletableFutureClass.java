@@ -15,7 +15,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 public class AsyncCompletableFutureClass {
     
@@ -123,7 +122,7 @@ public class AsyncCompletableFutureClass {
 
         try {
 
-            log.info("Sending response: {}",response.id);
+            log.info("{} -- Sending response: {}",Thread.currentThread().getName(), response.id);
             Thread.sleep(200);
                 
         } catch (InterruptedException e) {
