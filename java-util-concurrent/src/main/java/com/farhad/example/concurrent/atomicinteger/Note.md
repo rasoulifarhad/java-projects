@@ -1,4 +1,30 @@
-### AtomicStampedReference and the A-B-A Problem
+### AtomicInteger
+
+The AtomicInteger class provides you with a int variable which can be read and written atomically, and which also contains advanced atomic operations like compareAndSet(). The AtomicInteger class is located in the java.util.concurrent.atomic package, so the full class name is java.util.concurrent.atomic.AtomicInteger . 
+
+> AtomicInteger atomicInteger = new AtomicInteger();
+> or
+> AtomicInteger atomicInteger = new AtomicInteger(123);
+> 
+> int theValue = atomicInteger.get();
+> atomicInteger.set(234);
+ 
+> AtomicInteger atomicInteger = new AtomicInteger(234);
+> int expectedValue = 234;
+> int newValue      = 123;
+> atomicInteger.compareAndSet(expectedValue, newValue);
+
+> AtomicInteger atomicInteger = new AtomicInteger();
+> # Adding to the AtomicInteger Value: addAndGet / getAndAdd / getAndIncrement / incrementAndGet
+> System.out.println(atomicInteger.getAndAdd(10));
+> System.out.println(atomicInteger.addAndGet(10));
+
+> AtomicInteger atomicInteger = new AtomicInteger();
+> # Subtracting From the AtomicInteger Value: decrementAndGet / getAndDecrement
+> System.out.println(atomicInteger.getAndDecrement(10));
+> System.out.println(atomicInteger.decrementAndGet(10));
+
+#### AtomicStampedReference and the A-B-A Problem
 
 The AtomicStampedReference is designed to solve the A-B-A problem. The A-B-A problem is when a reference is changed from pointing to A, then to B and then back to A.
 
