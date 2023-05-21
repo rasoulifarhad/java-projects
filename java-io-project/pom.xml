@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.farhad.example</groupId>
-	<artifactId>java-jackson</artifactId>
+	<artifactId>java-io-project</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0</version>
 
@@ -18,9 +18,6 @@
 		<delombok-maven-plugin.version>1.18.20.0</delombok-maven-plugin.version>
 		<lombok.version>1.18.26</lombok.version>
 		<slf4j.version>2.0.6</slf4j.version>
-		<guava.version>31.1-jre</guava.version>
-		<commons.io.version>2.11.0</commons.io.version>
-		<jackson.version>2.14.2</jackson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -35,27 +32,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-	    <dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId> 
-			<version>${jackson.version}</version>
-		</dependency>
-	    <dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons.io.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>		
 		<!-- tag::joda[] -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -116,12 +92,6 @@
 	</dependencies>
 
 	<build>
-	    <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
 		<plugins>
 		    <!-- <plugin>
                 <groupId>org.projectlombok</groupId>

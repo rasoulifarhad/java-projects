@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.farhad.example</groupId>
-	<artifactId>java-jackson</artifactId>
+	<artifactId>java-algorithm</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0</version>
 
@@ -20,7 +20,6 @@
 		<slf4j.version>2.0.6</slf4j.version>
 		<guava.version>31.1-jre</guava.version>
 		<commons.io.version>2.11.0</commons.io.version>
-		<jackson.version>2.14.2</jackson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -35,17 +34,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-	    <dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId> 
-			<version>${jackson.version}</version>
-		</dependency>
-	    <dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-
+	
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -116,12 +105,6 @@
 	</dependencies>
 
 	<build>
-	    <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
 		<plugins>
 		    <!-- <plugin>
                 <groupId>org.projectlombok</groupId>
