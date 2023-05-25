@@ -6,31 +6,16 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PersonIgnorePropertiesTest {
+public class PersonIgnorePropertiesTest extends BaseTest {
     
-    private ObjectMapper mapper ;
-
-    @BeforeEach
-    public void setup() {
-        mapper = new ObjectMapper();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        mapper = null;
-    }
-
     @Test
     public void serializeWithIgnoreProperties() throws JsonProcessingException {
 
