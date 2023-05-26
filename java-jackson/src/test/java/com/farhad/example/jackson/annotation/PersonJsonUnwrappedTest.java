@@ -17,10 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PersonJsonUnwrappedTest extends BaseTest {
     
-
     @Test
     public void serializeWithJsonUnwrapped() throws JsonProcessingException {
-
         //Given
         PersonJsonUnwrapped personJsonUnwrapped = new PersonJsonUnwrapped();
         personJsonUnwrapped.setPersonId(10);
@@ -30,11 +28,9 @@ public class PersonJsonUnwrappedTest extends BaseTest {
         address.setCity("Tehran");
         address.setZipCode("123456");
         personJsonUnwrapped.setAddress(address);
-
         //When
         String jsonString = mapper.writeValueAsString(personJsonUnwrapped);
         log.info("{}", jsonString);
-
         //Then
         assertThat(jsonString, isJson());
         assertThat(jsonString, hasJsonPath("$.name"));
@@ -43,12 +39,10 @@ public class PersonJsonUnwrappedTest extends BaseTest {
         assertThat(jsonString, hasJsonPath("$.country"));
         assertThat(jsonString, hasJsonPath("$.city"));
         assertThat(jsonString, hasJsonPath("$.zipCode"));
-
         assertThat(jsonString, hasJsonPath("name", equalTo("Farhad Rasouli")));
         assertThat(jsonString, hasJsonPath("$.personId", equalTo(10)));
         assertThat(jsonString, hasJsonPath("$.country",equalTo("Iran")));
         assertThat(jsonString, hasJsonPath("$.city", equalTo("Tehran")));
         assertThat(jsonString, isJson(withJsonPath("$.zipCode", equalTo("123456"))));
-
     }
 }
