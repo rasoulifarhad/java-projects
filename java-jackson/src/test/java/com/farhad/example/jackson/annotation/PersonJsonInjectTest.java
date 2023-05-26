@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +23,7 @@ public class PersonJsonInjectTest extends BaseTest {
 
         //When
         InjectableValues injectableValues = new InjectableValues.Std().addValue(String.class, "value from InjectableValues");
-        PersonJsonInject personJsonInject = new ObjectMapper().reader(injectableValues)
+        PersonJsonInject personJsonInject = mapper.reader(injectableValues)
                                                     .forType(PersonJsonInject.class)
                                                     .readValue(jsonString);
         log.info("{}", personJsonInject);
