@@ -1,7 +1,10 @@
 package com.farhad.example.jackson.annotation;
 
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasNoJsonPath;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.isJson;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.withJsonPath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -27,9 +30,14 @@ public class PersonIgnorePropertiesTest extends BaseTest {
         log.info("{}", jsonString);
 
         //Then
-        assertThat(jsonString, containsString("personId"));
-        assertThat(jsonString, not(containsString("Farhad")));
-        assertThat(jsonString, not(containsString("Rasouli")));
+        assertThat(jsonString, isJson());
+        assertThat(jsonString, hasJsonPath("$.personId"));
+        assertThat(jsonString, isJson(withJsonPath("$.personId", is(equalTo(10)))));
+        assertThat(jsonString, hasNoJsonPath("$.firstName"));
+        assertThat(jsonString, hasNoJsonPath("$.lasttName"));
+        // assertThat(jsonString, not(containsString("Farhad")));
+        // assertThat(jsonString, not(containsString("Rasouli")));
+        // assertThat(jsonString, containsString("personId"));
     }
 
     @Test

@@ -1,7 +1,9 @@
 package com.farhad.example.jackson.annotation;
 
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasNoJsonPath;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.isJson;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.withJsonPath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -27,8 +29,11 @@ public class PersonIgnoreTest  extends BaseTest{
         String personIgnoreJsonString = mapper.writeValueAsString(personIgnore);
         log.info("{}", personIgnoreJsonString);
         //Then
-        assertThat(personIgnoreJsonString,containsString("Farhad Rasouli"));
-        assertThat(personIgnoreJsonString, not(containsString("personId")));
+        assertThat(personIgnoreJsonString, isJson());
+        assertThat(personIgnoreJsonString, isJson(hasNoJsonPath("$.personId")));
+        assertThat(personIgnoreJsonString, isJson(withJsonPath("$.name",equalTo("Farhad Rasouli"))));
+        // assertThat(personIgnoreJsonString,containsString("Farhad Rasouli"));
+        // assertThat(personIgnoreJsonString, not(containsString("personId")));
     }
 
     @Test
