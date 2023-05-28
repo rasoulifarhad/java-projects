@@ -1,5 +1,7 @@
 package com.farhad.example.jackson;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -17,6 +19,8 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import lombok.extern.slf4j.Slf4j;
@@ -100,9 +104,9 @@ public class ReadObjectFromJsonStringTest {
 
         ObjectMapper mapper = new ObjectMapper();
         String carJson ="{\"brand\" : \"Honda\", \"doors\" : 5, \"dontExistField\" : \"throwException\" }";
-        Car car = mapper.readValue(carJson, Car.class);
 
-        log.info("{}", car);
+        Exception exception = assertThrows(UnrecognizedPropertyException.class,() -> mapper.readValue(carJson, Car.class));
+        log.error("{}", exception.getMessage());
     }
 
     @Test
@@ -124,9 +128,9 @@ public class ReadObjectFromJsonStringTest {
         mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, true);
         
         String carJson ="{\"brand\" : \"Honda\", \"doors\" : null}";
-        Car car = mapper.readValue(carJson, Car.class);
+        Exception exception = assertThrows(MismatchedInputException.class, () -> mapper.readValue(carJson, Car.class));
 
-        log.info("{}", car);
+        log.error("{}", exception.getMessage());
     }
 
     @Test
