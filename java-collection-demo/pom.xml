@@ -51,7 +51,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>net.datafaker</groupId>
+			<artifactId>datafaker</artifactId>
+			<version>1.9.0</version>
+		</dependency>
 		<!-- Logging -->
 		<!--  Using only for slf4j-->
 		<dependency>
@@ -59,7 +63,7 @@
 		<artifactId>slf4j-api</artifactId>
 		<version>${slf4j.version}</version>
 		</dependency>
-
+ 
 		<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-simple</artifactId>
