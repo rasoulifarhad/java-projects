@@ -87,4 +87,35 @@ public class BasicDateTimeDemoTest {
     void testDemonstrateInstant() {
         demo.demonstrateInstant();
     }
+
+    @Test
+    void testDemonstrateParsing() {
+        demo.demonstrateParsing();
+    }
+
+    @Test
+    void testDemonstrateFormatting() {
+        demo.demonstrateFormatting();
+    }
+
+    @Test
+    void testDemonstrateChronoField() {
+        demo.demonstrateChronoField();
+    }
+
+    @Test
+    void testDemonstrateChronoUnit() {
+        demo.demonstrateChronoUnit();
+    }
+
+    @Test
+    void testDemonstrateTemporalAdjuster() {
+        demo.demonstrateTemporalAdjuster();
+    }
+
+    @Test
+    void testDemonstrateCustomAdjusters() {
+       demo.demonstrateCustomAdjusters(); 
+    }
+
 }

@@ -19,6 +19,7 @@ import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.IsoFields;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
@@ -305,6 +306,91 @@ public class BasicDateTimeDemo {
         log.info("Instant support {} ? {}", chronoUnit, isSupported);
 
     }
+    
+    public void demonstrateTemporalAdjuster() {
+        LocalDate localDate = LocalDate.of(2023, Month.JUNE, 5);
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        log.info("{} is on a {}", localDate, dayOfWeek);
+
+        TemporalAdjuster temporalAdjuster = TemporalAdjusters.firstDayOfMonth();
+        LocalDate adjustedLocalDate =  localDate.with(temporalAdjuster);
+        log.info("first Day Of Month : {}", adjustedLocalDate);
+
+
+        temporalAdjuster = TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY);
+        adjustedLocalDate =  localDate.with(temporalAdjuster);
+        log.info("first monday Of Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.lastDayOfMonth();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("last day Of Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.firstDayOfNextMonth();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("first day Of next Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.firstDayOfYear();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("first day Of year : {}", adjustedLocalDate);
+
+        //
+        localDate = LocalDate.of(2023, Month.OCTOBER, 15);
+        dayOfWeek = localDate.getDayOfWeek();
+        log.info("{} is on a {}", localDate, dayOfWeek);
+
+        temporalAdjuster = TemporalAdjusters.firstDayOfMonth();
+        adjustedLocalDate =  localDate.with(temporalAdjuster);
+        log.info("first Day Of Month : {}", adjustedLocalDate);
+
+
+        temporalAdjuster = TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY);
+        adjustedLocalDate =  localDate.with(temporalAdjuster);
+        log.info("first monday Of Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.lastDayOfMonth();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("last day Of Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.firstDayOfNextMonth();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("first day Of next Month : {}", adjustedLocalDate);
+
+        temporalAdjuster = TemporalAdjusters.firstDayOfYear();
+        adjustedLocalDate = localDate.with(temporalAdjuster);
+        log.info("first day Of year : {}", adjustedLocalDate);
+    }
+
+    public void demonstrateCustomAdjusters() {
+        LocalDate now = LocalDate.of(2023, Month.JUNE, 3);
+        LocalDate nextPayDay = now.with(new PayDayAdjuster());
+        log.info("Date is: {}, Next pay day: {} ({})", now, nextPayDay, nextPayDay.getDayOfWeek());
+
+        now = LocalDate.of(2023, Month.JUNE, 18);
+        nextPayDay = now.with(new PayDayAdjuster());
+        log.info("Date is: {}, Next pay day: {} ({})", now, nextPayDay, nextPayDay.getDayOfWeek());
+    }
+
+    static class PayDayAdjuster implements TemporalAdjuster {
+
+        @Override
+        public Temporal adjustInto(Temporal temporal) {
+            LocalDate date = LocalDate.from(temporal);
+            int day;
+            if(date.getDayOfMonth() < 15) {
+                day = 15;
+            } else {
+                day = date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
+            }
+
+            date = date.withDayOfMonth(day);
+            if(date.getDayOfWeek() == DayOfWeek.SATURDAY || 
+                date.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                    date = date.with(TemporalAdjusters.previous(DayOfWeek.FRIDAY));
+            }
+            return temporal.with(date);
+        }
+        
+    }
 
     public static void main(String[] args) {
         BasicDateTimeDemo demo = new BasicDateTimeDemo();
@@ -327,5 +413,7 @@ public class BasicDateTimeDemo {
         demo.demonstrateFormatting();
         demo.demonstrateChronoField();
         demo.demonstrateChronoUnit();
+        demo.demonstrateTemporalAdjuster();
+        demo.demonstrateCustomAdjusters();
     }
 }
