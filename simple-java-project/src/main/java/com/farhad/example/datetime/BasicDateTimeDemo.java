@@ -233,7 +233,44 @@ public class BasicDateTimeDemo {
         log.info("{} {} {}", localDateTime.getMonth(), localDateTime.getDayOfMonth(), localDateTime.getYear());
     }
 
-    
+    public void demonstrateParsing() {
+        String dateString = "20230605";
+        LocalDate localDate = LocalDate.parse(dateString, DateTimeFormatter.BASIC_ISO_DATE);
+        log.info("{} {}", dateString,localDate);
+
+        dateString = "Jun 5 2023";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        localDate = LocalDate.parse(dateString, dateTimeFormatter);
+        log.info("{} {}", dateString,localDate);
+
+        dateString = "Jun 05 2023";
+        dateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        localDate = LocalDate.parse(dateString, dateTimeFormatter);
+        log.info("{} {}", dateString,localDate);
+    }
+
+    public void demonstrateFormatting() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
+
+        LocalDateTime leaving = LocalDateTime.of(2023, Month.JUNE, 5, 11, 5);
+        ZoneId leavingZone = ZoneId.of("America/Los_Angeles");
+        ZonedDateTime departure = ZonedDateTime.of(leaving, leavingZone);
+
+        String formatedDeparture = departure.format(format);
+        log.info("LEAVING: {} ({})", formatedDeparture, leavingZone);
+
+        ZoneId arrivingZone = ZoneId.of("Asia/Tokyo");
+        ZonedDateTime arrival = departure.withZoneSameInstant(arrivingZone).plusMinutes(650);
+        String formatedArrival = arrival.format(format);
+        log.info("ARRAYING: {} ({})", formatedArrival, arrivingZone);
+
+        if(arrivingZone.getRules().isDaylightSavings(arrival.toInstant())) {
+            log.info("({} daylight saving time will be in effect.)", arrivingZone);
+        } else {
+            log.info("({} standard time will be in effect.)", arrivingZone);
+        }
+
+    }
 
     public static void main(String[] args) {
         BasicDateTimeDemo demo = new BasicDateTimeDemo();
@@ -252,5 +289,7 @@ public class BasicDateTimeDemo {
         demo.demonstrateOffsetDateTime();
         demo.demonstrateOffsetTime();
         demo.demonstrateInstant();
+        demo.demonstrateParsing();
+        demo.demonstrateFormatting();
     }
 }
