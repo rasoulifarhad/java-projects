@@ -16,9 +16,12 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -269,6 +272,37 @@ public class BasicDateTimeDemo {
         } else {
             log.info("({} standard time will be in effect.)", arrivingZone);
         }
+    }
+
+    public void demonstrateChronoField() {
+        ChronoField chronoField = ChronoField.CLOCK_HOUR_OF_DAY;
+        boolean isSupported = LocalDate.now().isSupported(chronoField);
+        log.info("LocalDate support {} ? {}", chronoField, isSupported);
+
+        chronoField = ChronoField.DAY_OF_MONTH;
+        isSupported = LocalDate.now().isSupported(ChronoField.DAY_OF_MONTH);
+        log.info("LocalDate support {} ? {}", chronoField, isSupported);
+
+        chronoField = ChronoField.MILLI_OF_SECOND;
+        isSupported = LocalDate.now().isSupported(ChronoField.MILLI_OF_SECOND);
+        log.info("LocalDate support {} ? {}", chronoField, isSupported);
+
+        chronoField = ChronoField.MILLI_OF_SECOND;
+        LocalTime localTime = LocalTime.now();
+        int value = localTime.get(chronoField);
+        log.info("LocalTime.now {} is {}", chronoField, value);
+
+        TemporalField temporalField  = IsoFields.QUARTER_OF_YEAR;
+        LocalDate localDate = LocalDate.now();
+        value = localDate.get(temporalField);
+        log.info("LocalDate.now {} is {}", temporalField, value);
+    }
+
+    public void demonstrateChronoUnit() {
+        Instant instantNow = Instant.now();
+        ChronoUnit chronoUnit = ChronoUnit.DECADES;
+        boolean isSupported = instantNow.isSupported(chronoUnit);
+        log.info("Instant support {} ? {}", chronoUnit, isSupported);
 
     }
 
@@ -291,5 +325,7 @@ public class BasicDateTimeDemo {
         demo.demonstrateInstant();
         demo.demonstrateParsing();
         demo.demonstrateFormatting();
+        demo.demonstrateChronoField();
+        demo.demonstrateChronoUnit();
     }
 }
