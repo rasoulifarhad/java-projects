@@ -10,6 +10,11 @@ import com.farhad.example.string.InternDemo.Foo;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * When the intern() method is invoked on a String object it looks the string contained by this String object in the pool, if the string 
+ * is found there then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this 
+ * String object is returned.
+ */
 @Slf4j
 public class InternDemoTest {
   
@@ -54,6 +59,31 @@ public class InternDemoTest {
         assertThat(bar.getBar()).isEqualTo(str);
         assertThat(bar.getBar() == str).isTrue();
     }
+
+    @Test
+    public void anotherInternTest()  {
+
+        String s1 = "Farhad";
+        String s2 = "Farhad";
+        String s3 = new String("Farhad");
+        final String s4 = s3.intern();
+
+        log.info("s1 == s2`: {}", s1 == s2); // true
+        log.info("s2 == s3`: {}", s2 == s3); // false
+        log.info("s3 == s4`: {}", s3 == s4); // false
+        log.info("s1 == s3`: {}", s1 == s3); // false
+        log.info("s1 == s4`: {}", s1 == s4); // true
+        log.info("s2 == s4`: {}", s2 == s4); // true
+
+        assertThat( s1 == s2 ).isTrue();
+        assertThat( s2 == s3 ).isFalse();
+        assertThat( s3 == s4 ).isFalse();
+        assertThat( s1 == s3 ).isFalse();
+        assertThat( s1 == s4 ).isTrue();
+        assertThat( s2 == s4 ).isTrue();
+    }
+
+
 
 }
 
