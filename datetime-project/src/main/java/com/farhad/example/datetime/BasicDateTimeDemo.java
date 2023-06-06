@@ -438,8 +438,6 @@ public class BasicDateTimeDemo {
         period  = Period.between(nextBirthDay, today);
         days = ChronoUnit.DAYS.between(nextBirthDay, today);
         log.info("There are {} months, and {} days until my next birthday. ({} days total) ", period.getMonths(), period.getDays(), days);
-
-
     }
 
     public void demonstrateNonISODateConversion() {
