@@ -1,6 +1,7 @@
 package com.farhad.example.datetime;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.Month;
 import java.time.MonthDay;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Period;
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
@@ -392,6 +394,58 @@ public class BasicDateTimeDemo {
         
     }
 
+    public void demonstrateTemporalQueryPredefinedQueries() {
+
+    }
+
+    public void demonstrateTemporalQueryCustomQueries() {
+        
+    }
+
+    public void demonstratePeriodAndDuration() {
+        Instant t1 = Instant.now();
+        Instant t2 = t1.plus(20L, ChronoUnit.SECONDS);
+        Duration duration = Duration.between(t1, t2);
+        long ns = duration.toNanos();
+        log.info("Duration between {} and {} : {} (ns)", t1, t2, ns);
+        ns = duration.toMillis();
+        log.info("Duration between {} and {} : {} (ms)", t1, t2, ns);
+
+        Instant start = Instant.now();
+        Duration duraionGap = Duration.ofSeconds(19);
+        Instant later =  start.plus(duraionGap);
+        log.info("start: {}, later: {}", start, later);
+
+        Instant previous, current;
+        long gap;
+        current = Instant.now();
+        previous = current.minus(10, ChronoUnit.MINUTES);
+        gap = ChronoUnit.MILLIS.between(previous, current);
+        log.info("current: {}, previous: {}, gap: {} millis", current, previous, gap);
+
+        LocalDate today = LocalDate.now();
+        LocalDate birthday = LocalDate.of(1977, Month.JANUARY, 22);
+        Period period = Period.between(birthday, today);
+        long days = ChronoUnit.DAYS.between(birthday, today);
+        log.info("I am {} years, {} months, and {} days old. ({} days total) ", period.getYears(), period.getMonths(), period.getDays(), days);
+
+        today = LocalDate.now();
+        birthday = LocalDate.of(1977, Month.JANUARY, 22);
+        LocalDate nextBirthDay = birthday.withYear(today.getYear());
+        if (nextBirthDay.isBefore(today) || nextBirthDay.isEqual(today)) {
+            nextBirthDay.plusYears(1);
+        }
+        period  = Period.between(nextBirthDay, today);
+        days = ChronoUnit.DAYS.between(nextBirthDay, today);
+        log.info("There are {} months, and {} days until my next birthday. ({} days total) ", period.getMonths(), period.getDays(), days);
+
+
+    }
+
+    public void demonstrateNonISODateConversion() {
+
+    }
+
     public static void main(String[] args) {
         BasicDateTimeDemo demo = new BasicDateTimeDemo();
         demo.demonstrateLocalDateWithTemporalAdjusters();
@@ -415,5 +469,9 @@ public class BasicDateTimeDemo {
         demo.demonstrateChronoUnit();
         demo.demonstrateTemporalAdjuster();
         demo.demonstrateCustomAdjusters();
+        demo.demonstrateTemporalQueryPredefinedQueries();
+        demo.demonstrateTemporalQueryCustomQueries();
+        demo.demonstratePeriodAndDuration();
+        demo.demonstrateNonISODateConversion();
     }
 }
