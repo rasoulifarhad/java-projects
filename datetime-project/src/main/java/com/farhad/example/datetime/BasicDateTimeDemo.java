@@ -1,5 +1,7 @@
 package com.farhad.example.datetime;
 
+import static com.farhad.example.datetime.TemporalFormat.format;
+
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
@@ -16,6 +18,14 @@ import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.chrono.HijrahChronology;
+import java.time.chrono.HijrahDate;
+import java.time.chrono.JapaneseChronology;
+import java.time.chrono.JapaneseDate;
+import java.time.chrono.MinguoChronology;
+import java.time.chrono.MinguoDate;
+import java.time.chrono.ThaiBuddhistChronology;
+import java.time.chrono.ThaiBuddhistDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
@@ -25,6 +35,9 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
+import java.time.temporal.TemporalQueries;
+import java.time.temporal.TemporalQuery;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -395,11 +408,35 @@ public class BasicDateTimeDemo {
     }
 
     public void demonstrateTemporalQueryPredefinedQueries() {
-
+        TemporalQuery<TemporalUnit> query = TemporalQueries.precision();
+        log.info("LocalDate precision is: {}", LocalDate.now().query(query));
+        log.info("LocalDateTime precision is: {}", LocalDateTime.now().query(query));
+        log.info("Year precision is: {}", Year.now().query(query));
+        log.info("YearMonth precision is: {}", YearMonth.now().query(query));
+        log.info("Instant precision is: {}", Instant.now().query(query));
     }
 
     public void demonstrateTemporalQueryCustomQueries() {
-        
+
+        if ( CheckDate.checkDateForFamilyBirthDaysAndVacations(1, 24)) {
+            log.info("{} is an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } else {
+            log.info("{} is not an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } 
+
+        LocalDate date = LocalDate.of(2024, Month.JANUARY, 24);
+        if ( CheckDate.checkDateForFamilyBirthDaysAndVacations(date)) {
+            log.info("{} is an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } else {
+            log.info("{} is not an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } 
+
+        date = LocalDate.of(2024, Month.AUGUST, 24);
+        if ( CheckDate.checkDateForFamilyBirthDaysAndVacations(date)) {
+            log.info("{} is an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } else {
+            log.info("{} is not an important date!",LocalDate.of(Year.now().getValue(), 1, 24) );
+        } 
     }
 
     public void demonstratePeriodAndDuration() {
@@ -441,7 +478,83 @@ public class BasicDateTimeDemo {
     }
 
     public void demonstrateNonISODateConversion() {
+        LocalDateTime    today  = LocalDateTime.now();
+        LocalDateTime    date   = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
+        JapaneseDate     jToday = JapaneseDate.from(today);
+        JapaneseDate     jDate  = JapaneseDate.from(date);
+        log.info("ISO: {}, JapaneseDate {}", today, jToday);
+        log.info("ISO: {}, JapaneseDate {}", date, jDate);
+        log.info("");
+        HijrahDate       hToday = HijrahDate.from(today);
+        HijrahDate       hDate  = HijrahDate.from(date);
+        log.info("ISO: {}, HijrahDate {}", today, hToday);
+        log.info("ISO: {}, HijrahDate {}", date, hDate);
+        log.info("");
+        MinguoDate       mToday = MinguoDate.from(today);
+        MinguoDate       mDate  = MinguoDate.from(date);
+        log.info("ISO: {}, MinguoDate {}", today, mToday);
+        log.info("ISO: {}, MinguoDate {}", date, mDate);
+        log.info("");
+        ThaiBuddhistDate tToday = ThaiBuddhistDate.from(today);
+        ThaiBuddhistDate tDate  = ThaiBuddhistDate.from(date);
+        log.info("ISO: {}, ThaiBuddhistDate {}", today, tToday);
+        log.info("ISO: {}, ThaiBuddhistDate {}", date, tDate);
+        log.info("");
 
+        LocalDate localDate = LocalDate.of(1996, Month.OCTOBER, 29);
+        log.info("{}: {} (JapaneseChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, JapaneseChronology.INSTANCE));
+        log.info("{}: {} (MinguoChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, MinguoChronology.INSTANCE));
+        log.info("{}: {} (ThaiBuddhistChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, ThaiBuddhistChronology.INSTANCE));
+        log.info("{}: {} (HijrahChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, HijrahChronology.INSTANCE));
+
+        localDate = LocalDate.now();
+        log.info("{}: {} (JapaneseChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, JapaneseChronology.INSTANCE));
+        log.info("{}: {} (MinguoChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, MinguoChronology.INSTANCE));
+        log.info("{}: {} (ThaiBuddhistChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, ThaiBuddhistChronology.INSTANCE));
+        log.info("{}: {} (HijrahChronology)", localDate, ChronoLocalDateConverter.toChronoLocalDateString(localDate, HijrahChronology.INSTANCE));
+
+        localDate = LocalDate.from(JapaneseDate.now());
+
+        String dateString = "10/29/0008 H";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, JapaneseChronology.INSTANCE));
+        dateString = "10/29/0085 1";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, MinguoChronology.INSTANCE));
+        dateString = "10/29/0039 B.E.";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, ThaiBuddhistChronology.INSTANCE));
+        dateString = "6/16/1417 1";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, HijrahChronology.INSTANCE));
+
+
+        dateString = "6/7/05 R";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, JapaneseChronology.INSTANCE));
+        dateString = "6/7/112 1";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, MinguoChronology.INSTANCE));
+        dateString = "6/7/2566 B.E.";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, ThaiBuddhistChronology.INSTANCE));
+        dateString = "11/18/1444 1";
+        log.info("{}: {} ", dateString, ChronoLocalDateConverter.fromChronoLocalDateString(dateString, HijrahChronology.INSTANCE));
+    }
+
+    public void demonstrateCustomeDateTimeFormatPatterns() {
+        LocalDate date = LocalDate.of(2023, Month.JUNE, 7);
+
+        String pattern = "M/d/yyyy";
+        log.info("{}: {}", pattern, format(date, pattern));
+
+        pattern = "MM/dd/yyyy";
+        log.info("{}: {}", pattern, format(date, pattern));
+
+        pattern = "MMM  dd, yyyy";
+        log.info("{}: {}", pattern, format(date, pattern));
+
+        pattern = "MMMM  dd,  yyyy";
+        log.info("{}: {}", pattern, format(date, pattern));
+
+        pattern = "EEEE, MMMM  dd,  yyyy";
+        log.info("{}: {}", pattern, format(date, pattern));
+
+        pattern = "'Month' q 'in' QQQ";
+        log.info("{}: {}", pattern, format(date, pattern));
     }
 
     public static void main(String[] args) {
@@ -471,5 +584,6 @@ public class BasicDateTimeDemo {
         demo.demonstrateTemporalQueryCustomQueries();
         demo.demonstratePeriodAndDuration();
         demo.demonstrateNonISODateConversion();
+        demo.demonstrateCustomeDateTimeFormatPatterns();
     }
 }

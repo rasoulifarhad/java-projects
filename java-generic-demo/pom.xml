@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.farhad.example</groupId>
-	<artifactId>datetime-project</artifactId>
+	<artifactId>java-generic-demo</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0</version>
 
@@ -32,11 +32,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- <dependency>
+		<!-- tag::joda[] -->
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.12.2</version> 
-		</dependency> -->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>

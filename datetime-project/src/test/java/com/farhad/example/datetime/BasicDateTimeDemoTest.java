@@ -118,4 +118,29 @@ public class BasicDateTimeDemoTest {
        demo.demonstrateCustomAdjusters(); 
     }
 
+    @Test
+    void testDemonstrateTemporalQueryPredefinedQueries() {
+       demo.demonstrateTemporalQueryPredefinedQueries(); 
+    }
+
+    @Test
+    void testDemonstrateTemporalQueryCustomQueries() {
+       demo.demonstrateTemporalQueryCustomQueries(); 
+    }
+
+    @Test
+    public void testDemonstratePeriodAndDuration() {
+        demo.demonstratePeriodAndDuration();
+    }
+
+    @Test
+    void testDemonstrateNonISODateConversion() {
+        demo.demonstrateNonISODateConversion();
+    }
+
+    @Test
+    void testDemonstrateCustomeDateTimeFormatPatterns() {
+        demo.demonstrateCustomeDateTimeFormatPatterns();
+    }
+
 }
