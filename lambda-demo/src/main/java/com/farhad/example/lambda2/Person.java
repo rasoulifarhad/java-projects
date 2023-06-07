@@ -124,6 +124,10 @@ public class Person {
             .forEach(consumer);
     }
 
+    public static  int compareByAge(Person p1, Person p2) {
+        return p1.getBirthday().compareTo(p2.getBirthday());
+    }
+
     public static List<Person> createRoster() {
         
         List<Person> roster = new ArrayList<>();
@@ -131,18 +135,18 @@ public class Person {
         roster.add(
             new Person(
             "Fred",
-            IsoChronology.INSTANCE.date(1980, 6, 20),
+            IsoChronology.INSTANCE.date(1990, 6, 20),
             Person.Sex.MALE,
             "fred@example.com"));
         roster.add(
             new Person(
             "Jane",
-            IsoChronology.INSTANCE.date(1990, 7, 15),
+            IsoChronology.INSTANCE.date(1980, 7, 15),
             Person.Sex.FEMALE, "jane@example.com"));
         roster.add(
             new Person(
             "George",
-            IsoChronology.INSTANCE.date(1991, 8, 13),
+            IsoChronology.INSTANCE.date(1978, 8, 13),
             Person.Sex.MALE, "george@example.com"));
         roster.add(
             new Person(
