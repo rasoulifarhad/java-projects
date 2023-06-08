@@ -46,4 +46,34 @@ public class SetDemoTest {
     void testDemonstrateRemoveDuplicationWithStreamingAndTreeSet() {
         demo.demonstrateRemoveDuplicationWithStreamingAndTreeSet();
     }
+
+    @Test
+    void testDemonstrateBulkOperationsAddAll() {
+        demo.demonstrateBulkOperationsAddAll();
+    }
+
+    @Test
+    void testDemonstrateBulkOperationsRemoveAll() {
+        demo.demonstrateBulkOperationsRemoveAll();
+    }
+
+    @Test
+    void testDemonstrateBulkOperationsRetainAll() {
+        demo.demonstrateBulkOperationsRetainAll();
+    }
+
+    @Test
+    void testDemonstrateExtractDuplicates() {
+        demo.demonstrateExtractDuplicates();
+    }
+
+    @Test
+    void testDemonstrateExtractNonDuplicates() {
+        demo.demonstrateExtractNonDuplicates();
+    }
+
+    @Test
+    void testDemonstrateSymmetricSetDifference() {
+        demo.demonstrateSymmetricSetDifference();
+    }
 }

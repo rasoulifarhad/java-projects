@@ -16,6 +16,9 @@ public class SetDemo {
     private static final String TEXT = "i came i saw i left";
     private Collection<String> words = Arrays.asList(TEXT.split(" "));
 
+    private static final String TEXT2 = "then i sleep then i wakeup then i came";
+    private Collection<String> secondWords = Arrays.asList(TEXT2.split(" "));
+
 
     public static <E> Set<E> removeDuplicates(Collection<E> collection) {
         return new LinkedHashSet<>(collection);
@@ -62,6 +65,89 @@ public class SetDemo {
         log.info("After remove duplicate:  {}", noDuplicates);
     }
 
+    public void demonstrateBulkOperationsAddAll() {
+        log.info("");
+        log.info("First words:  {}", words);
+        log.info("Second words: {}", secondWords);
+        log.info("");
+
+        Set<String> union = new HashSet<>(words);
+        union.addAll(secondWords);
+        log.info("Union:        {}", union);
+    } 
+
+    public void demonstrateBulkOperationsRetainAll() {
+        log.info("");
+        log.info("First words:  {}", words);
+        log.info("Second words: {}", secondWords);
+        log.info("");
+
+        Set<String> intersection = new HashSet<>(words);
+        intersection.retainAll(secondWords);
+        log.info("Intersection: {}", intersection);
+    }
+
+    public void demonstrateBulkOperationsRemoveAll() {
+        log.info("");
+        log.info("First words:  {}", words);
+        log.info("Second words: {}", secondWords);
+        log.info("");
+
+        Set<String> difference = new HashSet<>(words);
+        difference.removeAll(secondWords);
+        log.info("Difference:   {}", difference);
+    }
+
+    public void demonstrateExtractDuplicates() {
+
+        log.info("");
+        log.info("words:      {}", words);
+        log.info("");
+        Set<String> uniques = new HashSet<>();
+        Set<String> duplicates = new HashSet<>();
+
+        for (String s : words) {
+            if (!uniques.add(s)) {
+                duplicates.add(s);
+            }
+        }
+        log.info("Duplicates: {}", duplicates);
+    }
+
+    public void demonstrateExtractNonDuplicates() {
+
+        log.info("");
+        log.info("words:          {}", words);
+        log.info("");
+        Set<String> uniques = new HashSet<>();
+        Set<String> duplicates = new HashSet<>();
+
+        for (String s : words) {
+            if (!uniques.add(s)) {
+                duplicates.add(s);
+            }
+        }
+        Set<String> noneDuplicates = new HashSet<>(uniques);
+        noneDuplicates.removeAll(duplicates);
+        
+        log.info("Non Duplicates: {}", noneDuplicates);
+    }
+
+    // The set of elements contained in either of two specified sets but not in both.
+    public void demonstrateSymmetricSetDifference() {
+        log.info("");
+        log.info("First words:  {}", words);
+        log.info("Second words: {}", secondWords);
+        log.info("");
+
+        Set<String> symmetricDifference = new HashSet<>(words);
+        symmetricDifference.addAll(secondWords);
+        Set<String> intersection = new HashSet<>(words);
+        intersection.retainAll(secondWords);
+        symmetricDifference.removeAll(intersection);
+        log.info("Symmetric Difference: {}", symmetricDifference);
+    }
+
     public static void main(String[] args) {
         SetDemo demo = new SetDemo() ;
 
@@ -71,5 +157,14 @@ public class SetDemo {
         demo.demonstrateRemoveDuplicationWithStreamingAndTreeSet();
         demo.demonstrateRemoveDuplicationWithStreamingAndLinkedHashSet();
         demo.demonstrateRemoveDuplicates();
+
+        demo.demonstrateBulkOperationsAddAll();
+        demo.demonstrateBulkOperationsRetainAll();
+        demo.demonstrateBulkOperationsRemoveAll();
+
+        demo.demonstrateExtractDuplicates();
+        demo.demonstrateExtractNonDuplicates();
+
+        demo.demonstrateSymmetricSetDifference();
     }
 }
