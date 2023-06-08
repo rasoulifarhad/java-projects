@@ -34,7 +34,7 @@ public class StringFormatingDemo {
 
         formatedString = String.format("|%1$s| - |%1$15s| - |%1$-15s| - |%1$.5s| - |%1$15.5s| ", "Hello World");
         log.info("{}", formatedString);
-
+        fmt.close();
         
     }
 }
