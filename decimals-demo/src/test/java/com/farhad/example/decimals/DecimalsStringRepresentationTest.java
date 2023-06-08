@@ -9,9 +9,6 @@ import static com.farhad.example.decimals.DecimalsStringRepresentation.writeForm
 
 import org.junit.jupiter.api.Test;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class DecimalsStringRepresentationTest {
     
 
