@@ -3,6 +3,11 @@ package com.farhad.example.enums;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * All enums implicitly extend java.lang.Enum. 
+ * The constructor for an enum type must be package-private or private access. It automatically creates the constants 
+ * that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself. 
+ */
 @Slf4j
 @AllArgsConstructor
 public class EnumDemo {
