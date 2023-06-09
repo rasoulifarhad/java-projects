@@ -76,4 +76,9 @@ public class ListDemoTest {
     void testDemonstrateSubList() {
         demo.demonstrateSubList();
     }
+
+    @Test
+    void testDemonstrateDealHand() {
+        demo.demonstrateDealHand();
+    }
 }

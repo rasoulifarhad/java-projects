@@ -69,6 +69,15 @@ public class ListDemo {
         }
     }
 
+    public static <E> List<E> dealHand(List<E> deck, int count) {
+        int deckSize = deck.size();
+        List<E> handView = deck.subList(deckSize - count, deckSize);
+        List<E> hand = new ArrayList<>(handView);
+        handView.clear();
+        return hand;
+
+    }
+
     public void demonstrateAddAll() {
         List<String> allList = new ArrayList<>(words);
         log.info("");
@@ -265,6 +274,33 @@ public class ListDemo {
         subWordsList.clear();
         log.info("Words  List:     {}", wordsList);
         log.info("Sub Words  List: {}", subWordsList);
+
+        wordsList = new ArrayList<String>(words);
+        log.info("");
+        log.info("Sub List: {}", wordsList.subList(2, 5));
+        log.info("First index of '{}': {} ", "i", wordsList.subList(2,5).indexOf("i"));
+        log.info("Last  index of '{}': {} ", "i", wordsList.subList(2,5).lastIndexOf("i"));
+    }
+
+    public void demonstrateDealHand() {
+        String [] suit = new String[] { "spades", "hearts", "diamonds", "clubs" };
+        String [] rank = new String[] {"ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"};
+        List<String> deck = new ArrayList<>();
+        for (int i = 0; i < suit.length; i++) {
+            for (int j = 0; j < rank.length; j++) {
+                // deck.add(rank[j] + " of " + suit[i]);
+                // deck.add(String.format("(%s)%s", rank[j], suit[i]));
+                deck.add(String.format("%s_%s", rank[j], suit[i]));
+            }
+        }
+        Collections.shuffle(deck);
+
+        // numberOfHands * cardsPerHand must less than or equal deck.size()
+        int numberOfHands = 4;
+        int cardsPerHand  = 5;
+        for (int i = 0; i < numberOfHands; i++) {
+            log.info( "Cards in Hand#{}: {}", i, dealHand(deck, cardsPerHand) );
+        }
     }
 
     public static void main(String[] args) {
@@ -282,5 +318,6 @@ public class ListDemo {
         demo.demonstrateReplaceStaticMethod();
         demo.demonstrateReplaceListStaticMethod();
         demo.demonstrateSubList();
+        demo.demonstrateDealHand();
     }
 }
