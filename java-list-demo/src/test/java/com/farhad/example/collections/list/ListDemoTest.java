@@ -47,4 +47,33 @@ public class ListDemoTest {
     void testDemonstrateListIterator() {
         demo.demonstrateListIterator();
     }
+
+    @Test
+    void testDemonstrateIndexOf() {
+        demo.demonstrateIndexOf();
+    }
+    @Test
+    void testDemonstrateContainAndContainAll() {
+        demo.demonstrateContainsAndContainsAll();
+    }
+
+    @Test
+    void testDemonstrateReplaceAll() {
+        demo.demonstrateReplaceAll();
+    }
+
+    @Test
+    void testDemonstrateReplaceStaticMethod() {
+        demo.demonstrateReplaceStaticMethod();
+    }
+
+    @Test
+    void testDemonstrateReplaceListStaticMethod() {
+        demo.demonstrateReplaceListStaticMethod();
+    }
+
+    @Test
+    void testDemonstrateSubList() {
+        demo.demonstrateSubList();
+    }
 }

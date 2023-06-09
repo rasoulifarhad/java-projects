@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ public class ListDemo {
     private Collection<String> secondWords = Arrays.asList(TEXT2.split(" "));
 
     private static final String ALL_TEXT = "i came i saw i left then i sleep then i wakeup then i came";
+    private Collection<String> _allWords = Arrays.asList(ALL_TEXT.split(" "));
 
     public static <E> void swap(List<E> list, int i, int j) {
 
@@ -39,6 +41,31 @@ public class ListDemo {
         Random rnd = new Random();
         for (int i = list.size(); i > 1; i--) {
             swap(list, i-1, rnd.nextInt(i));
+        }
+    }
+
+    public static <E> void replace(List<E> list, E oldValue, E newValue) {
+        Objects.requireNonNull(oldValue);
+        Objects.requireNonNull(newValue);
+        for (ListIterator<E> it = list.listIterator(); it.hasNext(); ) {
+            E e = it.next();
+            if( e == null ? true : oldValue.equals(e)) {
+                it.set(newValue);
+            }
+        }
+    }
+
+    public static <E> void replaceList(List<E> list, E oldValue, List<? extends E> newValues) {
+        Objects.requireNonNull(oldValue);
+        Objects.requireNonNull(newValues);
+        for (ListIterator<E> it = list.listIterator(); it.hasNext(); ) {
+            E e = it.next();
+            if( e == null? true : oldValue.equals(e)) {
+                it.remove();
+                for (E newE : newValues) {
+                    it.add(newE);
+                }
+            }
         }
     }
 
@@ -139,6 +166,107 @@ public class ListDemo {
         log.info("End iterate with it.previous()", list);
     }
 
+    private <E> void printListWithPosition(List<E> list) {
+        ListIterator<E> it = list.listIterator();
+        int index;
+        for (; it.hasNext();) {
+            index = it.nextIndex();
+            E word = it.next();
+            System.out.printf("%d:[%s] ", index, word);
+        }
+        System.out.printf("%n");
+    }
+
+    public void demonstrateIndexOf() {
+        List<String> list = new ArrayList<>(_allWords);
+        // [i, came, i, saw, i, left, then, i, sleep, then, i, wakeup, then, i, came]
+        log.info("");
+        printListWithPosition(list);
+        // log.info("list:      {}", list);
+        String element = "i";
+        log.info("First indexOf(`{}`): {}", element, list.indexOf(element));
+        log.info("Last  indexOf(`{}`): {}", element, list.lastIndexOf(element));
+
+        element = "left";
+        log.info("First indexOf(`{}`): {}", element, list.indexOf(element));
+        log.info("Last  indexOf(`{}`): {}", element, list.lastIndexOf(element));
+        element = "then";
+        log.info("First indexOf(`{}`): {}", element, list.indexOf(element));
+        log.info("Last  indexOf(`{}`): {}", element, list.lastIndexOf(element));
+    }
+
+    public void demonstrateContainsAndContainsAll() {
+        List<String> allList = new ArrayList<String>(_allWords);
+        List<String> wordsList = new ArrayList<String>(words);
+        List<String> secondList = new ArrayList<String>(secondWords);
+
+        log.info("");
+        log.info("Words  List: {}", wordsList);
+        log.info("Second List: {}", secondList);
+        log.info("All    List: {}", allList);
+        log.info("");
+        String element = "left";
+        log.info("Words List  have {} element: '{}' ", wordsList.contains(element) ? "   " : "not", element);
+        log.info("Second List have {} element: '{}' ", secondList.contains(element) ? "   " : "not", element);
+        log.info("All List    have {} element: '{}' ", allList.contains(element) ? "   " : "not", element);
+        element = "wakeup";
+        log.info("");
+        log.info("Words List  have {} element: '{}' ", wordsList.contains(element) ? "   " : "not", element);
+        log.info("Second List have {} element: '{}' ", secondList.contains(element) ? "   " : "not", element);
+        log.info("All List    have {} element: '{}' ", allList.contains(element) ? "   " : "not", element);
+
+        log.info("");
+        log.info("Words List  have {} element: '{}' ", wordsList.containsAll(words) ? "   " : "not", words);
+        log.info("Second List have {} element: '{}' ", secondList.containsAll(words) ? "   " : "not", words);
+        log.info("All List    have {} element: '{}' ", allList.containsAll(words) ? "   " : "not", words);
+
+        List<String> shuffledWords = new ArrayList<>(words);
+        Collections.shuffle(shuffledWords);
+        log.info("");
+        log.info("Words List  have {} element: '{}' ", wordsList.containsAll(shuffledWords) ? "   " : "not", shuffledWords);
+        log.info("Second List have {} element: '{}' ", secondList.containsAll(shuffledWords) ? "   " : "not", shuffledWords);
+        log.info("All List    have {} element: '{}' ", allList.containsAll(shuffledWords) ? "   " : "not", shuffledWords);
+    }
+
+    public void demonstrateReplaceAll() {
+        List<String> wordsList = new ArrayList<String>(words);
+        log.info("");
+        log.info("Words  List: {}", wordsList);
+        wordsList.replaceAll(String::toUpperCase);
+        log.info("Words List(Uppercased): {}", wordsList);
+    }
+
+    public void demonstrateReplaceStaticMethod() {
+        List<String> wordsList = new ArrayList<String>(words);
+        log.info("");
+        log.info("Words  List:             {}", wordsList);
+        String val = "i";
+        String newVal = "I";
+        replace(wordsList, val, newVal);
+        log.info("Words  List('{}' -> '{}'): {}", val, newVal, wordsList);
+    }
+
+    public void demonstrateReplaceListStaticMethod() {
+        List<String> wordsList = new ArrayList<String>(words);
+        log.info("");
+        log.info("Words  List:             {}", wordsList);
+        String val = "i";
+        List<String> nevalues = Arrays.asList("When", "I") ;
+        replaceList(wordsList, val, nevalues);
+        log.info("Words  List('{}' -> '{}'): {}", val, nevalues, wordsList);
+    }
+
+    public void demonstrateSubList() {
+        List<String> wordsList = new ArrayList<String>(words);
+        log.info("");
+        log.info("Words  List:     {}", wordsList);
+        List<String> subWordsList =  wordsList.subList(2, 4);
+        log.info("Sub Words  List: {}", subWordsList);
+        subWordsList.clear();
+        log.info("Words  List:     {}", wordsList);
+        log.info("Sub Words  List: {}", subWordsList);
+    }
+
     public static void main(String[] args) {
         ListDemo demo = new ListDemo();
 
@@ -148,5 +276,11 @@ public class ListDemo {
         demo.demonstrateShuffleList();
         demo.demonstrateCollectionsShuffleList();
         demo.demonstrateListIterator();
+        demo.demonstrateIndexOf();
+        demo.demonstrateContainsAndContainsAll();
+        demo.demonstrateReplaceAll();
+        demo.demonstrateReplaceStaticMethod();
+        demo.demonstrateReplaceListStaticMethod();
+        demo.demonstrateSubList();
     }
 }
