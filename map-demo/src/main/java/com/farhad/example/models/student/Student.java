@@ -1,9 +1,9 @@
-package com.farhad.example.collections.student;
+package com.farhad.example.models.student;
 
-import static com.farhad.example.collections.student.GradeLevel.findLevelByName;
-import static com.farhad.example.collections.student.GradePointAverage.findGPAByName;
-import static com.farhad.example.collections.student.Hobby.findHobbyByName;
-import static com.farhad.example.collections.student.Major.findMajorByName;
+import static com.farhad.example.models.student.GradeLevel.findLevelByName;
+import static com.farhad.example.models.student.GradePointAverage.findGPAByName;
+import static com.farhad.example.models.student.Hobby.findHobbyByName;
+import static com.farhad.example.models.student.Major.findMajorByName;
 
 import java.util.ArrayList;
 import java.util.List;

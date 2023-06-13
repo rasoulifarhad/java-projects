@@ -1,10 +1,14 @@
 package com.farhad.example.collections.set;
 
+import java.io.File;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -148,6 +152,75 @@ public class SetDemo {
         log.info("Symmetric Difference: {}", symmetricDifference);
     }
 
+    public void demonstrateHowManyWordsBeginWithEachLetterWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        for (char ch = 'a'; ch <= 'z';) {
+            String from = String.valueOf(ch++);
+            String to = String.valueOf(ch);
+            int count = dictionary.subSet(from, to).size();
+            log.info("Number of words started with '{}': {}", from, count);
+        }
+    }
+
+
+    public void demonstrateHowManyWordsBeginWithRangeClosedLetterWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        char fromChar = 'b';
+        char toChar = 'c';
+        log.info("");
+        String from = String.valueOf(fromChar++);
+        String to = String.valueOf(toChar);
+        int count = dictionary.subSet(from, to).size();
+        log.info("Number of words started with '{}': {}", from, count);
+        String toClosed = String.valueOf(toChar + "\0");
+        count = dictionary.subSet(from, toClosed).size();
+        log.info("Number of words started with '{}': {} closed", from, count);
+    }
+
+    public void demonstrateHowManyWordsBetweenEndpointsWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        String from = "doorbell";
+        String to = "pickle";
+        int count = dictionary.subSet(from, to).size();
+        log.info("Number of words Between ['{}', '{}') : {}", from, to, count);
+    }
+
+    public void demonstrateHowManyWordsBetweenIncludingEndpointsWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        String from = "doorbell";
+        String to = "pickle\0";
+        int count = dictionary.subSet(from, to).size();
+        log.info("Number of words Between ['{}', '{}'] : {}", from, to, count);
+    }
+
+    //  Open interval: which contains neither endpoint
+    public void demonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        String from = "doorbell\0";
+        String to = "pickle";
+        int count = dictionary.subSet(from, to).size();
+        log.info("Number of words Between ('{}', '{}') : {}", from, to, count);
+    }
+
+    private SortedSet<String> getDictionary() {
+        SortedSet<String> dictionary = new TreeSet<>();
+        URL url = this.getClass().getResource("dictionary.txt");
+        try {
+            Scanner s = new Scanner(new File(url.getFile()));
+            while (s.hasNextLine()) {
+                dictionary.add(s.next());
+            }            
+            s.close();
+        } catch (Exception e) {
+            log.error("Error", e);
+        }
+        return dictionary;
+    }
+
     public static void main(String[] args) {
         SetDemo demo = new SetDemo() ;
 
@@ -166,5 +239,11 @@ public class SetDemo {
         demo.demonstrateExtractNonDuplicates();
 
         demo.demonstrateSymmetricSetDifference();
+
+        demo.demonstrateHowManyWordsBeginWithEachLetterWithSortedSet();
+        demo.demonstrateHowManyWordsBeginWithRangeClosedLetterWithSortedSet();
+        demo.demonstrateHowManyWordsBetweenEndpointsWithSortedSet();
+        demo.demonstrateHowManyWordsBetweenIncludingEndpointsWithSortedSet();
+        demo.demonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet();
     }
 }

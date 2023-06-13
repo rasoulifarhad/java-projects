@@ -76,4 +76,30 @@ public class SetDemoTest {
     void testDemonstrateSymmetricSetDifference() {
         demo.demonstrateSymmetricSetDifference();
     }
+
+    @Test
+    void testDemonstrateHowManyWordsBeginWithEachLetterWithSortedSet() {
+        demo.demonstrateHowManyWordsBeginWithEachLetterWithSortedSet();
+    }
+
+    @Test
+    void testDemonstrateHowManyWordsBeginWithRangeClosedLetterWithSortedSet() {
+        demo.demonstrateHowManyWordsBeginWithRangeClosedLetterWithSortedSet();;
+    }
+
+    @Test
+    void testDemonstrateHowManyWordsBetweenEndpointsWithSortedSet() {
+        demo.demonstrateHowManyWordsBetweenEndpointsWithSortedSet();
+    }
+
+    @Test
+    void testDemonstrateHowManyWordsBetweenIncludingEndpointsWithSortedSet() {
+        demo.demonstrateHowManyWordsBetweenIncludingEndpointsWithSortedSet();
+    }
+
+    @Test
+    void testDemonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet() {
+        demo.demonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet();
+    }
+    
 }

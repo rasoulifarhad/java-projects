@@ -20,6 +20,11 @@ public class Utils {
 
     }
 
+    //  the successor of a string s in String's natural ordering is s + "\0" — that is, s with a null character appended.
+    public static String successor(String s) {
+        return s + "\0";
+    }
+
     public static void main(String[] args) throws Exception {
         
         String one = "XYZ";
@@ -33,6 +38,9 @@ public class Utils {
 
         log.info("one: {}", one);
         log.info("two: {}", two);
+
+        String s = "b";
+        log.info("'{}' is successor of '{}'", Utils.successor(s), s);
 
     }
 }

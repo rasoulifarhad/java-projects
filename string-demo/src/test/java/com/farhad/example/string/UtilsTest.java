@@ -79,4 +79,10 @@ public class UtilsTest {
         log.info("two: {}", System.identityHashCode(two));
     }
 
+    @Test
+    void testSuccessor() {
+        String s = "b";
+        log.info("'{}' is successor of '{}'", Utils.successor(s), s);
+    }
+
 }

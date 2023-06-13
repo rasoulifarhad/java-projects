@@ -1,4 +1,4 @@
-package com.farhad.example.collections.student;
+package com.farhad.example.models.student;
 
 import java.util.ArrayList;
 import java.util.List;

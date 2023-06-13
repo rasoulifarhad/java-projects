@@ -1,7 +1,9 @@
 package com.farhad.example.collections.map;
 
-import static com.farhad.example.collections.employee.Employee.names;
+import static com.farhad.example.models.employee.Employee.names;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,12 +13,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import com.farhad.example.collections.employee.Department;
-import com.farhad.example.collections.employee.Employee;
+import com.farhad.example.models.employee.Department;
+import com.farhad.example.models.employee.Employee;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
@@ -73,27 +76,19 @@ public class MapDemo {
         Map<String, Integer> frequencyTable = frequencyTable(getWords());
         log.info("");
         log.info("Words Frequency Table: {}", frequencyTable);
-        
         frequencyTable = frequencyTable(getProgrammingLanguages());
-        log.info("");
         log.info("Programming Languages Frequency Table: {}", frequencyTable);
 
         // frequency table in alphabetical order
         frequencyTable = sortedFrequencyTable(getWords());
-        log.info("");
         log.info("Sorted Words Frequency Table: {}", frequencyTable);
-        
         frequencyTable = sortedFrequencyTable(getProgrammingLanguages());
-        log.info("");
         log.info("Sorted Programming Languages Frequency Table: {}", frequencyTable);
 
         // frequency table in the order the words first appear 
         frequencyTable = orderedFrequencyTable(getWords());
-        log.info("");
         log.info("Ordered Words Frequency Table: {}", frequencyTable);
-        
         frequencyTable = orderedFrequencyTable(getProgrammingLanguages());
-        log.info("");
         log.info("Ordered Programming Languages Frequency Table: {}", frequencyTable);
     }
 
@@ -197,6 +192,9 @@ public class MapDemo {
     // Suppose we have a Map, managers, that maps each employee in a company to the employee's manager. 
     //  all the employees who report directly to some manager Like simon.
     public static <K> Set<K> getKeysWithValue(Map<K, K> map, K value) {
+        // First, it makes a temporary copy of the Map, and it removes from the temporary copy all entries whose (manager) value is a key in the original Map. Remember 
+        // that the original Map has an entry for each employee. Thus, the remaining entries in the temporary Map comprise all the entries from the original Map whose 
+        // (manager) values are no longer employees. The keys in the temporary copy, then, represent precisely the employees that we're looking for.
         map.values().removeAll(Collections.singleton(value));
         return new HashSet<>(map.keySet());
     }
@@ -210,11 +208,63 @@ public class MapDemo {
         // return m.keySet();
         return new HashSet<>(m.keySet());
     }
+
+    public static String alphabetize(String word) {
+        char [] chars = word.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+    // reads a word list containing one word per line (all lowercase) and prints out all the anagram groups that meet a size criterion.
+    // anagram: a word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
+    // An anagram group is a bunch of words, all of which contain exactly the same letters but in a different order. 
+    // ُwo arguments on method: (1) the name of the dictionary file and (2) the minimum size of anagram group to print out.
+    //
+    // There is a standard trick for finding anagram groups: For each word in the dictionary, alphabetize the letters in the word (that is, 
+    // reorder the word's letters into alphabetical order) and put an entry into a multimap, mapping the alphabetized word to the original 
+    // word. For example, the word bad causes an entry mapping abd into bad to be put into the multimap. 
+    public static Map<String,List<String>> anagrams(File file, int minGroupSize) {
+        Map<String,List<String>> anagrams = new HashMap<>();
+        try {
+            Scanner s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String word = s.next();
+                String alphabetizedWord = alphabetize(word);
+                // List<String> l = (anagrams.get(alphabetizedWord) == null ? new ArrayList<>() : anagrams.get(alphabetizedWord));
+                // l.add(word);    
+                // anagrams.put(alphabetizedWord, l);
+                List<String> l = anagrams.get(alphabetizedWord);
+                if( l == null) {
+                    anagrams.put(alphabetizedWord, l = new ArrayList<>());
+                }
+                l.add(word);
+            }
+            s.close();
+        } catch (Exception e) {
+            log.error("Error!", e);
+        }
+        return anagrams;
+    }
+
+    public void demonstrateAnagrams() {
+        // URL url = this.getClass().getClassLoader().getResource("com/farhad/example/collections/map/dictionary.txt");
+        URL url = this.getClass().getResource("dictionary.txt");
+        int minGroupSize = 8 ;
+        Map<String,List<String>> anagramsMap = anagrams( new File(url.getFile()), minGroupSize);
+        log.info("");
+        anagramsMap
+            .values()
+            .stream()
+            .filter(l -> l.size() >= minGroupSize)
+            .forEach(l -> log.info("Size: {} List: {}", l.size(), l));
+
+    } 
+
     public static void main(String[] args) {
         MapDemo demo = new MapDemo();
         demo.demonstrateGroupEmployeesByDepartment();
         demo.demonstrateComputeSumOfAllSalariesByDepartment();
         demo.demonstrateGroupEmployeesByDepartmentAndDesignations();
         demo.demonstrateFrequencyTable();
+        demo.demonstrateAnagrams();
     }
 }

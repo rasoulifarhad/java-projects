@@ -1,4 +1,4 @@
-package com.farhad.example.collections.employee;
+package com.farhad.example.models.employee;
 
 import java.util.Arrays;
 import java.util.List;
