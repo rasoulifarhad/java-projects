@@ -62,5 +62,20 @@ public class AggregateOperationsDemoTest {
     void testDemonstrateGroupPersonsByGender() {
         demo.demonstrateGroupPersonsByGender();
     }
+
+    @Test
+    void testDemonstrateRetrievePersonNamesGrouppingByGender() {
+        demo.demonstrateRetrievePersonNamesGrouppingByGender();
+    }
+
+    @Test
+    void testDemonstrateRetrieveTotalAgeOfPersonofEachGender() {
+        demo.demonstrateRetrieveTotalAgeOfPersonofEachGender();
+    }
+
+    @Test
+    void testDemonstrateRetrieveAverageAgeOfPersonofEachGender() {
+        demo.demonstrateRetrieveAverageAgeOfPersonofEachGender();
+    }
     
 }

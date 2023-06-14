@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -254,6 +255,40 @@ public class SetDemo {
         return dictionary;
     }
 
+    public enum Day {
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY,
+        SUNDAY;
+    }
+
+    public enum FontStyle {
+        NORMAL, ITALIC, OBLIQUE, OBLIQUE_10DEG, RESERVER_01, RESERVE_02  
+    }
+
+    public void demonstrateWeekDayIterateWithEnumSet() {
+        log.info("");
+        log.info("EnumSet.range(Day.MONDAY, Day.FRIDAY): ");
+        for (Day day : EnumSet.range(Day.MONDAY, Day.FRIDAY)) {
+            log.info("{}", day);
+        }
+
+        log.info("");
+        log.info("EnumSet.of(FontStyle.ITALIC, FontStyle.OBLIQUE_10DEG): ");
+        for (FontStyle style : EnumSet.of(FontStyle.ITALIC, FontStyle.OBLIQUE_10DEG) ) {
+            log.info("{}", style);
+        }
+
+        log.info("");
+        log.info("EnumSet.range(FontStyle.ITALIC, FontStyle.OBLIQUE_10DEG): ");
+        for (FontStyle style : EnumSet.range(FontStyle.ITALIC, FontStyle.OBLIQUE_10DEG)) {
+            log.info("{}", style);
+        }
+    }
+
     public static void main(String[] args) {
         SetDemo demo = new SetDemo() ;
 
@@ -281,6 +316,8 @@ public class SetDemo {
         demo.demonstrateHowManyWordsUpToEndpointWithSortedSet();
         demo.demonstrateHowManyWordsBeginningWithEndpointToTheEndWithSortedSet();
         demo.demonstrateFindFirstElementThatIsLessThanOtherElement();
+
+        demo.demonstrateWeekDayIterateWithEnumSet();
 
     }
 }

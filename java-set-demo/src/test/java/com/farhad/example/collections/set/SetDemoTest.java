@@ -116,5 +116,10 @@ public class SetDemoTest {
     void testDemonstrateFindFirstElementThatIsLessThanOtherElement() {
         demo.demonstrateFindFirstElementThatIsLessThanOtherElement();
     }
+
+    @Test
+    void testDemonstrateWeekDayIterateWithEnumSet() {
+        demo.demonstrateWeekDayIterateWithEnumSet();
+    }
     
 }

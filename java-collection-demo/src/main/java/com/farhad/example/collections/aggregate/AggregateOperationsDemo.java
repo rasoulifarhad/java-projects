@@ -112,6 +112,15 @@ public class AggregateOperationsDemo {
         log.info("names: {}", names);
     }
 
+    /**
+     * The groupingBy operation returns a map whose keys are the values that result from applying the lambda expression specified as 
+     * its parameter (which is called a classification function).
+     * 
+     * The keys' corresponding values are instances of List that contain the stream elements that, when processed by the classification 
+     * function, correspond to the key value.
+     * 
+     * For example, the value that corresponds to key Person.Sex.MALE is an instance of List that contains all male members.
+     */
     public void demonstrateGroupPersonsByGender() {
         List<Person> roster = Person.createRoster();
         log.info("");
@@ -120,6 +129,76 @@ public class AggregateOperationsDemo {
                                             .collect(Collectors.groupingBy(Person::getGender));
         byGender.entrySet()
                     .forEach(entry -> log.info("{}: {} ", entry.getKey(), entry.getValue()));
+    }
+
+    /**
+     * retrieves the names of each member in the collection roster and groups them by gender.
+     * 
+     * The groupingBy operation in this example takes two parameters, a classification function and an instance of Collector. The 
+     * Collector parameter is called a downstream collector. This is a collector that the Java runtime applies to the results of 
+     * another collector. Consequently, this groupingBy operation enables you to apply a collect method to the List values created 
+     * by the groupingBy operator.  A pipeline that contains one or more downstream collectors, like this example, is called a 
+     * multilevel reduction.
+     */
+    public void demonstrateRetrievePersonNamesGrouppingByGender() {
+        List<Person> roster = Person.createRoster();
+        log.info("");
+        Map<Sex, List<String>> namesByGender = 
+                                roster 
+                                    .stream()
+                                    .collect(Collectors.groupingBy(
+                                                Person::getGender,
+                                                Collectors.mapping(
+                                                    Person::getName, 
+                                                    Collectors.toList())));
+        namesByGender.entrySet()
+                            .forEach(entry -> log.info("{}: {}", entry.getKey(), entry.getValue()));
+    }
+
+    /**
+     * retrieves the total age of members of each gender:
+     * 
+     * The reducing operation takes three parameters:
+     * 
+     * - identity: Like the Stream.reduce operation, the identity element is both the initial value of the reduction and the default 
+     *   result if there are no elements in the stream. In this example, the identity element is 0; this is the initial value of the 
+     *   sum of ages and the default value if no members exist.
+     * 
+     * - mapper: The reducing operation applies this mapper function to all stream elements. In this example, the mapper retrieves the 
+     *   age of each member.
+     * 
+     * - operation: The operation function is used to reduce the mapped values. In this example, the operation function adds Integer 
+     *   values.
+
+     */
+    public void demonstrateRetrieveTotalAgeOfPersonofEachGender() {
+        List<Person> roster = Person.createRoster();
+        log.info("");
+        Map<Sex, Integer> totalAgeByGender = 
+                            roster
+                                .stream()
+                                .collect(
+                                    Collectors.groupingBy(
+                                        Person::getGender, 
+                                        Collectors.reducing(
+                                            0, 
+                                            Person::getAge, 
+                                            Integer::sum)));
+        totalAgeByGender.entrySet()
+                            .forEach(entry -> log.info("{}: totsl age {} ", entry.getKey(), entry.getValue()));
+    }
+
+    public void demonstrateRetrieveAverageAgeOfPersonofEachGender() {
+        List<Person> roster = Person.createRoster();
+        log.info("");
+        Map<Sex, Double> averageAgeByGender = 
+                    roster
+                    .stream()
+                    .collect(Collectors.groupingBy(
+                        Person::getGender, 
+                        Collectors.averagingInt(Person::getAge)));
+        averageAgeByGender.entrySet()
+                            .forEach(entry -> log.info("{}: average age {} ", entry.getKey(), entry.getValue()));
     }
 
     public static void main(String[] args) {
@@ -134,5 +213,8 @@ public class AggregateOperationsDemo {
         demo.demonstrateCalculateAverageAgeOfMalePersonsWithStreamCollect();
         demo.demonstratePersonsNamesWithCollectToList();
         demo.demonstrateGroupPersonsByGender();
+        demo.demonstrateRetrievePersonNamesGrouppingByGender();
+        demo.demonstrateRetrieveTotalAgeOfPersonofEachGender();
+        demo.demonstrateRetrieveAverageAgeOfPersonofEachGender();
     }
 }
