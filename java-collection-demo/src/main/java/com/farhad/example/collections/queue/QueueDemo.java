@@ -1,9 +1,11 @@
 package com.farhad.example.collections.queue;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -65,11 +67,62 @@ public class QueueDemo {
         log.info("Sorted list: {}", sortedList);
     }
 
+    public void demonstrateArrayDequeTraversalWithForEach() {
+        ArrayDeque<String> aDeque = new ArrayDeque<>(Arrays.asList("10", "9", "8", "7"));
+        log.info("");
+        log.info("Traversal with forEach");
+        for (String str : aDeque) {
+            log.info("{}", str);
+        }
+    }
+
+    public void demonstrateArrayDequeTraversalWithIterator() {
+        ArrayDeque<String> aDeque = new ArrayDeque<>(Arrays.asList("10", "9", "8", "7")); 
+        log.info("");
+        log.info("Traversal with iterator");
+        for (Iterator<String> it = aDeque.iterator(); it.hasNext();) {
+            log.info("{}", it.next());
+        }
+    }
+
+    public void demonstrateArrayDequeAddFirstLast() {
+        ArrayDeque<String> aDeque = new ArrayDeque<>(Arrays.asList("10", "9", "8", "7")); 
+        log.info("");
+        log.info("Dequeue elements: {}",aDeque);
+        log.info("Dequeue size: {}", aDeque.size());
+
+        log.info("");
+        aDeque.addFirst("FirstElement");
+        log.info("Add '{}' to first", "FirstElement");
+        aDeque.addLast("LastElement");
+        log.info("Add '{}' to last", "LastElement");
+        log.info("");
+        log.info("Dequeue elements: {}",aDeque);
+        log.info("Dequeue size: {}", aDeque.size());
+        log.info("");
+        log.info("Get First Element: '{}'",aDeque.getFirst());
+        log.info("Get Last Element: '{}'",aDeque.getLast());
+        log.info("");
+        log.info("Remove Firt element: {}", aDeque.removeFirst());
+        log.info("Remove Last element: {}", aDeque.removeLast());
+        log.info("");
+        log.info("Dequeue elements: {}",aDeque);
+        log.info("Dequeue size: {}", aDeque.size());
+        log.info("");
+        log.info("Poped: {}",aDeque.pop());
+        log.info("Dequeue size: {}",aDeque.size());
+        log.info("Dequeue elements: {}",aDeque);
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
         QueueDemo demo = new QueueDemo();
 
         demo.demonstrateCountdownWithQueue();
         demo.demonstrateHeapSort();
         demo.demonstrateAnotherHeapSort();
+        demo.demonstrateArrayDequeTraversalWithForEach();
+        demo.demonstrateArrayDequeTraversalWithIterator();
+        demo.demonstrateArrayDequeAddFirstLast();
     }
 }

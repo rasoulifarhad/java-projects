@@ -37,4 +37,9 @@ public class MapDemoTest {
     void testDemonstrateFrequencyTable() {
         demo.demonstrateFrequencyTable();
     }
+
+    @Test
+    void testDemonstrateRemoveEldestEntryOfLinkedHashMap() {
+        demo.demonstrateRemoveEldestEntryOfLinkedHashMap();
+    }
 }

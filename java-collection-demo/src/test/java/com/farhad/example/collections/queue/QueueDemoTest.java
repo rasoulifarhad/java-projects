@@ -31,4 +31,19 @@ public class QueueDemoTest {
     void testDemonstrateAnotherHeapSort() {
         demo.demonstrateAnotherHeapSort();
     }
+
+    @Test
+    void testDemonstrateArrayDequeAddFirstLast() {
+       demo.demonstrateArrayDequeAddFirstLast(); 
+    }
+
+    @Test
+    void testDemonstrateArrayDequeTraversalWithForEach() {
+        demo.demonstrateArrayDequeTraversalWithForEach();
+    }
+
+    @Test
+    void testDemonstrateArrayDequeTraversalWithIterator() {
+        demo.demonstrateArrayDequeTraversalWithIterator();
+    }
 }

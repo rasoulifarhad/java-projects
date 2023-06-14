@@ -21,6 +21,9 @@ import java.util.stream.Collectors;
 import com.farhad.example.models.employee.Department;
 import com.farhad.example.models.employee.Employee;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 
@@ -259,6 +262,36 @@ public class MapDemo {
 
     } 
 
+    private static final int GLOBAL_CASHE_SIZE = 4;
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    static class MyCache extends LinkedHashMap<String, String> {
+
+        private static final int CASHE_SIZE = GLOBAL_CASHE_SIZE;
+
+        private int cacheSize = CASHE_SIZE;
+        
+        @Override
+        protected boolean removeEldestEntry(java.util.Map.Entry<String, String> eldest) {
+            return size() >  cacheSize; 
+        }
+    }
+
+    public void demonstrateRemoveEldestEntryOfLinkedHashMap() {
+
+        MyCache cache = new MyCache();
+        log.info("") ;
+        log.info("Cache size: {}",cache.getCacheSize());
+        log.info("Put {} element in cache!!!",cache.getCacheSize() + 2);
+        for (int i = 0; i < (cache.getCacheSize() + 2)  ; i++) {
+            cache.put(String.valueOf(i), String.valueOf(i));
+            log.info("Cache size: {} ,  Element Added to cache: {}",cache.size(), i+1);
+        }
+        log.info("Cache size: {}",cache.size());
+    }
+
     public static void main(String[] args) {
         MapDemo demo = new MapDemo();
         demo.demonstrateGroupEmployeesByDepartment();
@@ -266,5 +299,6 @@ public class MapDemo {
         demo.demonstrateGroupEmployeesByDepartmentAndDesignations();
         demo.demonstrateFrequencyTable();
         demo.demonstrateAnagrams();
+        demo.demonstrateRemoveEldestEntryOfLinkedHashMap();
     }
 }
