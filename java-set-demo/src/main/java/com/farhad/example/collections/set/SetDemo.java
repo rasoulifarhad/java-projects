@@ -206,6 +206,39 @@ public class SetDemo {
         log.info("Number of words Between ('{}', '{}') : {}", from, to, count);
     }
 
+    public void demonstrateHowManyWordsUpToEndpointWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        String to = "doorbell";
+        int count = dictionary.headSet(to).size();
+        log.info("Number of words up to '{}' : {}", to, count);
+        to = "pickle";
+        count = dictionary.headSet(to).size();
+        log.info("Number of words up to '{}' : {}", to, count);
+    }
+
+    public void demonstrateHowManyWordsBeginningWithEndpointToTheEndWithSortedSet() {
+        SortedSet<String> dictionary = getDictionary();
+        log.info("");
+        String from = "doorbell";
+        int count = dictionary.tailSet(from).size();
+        log.info("Number of words From '{}' to the end : {}", from, count);
+        from = "pickle";
+        count = dictionary.tailSet(from).size();
+        log.info("Number of words From '{}' to the end : {}", from, count);
+    }
+
+    public void demonstrateFindFirstElementThatIsLessThanOtherElement() {
+        SortedSet<String> dictionary  = getDictionary();
+        log.info("");
+        String element = "doorbell" ;
+        String findedElement = dictionary.headSet(element).last();
+        log.info(" First element less than '{}': {}",element, findedElement);
+        
+        element = "pickle" ;
+        findedElement = dictionary.headSet(element).last();
+        log.info(" First element less than '{}': {}",element, findedElement);
+    }
     private SortedSet<String> getDictionary() {
         SortedSet<String> dictionary = new TreeSet<>();
         URL url = this.getClass().getResource("dictionary.txt");
@@ -245,5 +278,9 @@ public class SetDemo {
         demo.demonstrateHowManyWordsBetweenEndpointsWithSortedSet();
         demo.demonstrateHowManyWordsBetweenIncludingEndpointsWithSortedSet();
         demo.demonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet();
+        demo.demonstrateHowManyWordsUpToEndpointWithSortedSet();
+        demo.demonstrateHowManyWordsBeginningWithEndpointToTheEndWithSortedSet();
+        demo.demonstrateFindFirstElementThatIsLessThanOtherElement();
+
     }
 }

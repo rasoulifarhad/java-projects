@@ -101,5 +101,20 @@ public class SetDemoTest {
     void testDemonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet() {
         demo.demonstrateHowManyWordsBetweenIncludingNeitherEndpointsWithSortedSet();
     }
+
+    @Test
+    void testDemonstrateHowManyWordsBeginningWithEndpointToTheEndWithSortedSet() {
+        demo.demonstrateHowManyWordsBeginningWithEndpointToTheEndWithSortedSet();
+    }
+
+    @Test
+    void testDemonstrateHowManyWordsUpToEndpointWithSortedSet() {
+        demo.demonstrateHowManyWordsUpToEndpointWithSortedSet();
+    }
+
+    @Test
+    void testDemonstrateFindFirstElementThatIsLessThanOtherElement() {
+        demo.demonstrateFindFirstElementThatIsLessThanOtherElement();
+    }
     
 }
