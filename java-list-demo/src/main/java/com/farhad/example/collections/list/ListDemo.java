@@ -303,6 +303,20 @@ public class ListDemo {
         }
     }
 
+    public void demonstrateImmutableMultipleCopyOfSameElementList() {
+
+        log.info("");
+        List<String> list = new ArrayList<>(Collections.nCopies(1000, (String)null));
+        log.info("List.size(): {}", list.size());
+
+        String element = "Hello World";
+        list.addAll(Collections.nCopies(80, element));
+        log.info("List.size(): {}", list.size());
+
+        list.removeAll(Collections.singletonList(element));
+        log.info("List.size(): {}", list.size());
+    }
+
     public static void main(String[] args) {
         ListDemo demo = new ListDemo();
 
@@ -319,5 +333,7 @@ public class ListDemo {
         demo.demonstrateReplaceListStaticMethod();
         demo.demonstrateSubList();
         demo.demonstrateDealHand();
+
+        demo.demonstrateImmutableMultipleCopyOfSameElementList();
     }
 }

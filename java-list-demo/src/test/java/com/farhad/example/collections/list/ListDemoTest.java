@@ -81,4 +81,9 @@ public class ListDemoTest {
     void testDemonstrateDealHand() {
         demo.demonstrateDealHand();
     }
+
+    @Test
+    void testDemonstrateImmutableMultipleCopyOfSameElementList() {
+        demo.demonstrateImmutableMultipleCopyOfSameElementList();
+    }
 }
