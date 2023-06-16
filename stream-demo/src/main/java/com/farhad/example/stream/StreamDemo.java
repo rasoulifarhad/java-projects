@@ -4,6 +4,7 @@ import static com.farhad.example.stream.Person.persons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -312,6 +313,76 @@ public class StreamDemo {
         log.info("Names : {}", names);                         
     }
     
+    /**
+     * Lambda expressions in stream operations should not interfere.
+     * 
+     * Interference occurs when the source of a stream is modified while a pipeline processes the stream. 
+     */
+    public void demonstrateInterferenceWithListOfString() {
+        try {
+            log.info("");
+            List<String> listOfStrings = new ArrayList<>(Arrays.asList("One", "Two"));
+            String concatenatedString = listOfStrings
+                                            .stream()
+                                            // Don't do this! Interference occurs here.
+                                            .peek(s -> listOfStrings.add("Three"))
+                                            .reduce((a, b) ->  a + " " + b)
+                                            .get();
+            log.info("Concatenated String: {}", concatenatedString);
+        } catch (Exception e) {
+            log.error("Exception: {}", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Avoid using stateful lambda expressions as parameters in stream operations. 
+     * 
+     * A stateful lambda expression is one whose result depends on any state that might change during the execution of a pipeline.
+     */
+    public void demonstrateStatefulLambdaExpressions() {
+
+        Integer[] intArray = {1, 2, 3, 4, 5, 6, 7, 8 };
+        List<Integer> listOfIntegers = new ArrayList<>(Arrays.asList(intArray));
+        List<Integer> serialStorage = new ArrayList<>();
+        
+        log.info("");
+        System.out.println("Serial stream:");
+        listOfIntegers
+            .stream()
+            // Don't do this! It uses a stateful lambda expression.
+            .map(i -> {
+                serialStorage.add(i);
+                return i;
+            })
+            .forEachOrdered(i -> System.out.print(i + " "));
+        System.out.println();
+
+        System.out.println("Serial storage:");
+        serialStorage
+            .stream()
+            .forEachOrdered(i -> System.out.print(i + " "));
+        System.out.println();
+
+        System.out.println("Parallel Stream:");
+        List<Integer> parallelStorage = Collections.synchronizedList(new ArrayList<>());
+        listOfIntegers
+            .parallelStream()
+            //  Don't do this! It uses a stateful lambda expression.
+            .map(i -> {
+                parallelStorage.add(i);
+                return i;
+            })
+            .forEachOrdered(i -> System.out.print(i + " "));
+        System.out.println();
+
+        System.out.println("Parallel storage:");
+        parallelStorage
+            .stream()
+            .forEachOrdered(i -> System.out.print(i + " "));
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         StreamDemo demo = new StreamDemo();
         demo.demonstrateHowStreamsWork();
@@ -338,6 +409,9 @@ public class StreamDemo {
         demo.demonstrateJoinAllPersonsIntoSingleString();
         demo.demonstrateGrouppingPersonBasedOnAge();
         demo.demonstrateCustomCollectorWithCollectorOf();
+
+        demo.demonstrateInterferenceWithListOfString();
+        demo.demonstrateStatefulLambdaExpressions();
     }
     
 }

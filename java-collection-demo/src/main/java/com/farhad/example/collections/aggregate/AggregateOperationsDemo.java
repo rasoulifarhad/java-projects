@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.farhad.example.collections.aggregate.Person.Sex;
+import com.farhad.example.collections.Person;
+import com.farhad.example.collections.Person.Sex;
 
 import lombok.extern.slf4j.Slf4j;
 

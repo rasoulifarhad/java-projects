@@ -1,4 +1,4 @@
-package com.farhad.example.collections.aggregate;
+package com.farhad.example.collections;
 
 import java.time.LocalDate;
 import java.time.chrono.IsoChronology;

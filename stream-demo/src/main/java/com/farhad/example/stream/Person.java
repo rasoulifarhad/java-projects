@@ -3,14 +3,14 @@ package com.farhad.example.stream;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Person {
-    private final String name;
-    private final int age;
+    private String name;
+    private int age;
 
     
     public static List<Person> persons() {

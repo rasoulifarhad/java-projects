@@ -17,6 +17,7 @@ public class StreamDemoTest {
 
     @BeforeEach
     public void setupCurrencies() {
+        
         currencies = Stream.of("GBP", "EUR", "USD","CAD", "AUD", "JPY", "HKD");
         currenciesSupplier = () -> Stream.of("GBP", "EUR", "USD","CAD", "AUD", "JPY", "HKD");
         demo = new StreamDemo();
@@ -157,6 +158,16 @@ public class StreamDemoTest {
     @Test
     void testDemonstrateCustomCollectorWithCollectorOf() {
         demo.demonstrateCustomCollectorWithCollectorOf();
+    }
+
+    @Test
+    void testDemonstrateInterferenceWithListOfString() {
+        demo.demonstrateInterferenceWithListOfString();
+    }
+
+    @Test
+    void testDemonstrateStatefulLambdaExpressions() {
+        demo.demonstrateStatefulLambdaExpressions();
     }
 
 
