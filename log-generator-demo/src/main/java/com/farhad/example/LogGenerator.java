@@ -95,6 +95,22 @@ public class LogGenerator {
         }
     }
 
+    // duration in minutes
+    public void  generateData2(int numLogs, int duration) {
+        int totalSeconds = duration * numLogs * 60;
+        int freq = 1000 / numLogs ;
+        Timer timer = new Timer() ;
+        for (int i = 0; i < totalSeconds; i++) {
+            int num = i ;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    generateRandomLogData2( num + 1  );
+                }
+            }, freq * i);
+        }
+    }
+
     @Builder
     @Getter
     @Setter
@@ -112,6 +128,9 @@ public class LogGenerator {
 
     public static void main(String[] args) {
         LogGenerator logGenerator = new LogGenerator();
+
         logGenerator.generateData(1, 1);
+
+        logGenerator.generateData2(1, 1);;
     }
 }
