@@ -11,6 +11,9 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Anagram {
     
     public static Map<String, List<String>> anagrams(int minGroupSize) {
@@ -56,7 +59,8 @@ public class Anagram {
                     m.put( alpha , l = new ArrayList<>());
                 }
                 l.add(word);
-            }            
+            }  
+            s.close();          
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,5 +77,7 @@ public class Anagram {
         Map<String, List<String>> map = anagrams( 
                                             new File( 
                                                 url.getFile()));
+        map.entrySet()
+                .forEach(entry -> log.info("Key: {}, values: {}",entry.getKey(), entry.getValue()));
     }
 }

@@ -38,4 +38,8 @@ public class ArrayListSortingUsingComparableDemo {
             return clonedPapers;
         }
     }
+
+    public static void main(String[] args) {
+        log.info("");
+    }
 }

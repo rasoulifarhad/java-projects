@@ -37,4 +37,14 @@ public class CollectionAlgorithmsDemoTest {
     void testDemonstrateSearchingAndIfNotFoundandInsertsAtAppropriatePosition() {
         demo.demonstrateSearchingAndIfNotFoundandInsertsAtAppropriatePosition();
     }
+
+    @Test
+    void testDemonstrateDisjoint() {
+        demo.demonstrateDisjoint();
+    }
+
+    @Test
+    void testDemonstratefrequency() {
+        demo.demonstratefrequency();
+    }
 }
