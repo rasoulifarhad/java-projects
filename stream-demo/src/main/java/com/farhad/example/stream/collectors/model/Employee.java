@@ -3,6 +3,9 @@ package com.farhad.example.stream.collectors.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,4 +32,24 @@ public class Employee {
                     new Employee("Jessica Sanders", 64329.0, 34, Sex.FEMALE)                
                 )
             );
+
+    public final static Map<Sex, List<Employee>> someEmployeesBySex =  
+        new HashMap<>() {
+            {
+                put(Sex.MALE, new ArrayList<>() { { 
+                            add( 
+                                new Employee(
+                                    "Peter Parker", 
+                                    28100.0, 
+                                    33, 
+                                    Sex.MALE) ); } } );
+                put(Sex.FEMALE, new ArrayList<>() { { 
+                            add( 
+                                new Employee(
+                                    "Sarah Williams", 
+                                    18100.0, 
+                                    19, 
+                                    Sex.FEMALE) ); } } );
+            }
+        };
 }
