@@ -1,4 +1,4 @@
-package com.farhad.example.designpatterns.factory.bad;
+package com.farhad.example.designpatterns.templatemethod.oldway;
 
 public enum VehicleColor {
     RED,
