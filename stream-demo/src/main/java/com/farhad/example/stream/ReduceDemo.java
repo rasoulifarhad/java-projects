@@ -1,8 +1,10 @@
 package com.farhad.example.stream;
 
-import static com.farhad.example.stream.Person.persons;
+import static com.farhad.example.stream.collectors.person.Person.persons;
 
 import java.util.List;
+
+import com.farhad.example.stream.collectors.person.Person;
 
 import lombok.extern.slf4j.Slf4j;
 

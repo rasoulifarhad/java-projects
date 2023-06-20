@@ -1,4 +1,4 @@
-package com.farhad.example.stream;
+package com.farhad.example.stream.collectors.person;
 
 import java.util.Arrays;
 import java.util.List;

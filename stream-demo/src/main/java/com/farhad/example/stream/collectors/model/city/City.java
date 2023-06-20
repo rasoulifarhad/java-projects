@@ -1,4 +1,4 @@
-package com.farhad.example.stream.collectors;
+package com.farhad.example.stream.collectors.model.city;
 
 import lombok.Data;
 

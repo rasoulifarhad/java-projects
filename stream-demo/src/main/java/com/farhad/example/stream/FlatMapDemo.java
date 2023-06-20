@@ -1,11 +1,14 @@
 package com.farhad.example.stream;
 
-import static com.farhad.example.stream.Foo.foosWithBars;
+import static com.farhad.example.stream.collectors.model.foobar.Foo.foosWithBars;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
+
+import com.farhad.example.stream.collectors.model.foobar.Bar;
+import com.farhad.example.stream.collectors.model.foobar.Foo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

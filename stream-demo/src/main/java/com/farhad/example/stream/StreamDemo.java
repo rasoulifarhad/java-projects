@@ -1,6 +1,6 @@
 package com.farhad.example.stream;
 
-import static com.farhad.example.stream.Person.persons;
+import static com.farhad.example.stream.collectors.person.Person.persons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,8 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import com.farhad.example.stream.collectors.person.Person;
 
 import lombok.extern.slf4j.Slf4j;
 

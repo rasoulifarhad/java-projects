@@ -1,6 +1,6 @@
 package com.farhad.example.stream.collectors;
 
-import static com.farhad.example.stream.collectors.USA.CITIES;
+import static com.farhad.example.stream.collectors.model.city.USA.CITIES;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.groupingByConcurrent;
 import static java.util.stream.Collectors.partitioningBy;
@@ -14,6 +14,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Stream;
+
+import com.farhad.example.stream.collectors.model.city.Area;
+import com.farhad.example.stream.collectors.model.city.City;
 
 import lombok.extern.slf4j.Slf4j;
 

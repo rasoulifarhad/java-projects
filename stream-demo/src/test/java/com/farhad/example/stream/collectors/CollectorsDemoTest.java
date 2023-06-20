@@ -389,7 +389,7 @@ public class CollectorsDemoTest {
     }
 
     @Test
-    public void stream_mapping() {
+    public void streamWithCollectorsMapping() {
         List<Integer> listOfSquares = Stream.of(ODD_NUMBERS)
                 .map(i -> i * i)
                 .collect(toList());

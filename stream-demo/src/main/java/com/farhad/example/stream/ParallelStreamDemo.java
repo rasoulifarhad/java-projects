@@ -1,6 +1,6 @@
 package com.farhad.example.stream;
 
-import static com.farhad.example.stream.Person.persons;
+import static com.farhad.example.stream.collectors.person.Person.persons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
+
+import com.farhad.example.stream.collectors.person.Person;
 
 import lombok.extern.slf4j.Slf4j;
 
