@@ -67,6 +67,10 @@ public class PurchaseOrders {
         return Iterables.filter(orders, condition);
     }
 
+    public Iterable<PurchaseOrder> orders2(Predicate<? super PurchaseOrder> condition) {
+        return Iterables.filter(orders, condition);
+    }
+
     public static void main(String[] args) {
         final Customer customer = new Customer("Farhad");
         final Predicate<PurchaseOrder> condition = new Predicate<PurchaseOrder>() {

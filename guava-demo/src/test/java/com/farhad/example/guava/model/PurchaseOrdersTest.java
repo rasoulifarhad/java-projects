@@ -1,10 +1,10 @@
 package com.farhad.example.guava.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterables;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -90,7 +92,7 @@ public class PurchaseOrdersTest {
     void testSelectOrders() {
         Customer customer = new Customer("Farhad");
         Predicate<PurchaseOrder> condition = customerPredocate(customer);
-        Collection<PurchaseOrder> selected = purchaseOrders.selectOrders(condition);
+        Iterable<PurchaseOrder> selected = purchaseOrders.selectOrders(condition);
         log.info("{}", selected);
         assertThat(selected).hasSize(2);
     }
@@ -105,6 +107,47 @@ public class PurchaseOrdersTest {
         assertThat(purchaseOrders.orders(condition)).hasSize(2);
     }
 
+    @Test
+    public void demonstrateSelectAllOrders() {
+        Iterable<PurchaseOrder> all = purchaseOrders.orders(Predicates.alwaysTrue());
+        assertThat(Iterables.size(all)).isEqualTo(4);
+    }
+
+    @Test
+    public void demonstrateSelectEmptyOrders() {
+        Iterable<PurchaseOrder> empty = purchaseOrders.orders(Predicates.alwaysFalse());
+        assertThat(Iterables.isEmpty(empty)).isTrue();
+    }
+
+    @Test
+    public void demonstrateCustomPredicates() {
+        final CustomerOrderPredicate isForFarhadCustomer = CustomerOrderPredicate.withName("Farhad");
+        Iterable<PurchaseOrder> ordersForFarhad = purchaseOrders.orders(isForFarhadCustomer);
+        assertThat(ordersForFarhad).hasSize(2);
+
+        final PendingOrderPredicate isPending = PendingOrderPredicate.of();
+        Iterable<PurchaseOrder> pendingOrders = purchaseOrders.orders(isPending);
+        assertThat(pendingOrders).hasSize(2);
+
+        final RecentOrderPredicate isRecentOrder = RecentOrderPredicate.of(LocalDate.of(2023, Month.JANUARY, 2));
+        Iterable<PurchaseOrder> recentOrders = purchaseOrders.orders(isRecentOrder);
+        assertThat(recentOrders).hasSize(4);
+
+        PurchaseOrder order = new PurchaseOrder(
+                                        new Customer("Farhad"),
+                                        LocalDate.of(2023, Month.JANUARY, 10),
+                                        OrderStatus.PENDING);
+        assertThat(isForFarhadCustomer.apply(order)).isTrue();
+
+
+        order = new PurchaseOrder(
+                        new Customer("Ali"),
+                        LocalDate.of(2023, Month.JANUARY, 10),
+                        OrderStatus.PENDING);
+        assertFalse(isForFarhadCustomer.apply(order));
+
+    }
+
     private Predicate<PurchaseOrder> customerPredocate(final Customer customer) {
         return new Predicate<PurchaseOrder>() {
 
@@ -114,4 +157,6 @@ public class PurchaseOrdersTest {
                 }
             };
     }
+
+
 }

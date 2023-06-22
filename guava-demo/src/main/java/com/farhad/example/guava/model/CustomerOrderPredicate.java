@@ -15,5 +15,9 @@ public class CustomerOrderPredicate implements Predicate<PurchaseOrder>{
         Objects.requireNonNull(order);
         return customer.equals(order.getCustomer());
     }
+
+    public static CustomerOrderPredicate withName(String name) {
+        return CustomerOrderPredicate.of(new Customer(name));
+    }
     
 }
