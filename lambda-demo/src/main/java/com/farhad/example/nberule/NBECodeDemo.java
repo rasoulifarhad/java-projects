@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * https://dzone.com/articles/introduction-to-pragmatic-functional-java
+ */
 @Slf4j
 public class NBECodeDemo {
     
