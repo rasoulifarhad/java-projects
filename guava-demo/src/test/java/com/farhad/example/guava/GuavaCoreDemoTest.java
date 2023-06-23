@@ -2,8 +2,10 @@ package com.farhad.example.guava;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -12,10 +14,15 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.CaseFormat;
+import com.google.common.base.CharMatcher;
+import com.google.common.base.Charsets;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
+import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
@@ -209,5 +216,123 @@ public class GuavaCoreDemoTest {
         assertTrue(isNotNullAndZero.test(10));
         assertFalse(isNotNullAndZero.test(null));
     }
-    
+
+    @Test
+    public void demonstrateJoiner() {
+        String joined = Joiner.on(",")
+                            .skipNulls()
+                            .join("One", null, "Two", "Three");
+        assertThat(joined).isEqualTo("One,Two,Three");
+
+        assertThrows(NullPointerException.class, () -> 
+                        Joiner.on(",")
+                            .join("One", null, "Two", "Three"));
+
+        joined = Joiner.on(",")
+                    .useForNull("NULL")
+                    .join("One", null, "Two", "Three");
+        assertThat(joined).isEqualTo("One,NULL,Two,Three");
+    }
+
+    @Test
+    public void demonstrateSplitter() {
+        Iterable<String> strs =  Splitter.on("|")
+                    .omitEmptyStrings()
+                    .split("One||Two|Three");
+        assertThat(strs).hasSize(3);
+        assertThat(Iterables.elementsEqual(strs, Lists.newArrayList("One", "Two", "Three"))).isTrue();
+
+        strs = Splitter.on("|")
+                    .split("One||Two  |Three");
+        log.info("{}", strs);
+        assertThat(strs).hasSize(4);
+        assertTrue(Iterables.elementsEqual(strs,Lists.newArrayList("One", "", "Two  ", "Three") ));
+    }
+
+    private static final String INPUT1 = "_12-34==56";
+    private static final String INPUT2 = "12_34-56_78";
+    // Utility Object pattern
+    // what does it consider a matching character?
+    // what do we do with these matching characters?
+    @Test
+    public void demonstrateCharMatcher() {
+        String sanitized = CharMatcher
+                                .anyOf("-=_")
+                                .removeFrom(INPUT1);
+        assertThat(sanitized).isEqualTo("123456");
+        sanitized = CharMatcher.whitespace()
+                        .replaceFrom("12 34  56", "_");
+        assertThat(sanitized).isEqualTo("12_34__56");
+        sanitized = CharMatcher
+                        .any()
+                        .replaceFrom("123456", "*");
+        assertThat(sanitized).isEqualTo("******");
+        int count = CharMatcher
+                        .is('_')
+                        .countIn("12_34_56");
+        assertThat(count).isEqualTo(2);
+        int noneDigitCount = CharMatcher
+                                .noneOf("0123456789")
+                                .countIn(INPUT1);
+        assertThat(noneDigitCount).isEqualTo(4);
+        sanitized = CharMatcher
+                        .anyOf("0123456789")
+                        .retainFrom(INPUT1);
+        assertThat(sanitized).isEqualTo("123456");
+        sanitized = CharMatcher
+                        .anyOf("0123456789")
+                        .collapseFrom(INPUT1, 'D');
+        assertThat(sanitized).isEqualTo("_D-D==D");
+        int lastIndex = CharMatcher
+                            .is('_')
+                            .lastIndexIn(INPUT2);
+        assertThat(lastIndex).isEqualTo(8);
+        int index = CharMatcher
+                        .is('_')
+                        .indexIn(INPUT2);
+        assertThat(index).isEqualTo(2);
+        sanitized = CharMatcher
+                        .digit()
+                        .or(CharMatcher.is('-'))
+                            .retainFrom(INPUT2);
+        assertThat(sanitized).isEqualTo("1234-5678");
+        sanitized = CharMatcher
+                        .whitespace()
+                        .trimAndCollapseFrom("  Hello    World!    , Are you         okay?    ", ' ');
+        assertThat(sanitized).isEqualTo("Hello World! , Are you okay?");
+        sanitized = CharMatcher
+                        .javaDigit()
+                        .replaceFrom("123456", '*');
+        assertThat(sanitized).isEqualTo("******");
+        sanitized = CharMatcher
+                        .inRange('0', '9')
+                        .retainFrom(INPUT1);
+        assertThat(sanitized).isEqualTo("123456");
+        sanitized = CharMatcher
+                        .inRange('0', '9')
+                        .negate()
+                        .retainFrom(INPUT1);
+        assertThat(sanitized).isEqualTo("_-==");
+    }   
+
+    @Test
+    public void demonstrateCharsets() {
+        try {
+            byte [] bytes = "Hello World!".getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new AssertionError(e);
+        }
+
+        // do this instead
+        byte [] bytes = "Hello World!".getBytes(Charsets.UTF_8);
+    }
+
+    @Test
+    public void demonstrateCaseFormat() {
+        String sanitized = CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL,"hello-world");
+        assertThat(sanitized).isEqualTo("helloWorld");
+
+        sanitized = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sanitized);
+        assertThat(sanitized).isEqualTo("hello_world");
+    }
 }

@@ -2,7 +2,7 @@ package com.farhad.example.guava;
 
 import com.google.common.base.Function;
 
-public class GuvaCollectionDemo {
+public class GuavaCollectionDemo {
     
     static class ParentType {}
     static class ChildType extends ParentType {}

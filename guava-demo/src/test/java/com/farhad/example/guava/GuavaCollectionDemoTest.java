@@ -13,9 +13,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.farhad.example.guava.GuvaCollectionDemo.CastFunction;
-import com.farhad.example.guava.GuvaCollectionDemo.ChildType;
-import com.farhad.example.guava.GuvaCollectionDemo.ParentType;
+import com.farhad.example.guava.GuavaCollectionDemo.CastFunction;
+import com.farhad.example.guava.GuavaCollectionDemo.ChildType;
+import com.farhad.example.guava.GuavaCollectionDemo.ParentType;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;
@@ -29,7 +29,7 @@ import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GuvaCollectionDemoTest {
+public class GuavaCollectionDemoTest {
     
     @Test 
     public void demonstrateDowncastListOfParentToListOfChild() {
