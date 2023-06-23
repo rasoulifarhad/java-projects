@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class PurchaseOrder {
+public class PurchaseOrder implements CustomerSpecific {
     private final Customer customer;
     private final LocalDate orderData;
     private final OrderStatus status;

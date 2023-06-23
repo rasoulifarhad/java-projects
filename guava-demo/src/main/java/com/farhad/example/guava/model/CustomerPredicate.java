@@ -18,7 +18,7 @@ public class CustomerPredicate implements Predicate<CustomerSpecific>, CustomerS
         return specific.getCustomer().equals(customer);
     }
     
-    public CustomerPredicate withName(String name) {
+    public static CustomerPredicate withName(String name) {
         return CustomerPredicate.of(new Customer(name));
     }
 }

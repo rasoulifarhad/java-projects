@@ -60,7 +60,7 @@ public class PurchaseOrdersTest {
     @Test
     void testListOrders() {
         final Customer customer = new Customer("Farhad");
-        Predicate<PurchaseOrder> condition = customerPredocate(customer);
+        Predicate<PurchaseOrder> condition = customerOrderPredocate(customer);
         List<PurchaseOrder> selected = purchaseOrders.listOrders(condition); 
         log.info("{}", selected);
         assertThat(selected).hasSize(2);
@@ -91,7 +91,7 @@ public class PurchaseOrdersTest {
     @Test
     void testSelectOrders() {
         Customer customer = new Customer("Farhad");
-        Predicate<PurchaseOrder> condition = customerPredocate(customer);
+        Predicate<PurchaseOrder> condition = customerOrderPredocate(customer);
         Iterable<PurchaseOrder> selected = purchaseOrders.selectOrders(condition);
         log.info("{}", selected);
         assertThat(selected).hasSize(2);
@@ -100,7 +100,7 @@ public class PurchaseOrdersTest {
     @Test
     void testOrders() {
         Customer customer = new Customer("Ali");
-        Predicate<PurchaseOrder> condition = customerPredocate(customer);
+        Predicate<PurchaseOrder> condition = customerOrderPredocate(customer);
         for (PurchaseOrder order : purchaseOrders.orders(condition)) {
             log.info("{}", order);
         }
@@ -145,10 +145,16 @@ public class PurchaseOrdersTest {
                         LocalDate.of(2023, Month.JANUARY, 10),
                         OrderStatus.PENDING);
         assertFalse(isForFarhadCustomer.apply(order));
-
     }
 
-    private Predicate<PurchaseOrder> customerPredocate(final Customer customer) {
+    @Test
+    public void demonstrateCostomerPredicate() {
+        final CustomerPredicate isForCustomer = CustomerPredicate.withName("Farhad");
+        Iterable<PurchaseOrder> selectedOrders = purchaseOrders.orders2(isForCustomer);
+        assertThat(selectedOrders).hasSize(2);
+    }
+
+    private Predicate<PurchaseOrder> customerOrderPredocate(final Customer customer) {
         return new Predicate<PurchaseOrder>() {
 
                 @Override

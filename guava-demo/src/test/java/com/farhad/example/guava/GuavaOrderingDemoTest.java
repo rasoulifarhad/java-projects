@@ -18,7 +18,7 @@ import com.google.common.primitives.Ints;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GuavaOrderingDemo {
+public class GuavaOrderingDemoTest {
     
     @Test 
     public void demonstrateOrderNullValuesFirst() {
