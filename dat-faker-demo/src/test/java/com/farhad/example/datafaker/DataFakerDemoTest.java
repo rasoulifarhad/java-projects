@@ -1,13 +1,18 @@
 package com.farhad.example.datafaker;
 
+import static java.util.stream.Collectors.toList;
+import static net.datafaker.transformations.Field.field;
+
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
+import net.datafaker.providers.base.Name;
+import net.datafaker.transformations.CsvTransformer;
+import net.datafaker.transformations.Schema;
 
 @Slf4j
 public class DataFakerDemoTest {
@@ -81,7 +86,7 @@ public class DataFakerDemoTest {
                              .generate();
         List<String> countryList =  countries
                                         .limit(4)
-                                        .collect(Collectors.toList());
+                                        .collect(toList());
         log.info("Country List: {}", countryList);
 
         Stream<String> namesAndCountries = 
@@ -92,7 +97,60 @@ public class DataFakerDemoTest {
                     .len(6)
                     .generate();
         List<String> nameAndCountryList = namesAndCountries
-                                                .collect(Collectors.toList());
+                                                .collect(toList());
         log.info("NameAndCountryList: {}", nameAndCountryList);
+    }
+
+    @Test
+    public void demonstrateDataFakerCsvTransformer() {
+        Faker faker = new Faker();
+        Schema<Object, ?> schema = schemaForPerson(faker);
+        CsvTransformer<Object> csvTransformer = CsvTransformer.builder().build();
+        System.out.println( csvTransformer.generate(schema, 5));
+
+        CsvTransformer<Object> csvTransformer2 = CsvTransformer.builder()
+                                                    .separator("|")
+                                                    .quote('"')
+                                                    .header(false)
+                                                    .build();
+        System.out.println();
+        System.out.println();
+        System.out.println(csvTransformer2.generate(schema, 5));
+        Schema<Name, String> nameSchema = 
+            Schema.of(
+                field("firstName", Name::firstName),
+                field("lastName", Name::lastName));
+        System.out.println(
+            csvTransformer.generate(
+                null, 
+                schema));
+    }
+
+
+    @Test
+    public void demonstrateAnotherDataFakerCsvTransformer() {
+        Faker faker = new Faker();
+        Schema<Name, String> schema = 
+            Schema.of(
+                field("firstName", Name::firstName),
+                field("lastName", Name::lastName));
+        CsvTransformer<Name> csvTransformer = 
+                CsvTransformer.<Name>builder()
+                                        .header(true)
+                                        .separator(",")
+                                .build();
+        System.out.println(
+            csvTransformer.generate(
+                faker.collection(faker::name).maxLen(6).generate(), 
+                schema));
+    }
+
+    private Schema<Object, ?> schemaForPerson(Faker faker) {
+        return  Schema.of(
+                    field("firstName", () -> faker.name().firstName()),
+                    field("lastName", () -> faker.name().lastName()),
+                    field("fullName", () -> faker.name().fullName()),
+                    field("city", () -> faker.address().city()),
+                    field("phoneNumber", () -> faker.phoneNumber().phoneNumber()));
     }
 }
