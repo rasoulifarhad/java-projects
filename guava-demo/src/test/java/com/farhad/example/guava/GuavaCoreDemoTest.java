@@ -11,18 +11,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
+import com.farhad.example.guava.GuavaCoreDemo.Person;
 import com.google.common.base.CaseFormat;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Charsets;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Joiner;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.base.Splitter;
+import com.google.common.base.Stopwatch;
+import com.google.common.base.Strings;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
@@ -335,4 +340,77 @@ public class GuavaCoreDemoTest {
         sanitized = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sanitized);
         assertThat(sanitized).isEqualTo("hello_world");
     }
+
+    /**
+     * Many collections, including the JDK's Queue and ConcurrentMap implementations, don't allow null elements.
+     * Queue<Optional<Foo>> is a simple and natural solution!
+     */
+    @Test
+    public void demonstrateOptional() {
+        Optional<String> nickname = Optional.of("farhad");
+        assertTrue(nickname.isPresent());
+
+        nickname = Optional.absent();
+        assertFalse(nickname.isPresent());
+
+        assertThrows(NullPointerException.class, 
+                    () -> Optional.of(null));
+        
+        log.info("");
+        Person person = Person.builder()
+                                .name("Farhad")
+                                .build();
+        nickname = person.getNickname();
+        log.info("{}", (nickname.isPresent() 
+                        ? "Hello " + nickname.get()  
+                        : person.getName() + " havent nickname!" ));
+        assertThat(nickname.or(person.getName())).isEqualTo(person.getName());
+
+        log.info("");
+        person = Person.builder()
+                                .name("Farhad")
+                                .build();
+        nickname = person.getNickname();
+        boolean haveNickname = false;
+        for(String actualNickname : nickname.asSet()) {
+            log.info("nickname: {}", actualNickname);
+            haveNickname = true;
+        }
+        log.info("{}", haveNickname ? person.getName() + "( "+ nickname.get() + ")" : person.getName() + " have not nickname");
+
+        log.info("");
+        person = Person.builder()
+                                .name("Farhad")
+                                .nickname("fery")
+                                .build();
+        nickname = person.getNickname();
+        for(String actualNickname : nickname.asSet() ) {
+            log.info("nickname: {}", actualNickname);
+        }
+    }
+
+    @Test
+    public void demonstrateStopwatch(){
+        Stopwatch watch = Stopwatch.createStarted();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long mili = watch.elapsed(TimeUnit.MILLISECONDS);
+        log.info("Elapsed time: {} ms", mili);
+        log.info("stopwatch: {} ", watch.toString());
+    }
+
+    @Test
+    public void demonstrateStrings() {
+        String repeatedH5Time = Strings.repeat("H", 5);
+        log.info("{}", repeatedH5Time);
+        assertThat(repeatedH5Time).isEqualTo("HHHHH");
+        
+        assertThat(
+            Strings.commonPrefix("Hello world", 
+                                "Hellllllllll")).isEqualTo("Hell");
+    }
+
 }

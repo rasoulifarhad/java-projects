@@ -3,10 +3,13 @@ package com.farhad.example.guava;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
+import lombok.Builder;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,4 +35,14 @@ public class GuavaCoreDemo {
         demo.demonstrateFilterCollectionByCustomPredicate();
     }
 
+    @Data
+    @Builder
+    static class Person {
+        private final String name;
+        private String nickname;
+
+        public Optional<String> getNickname() {
+            return Optional.fromNullable(nickname);
+        }
+    }
 }
