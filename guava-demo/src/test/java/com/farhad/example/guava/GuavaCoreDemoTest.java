@@ -40,6 +40,7 @@ import com.google.common.base.Stopwatch;
 import com.google.common.base.Strings;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
+import com.google.common.base.Throwables;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableSet;
@@ -522,6 +523,7 @@ public class GuavaCoreDemoTest {
         assertEquals(2, ImmutableSet.copyOf(filtered).size());
     }
 
+    // Suppliers.compose( Function<T, R>, Supplier<T> ) --> Supplier<R>
     @Test
     public void demonstrateSuppliersWithIngredientsAndCake() {
         IngredientsFactory factory = new IngredientsFactory();
@@ -539,8 +541,46 @@ public class GuavaCoreDemoTest {
             public Cake apply(Ingredients ingredients) {
                 return new Cake(ingredients);
             }
-            
         };
     }
 
+    @Test
+    public void demonstrateThrowablesOldWay() {
+        try {
+            
+            try {
+                mayThrowAnything();
+            } catch ( IKnowWhatToDoWithThisException e) {
+                handle(e);
+            } catch (Throwable e) {
+                if (e instanceof ClassCastException) {
+                    throw e; // Old way
+                }
+                Throwables.throwIfInstanceOf(e, NumberFormatException.class); // same as
+                Throwables.throwIfUnchecked(e);
+                throw new RuntimeException(e);
+            }
+
+        } catch (RuntimeException e) {
+            List<Throwable> throwables = Throwables.getCausalChain(e);
+            log.info("");
+            log.info("Causal Chain: {}", throwables);
+            log.info("");
+            log.info("Root cause: {}", Throwables.getRootCause(e));
+            log.info("");
+            log.info("{}", Throwables.getStackTraceAsString(e));
+        }
+    }
+
+    private void mayThrowAnything() {
+        Integer.parseInt("abc");
+    }
+
+    private void handle(IKnowWhatToDoWithThisException e) {
+        log.info("Handled!!!: {}", e);
+    }
+
+    private static class IKnowWhatToDoWithThisException extends RuntimeException {
+
+    }
 }
