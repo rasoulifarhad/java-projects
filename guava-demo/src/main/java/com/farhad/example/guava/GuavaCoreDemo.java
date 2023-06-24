@@ -5,11 +5,14 @@ import java.util.List;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.base.Supplier;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -45,4 +48,49 @@ public class GuavaCoreDemo {
             return Optional.fromNullable(nickname);
         }
     }
+
+    @Data
+    @AllArgsConstructor
+    @RequiredArgsConstructor
+    static class Customer {
+        private final Long id;
+        private final String name;
+        private boolean sick;
+        private String address;
+    }
+
+    @Data
+    static class Ingredients {
+
+    }
+
+    @Data
+    static class IngredientsFactory implements Supplier<Ingredients> {
+
+        private int numberOfIngredientsUsed = 0;
+        
+        @Override
+        public Ingredients get() {
+            numberOfIngredientsUsed++;
+            return new Ingredients();
+        }
+
+    }
+
+    @Data
+    @RequiredArgsConstructor
+    static class Cake {
+        private final Ingredients ingredients;
+    }
+
+    // private Function<Ingredients, Cake> bake() {
+    //     return new Function<Ingredients,Cake>() {
+
+    //         @Override
+    //         public Cake apply(Ingredients ingredients) {
+    //             return new Cake(ingredients);
+    //         }
+    //     };
+    // }
+    
 }

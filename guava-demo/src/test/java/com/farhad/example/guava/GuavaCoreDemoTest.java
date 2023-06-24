@@ -1,7 +1,10 @@
 package com.farhad.example.guava;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,6 +18,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
+import com.farhad.example.guava.GuavaCoreDemo.Cake;
+import com.farhad.example.guava.GuavaCoreDemo.Customer;
+import com.farhad.example.guava.GuavaCoreDemo.Ingredients;
+import com.farhad.example.guava.GuavaCoreDemo.IngredientsFactory;
 import com.farhad.example.guava.GuavaCoreDemo.Person;
 import com.google.common.base.CaseFormat;
 import com.google.common.base.CharMatcher;
@@ -22,14 +29,20 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Joiner;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.base.Splitter;
 import com.google.common.base.Stopwatch;
 import com.google.common.base.Strings;
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -411,6 +424,123 @@ public class GuavaCoreDemoTest {
         assertThat(
             Strings.commonPrefix("Hello world", 
                                 "Hellllllllll")).isEqualTo("Hell");
+
+        assertNull(Strings.emptyToNull(""));
+        assertEquals("", Strings.nullToEmpty(null));
+        assertTrue(Strings.isNullOrEmpty(""));
+        assertTrue(Strings.isNullOrEmpty(null));
+        assertEquals("HiHiHi", Strings.repeat("Hi", 3));
+        assertEquals("Hi            ", Strings.padEnd("Hi", 14, ' '));
+    }
+
+    @Test
+    public void demonstrateToStringAndHashCodes() {
+        Customer farhad = new Customer(1L, "Farhad");
+        Customer amir = new Customer(2L, "Amir");
+        Customer shirin = new Customer(3L, "Shirin");
+        Customer ali = new Customer(null, "Ali");
+
+        Object [] farhadAndAmir = new Object [] {farhad, amir};
+        int hashCode = Objects.hashCode(farhad, amir);
+        assertEquals( Arrays.hashCode(farhadAndAmir), hashCode );
+
+        String toString = MoreObjects.toStringHelper(farhad)
+                                .add("name", farhad.getName())
+                                .add("id", farhad.getId()).toString();
+        assertEquals( "Customer{name=Farhad, id=1}", toString);
+
+        Long defaultId = null;
+        Long aliId = ali.getId() != null ? ali.getId() : defaultId ;
+
+        assertThrows(
+            NullPointerException.class, 
+            () -> {
+                long aliId2 = MoreObjects.firstNonNull(ali.getId(), defaultId);
+                assertEquals(0, aliId2);
+            });
+    }
+
+    @Test
+    public void demonstratePreconditions() {
+
+        Customer shirin = new Customer(3L, "Shirin");
+        shirin.setSick(true);
+
+        Customer ali = new Customer(null, "Ali");
+
+        assertDoesNotThrow(
+            () -> Preconditions.checkNotNull(shirin.getId()));
+
+        assertThrows(
+            NullPointerException.class, 
+            () -> Preconditions.checkNotNull(ali.getId()));
+
+        assertThrows(
+            IllegalStateException.class, 
+            () -> Preconditions.checkState(!shirin.isSick()));
+
+        assertThrows(
+            IllegalArgumentException.class, 
+            () -> Preconditions.checkArgument(
+                        shirin.getAddress() != null, 
+                        "Address is null for %s", 
+                        shirin.getId() ));
+    }
+
+    @Test
+    public void demonstrateFunctionsForFun() {
+
+        Customer farhad = new Customer(1L, "Farhad");
+        Customer amir = new Customer(2L, "Amir");
+
+        Function<Customer, Boolean> isCustomerWithOddId = new Function<Customer,Boolean>() {
+
+            @Override
+            public Boolean apply(Customer customer) {
+                return customer.getId().intValue() % 2 == 0;
+            }
+        };
+
+        assertTrue(isCustomerWithOddId.apply(amir));
+        assertFalse(isCustomerWithOddId.apply(farhad));
+    }
+
+    @Test
+    public void demonstratePredicatesWithCustomer() {
+
+        Customer farhad = new Customer(1L, "Farhad");
+        Customer amir = new Customer(2L, "Amir");
+        Customer shirin = new Customer(3L, "Shirin");
+
+        ImmutableSet<Customer> customers = ImmutableSet.of(farhad, amir, shirin);
+
+        Predicate<Customer> itsFarhad = Predicates.equalTo(farhad);
+        Predicate<Customer> itsAmir = Predicates.equalTo(amir);
+        Predicate<Customer> farhadOrAmir = Predicates.or(itsFarhad, itsAmir);
+        // Predicate<Customer> itsShirin = Predicates.equalTo(shirin);
+        Iterable<Customer> filtered = Iterables.filter(customers, farhadOrAmir);
+        assertEquals(2, ImmutableSet.copyOf(filtered).size());
+    }
+
+    @Test
+    public void demonstrateSuppliersWithIngredientsAndCake() {
+        IngredientsFactory factory = new IngredientsFactory();
+
+        Supplier<Cake> cakeFactory = Suppliers.compose(bake(), factory);
+        cakeFactory.get();
+        cakeFactory.get();
+        assertEquals(2, factory.getNumberOfIngredientsUsed());
+    }
+
+    private Function<Ingredients, Cake> bake() {
+        return new Function<Ingredients,Cake>() {
+
+            @Override
+            public Cake apply(Ingredients ingredients) {
+                return new Cake(ingredients);
+            }
+            
+        };
     }
 
 }

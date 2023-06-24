@@ -122,13 +122,13 @@ public class ConcurrencyModelDemo {
     //                                                                         
     public void register(User user ) {
 
-        CompletableFuture<Void> chain = new CompletableFuture<>();
+        // CompletableFuture<Void> chain = new CompletableFuture<>();
 
-        CompletableFuture<String> cf =  chain.thenComposeAsync(nil -> createUser());
-        CompletableFuture<Void> cf2 = cf.thenAcceptAsync(s -> log.info("{}",s));
-        CompletableFuture<?> cf3 =  cf2.thenComposeAsync(nil -> 
-            registerAddress()
-        );
+        // CompletableFuture<String> cf =  chain.thenComposeAsync(nil -> createUser());
+        // CompletableFuture<Void> cf2 = cf.thenAcceptAsync(s -> log.info("{}",s));
+        // CompletableFuture<?> cf3 =  cf2.thenComposeAsync(nil -> 
+        //     registerAddress()
+        // );
     }
 
 
