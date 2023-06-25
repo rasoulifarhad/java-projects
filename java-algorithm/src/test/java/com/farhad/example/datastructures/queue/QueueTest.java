@@ -102,8 +102,22 @@ public class QueueTest {
     // when isFull method is  `return size == backedArray.length,`  exception is `java.lang.ArrayIndexOutOfBoundsException: 5`
     // when isFull method is  `return rear == backedArray.length - 1;`  exception is `java.lang.IllegalStateException: Queue is full.(size=4)`
     // WE MUST IMPLEMENT CIRCULAR QUEUE
+    // @Test
+    // public void given_EnqueueUntilQueueFull_When_DequeueOneFromQueue_Then_EnqueueTrue() {
+    //     log.info("");
+    //     log.info("Queue: {}", queue.toString());
+    //     // given
+    //     for(int i = 0; i < QUEUE_CAPACITY; i++ ) {
+    //         queue.enqueue(i);
+    //     }
+    //     // when
+    //     queue.dequeue();
+    //     // then
+    //     queue.enqueue(QUEUE_CAPACITY);
+    // }
+
     @Test
-    public void given_EnqueueUntilQueueFull_When_DequeueOneFromQueue_Then_EnqueueTrue() {
+    public void given_EnqueueUntilQueueFull_When_DequeueOneFromQueue_Then_ThrowsException() {
         log.info("");
         log.info("Queue: {}", queue.toString());
         // given
@@ -113,8 +127,9 @@ public class QueueTest {
         // when
         queue.dequeue();
         // then
-        queue.enqueue(QUEUE_CAPACITY);
+        assertThrows(
+            ArrayIndexOutOfBoundsException.class,
+            () -> queue.enqueue(QUEUE_CAPACITY));
     }
-
     
 }
