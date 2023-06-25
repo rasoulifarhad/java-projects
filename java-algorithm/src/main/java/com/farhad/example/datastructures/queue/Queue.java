@@ -83,8 +83,8 @@ public class Queue<T> {
     }
 
     public boolean isFull() {
-        return rear == backedArray.length - 1;
-        // return size == backedArray.length ;
+        // return rear == backedArray.length - 1;
+        return size == backedArray.length ;
     }
 
     private boolean isLast() {

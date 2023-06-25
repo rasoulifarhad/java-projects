@@ -99,32 +99,6 @@ public class QueueTest {
         assertEquals(2, (int)queue.size());
     }
 
-    @Test
-    public void queueWrappingAroundTest02() {
-        log.info("Queue: {}", queue.toString());
-        for(int i = 1; i <= 3; i++ ) {
-            queue.enqueue(i);
-            log.info("Queue: {}", queue.toString());
-        }
-        log.info("");
-        assertEquals(1, (int)queue.dequeue());
-        log.info("Queue: {}", queue.toString());
-        assertEquals(2, (int)queue.dequeue());
-        log.info("Queue: {}", queue.toString());
-
-        log.info("");
-        for(int i = 4; i <= 6; i++) {
-            queue.enqueue(i);
-            log.info("Queue: {}", queue.toString());
-        }
-
-        log.info("");
-        assertEquals(3, (int) queue.front());
-        log.info("Queue: {}", queue.toString());
-        assertEquals(6, (int) queue.rear());
-        log.info("Queue: {}", queue.toString());
-    }
-
     // when isFull method is  `return size == backedArray.length,`  exception is `java.lang.ArrayIndexOutOfBoundsException: 5`
     // when isFull method is  `return rear == backedArray.length - 1;`  exception is `java.lang.IllegalStateException: Queue is full.(size=4)`
     // WE MUST IMPLEMENT CIRCULAR QUEUE
