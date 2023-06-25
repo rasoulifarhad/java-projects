@@ -6,8 +6,7 @@ import java.util.NoSuchElementException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Queue<T> {
-    
+public class CircularQueue<T> {
     private int front;
     private int rear;
     private int size;
@@ -15,7 +14,7 @@ public class Queue<T> {
     private T [] backedArray;
 
     @SuppressWarnings("unchecked")
-    public Queue(Class<T> clazz, int capacity) {
+    public CircularQueue(Class<T> clazz, int capacity) {
         final T [] a = (T[]) Array.newInstance(clazz, capacity);
         this.backedArray = a;
         this.front = -1;

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class QueueTest {
+public class CircularQueueTest {
 
     private static final int QUEUE_CAPACITY = 5;
     private Queue<Integer> queue;
