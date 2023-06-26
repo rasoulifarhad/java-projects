@@ -615,4 +615,17 @@ public class GuavaCoreDemoTest {
         System.out.println( ranks);
         assertThat(expectedRanks).isEqualTo(ranks);
     }
+
+    @Test
+    public void demonstrateAnotherSplitter() {
+        Iterable<String> heroes = Splitter.on(",").split("Iron Man, , Kick-Ass,Chuck Norris");
+        log.info("{}", heroes);
+
+        heroes = Splitter.on(",").trimResults().split("Iron Man, , Kiick-Ass,Chuck Noriss");
+        log.info("{}", heroes);
+
+        heroes = Splitter.on(",").trimResults().omitEmptyStrings().split("Iron Man, , Kick-Ass,Chuck Norris");
+        log.info("{}", heroes);
+ 
+    }
 }
