@@ -92,5 +92,22 @@ public class GuavaCoreDemo {
     //         }
     //     };
     // }
+
+    static class Coordinates {
+        private static final String UNKNOWN_COORDINATES = "Unknown coordinates";
+
+        public String getCoordinatesAsText() {
+            return getGpsCoordinates() != null ? getGpsCoordinates() : UNKNOWN_COORDINATES; 
+        }
+
+        public String getGpsCoordinates() {
+            try {
+                Thread.sleep(20000);
+                return "ok";
+            } catch (InterruptedException e) {
+                throw new RuntimeException("Thread interupted", e);
+            }
+        }
+    }
     
 }

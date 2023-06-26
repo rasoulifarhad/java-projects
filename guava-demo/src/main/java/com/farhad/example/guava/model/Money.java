@@ -1,8 +1,9 @@
 package com.farhad.example.guava.model;
 
-import java.math.BigDecimal;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Preconditions;
+import java.math.BigDecimal;
 
 public class Money {
     private final BigDecimal amount;
@@ -27,8 +28,8 @@ public class Money {
         // Preconditions.checkArgument(amount.signum() >= 0, "amount must be positive: %s", amount);
         // this.amount = amount;
         // this.currency = currency;
-        this.amount = Preconditions.checkNotNull(amount, "amount must not be null");
-        this.currency = Preconditions.checkNotNull(currency, "currency must not be null");
-        Preconditions.checkArgument(amount.signum() >= 0, "amount must be positive: %s", amount);
+        this.amount = checkNotNull(amount, "amount must not be null");
+        this.currency = checkNotNull(currency, "currency must not be null");
+        checkArgument(amount.signum() >= 0, "amount must be positive: %s", amount);
     }
 }
