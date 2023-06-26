@@ -3,6 +3,7 @@ package com.farhad.example.guava.model;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Employee implements Comparable<Employee>{
     private String name;
     private Integer age;
     private Job job;
@@ -63,9 +64,10 @@ public class Employee {
         // }
         // return job.compareTo(other.getJob());
         return ComparisonChain.start()
-            .compare(name, other.getName())
-            .compare(age, other.getAge())
-            .compare(job, other.getJob())
+            .compare(name, other.getName(),Ordering.natural().nullsLast())
+            .compare(age, other.getAge(),Ordering.natural().reverse().nullsLast())
+            .compare(job, other.getJob(),Ordering.natural().nullsLast())
             .result();
     }
+
 }
