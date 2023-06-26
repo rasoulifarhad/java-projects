@@ -1,5 +1,6 @@
 package com.farhad.example.guava.model;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import lombok.Data;
@@ -32,12 +33,17 @@ public class Employee {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Employee.class.getSimpleName());
-        sb.append("{name=").append(name);
-        sb.append(", age=").append(age);
-        sb.append(", job=").append(job);
-        sb.append("}");
-        return sb.toString();
+        // StringBuilder sb = new StringBuilder();
+        // sb.append(Employee.class.getSimpleName());
+        // sb.append("{name=").append(name);
+        // sb.append(", age=").append(age);
+        // sb.append(", job=").append(job);
+        // sb.append("}");
+        // return sb.toString();
+        return MoreObjects.toStringHelper(this)
+                .add("name", name)
+                .add("age", age)
+                .add("job", job)
+                .toString();
     }
 }
