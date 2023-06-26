@@ -32,6 +32,9 @@ public class CircularQueue<T> {
             backedArray[0] = t;
         } else {
             rear++;
+            if(rear > backedArray.length - 1 ) {
+                rear = 0;
+            }
             backedArray[rear] = t;            
         }
         size++;
@@ -43,17 +46,23 @@ public class CircularQueue<T> {
         if(isEmpty()) {
             throw new NoSuchElementException("Queue is empty");
         }
-        T val;
-        // if(isLast()) {
-        if(front == rear) {
-            val = backedArray[front];
-            front = rear = -1;
-            size = 0;
-        } else {
-            val = backedArray[front];
-            front++;
-            size--;
+        if(front > backedArray.length - 1) {
+            front = 0;
         }
+        T val = backedArray[front];
+        front++;
+        size--;
+        // T val;
+        // // if(isLast()) {
+        // if(front == rear) {
+        //     val = backedArray[front];
+        //     front = rear = -1;
+        //     size = 0;
+        // } else {
+        //     val = backedArray[front];
+        //     front++;
+        //     size--;
+        // }
         log.info("Queue: {}, dequeue: {}", toString(), val);
         return val;
     }

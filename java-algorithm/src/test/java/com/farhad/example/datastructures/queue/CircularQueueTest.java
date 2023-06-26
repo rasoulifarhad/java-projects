@@ -113,5 +113,65 @@ public class CircularQueueTest {
         queue.enqueue(QUEUE_CAPACITY);
     }
 
+    @Test
+    public void given_enqueueUntilQueueFull_when_DequeueOneAndEnqueueOneAndDequeue3FromQueue_then_2dequeueTrue(){
+
+        log.info("Queue: {}", queue.toString());
+       
+        // Given
+        //// In start state is: Queue: [ front=-1, rear=-1, size=0 ]
+        for(int i = 0; i < QUEUE_CAPACITY; i++) {
+            queue.enqueue(i);
+        }
+       
+        // When
+        //// Now state is: Queue: [ front=0, rear=4, size=5 ]
+        queue.dequeue();
+        queue.enqueue(QUEUE_CAPACITY);
+        //// Now state is: Queue: [ front=1, rear=0, size=5 ]
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        //// now state is: Queue: [ front=4, rear=0, size=2 ]
+        
+        // Then
+        queue.dequeue();
+        //// Now state is: Queue: [ front=5, rear=0, size=1 ]
+        queue.dequeue();
+        //// No state is: Queue: [ front=1, rear=0, size=0 ]
+    }
     
+    @Test
+    public void given_enqueueUntilQueueFull_when_DequeueOneAndEnqueueOneAndDequeue3FromQueue_then_2dequeueAnddddTrue(){
+
+        log.info("Queue: {}", queue.toString());
+       
+        // Given
+        //// In start state is: Queue: [ front=-1, rear=-1, size=0 ]
+        for(int i = 0; i < QUEUE_CAPACITY; i++) {
+            queue.enqueue(i);
+        }
+       
+        // When
+        //// Now state is: Queue: [ front=0, rear=4, size=5 ]
+        queue.dequeue();
+        queue.enqueue(QUEUE_CAPACITY);
+        //// Now state is: Queue: [ front=1, rear=0, size=5 ]
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        //// now state is: Queue: [ front=4, rear=0, size=2 ]
+        
+        // Then
+        queue.dequeue();
+        //// Now state is: Queue: [ front=5, rear=0, size=1 ]
+        queue.dequeue();
+        //// No state is: Queue: [ front=1, rear=0, size=0 ]
+        queue.enqueue(QUEUE_CAPACITY + 1);
+        //// No state is: Queue: [ front=0, rear=0, size=1 ]
+        queue.dequeue();
+        //// No state is: Queue: [ front=1, rear=0, size=0 ]
+        queue.enqueue(QUEUE_CAPACITY + 2);
+
+    }    
 }
