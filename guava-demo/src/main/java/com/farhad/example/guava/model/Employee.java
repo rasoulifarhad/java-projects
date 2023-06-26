@@ -50,4 +50,16 @@ public class Employee {
                 .add("job", job)
                 .toString();
     }
+
+    public int compareTo(Employee other) {
+        int result = name.compareTo(other.getName());
+        if(result !=0) {
+            return result;
+        }
+        result = age.compareTo(other.getAge());
+        if (result != 0 ) {
+            return result;
+        }
+        return job.compareTo(other.getJob());
+    }
 }
