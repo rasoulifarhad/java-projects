@@ -3,9 +3,13 @@ package com.farhad.example.guava.model;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
     private String name;
     private Integer age;
