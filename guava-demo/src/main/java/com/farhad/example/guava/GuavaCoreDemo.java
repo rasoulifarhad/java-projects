@@ -101,9 +101,10 @@ public class GuavaCoreDemo {
         }
 
         public String getGpsCoordinates() {
+            // retrieve GPS Coordinates from satellite
             try {
                 Thread.sleep(20000);
-                return "ok";
+                return "48.857438,2.352221";// return DMC 48 51 23.81,2 21 7.995
             } catch (InterruptedException e) {
                 throw new RuntimeException("Thread interupted", e);
             }
