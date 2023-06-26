@@ -2,6 +2,7 @@ package com.farhad.example.guava.model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.common.collect.ComparisonChain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,14 +53,19 @@ public class Employee {
     }
 
     public int compareTo(Employee other) {
-        int result = name.compareTo(other.getName());
-        if(result !=0) {
-            return result;
-        }
-        result = age.compareTo(other.getAge());
-        if (result != 0 ) {
-            return result;
-        }
-        return job.compareTo(other.getJob());
+        // int result = name.compareTo(other.getName());
+        // if(result !=0) {
+        //     return result;
+        // }
+        // result = age.compareTo(other.getAge());
+        // if (result != 0 ) {
+        //     return result;
+        // }
+        // return job.compareTo(other.getJob());
+        return ComparisonChain.start()
+            .compare(name, other.getName())
+            .compare(age, other.getAge())
+            .compare(job, other.getJob())
+            .result();
     }
 }
