@@ -1,5 +1,7 @@
 package com.farhad.example.guava;
 
+import static com.google.common.base.MoreObjects.firstNonNull;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -98,8 +100,11 @@ public class GuavaCoreDemo {
 
         public String getCoordinatesAsText() {
             // return getGpsCoordinates() != null ? getGpsCoordinates() : UNKNOWN_COORDINATES; 
-            String gpsCoordinates = getGpsCoordinates();
-            return gpsCoordinates != null ? gpsCoordinates : UNKNOWN_COORDINATES;
+            
+            // String gpsCoordinates = getGpsCoordinates();
+            // return gpsCoordinates != null ? gpsCoordinates : UNKNOWN_COORDINATES;
+
+            return firstNonNull(getGpsCoordinates(), UNKNOWN_COORDINATES );
         }
 
         public String getGpsCoordinates() {

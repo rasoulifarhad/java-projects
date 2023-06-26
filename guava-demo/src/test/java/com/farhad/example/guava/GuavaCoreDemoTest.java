@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -581,6 +582,37 @@ public class GuavaCoreDemoTest {
     }
 
     private static class IKnowWhatToDoWithThisException extends RuntimeException {
+ 
+    }
 
+    @Test 
+    public void demonstrateAnotherJoiner() {
+        List<String> heroes = Lists.newArrayList("Kick-Ass", "Iron Man", "Chuck Norris");
+        String names = Joiner.on(",").join(heroes);
+        log.info("{}", names);
+        assertThat(names).isEqualTo("Kick-Ass,Iron Man,Chuck Norris");
+
+        List<String> heroesWithNull = Lists.newArrayList("Kick-Ass", "Iron Man", null, "Chuck Norris");
+        assertThrows(
+            NullPointerException.class,
+            () -> Joiner.on(",").join(heroesWithNull) );
+
+        names = Joiner.on(",").skipNulls().join(heroesWithNull);
+        assertThat(names).isEqualTo("Kick-Ass,Iron Man,Chuck Norris");
+
+        names = Joiner.on(",").useForNull("Invisible Man").join(heroesWithNull);
+        assertThat(names).isEqualTo("Kick-Ass,Iron Man,Invisible Man,Chuck Norris");
+    }
+
+    @Test
+    public void demonstrateMapJoiner() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Kick-Ass");
+        map.put(2, "Iron Man");
+        map.put(3, "Chuck Norris");
+        String expectedRanks = "1->Kick-Ass\n2->Iron Man\n3->Chuck Norris";
+        String ranks = Joiner.on("\n").withKeyValueSeparator("->").join(map);
+        System.out.println( ranks);
+        assertThat(expectedRanks).isEqualTo(ranks);
     }
 }
