@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -165,4 +166,20 @@ public class GuavaCollectionDemoTest {
         assertThrows(UnsupportedOperationException.class, () -> immutableMap.put("test", "test"));
     }
 
+    @Test
+    public void demonstrateCollectionsStaticFactories() {
+        List<Map<String, Object>> maps = new ArrayList<>();
+        List<Map<String, Object>> guavaMaps = Lists.newArrayList(); // dont use, instead use ArrayList 
+        List<String> names = Lists.newArrayListWithExpectedSize(50); // dont use
+        List<String> names2 = Lists.newArrayListWithCapacity(50); // dont use , instead use new ArrayList<>(int)
+
+        List<String> varHeroes = Lists.newArrayList("Kick-Ass", "Iron Man"); // dont use
+
+        Iterable<String> heroesIterable = Lists.newArrayList("1", "3");
+        List<String> heroes  = Lists.newArrayList(heroesIterable); // dont use
+
+        Set<String> heroesSet = Sets.newHashSet(); // dont use , instead use new HashSet<>()
+
+        Map<String, String> heroesById = Maps.newHashMap(); // dont use , instead use new HashMap<>()
+    }
 }
