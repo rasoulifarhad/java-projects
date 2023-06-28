@@ -4,7 +4,9 @@ import static com.farhad.example.io.SmallFilesDemo.readAndLogAllLines;
 import static com.farhad.example.io.SmallFilesDemo.readFile;
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedOutputStream;
@@ -316,14 +318,56 @@ public class SmallFilesDemoTest {
         log.info("path: {}, Path to absolute: {}", pathToAbsolute, pathToAbsolute.toAbsolutePath());
 
         Path pathToReal = Paths.get("bar.txt");
-        try {
-            // This method throws an exception if the file does not exist or cannot be accessed. 
-            log.info("path: {}, path to real", pathToReal, pathToReal.toRealPath());
-        } catch (NoSuchFileException e) {
-            log.error("file not exist: {}", pathToReal, e);
-        } catch(IOException e) {
-            log.error("IOException", e);
-        }
+        deleteFile(pathToReal);
+        assertThrows(
+            NoSuchFileException.class,
+            () -> log.info("path: {}, path to real", pathToReal, pathToReal.toRealPath()));
+    }
+
+    // Combine paths by using the resolve method. 
+    // Pass in a partial path , which is a path that does not include a root element, and that partial path is appended to the original path.
+    @Test
+    public void demonstrateJoiningTwoPath() {
+        Path originalPath = Paths.get("/home/farhad/foo");
+        Path partialPath = Paths.get("bar.txt");
+        Path expectedPath = Paths.get("/home/farhad/foo/bar.txt");
+        log.info("full path: {}", originalPath.resolve(partialPath));
+        assertEquals(expectedPath, originalPath.resolve(partialPath));
+
+        Path result =  Paths.get("foo.txt").resolve("/home/farhad/foo");
+        log.info("{}", Paths.get("foo.txt").resolve("/home/farhad/foo"));
+        expectedPath = originalPath;
+        assertEquals(expectedPath, result);
+    }
+
+    @Test
+    public void demonstrateCreatePathBetweenTwoPaths() {
+        Path p1 = Paths.get("farhad");
+        Path p2 = Paths.get("ali");
+        
+        log.info("p1 relativize to p2 : {}", p1.relativize(p2));
+        assertEquals(Paths.get("../ali"), p1.relativize(p2));
+
+        log.info("p2 relativize to p1 : {}", p2.relativize(p1));
+        assertEquals(Paths.get("../farhad"), p2.relativize(p1));
+
+        Path home = Paths.get("home");
+        Path homeFarhadBar = Paths.get("home/farhad/bar");
+        
+        log.info("home to homeFarhadBar : {}", home.relativize(homeFarhadBar));
+        assertEquals(Paths.get("farhad/bar"), home.relativize(homeFarhadBar));
+
+        log.info("homeFarhadBar to home : {}", homeFarhadBar.relativize(home));
+        assertEquals(Paths.get("../.."), homeFarhadBar.relativize(home));
+    }
+
+    @Test
+    public void demonstratePathStartsWithAndEndsWith() {
+        Path beginning = Paths.get("/home");
+        Path ending = Paths.get("bar.txt");
+        Path path = Paths.get("/home/farhad/foo/bar.txt");
+        assertTrue(path.startsWith(beginning));
+        assertTrue(path.endsWith(ending));
     }
 
     private void deleteFile(Path file) {
