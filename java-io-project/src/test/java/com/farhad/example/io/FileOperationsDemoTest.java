@@ -1,11 +1,15 @@
 package com.farhad.example.io;
 
+import static java.nio.file.Files.exists;
+import static java.nio.file.Files.notExists;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.file.FileStore;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -34,7 +38,7 @@ public class FileOperationsDemoTest {
     @Test
     public void demonstrateFilesNotExists() {
         Path file = Paths.get("abcdef12345.123");
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
@@ -67,14 +71,14 @@ public class FileOperationsDemoTest {
 
         String fileName = String.format("home%d.txt", new Random().nextInt());
         Path file = Paths.get(fileName);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         Files.delete(file);
         log.info("file {} deleted", file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
@@ -82,7 +86,7 @@ public class FileOperationsDemoTest {
 
         String fileName = String.format("home%d.txt", new Random().nextInt());
         Path file = Paths.get(fileName);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         assertThrows(
             NoSuchFileException.class,
@@ -93,21 +97,21 @@ public class FileOperationsDemoTest {
     public void demonstrateFileDeleteIfExists() throws IOException {
         String fileName = String.format("home%d.txt", new Random().nextInt());
         Path file = Paths.get(fileName);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         Files.deleteIfExists(file);
         log.info("file {} deleted", file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test 
     public void demonstrateFilesDeleteIfExistsNotThrowsNoSuchFileException() throws IOException {
         String fileName = String.format("home%d.txt", new Random().nextInt());
         Path file = Paths.get(fileName);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.deleteIfExists(file);
         log.info("File {} deleted or not existed", file);
@@ -177,10 +181,10 @@ public class FileOperationsDemoTest {
     public void demonstrateFilesManagingMetadata() throws IOException { 
         Path file = Paths.get("test-file.bin");
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
         
@@ -195,17 +199,17 @@ public class FileOperationsDemoTest {
         log.info("fileKey: {}", attr.fileKey());
 
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
     public void demonstrateSettingFileTimestamps() throws IOException {
         Path file = Paths.get("test-file.bin"); 
         deleteFile(file) ;
-        assertTrue(Files.notExists(file)); 
+        assertTrue(notExists(file)); 
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
         long currentTime = System.currentTimeMillis();
@@ -226,12 +230,12 @@ public class FileOperationsDemoTest {
     public void demonstratePOSIXFilePermissions() throws IOException{
         Path file = Paths.get("test-file.bin");
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rw-rw----");
         FileAttribute<Set<PosixFilePermission>> attr = PosixFilePermissions.asFileAttribute(permissions);
         Files.createFile(file, attr);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         PosixFileAttributes pattr = Files.readAttributes(file, PosixFileAttributes.class);
         log.info("owner: {}", pattr.owner().getName());
@@ -239,17 +243,17 @@ public class FileOperationsDemoTest {
         log.info("permissions: {}", PosixFilePermissions.toString(pattr.permissions()));
 
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
     public void demonstrateSetPOSIXFilePermissions() throws IOException{
         Path file = Paths.get("test-file.bin");
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rw-rw----");
         // FileAttribute<Set<PosixFilePermission>> attr = PosixFilePermissions.asFileAttribute(permissions);
@@ -261,7 +265,7 @@ public class FileOperationsDemoTest {
         log.info("permissions: {}", PosixFilePermissions.toString(pattr.permissions()));
 
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
@@ -269,17 +273,17 @@ public class FileOperationsDemoTest {
         Path originalFile = Paths.get("test-file.bin");
         Path newFile = Paths.get("new-test-file.bin");
         deleteFile(originalFile);
-        assertTrue(Files.notExists(originalFile));
+        assertTrue(notExists(originalFile));
 
         Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rw-r-----");
         FileAttribute<Set<PosixFilePermission>> originalAttr = PosixFilePermissions.asFileAttribute(permissions);
         Files.createFile(originalFile, originalAttr);
-        assertTrue(Files.exists(originalFile));
+        assertTrue(exists(originalFile));
 
         PosixFileAttributes attrs = Files.readAttributes(originalFile, PosixFileAttributes.class);
         FileAttribute<Set<PosixFilePermission>> attr = PosixFilePermissions.asFileAttribute(attrs.permissions());
         Files.createFile(newFile, attr);
-        assertTrue(Files.exists(newFile));
+        assertTrue(exists(newFile));
     }
 
     // To translate a name into an object you can store as a file owner or a group owner, you can use the UserPrincipalLookupService service. This 
@@ -292,10 +296,10 @@ public class FileOperationsDemoTest {
     public void demonstrateFilesSetOwner() throws IOException {
         Path file = Paths.get("test-file.bin");
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         UserPrincipalLookupService service =  file.getFileSystem().getUserPrincipalLookupService();
         UserPrincipal owner = service.lookupPrincipalByName("farhad");
@@ -307,29 +311,71 @@ public class FileOperationsDemoTest {
         posixFileAttributeView.setGroup(group);
 
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
     }
 
     @Test
     public void demonstrateUserDefinedAttributes() throws IOException {
         Path file = Paths.get("test-file.bin");
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
 
         Files.createFile(file);
-        assertTrue(Files.exists(file));
+        assertTrue(exists(file));
 
         UserDefinedFileAttributeView view = Files.getFileAttributeView(file, UserDefinedFileAttributeView.class);
-        view.write("mimeType", Charset.defaultCharset().encode("text/plain"));
+        String attrName = "mimeType";
+        view.write(attrName, Charset.defaultCharset().encode("text/plain"));
         log.info("{}", view.list());
 
 
         Path readFile = Paths.get("test-file.bin");
         UserDefinedFileAttributeView userDefinedFileAttributeView = Files.getFileAttributeView(readFile, UserDefinedFileAttributeView.class);
         log.info("user atts: {}", userDefinedFileAttributeView.list());
+        log.info("attr: {}, size: {}", attrName,userDefinedFileAttributeView.size(attrName));
+        ByteBuffer bbf = ByteBuffer.allocate(userDefinedFileAttributeView.size(attrName));
+        userDefinedFileAttributeView.read(attrName, bbf);
+        bbf.flip();
+        log.info("arrt: {}, value: {}", attrName, Charset.defaultCharset().decode(bbf).toString());
       
         deleteFile(file);
-        assertTrue(Files.notExists(file));
+        assertTrue(notExists(file));
+    }
+
+    @Test
+    public void demonstrateFileStore() throws IOException {
+        Path file = Paths.get("test-file.bin");
+        deleteFile(file);
+        assertTrue(notExists(file));
+
+        Files.createFile(file);
+        assertTrue(exists(file));
+        String s = "Hello World!";
+        Files.write(file, s.getBytes());
+
+        FileStore store = Files.getFileStore(file);
+        long total = store.getTotalSpace();
+        long used = store.getTotalSpace() - store.getUnallocatedSpace();
+        long avail = store.getUsableSpace();
+        log.info("total: {}, unallocated: {}, usable: {}", total, used, avail);
+
+        total = store.getTotalSpace() / 1024;
+        used = (store.getTotalSpace() -  store.getUnallocatedSpace()) / 1024;
+        avail = store.getUsableSpace() / 1024;
+        log.info("in kb:  total: {}, unallocated: {}, usable: {}", total, used, avail);
+
+        total = store.getTotalSpace() / (1024 * 1024);
+        used = (store.getTotalSpace() -  store.getUnallocatedSpace()) / (1024 * 1024);
+        avail = store.getUsableSpace() / (1024 * 1024);
+        log.info("in mb:  total: {}, unallocated: {}, usable: {}", total, used, avail);
+
+        total = store.getTotalSpace() / (1024 * 1024 * 1024);
+        used = (store.getTotalSpace() -  store.getUnallocatedSpace()) / (1024 * 1024 * 1024);
+        avail = store.getUsableSpace() / (1024 * 1024 * 1024);
+        log.info("in Tb:  total: {}, unallocated: {}, usable: {}", total, used, avail);
+
+        deleteFile(file);
+        assertTrue(notExists(file));
     }
 
     private void deleteFile(Path file) {
