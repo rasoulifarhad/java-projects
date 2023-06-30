@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.file.FileStore;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -25,6 +27,8 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.nio.file.attribute.UserPrincipal;
 import java.nio.file.attribute.UserPrincipalLookupService;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -377,6 +381,72 @@ public class FileOperationsDemoTest {
         deleteFile(file);
         assertTrue(notExists(file));
     }
+
+    @Test
+    public void demonstrateRandomAccessFiles() {
+
+    }
+
+    @Test
+    public void demonstrateCreatingAndReadingDirectories() {
+
+    }
+
+    @Test 
+    public void demonstrateWalkingFileTree() {
+
+    }
+
+    @Test
+    public void demonstrateFindingFiles() {
+
+    }
+
+    @Test
+    public void demonstrateWatchingDirectoryForChanges() {
+
+    }
+
+    @Test
+    public  void demonstrateDeterminingMIMEType() throws IOException {
+        Path file = Paths.get("test-file.bin");
+        deleteFile(file);
+        assertTrue(notExists(file));
+
+        Files.createFile(file);
+        assertTrue(exists(file));
+
+        Files.write(file, "hello world!".getBytes());
+
+        String contentType = Files.probeContentType(file);
+        if(contentType == null) {
+            log.error("unknown content type");
+        } else {
+            log.info("contentType: {}",contentType);
+        }
+
+        deleteFile(file);
+        assertTrue(notExists(file));
+    }
+
+    @Test
+    public void demonstrateDefaultFileSystem() throws IOException {
+        FileSystem fileSystem = FileSystems.getDefault();
+        List<Path> roots =  new ArrayList<>();
+        fileSystem.getRootDirectories().forEach(roots::add); 
+ 
+        log.info("roots: {}", roots);
+        log.info("path Separator: {}", fileSystem.getSeparator());
+        fileSystem.getFileStores().forEach(fs -> {
+            try {
+                log.info("file store: {}, total: {} TB", fs, fs.getTotalSpace() / (1024 * 1024 * 1024));
+            } catch (IOException e) {
+                log.error("IOException for fileStore: {}", fs, e.getMessage());
+            }
+
+        } ); 
+    }
+
 
     private void deleteFile(Path file) {
         try {
