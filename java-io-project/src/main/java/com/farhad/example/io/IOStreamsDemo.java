@@ -7,9 +7,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class IOStreamsDemo {
     
     // Both copyWithByteStream and copyWithCharacterStream use an int variable to read to and write from. However, in CopyCharacters, the int 
@@ -112,6 +116,15 @@ public class IOStreamsDemo {
             }
 
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        InputStreamReader cin = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(cin);
+        System.out.println("Enter line:hi boy");
+        String s = br.readLine();
+        log.info("entered: {}", s);
+        br.close();        
     }
 
 }
