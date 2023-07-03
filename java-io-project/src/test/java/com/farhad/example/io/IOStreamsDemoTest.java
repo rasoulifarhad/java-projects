@@ -1,16 +1,34 @@
 package com.farhad.example.io;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.Console;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -259,6 +277,167 @@ public class IOStreamsDemoTest {
         log.info("password changed");
     }
 
+    static final String dataFile = "invoicedata";
+    static final double [] prices = {19.99, 9.99, 15.99, 3.99, 4.99};
+    static final int [] units = {12, 8, 13, 29, 50};
+    static final String [] descs = {
+        "Java T-shirt",
+        "Java Mug",
+        "Duke Juggling Dolls",
+        "Java Pin",
+        "Java Key Chain"
+    };
+    // writing out a set of data records, and then reading them in again. Each record consists of three values related to an item on an invoice:
+    // item price(double) / unit count(int) / item description(String)
+    @Test
+    public void demonstrateDataStreams() throws IOException {
+        Files.deleteIfExists(Paths.get(dataFile));
+        DataOutputStream out = null;
+
+        try {
+            out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));
+            for(int i = 0 ; i < prices.length ; i++) {
+                out.writeDouble(prices[i]);
+                out.writeInt(units[i]);
+                out.writeUTF(descs[i]);
+            }
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+
+        DataInputStream in = null;
+        double total = 0.0;
+        try {
+            in = new DataInputStream(new BufferedInputStream( new FileInputStream(dataFile)));
+            double price;
+            int unit;
+            String desc;
+            
+            try {
+                while (true) {
+                    price = in.readDouble();
+                    unit = in.readInt();
+                    desc = in.readUTF();
+                    System.out.format("You ordered %d units of %s at $%.2f%n", unit, desc, price);
+                    total += unit * price;
+                }
+            } catch(EOFException e) {
+                System.out.format("For a Total of: $%.2f%n", total);
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+        Files.delete(Paths.get(dataFile));
+    }
+
+
+    static final String dataFile2 = "invoicedata2";
+    static final BigDecimal [] prices2 = {
+        new BigDecimal("19.99") , 
+        new BigDecimal("9.99"), 
+        new BigDecimal("15.99"), 
+        new BigDecimal("3.99"), 
+        new BigDecimal("4.99")
+    };
+    static final int [] units2 = {12, 8, 13, 29, 50};
+    static final String [] descs2 = {
+        "Java T-shirt",
+        "Java Mug",
+        "Duke Juggling Dolls",
+        "Java Pin",
+        "Java Key Chain"
+    };
+    @Test
+    public void demonstrateObjectStreams() throws IOException, ClassNotFoundException {
+        Files.deleteIfExists(Paths.get(dataFile2));
+
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream( new BufferedOutputStream(new FileOutputStream(dataFile2)) );
+            out.writeObject(Calendar.getInstance());
+            for(int i = 0; i < prices2.length; i++) {
+                out.writeObject(prices2[i]);
+                out.writeInt(units2[i]);
+                out.writeUTF(descs2[i]);
+            }
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream( new BufferedInputStream( new FileInputStream(dataFile2)));
+
+            Calendar date = null;
+            BigDecimal price;
+            int unit;
+            String desc;
+
+            BigDecimal total = new BigDecimal(0.0);
+
+            date = (Calendar) in.readObject();
+            System.out.format("on %tA, %<tB %<te, %<tY:%n ", date);
+            try {
+                while(true) {
+                    price = (BigDecimal)in.readObject();
+                    unit = in.readInt();
+                    desc = in.readUTF();
+                    System.out.format("You ordered %d units of %s at $%.2f%n", unit, desc, price);
+                    total = total.add(price.multiply(new BigDecimal(unit)));
+                }
+            } catch(EOFException e) {
+                System.out.format("For a Total of: $%.2f%n", total);
+            }
+
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+        Files.delete(Paths.get(dataFile2));
+    }
+
+    @Test
+    public void demonstrateObjectStreamsWhenWrittingObjectTwice() throws IOException, ClassNotFoundException {
+        final String file = "testWrittingObjectTwice";
+        Files.deleteIfExists(Paths.get(file));
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+            TestObject object = new TestObject("test");
+            out.writeObject(object);
+            out.writeObject(object);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+            TestObject obj1 = (TestObject)in.readObject();
+            TestObject obj2 = (TestObject)in.readObject();
+            assertTrue(obj1 == obj2);
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+        Files.delete(Paths.get(file));
+    }
+
+    @AllArgsConstructor
+    @Data
+    static class TestObject implements Serializable {
+        String name;
+    }
 }
 
 
