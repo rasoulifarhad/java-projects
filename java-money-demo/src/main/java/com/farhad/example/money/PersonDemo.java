@@ -4,18 +4,27 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+
+import javax.money.MonetaryAmount;
 
 import com.farhad.example.money.Person.CheckPerson;
 import com.farhad.example.money.Person.Sex;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class PersonDemo {
     
     public static void main(String[] args) {
     
         List<Person> people = Person.createRoster();
 
+        log.info("==================== filterAndLogPeopleOlderThan 30 ==========================");
         filterAndLogPeopleOlderThan(people, 30);
+        log.info("==================== filterAndLogPeopleBetweenAges 30, 40 ==========================");
         filterAndLogPeopleBetweenAges(people, 30, 40);
+        log.info("==================== filterAndLogPeople [MALE, age>=18, age<=25] ==========================");
         filterAndLogPeople(people, new CheckPerson() {
 
             @Override
@@ -26,15 +35,47 @@ public class PersonDemo {
             }
         });
 
+        log.info("==================== filterAndLogPeople [MALE, age>=18, age<=25] ==========================");
+        filterAndLogPeople(people, new EligibleForSelectiveService());
+
+        log.info("==================== filterAndLogPeople [MALE, age>=18, age<=25] ==========================");
         filterAndLogPeople(people, person -> 
                 person.getGender() == Sex.MALE && 
                 person.getAge() >= 18 &&
                 person.getAge() <= 25);
 
+        log.info("==================== filterAndLogPeopleWithPredicate [MALE, age>=18, age<=25] ==========================");
         filterAndLogPeopleWithPredicate(people, person -> 
                 person.getGender() == Sex.MALE && 
                 person.getAge() >= 18 &&
                 person.getAge() <= 25);
+
+        log.info("==================== filterAndConsumePeople [MALE, age>=18, age<=25] ==========================");
+        filterAndConsumePeople(people, 
+                                p -> p.getGender() == Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25, 
+                                p -> p.printPerson());
+
+        log.info("==================== filterAndProcessThenConsumePeople [MALE, age>=18, age<=25] ==========================");
+        filterAndProcessThenConsumePeople(people, 
+                                    p -> p.getGender() == Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25, 
+                                    p -> p.getEmailAddress(), 
+                                    email -> log.info("{}", email) );      
+
+        log.info("===================== WithStream [MALE, age>=18, age<=25, salary<=100000] =========================");
+        people.stream()
+            .filter(p -> 
+                p.getGender() == Sex.MALE && 
+                p.getAge() >= 18 && p.getAge() <= 25 
+                && p.getSalary().getNumber().intValue() <= 100000 )
+            .map(p -> p.getSalary())
+            .forEach(salary -> log.info("{}", salary));
+
+        log.info("================== filterAndConsumeWithOpoerator [MALE, age>=18, age<=25] ============================");
+        filterAndConsumeWithOpoerator(people,
+                                    p -> p.getGender() == Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25,
+                                    m -> m,
+                                    salary -> log.info("{}", salary));
+            
     }
 
     private static void filterAndLogPeopleOlderThan(List<Person> people, int age) {
@@ -89,7 +130,7 @@ public class PersonDemo {
         }
     }
 
-    private static <X, Y> void processElements(Iterable<X> source,
+    public static <X, Y> void processElements(Iterable<X> source,
                                           Predicate<X> tester,
                                           Function<X, Y> mapper,
                                           Consumer<Y> consumer) {
@@ -98,6 +139,30 @@ public class PersonDemo {
                 Y data = mapper.apply(x);
                 consumer.accept(data);
             }
+        }
+    }
+
+    private static void filterAndConsumeWithOpoerator(List<Person> people,
+                                                    Predicate<Person> tester,
+                                                    UnaryOperator<MonetaryAmount> mapper,
+                                                    Consumer<MonetaryAmount> consumer) {
+
+        for(Person p : people) {
+            if (tester.test(p)) {
+                MonetaryAmount data = mapper.apply(p.getSalary());
+                consumer.accept(data);
+            }
+        }
+    }
+
+    public static class EligibleForSelectiveService implements CheckPerson {
+
+        @Override
+        public boolean test(Person person) {
+            return 
+                person.getGender() == Sex.MALE && 
+                person.getAge() >= 18 &&
+                person.getAge() <= 25;
         }
     }
 
