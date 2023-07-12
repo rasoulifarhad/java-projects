@@ -13,6 +13,7 @@ import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
 import javax.money.MonetaryContextBuilder;
+import javax.money.MonetaryException;
 import javax.money.MonetaryRounding;
 import javax.money.RoundingQueryBuilder;
 import javax.money.UnknownCurrencyException;
@@ -94,6 +95,15 @@ public class BasicDemoTest {
                                 .setContext(MonetaryContextBuilder.of().set(MathContext.DECIMAL128).build())
                                 .create();
         assertEquals(m1, m2);
+    }
+
+
+    @Test
+    public void demonstrateMonetaryException() {
+        MonetaryAmount us = Money.of(100.00, "USD");
+        MonetaryAmount canada = Money.of(20.00, "CAD");
+
+        assertThrows(MonetaryException.class, () -> canada.add(us));
     }
 
     @Test
