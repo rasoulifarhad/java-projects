@@ -1,11 +1,23 @@
 package com.farhad.example.dispatch.displayport;
 
-public class RemotePort implements Displayable {
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class RemotePort implements Port {
 
     @Override
-    public void displayOn(Display port) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displayOn'");
+    public void display(Rectangle rectangle) {
+        log.info("display rectangle in remote port");
     }
+
+    @Override
+    public void display(Oval oval) {
+        log.info("display oval in remote port");
+    }
+
+
+    // @Override
+    // public void displayOn(Port port) {
+    // }
 
 }
