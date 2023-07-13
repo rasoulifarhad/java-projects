@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Customer {
     
+    private boolean atRisk;
 
     private List<Fee> fees = new ArrayList<>();
 
@@ -18,5 +19,12 @@ public class Customer {
         Fee fee = new Fee(amount, this);
         fees.add(fee);
         return fee;
+    }
+
+    public void updateAtRiskStatus() {
+        int totalWithOutstandingBalance = (int) fees.stream()
+                                                        .filter(Fee::hasOutstandingBalance)
+                                                        .count();
+        atRisk = totalWithOutstandingBalance > 3; 
     }
 }
