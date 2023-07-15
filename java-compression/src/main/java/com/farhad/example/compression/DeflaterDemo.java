@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
@@ -110,5 +111,20 @@ public class DeflaterDemo {
         System.out.println(compressedData.length);
         System.out.println(decompressedData.length);
         System.out.println(output);
-    }
+
+        input = "ABCDEF";
+        input =  String.join("", Collections.nCopies(10, input));
+        uncompressedData = input.getBytes(StandardCharsets.UTF_8);
+        compressedData = compress2(uncompressedData, Deflater.BEST_COMPRESSION, false);
+        decompressedData = decompress2(compressedData, false);
+        output = new String(decompressedData, StandardCharsets.UTF_8);
+        System.out.println("=====================");
+        System.out.println(input);
+        System.out.println(uncompressedData.length);
+        System.out.println(compressedData.length);
+        System.out.println(decompressedData.length);
+        System.out.println(output);
+
+    }   
+
 }
