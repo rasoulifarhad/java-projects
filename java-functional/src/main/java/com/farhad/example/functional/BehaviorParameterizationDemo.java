@@ -43,7 +43,7 @@ public class BehaviorParameterizationDemo {
         return filteredBooks;
     }
 
-    public static List<Book> filterBookWithPredicate(List<Book> library, Predicate<Book> predicate) {
+    public static List<Book> filterBook(List<Book> library, Predicate<Book> predicate) {
         List<Book> filteredBooks = new ArrayList<>();
         for (Book book : library) {
             if(predicate.test(book)) {
@@ -109,7 +109,7 @@ public class BehaviorParameterizationDemo {
         );
 
         System.out.println(
-            filterBookWithPredicate(library, book ->  "Lewis Carrol".equals(book.getAuthor()) )
+            filterBook(library, (Predicate<Book>)(book ->  "Lewis Carrol".equals(book.getAuthor())) )
         );
         System.out.println(
             library

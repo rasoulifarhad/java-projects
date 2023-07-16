@@ -14,7 +14,6 @@ import lombok.Data;
 
 public class GroupingByDemo {
     
-
     public static Map<Currency, List<Transaction>> filterAndGroupbyCurrencyExpensiveTransactions(List<Transaction> transactions) {
         Map<Currency, List<Transaction>> transactionsByCurrencies = new HashMap<>();
         for (Transaction transaction : transactions) {
