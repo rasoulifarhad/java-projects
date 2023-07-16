@@ -2,7 +2,9 @@ package com.farhad.example.algorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.LongStream;
 
 public class Algorithms {
     
@@ -143,5 +145,79 @@ public class Algorithms {
             }
         }
         return rez;
+    }
+
+    // Given a List<Integer> value, for example, {1, 4, 9}, construct a
+    // List<List<Integer>> value whose members are all the subsets of {1, 4, 9}—in any order. The
+    // subsets of {1, 4, 9} are {1, 4 ,9}, {1, 4}, {1, 9}, {4, 9}, {1}, {4}, {9}, and {}.
+    public static List<List<Integer>> allSubsets(List<Integer> list) {
+        if (list.isEmpty()) {
+            List<List<Integer>> ans = new ArrayList<>();
+            ans.add(Collections.emptyList());
+            return ans;
+        }
+        Integer first = list.get(0);
+        List<Integer> rest = list.subList(1, list.size());
+        List<List<Integer>> subans = allSubsets(rest);
+        List<List<Integer>> subans2 = insertAll(first, subans);
+        return concat(subans, subans2);
+    }
+
+    private static List<List<Integer>> concat(List<List<Integer>> ll1, List<List<Integer>>  ll2 ) {
+        List<List<Integer>> result = new ArrayList<>(ll1);
+        result.addAll(ll2);
+        // for (List<Integer> list : ll2) {
+        //     result.add(list);
+        // }
+        return result;
+    }
+
+    private static List<List<Integer>> insertAll(Integer first, List<List<Integer>> subans ) {
+        List<List<Integer>> res = new ArrayList<>();
+        for (List<Integer> sub : subans) {
+            List<Integer> list =  new ArrayList<>();
+            list.add(first);
+            list.addAll(sub);
+            res.add(list);
+        }
+        return res;
+    }
+
+    public static int factorialIterative(int n) {
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    public static int factorialRecursive(int n) {
+        return n == 1 ? 1 : n * factorialIterative(n -1 );
+    }
+
+    public static long factorialStreams(long n) {
+        return 
+            LongStream.rangeClosed(1, n)
+                      .reduce(1, (left, right) -> left * right);  
+    }
+
+    public static long factorialTailRecursive(long n) {
+        return factorialHelper(1, n);
+
+    }
+
+    // The function factorialHelper is tail recursive because the recursive call is the last thing 
+    // that happens in the function.
+    //
+    // This form of recursion is useful because instead of storing each intermediate result of the
+    // recursion onto different stack frames, the compiler can decide to reuse a single stack frame.
+    // 
+    // Indeed, in the definition of factorialHelper, the intermediate results (the partial results of the
+    //  factorial) are passed directly as arguments to the function. There’s no need to keep track of the
+    // intermediate result of each recursive call on a separate stack frame—it’s accessible directly
+    // through the argument of the function.
+    // 
+    private static long factorialHelper(long acc, long n) {
+        return n == 1 ? acc : factorialHelper(acc * n, n -1 );
     }
 }

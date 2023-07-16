@@ -17,10 +17,11 @@ public class FileInputOutputStreamDemoTest {
 
     @Test
     void testCopyFilesChunk() throws IOException {
-        String inputFile = "input.dat" ;
-        String outputFile = "output.dat";
-        Files.deleteIfExists(Paths.get(inputFile));
+        String inputFile = "inputFile.dat" ;
+        String outputFile = "outputFile.dat";
+        // Files.deleteIfExists(Paths.get(inputFile));
         Files.deleteIfExists(Paths.get(outputFile));
+        assertTrue(Files.notExists(Paths.get(outputFile)));
 
         copyFilesLowlevel(inputFile, outputFile);
     }
@@ -29,31 +30,33 @@ public class FileInputOutputStreamDemoTest {
     void testCopyFilesLowlevel() throws IOException {
         String inputFile = "inputFile.dat";
         String outputFile = "outputFile.dat";
-        Files.deleteIfExists(Paths.get(inputFile));
+        // Files.deleteIfExists(Paths.get(inputFile));
         Files.deleteIfExists(Paths.get(outputFile));
+        assertTrue(Files.notExists(Paths.get(outputFile)));
 
         copyFilesChunk(inputFile, outputFile);
     }
 
     @Test
     void testCopyFilesOne() throws IOException {
-        String inputFile = "input.dat";
-        String outputFile = "output.dat";
-        Files.deleteIfExists(Paths.get(inputFile));
+        String inputFile = "inputFile.dat";
+        String outputFile = "outputFile.dat";
+        // Files.deleteIfExists(Paths.get(inputFile));
         Files.deleteIfExists(Paths.get(outputFile));
+        assertTrue(Files.notExists(Paths.get(outputFile)));
 
         copyFilesOne(inputFile, outputFile);
     }
 
     @Test
     void testCheckPngTrue() throws IOException {
-        String pngFilename = "pngFile.png";
+        String pngFilename = "green.png";
         assertTrue( isPNG(pngFilename) );
     }
 
     @Test
     void testCheckPngFalse() throws IOException {
-        String notAPngFilename = "notPngFile.dat";
+        String notAPngFilename = "inputFile.dat";
         assertFalse( isPNG(notAPngFilename) );
     }
 
