@@ -47,11 +47,50 @@ public class FilteringDemo {
         return filteredApples;
     }
 
+    public static List<Apple> filter(List<Apple> inventory, ApplePredicate p) {
+        List<Apple> filteredApples = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if( p.test(apple) ){
+                filteredApples.add(apple);
+            }   
+        }
+        return filteredApples;
+    }
+
     @AllArgsConstructor
     @Data
     public static class Apple {
         private int weight = 0;
         private String color = "";
+    }
+
+    interface ApplePredicate {
+        public boolean test(Apple a);
+    }
+
+    static class AppleGreenPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple a) {
+            return "green".equals(a.getColor());
+        }
+    }
+
+    static class AppleHeavyPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple a) {
+            return a.getWeight() > 150;
+        }
+    }
+
+    static class AppleRedAndHeavyPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple a) {
+            return "red".equals(a.getColor()) && a.getWeight() > 150;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -75,5 +114,8 @@ public class FilteringDemo {
 
         List<Apple> thinApples = filterApple(inventory, (Apple apple) -> apple.getWeight() < 150);
         System.out.println(thinApples);
+
+        List<Apple> redAndHeavyApples = filter(inventory, new AppleRedAndHeavyPredicate());
+        System.out.println(redAndHeavyApples);
     }
 }

@@ -61,7 +61,7 @@ public class GroupingByDemo {
                 add(new Apple(120, "red"));
             }
         };
-
+        
         List<Apple> heavyApples = inventory.stream()
                                         .filter((Apple a) -> a.getWeight() > 150)
                                         .collect(toList());
