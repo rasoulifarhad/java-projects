@@ -1,7 +1,10 @@
 package com.farhad.example.algorithm.recursion;
 
+import java.util.Stack;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
+
+import lombok.Getter;
 
 public class RecursionDemo {
     
@@ -94,6 +97,55 @@ public class RecursionDemo {
 
     }
 
+    public int fibonacci(int n) {
+        return n == 0 ? 0 : 
+                            n == 1 ? 
+                                    1 : 
+                                    fibonacci(n - 1 ) + fibonacci(n - 2 );
+    }
+
+    // move n ring from rod A to rod c using rod B.
+    public void towerHanoi(int n, Rod rodA, Rod rodC, Rod rodB) {
+        if (n == 1) {
+            move(n, rodA,rodC);
+        } else if (n > 1) {
+            towerHanoi(n - 1 , rodA, rodB, rodC);
+            move(n, rodA,rodC);
+            towerHanoi(n - 1 , rodB, rodC, rodA);
+        }   
+    }
+
+    @Getter
+    static class Rod extends Stack<String> {
+        private final String name;
+
+        public Rod(String name) {
+            this.name  = name;
+        }
+        public Rod(String name, int diskNumber) {
+            this(name);
+            for (int j = diskNumber; j > 0; j--) {
+                push("Disk#" + j);
+            }
+        }
+
+        public void moveTo(Rod rod) {
+            rod.push(this.pop());
+        } 
+    }
+    private void move(int n, Rod fromRod, Rod toRod) {
+        fromRod.moveTo(toRod);
+        // System.out.println("Move disk " + n + " from " + fromRod + " to " + toRod);
+    }
+
+    private void printRods(Rod... rods) {
+        System.out.println("==========================");
+        for (Rod rod : rods) {
+            System.out.print(rod.getName() + ": ");            
+            System.out.println(rod);
+        }
+        System.out.println("***************************");
+    }
     public static void main(String[] args) {
         RecursionDemo demo = new RecursionDemo();
 
@@ -111,5 +163,14 @@ public class RecursionDemo {
         System.out.println(demo.gcd(48, 18));
         System.out.println(demo.gcdRecursionWithDifference(48, 18));
         System.out.println(demo.gcdRecursionWithEuclidean(48, 18));
+        System.out.println(demo.fibonacci(5));
+
+        int discNumber = 3;
+        Rod rodA = new Rod("A", discNumber);
+        Rod rodB = new Rod("B");
+        Rod rodC = new Rod("C");
+        demo.printRods(rodA, rodB, rodC);
+        demo.towerHanoi(3, rodA, rodC, rodB);
+        demo.printRods(rodA, rodB, rodC);
     }
 }
