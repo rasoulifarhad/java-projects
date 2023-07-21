@@ -1,3 +1,8 @@
+
+See https://www.enjoyalgorithms.com/blog/divide-and-conquer
+
+See https://www.enjoyalgorithms.com/blog/recursion-explained-how-recursion-works-in-programming
+
 ## Tower of Hanoi
 
 ![Tower_of_Hanoi](Tower_of_Hanoi.jpg)
