@@ -134,7 +134,7 @@ public class CollectorsMapDemo {
                                 ConcurrentHashMap::new));
         log.info("List: {}, concurrentMap: {]}", Arrays.asList(a), concurrentMap);
         return concurrentMap;
-    }
+    }                       
 
     public static void main(String[] args) {
         CollectorsMapDemo demo = new CollectorsMapDemo();
