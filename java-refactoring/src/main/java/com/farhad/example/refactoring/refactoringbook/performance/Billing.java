@@ -1,12 +1,28 @@
 package com.farhad.example.refactoring.refactoringbook.performance;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Billing {
 	
 
-	public String statement(Invoice invoice, Map<String, Play> plays ) {
+	public String statement(Invoice invoice, Map<PlayID, Play> plays ) {
 
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		format.setMinimumFractionDigits(2);
+		format.setCurrency(Currency.getInstance("USD"));
+		
 		double totalAmount =  0.0;
 		double volumeCredits = 0.0;
 		StringBuilder stringBuilder = new StringBuilder("Statement for " + invoice.getCustomer() + "\n");
@@ -39,20 +55,39 @@ public class Billing {
 
 			// print line for this order
 			stringBuilder = stringBuilder.append("  ")
-										.append(play.getType())
+										.append(play.getName())
 										.append(": ")
-										.append(amount / 100 )
+										.append(format.format( amount / 100) )
 										.append(" ")
+										.append("(")	
 										.append(performance.getAudience())
-										.append(" seats.\n");
+										.append(" seats")
+										.append(")\n");
 			totalAmount += amount;
 		}
 		stringBuilder = stringBuilder.append("Amount owed is ")
-									.append(totalAmount / 100)
+									.append(format.format(totalAmount / 100))
 									.append("\n");
 		stringBuilder.append("You earned ")
 					.append(volumeCredits)
-					.append(" credits.\n");
+					.append(" credits\n");
 		return stringBuilder.toString();
+	}
+
+	public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
+		URL invoicesUrl = Billing.class.getResource("invoices.json");
+		URL playsUrl = Billing.class.getResource("plays.json");
+		ObjectMapper mapper = new ObjectMapper();
+
+		List<Invoice> invoices = mapper.readValue(new File(invoicesUrl.getFile()), new TypeReference<List<Invoice>>() {});
+		// List<Invoice> invoices = mapper.readValue(new File(invoicesUrl.getFile()), mapper.getTypeFactory().constructCollectionType(List.class, Invoice.class));
+		Map<PlayID, Play> plays = mapper.readValue(new File(playsUrl.getFile()), new TypeReference<Map<PlayID, Play>>() {});
+		// Map<PlayID, Play> plays = mapper.readValue(new File(playsUrl.getFile()), mapper.getTypeFactory().constructMapLikeType(HashMap.class, PlayID.class, Play.class));
+		
+		Billing billing = new Billing();
+		for (Invoice invoice : invoices) {
+			System.out.println( billing.statement(invoice, plays));
+		}
+		
 	}
 }
