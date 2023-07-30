@@ -152,37 +152,40 @@ public class DuckBehaviorsDemo {
 		
 	}
 	
-	public static void main(String[] args) {
-		List<Duck> ducks = Arrays.asList(new MallardDuck(), new RedheadDuck(), new RubberDuck(), new DecoyDuck());
-	
-		quack(ducks);
-		swim(ducks);
-		fly(ducks);
-		display(ducks);
-	}
+	public static class DuckSimulator {
 
-	private static void fly(List<Duck> ducks) {
-		System.out.println();
-		System.out.println("Flying.......");
-		ducks.forEach(Duck::performFly);
-	}
+		private static void fly(List<Duck> ducks) {
+			System.out.println();
+			System.out.println("Flying.......");
+			ducks.forEach(Duck::performFly);
+		}
 
-	private static void quack(List<Duck> ducks) {
-		System.out.println();
-		System.out.println("Quacking.......");
-		ducks.forEach(Duck::performQuack);
-	}
+		private static void quack(List<Duck> ducks) {
+			System.out.println();
+			System.out.println("Quacking.......");
+			ducks.forEach(Duck::performQuack);
+		}
 
-	private static void swim(List<Duck> ducks) {
-		System.out.println();
-		System.out.println("Swiming.......");
-		ducks.forEach(Duck::swim);
-	}
+		private static void swim(List<Duck> ducks) {
+			System.out.println();
+			System.out.println("Swiming.......");
+			ducks.forEach(Duck::swim);
+		}
 
-	private static void display(List<Duck> ducks) {
-		System.out.println();
-		System.out.println("Displaying.......");
-		ducks.forEach(Duck::display);
+		private static void display(List<Duck> ducks) {
+			System.out.println();
+			System.out.println("Displaying.......");
+			ducks.forEach(Duck::display);
+		}
+		public static void main(String[] args) {
+			List<Duck> ducks = Arrays.asList(new MallardDuck(), new RedheadDuck(), new RubberDuck(), new DecoyDuck());
+		
+			quack(ducks);
+			swim(ducks);
+			fly(ducks);
+			display(ducks);
+		}
 	}
+		
 
 }
