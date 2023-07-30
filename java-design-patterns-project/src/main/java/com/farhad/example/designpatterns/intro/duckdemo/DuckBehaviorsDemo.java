@@ -3,8 +3,6 @@ package com.farhad.example.designpatterns.intro.duckdemo;
 import java.util.Arrays;
 import java.util.List;
 
-import lombok.Data;
-
 /**
  * we want to assign behaviors to the instances of Duck. For example, we might 
  * want to instantiate a new MallardDuck instance and initialize it with a speciﬁc 
@@ -25,11 +23,19 @@ import lombok.Data;
  */
 public class DuckBehaviorsDemo {
 	
-	@Data
+
 	public static class Duck {
 
 		protected FlyBehavior flyBehavior;
 		protected QuackBehavior quackBehavior;
+
+		public void setFlyBehavior(FlyBehavior flyBehavior) {
+			this.flyBehavior = flyBehavior;
+		}
+
+		public void setQuackBehavior(QuackBehavior quackBehavior) {
+			this.quackBehavior = quackBehavior;
+		}
 
 		public void swim() {
 			System.out.println("Swimming duck.");
@@ -101,6 +107,19 @@ public class DuckBehaviorsDemo {
 		}
 	}
 
+	public static class ModelDuck extends Duck {
+
+		public ModelDuck() {
+			flyBehavior = new FlyNoWay();
+			quackBehavior = new Quack();
+		}
+
+		@Override
+		public void display() {
+			System.out.println("Displaying: Model duck..");
+		}
+
+	}
 	interface FlyBehavior {
 		void fly();
 	}
@@ -151,6 +170,15 @@ public class DuckBehaviorsDemo {
 		}
 		
 	}
+
+	public static class FlyRocketPowered implements FlyBehavior {
+
+		@Override
+		public void fly() {
+			System.out.println("Flying with a rocket");
+		}
+		
+	}
 	
 	public static class DuckSimulator {
 
@@ -184,6 +212,13 @@ public class DuckBehaviorsDemo {
 			swim(ducks);
 			fly(ducks);
 			display(ducks);
+
+			Duck model = new ModelDuck();
+			model.performFly();
+			
+			model.setFlyBehavior(new FlyRocketPowered());
+
+			model.performFly();
 		}
 	}
 		
