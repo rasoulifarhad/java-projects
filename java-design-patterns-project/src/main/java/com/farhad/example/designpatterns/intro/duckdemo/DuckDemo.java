@@ -81,6 +81,13 @@ public class DuckDemo {
 		
 	}
 
+	interface Flyable {
+		void fly();
+	}
+
+	interface Quackable {
+		void quack();
+	}
 	public static void main(String[] args) {
 		List<Duck> ducks = Arrays.asList(new MallardDuck(), new RedheadDuck(), new RubberDuck(), new DecoyDuck());
 		quack(ducks);
