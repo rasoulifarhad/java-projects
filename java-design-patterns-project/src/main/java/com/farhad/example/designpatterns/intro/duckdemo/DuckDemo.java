@@ -41,10 +41,24 @@ public class DuckDemo {
 		}
 		
 	}
+
+	public static class RubberDuck extends Duck {
+
+		@Override
+		public void display() {
+			System.out.println("Displaying: rubber duck..");
+		}
+
+		@Override
+		public void quack() {
+			System.out.println("Error: Rubber duck can not Quacking.");
+		}
+		
+	}
 	
 
 	public static void main(String[] args) {
-		List<Duck> ducks = Arrays.asList(new MallardDuck(), new RedheadDuck());
+		List<Duck> ducks = Arrays.asList(new MallardDuck(), new RedheadDuck(), new RubberDuck());
 		quack(ducks);
 		swim(ducks);
 		display(ducks);
