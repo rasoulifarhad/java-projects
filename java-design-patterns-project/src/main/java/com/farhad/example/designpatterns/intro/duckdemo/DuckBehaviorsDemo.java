@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * See [O`Reilly. Head First] - Head First Design Patterns - [Freeman] 
+ * 
  * we want to assign behaviors to the instances of Duck. For example, we might 
  * want to instantiate a new MallardDuck instance and initialize it with a speciﬁc 
  * type of ﬂying behavior. and also changing the behavior of a duck dynamically.
