@@ -1,0 +1,1 @@
+See [java-smarter-types-records-enums](https://blogs.oracle.com/javamagazine/post/java-smarter-types-records-enums)
