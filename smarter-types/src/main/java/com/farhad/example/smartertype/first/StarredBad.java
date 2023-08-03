@@ -1,4 +1,4 @@
-package com.farhad.example.enums.smartertype;
+package com.farhad.example.enums.smartertype.first;
 
 import static com.farhad.example.enums.smartertype.util.Show.show;
 
