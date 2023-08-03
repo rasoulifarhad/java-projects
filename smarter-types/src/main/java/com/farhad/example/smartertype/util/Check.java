@@ -1,6 +1,6 @@
-package com.farhad.example.enums.smartertype.util;
+package com.farhad.example.smartertype.util;
 
-import static com.farhad.example.enums.smartertype.util.Show.show;
+import static com.farhad.example.smartertype.util.Show.show;
 public class Check {
 	
 	public static boolean valid(Boolean exp, String errInfo) {

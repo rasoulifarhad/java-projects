@@ -1,8 +1,8 @@
-package com.farhad.example.enums.smartertype.first;
+package com.farhad.example.smartertype.first;
 
-import static com.farhad.example.enums.smartertype.util.Show.show;
+import static com.farhad.example.smartertype.util.Show.show;
 
-import com.farhad.example.enums.smartertype.util.Check;
+import com.farhad.example.smartertype.util.Check;
 
 public class StarredBad {
 	

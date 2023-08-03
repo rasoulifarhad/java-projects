@@ -1,6 +1,6 @@
-package com.farhad.example.enums.smartertype.encapsulate;
+package com.farhad.example.smartertype.encapsulate;
 
-import static com.farhad.example.enums.smartertype.util.Show.show;
+import static com.farhad.example.smartertype.util.Show.show;
 public class Starred {
 	public static void main(String[] args) {
 		Stars [] s = {

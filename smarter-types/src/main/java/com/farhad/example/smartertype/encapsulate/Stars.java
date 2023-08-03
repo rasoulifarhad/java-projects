@@ -1,6 +1,6 @@
-package com.farhad.example.enums.smartertype.encapsulate;
+package com.farhad.example.smartertype.encapsulate;
 
-import static com.farhad.example.enums.smartertype.util.Check.range;
+import static com.farhad.example.smartertype.util.Check.range;
 public class Stars {
 	
 	private int n;
