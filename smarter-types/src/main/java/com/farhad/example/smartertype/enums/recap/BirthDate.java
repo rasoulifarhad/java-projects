@@ -1,4 +1,4 @@
-package com.farhad.example.smartertype.enums;
+package com.farhad.example.smartertype.enums.recap;
 
 public record BirthDate(Month month, Day day, Year year) {
 	

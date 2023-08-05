@@ -1,4 +1,4 @@
-package com.farhad.example.smartertype.enums;
+package com.farhad.example.smartertype.enums.recap;
 
 import com.farhad.example.smartertype.util.Check;
 
