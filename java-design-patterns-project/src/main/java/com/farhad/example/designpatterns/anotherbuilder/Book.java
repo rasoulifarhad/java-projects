@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class Book {
 	public enum Genre {
-		ADVENTURE_FICTION,bb;
+		ADVENTURE_FICTION,UNKNOWN;
 	}
 
 	private final String isbn;
@@ -58,6 +58,7 @@ public class Book {
 
 	public static class Builder {
 
+		private final IsbnValidator isbnValidator = new IsbnValidator(); 
 		private final String isbn;
 		private final String title;
 		private Genre genre;
@@ -90,8 +91,40 @@ public class Book {
 			return this;
 		}
 
-		public Book build() {
+		public Book build() throws IllegalStateException {
+			validate();
 			return new Book(this);
+		}
+
+		private void validate() throws IllegalStateException {
+			MessageBuilder mb = new MessageBuilder();
+			if( isbn == null ) {
+				mb.append("ISBN must not be null.");
+			} else if (!isbnValidator.isValid(isbn)) {
+				mb.append("Invalid ISBN!");
+			}
+
+			if (title == null) {
+				mb.append("Title must not be null.");
+			} else if (title.length() < 2 ) {
+				mb.append("Title must have at least 2 characters.");
+			} else if (title.length() > 100 ) {
+				mb.append( "Title can not have more than 100 characters.");
+			}
+
+			if (author != null && author.length() > 50 ) {
+				mb.append("Author cannot have more than 50 characters.");
+			}
+			if (published != null && published.isAfter(Year.now())) {
+				mb.append("Year published cannot be greater than current year.");
+			}
+			if (description != null && description.length() > 500 ) {
+				mb.append("Description cannot have more than 500 characters.");
+			}
+
+			if ( mb.length() > 0 ) {
+				throw new IllegalStateException(mb.toString());
+			}
 		}
 	}
 
@@ -120,6 +153,17 @@ public class Book {
 		System.out.println(secondEdition);
 
 		// Note: Since the ISBN field is final and, therefore, must be set via the Builder’s constructor. 
+
+		try {
+			Book book2 = new Book.Builder("0-12-345678-9", "M")
+								.genre(Genre.ADVENTURE_FICTION) 
+								.author("Herman Melville")
+								.published(Year.of(1851))
+								.description("blah blahhhhhh")
+								.build();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 					
 	}
 	
