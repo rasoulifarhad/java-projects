@@ -1,5 +1,6 @@
 package com.farhad.example.designpatterns.anotherdependencyinversionprinciple;
 
+// See https://github.com/mikeknep/SOLID/tree/main
 public class GoodWeatherTrackerDemo {
 
 	interface Notifier {
