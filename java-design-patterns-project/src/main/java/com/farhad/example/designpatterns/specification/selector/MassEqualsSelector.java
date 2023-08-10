@@ -6,19 +6,19 @@ import com.farhad.example.designpatterns.specification.property.Mass;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MassGreaterThanSelector extends AbstractSelector<Creature> {
+public class MassEqualsSelector extends AbstractSelector<Creature>{
 
 	private final Mass mass;
 
 	
-	public MassGreaterThanSelector(double mass) {
+	public MassEqualsSelector(double mass) {
 		this(Mass.of(mass));
 	}
 
 
 	@Override
 	public boolean test(Creature creature) {
-		return creature.getMass().greaterThan(mass);
+		return creature.getMass().equals(mass); 
 	}
 	
 }
