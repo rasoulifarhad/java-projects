@@ -6,7 +6,7 @@ import com.farhad.example.designpatterns.specification.property.Color;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ColorSelector implements AbstractSelector<Creature> {
+public class ColorSelector extends AbstractSelector<Creature> {
 
 	private final Color color;
 	@Override

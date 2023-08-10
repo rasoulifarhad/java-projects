@@ -7,7 +7,10 @@ import com.farhad.example.designpatterns.specification.property.Size;
 
 public class Goblin extends AbstractCreature {
 	public Goblin() {
-		super("Goblin", Size.SMALL, Movement.WALKING, Color.GREEN, Mass.of(339.0));
+		this(Mass.of(30.));
 	}
 
+	public Goblin(Mass mass) {
+		super("Goblin", Size.SMALL, Movement.WALKING, Color.GREEN, mass);
+	}
 }

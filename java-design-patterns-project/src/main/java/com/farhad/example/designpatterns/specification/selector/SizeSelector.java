@@ -6,7 +6,7 @@ import com.farhad.example.designpatterns.specification.property.Size;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class SizeSelector implements AbstractSelector<Creature> {
+public class SizeSelector extends AbstractSelector<Creature> {
 
 	private final Size size;
 	@Override

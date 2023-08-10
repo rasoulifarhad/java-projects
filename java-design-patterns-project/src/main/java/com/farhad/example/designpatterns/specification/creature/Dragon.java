@@ -8,6 +8,11 @@ import com.farhad.example.designpatterns.specification.property.Size;
 public class Dragon extends AbstractCreature {
 	
 	public Dragon() {
-		super("Dragon", Size.LARGE, Movement.FLYING, Color.RED, Mass.of(39300.0));
+		this(Mass.of(39300.0));
 	}
+
+	public Dragon(Mass mass) {
+		super("Dragon", Size.LARGE, Movement.FLYING, Color.RED, mass);
+	}
+
 }

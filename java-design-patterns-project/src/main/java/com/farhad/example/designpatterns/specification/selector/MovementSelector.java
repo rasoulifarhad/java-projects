@@ -6,7 +6,7 @@ import com.farhad.example.designpatterns.specification.property.Movement;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MovementSelector implements AbstractSelector<Creature> {
+public class MovementSelector extends AbstractSelector<Creature> {
 
 	private final Movement movement;
 

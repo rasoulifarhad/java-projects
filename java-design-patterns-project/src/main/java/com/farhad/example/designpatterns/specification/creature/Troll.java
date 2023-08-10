@@ -8,8 +8,11 @@ import com.farhad.example.designpatterns.specification.property.Size;
 public class Troll extends AbstractCreature {
 	
 	public Troll() {
-		super("Troll", Size.LARGE, Movement.WALKING, Color.DARK, Mass.of(11223.0));
+		this(Mass.of(4000.0));
 	}
 
+	public Troll(Mass mass) {
+		super("Troll", Size.LARGE, Movement.WALKING, Color.DARK, mass);
+	}
 
 }

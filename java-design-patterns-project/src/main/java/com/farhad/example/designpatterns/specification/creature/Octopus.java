@@ -8,7 +8,11 @@ import com.farhad.example.designpatterns.specification.property.Size;
 public class Octopus extends AbstractCreature {
 
 	public Octopus() {
-		super("Octopus", Size.NORMAL, Movement.SWIMMING, Color.LIGHT, Mass.of(8980.0));
+		this(Mass.of(12.0));
+	}
+
+	public Octopus(Mass mass) {
+		super("Octopus", Size.NORMAL, Movement.SWIMMING, Color.DARK, mass);
 	}
 	
 }

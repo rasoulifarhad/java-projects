@@ -8,7 +8,11 @@ import com.farhad.example.designpatterns.specification.property.Size;
 public class Shark extends AbstractCreature {
 
 	public Shark() {
-		super("Shark", Size.LARGE, Movement.SWIMMING, Color.LIGHT, Mass.of(23560.0));
+		this(Mass.of(500.0));
+	}
+
+	public Shark(Mass mass) {
+		super("Shark", Size.LARGE, Movement.SWIMMING, Color.LIGHT, mass);
 	}
 	
 }

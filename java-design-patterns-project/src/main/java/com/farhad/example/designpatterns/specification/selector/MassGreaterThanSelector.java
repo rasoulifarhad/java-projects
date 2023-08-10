@@ -6,7 +6,7 @@ import com.farhad.example.designpatterns.specification.property.Mass;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MassGreaterThanSelector implements AbstractSelector<Creature> {
+public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 
 	private final Mass mass;
 

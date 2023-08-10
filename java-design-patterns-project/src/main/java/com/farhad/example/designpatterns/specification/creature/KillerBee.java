@@ -8,7 +8,10 @@ import com.farhad.example.designpatterns.specification.property.Size;
 public class KillerBee extends AbstractCreature {
 
 	public KillerBee() {
-		super("Killer Bee", Size.SMALL, Movement.FLYING, Color.DARK, Mass.of(24.0));
+		this(Mass.of(6.7));
 	}
 	
+	public KillerBee(Mass mass) {
+		super("Killer Bee", Size.SMALL, Movement.FLYING, Color.LIGHT, mass);
+	}
 }

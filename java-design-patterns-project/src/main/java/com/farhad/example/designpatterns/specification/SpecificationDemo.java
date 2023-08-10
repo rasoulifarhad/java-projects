@@ -1,7 +1,5 @@
 package com.farhad.example.designpatterns.specification;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +15,9 @@ import com.farhad.example.designpatterns.specification.property.Mass;
 import com.farhad.example.designpatterns.specification.selector.ColorSelector;
 import com.farhad.example.designpatterns.specification.selector.MassGreaterThanSelector;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SpecificationDemo {
 	
 
@@ -31,14 +32,17 @@ public class SpecificationDemo {
 			new Octopus()
 		);
 
-		List<Creature> redCreatures = creatures.stream()
-											.filter(new ColorSelector(Color.RED)) 
-											.collect(toList());
-		System.out.println(redCreatures);
+		log.info("Find RED creatures:");
+		creatures.stream()
+					.filter(new ColorSelector(Color.RED)) 
+					.map(Object::toString)
+					.forEach(log::info);
 
-		List<Creature> heavyCreatures = creatures.stream()
-											.filter(new MassGreaterThanSelector(Mass.of(500.0)))
-											.collect(toList());
-		System.out.println(heavyCreatures);
+		log.info("Find Creatures greater than 500kg:");					
+		creatures.stream()
+					.filter(new MassGreaterThanSelector(Mass.of(500.0)))
+					.map(Object::toString)
+					.forEach(log::info);
+
 	}
 }
