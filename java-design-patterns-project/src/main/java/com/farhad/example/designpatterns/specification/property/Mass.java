@@ -14,6 +14,11 @@ public class Mass {
 		return this.value > other.value;
 	}
 
+	public boolean greaterThanOrEq(Mass other) {
+		
+		return this.value >= other.value;
+	}
+
 	public boolean smallerThan(Mass other) {
 		return this.value < other.value;
 	}
