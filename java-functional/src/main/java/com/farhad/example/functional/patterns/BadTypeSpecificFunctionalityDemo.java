@@ -1,10 +1,9 @@
 package com.farhad.example.functional.patterns;
 
-import com.farhad.example.functional.patterns.BadTypeSpecificFunctionalityDemo.Movie.Type;
-
+// See https://dzone.com/articles/functional-programming-patterns-with-java-8
 public class BadTypeSpecificFunctionalityDemo {
 	
-	static class Movie {
+	static class BadMovie {
 
 		enum Type {
 			REGULAR, NEW_RELEASE, CHILDREN;
@@ -12,7 +11,7 @@ public class BadTypeSpecificFunctionalityDemo {
 
 		private final Type type;
 
-		public Movie(Type type) {
+		public BadMovie(Type type) {
 			this.type = type;
 		}
 
@@ -29,13 +28,51 @@ public class BadTypeSpecificFunctionalityDemo {
 					throw new IllegalArgumentException();
 			}
 		}
+
+		public static void main(String[] args) {
+			
+			System.out.println(new BadMovie(Type.REGULAR).computePrice(2));
+			System.out.println(new BadMovie(Type.NEW_RELEASE).computePrice(2));
+			System.out.println(new BadMovie(Type.CHILDREN).computePrice(2));
+		}
+
 	}
 
-	public static void main(String[] args) {
-		
-		System.out.println(new Movie(Type.REGULAR).computePrice(2));
-		System.out.println(new Movie(Type.NEW_RELEASE).computePrice(2));
-		System.out.println(new Movie(Type.CHILDREN).computePrice(2));
+
+	static abstract class AnotherBadMovie {
+		public abstract int computePrice(int days);
+
+		public static void main(String[] args) {
+			
+			System.out.println(new RegularAnotherBadMovie().computePrice(2));
+			System.out.println(new NewReleaseAnotherBadMovie().computePrice(2));
+			System.out.println(new ChildrenAnotherBadMovie().computePrice(2));
+		}
+	}
+
+	static class RegularAnotherBadMovie extends AnotherBadMovie {
+
+		@Override
+		public int computePrice(int days) {
+			return days  + 1;
+		}
+	}
+
+	static class NewReleaseAnotherBadMovie extends AnotherBadMovie {
+
+		@Override
+		public int computePrice(int days) {
+			return days * 2;
+		}
+	}
+
+	static class ChildrenAnotherBadMovie extends AnotherBadMovie {
+
+		@Override
+		public int computePrice(int days) {
+			return 5;
+		}
 
 	}
+
 }
