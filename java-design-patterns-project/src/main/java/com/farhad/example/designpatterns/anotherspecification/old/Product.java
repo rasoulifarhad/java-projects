@@ -1,4 +1,4 @@
-package com.farhad.example.designpatterns.anotherspecification;
+package com.farhad.example.designpatterns.anotherspecification.old;
 
 import lombok.Data;
 import lombok.ToString;

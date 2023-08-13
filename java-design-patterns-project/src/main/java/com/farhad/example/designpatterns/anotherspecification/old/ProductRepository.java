@@ -1,4 +1,4 @@
-package com.farhad.example.designpatterns.anotherspecification;
+package com.farhad.example.designpatterns.anotherspecification.old;
 
 import java.util.List;
 
