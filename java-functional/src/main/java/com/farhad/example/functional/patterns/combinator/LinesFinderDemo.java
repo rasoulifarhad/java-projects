@@ -2,7 +2,7 @@ package com.farhad.example.functional.patterns.combinator;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,7 +29,7 @@ public class LinesFinderDemo {
 		}
 
 		static Finder none() {
-			return txt -> Collections.emptyList();
+			return txt -> new ArrayList<>();
 		}
 
 		default Finder not(Finder notFinder) {
@@ -76,17 +76,50 @@ public class LinesFinderDemo {
 			return f;
 		}
 
+		public static Finder specializedFinder(String... queries) {
+			Finder finder = Finder.all();
+			for (String query : queries) {
+				finder = finder.and(Finder.contans(query));
+			}
+			return finder;
+		}
+
+		public static Finder expandedFinder(String... queries) {
+			Finder finder = Finder.none();
+
+			for (String query : queries) {
+				finder = finder.or(Finder.contans(query));
+			}
+			return finder;
+		}
+
 	}
 
 	public static void main(String[] args) {
 		
 		String word = "Annabel";
 		Finder annabelFinder = Finder.contans(word);
+		System.out.println();
 		System.out.println(annabelFinder.find(text()));
-		// String [] queries	
 
 		Finder allFinder = Finder.all();
+		System.out.println();
 		System.out.println(allFinder.not(annabelFinder).find(text()));
+
+		String [] queriesOr = new String[] {"many", "Annabel"};
+		System.out.println();
+		System.out.println(Finders.expandedFinder(queriesOr).find(text())); 
+
+
+		String [] queriesAnd = new String[] {"Annabel", "my"};
+		System.out.println();
+		System.out.println(Finders.specializedFinder(queriesAnd).find(text()));
+
+		System.out.println();
+		System.out.println(Finders.advancedFinder("it was", "kingdom", "sea").find(text()));
+
+		System.out.println();
+		System.out.println(Finders.FilteredFinder("was", "many", "child").find(text()));
 	}
 
 
