@@ -116,9 +116,11 @@ public class LinesFinderDemo {
 		System.out.println(Finders.specializedFinder(queriesAnd).find(text()));
 
 		System.out.println();
+		System.out.println("advanced queries:");
 		System.out.println(Finders.advancedFinder("it was", "kingdom", "sea").find(text()));
 
 		System.out.println();
+		System.out.println("filtered queries:");
 		System.out.println(Finders.FilteredFinder("was", "many", "child").find(text()));
 	}
 
