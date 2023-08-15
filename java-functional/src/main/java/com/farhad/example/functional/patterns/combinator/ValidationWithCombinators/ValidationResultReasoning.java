@@ -65,6 +65,7 @@ public class ValidationResultReasoning {
 		Optional<String> getReason();
 	}
 
+
 	@EqualsAndHashCode
 	private static final class Valid implements ValidationResult {
 
@@ -102,21 +103,13 @@ public class ValidationResultReasoning {
 
 	}
 
-	// private static final class ValidationSupport {
+	public static void main(String[] args) {
 		
-	// 	private static final ValidationResult valid = new ValidationResult(){
-			
-	// 		public boolean isValid() { 
-	// 			return true; 
-	// 		}
-			
-	// 		public Optional<String> getReason() { 
-	// 			return Optional.empty(); 
-	// 		}
-	// 	};
-	
-	// 	static ValidationResult valid(){
-	// 		return valid;
-	// 	}
-	// }
+		User user = new User("", 40, "user@example.com");
+		UserValidation validation = UserValidation.nameIsNotEmpty().and(UserValidation.emailContainsAtsign());
+		ValidationResult result = validation.apply(user);
+		result.getReason().ifPresent(System.out::println);
+		// System.out.println(result);
+	}
+
 }
