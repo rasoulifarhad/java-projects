@@ -1,7 +1,10 @@
 package com.farhad.example.functional.patterns.combinator;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
+
+import lombok.EqualsAndHashCode;
 
 // See https://gtrefs.github.io/code/combinator-pattern/
 //
@@ -121,6 +124,74 @@ public class ValidationWithCombinatorsDemo {
 	static class ValidationResultReasoning {
 
 
+		public interface ValidationResult {
+
+			// static ValidationResult valid() {
+
+			// }
+
+			// static ValidationResult invalid(String reason) {
+
+			// }
+
+			boolean isValid();
+			Optional<String> getReason();
+		}
+
+		@EqualsAndHashCode
+		private static final class Valid implements ValidationResult {
+
+		
+			@Override
+			public boolean isValid() {
+				return true;
+			}
+
+			@Override
+			public Optional<String> getReason() {
+				return Optional.empty();
+			}
+
+		}
+
+		@EqualsAndHashCode
+		private static final class InValid implements ValidationResult {
+
+			private final String reason;
+			
+			public InValid(String reason) {
+				this.reason = reason;
+			}
+
+			@Override
+			public boolean isValid() {
+				return false;
+			}
+
+			@Override
+			public Optional<String> getReason() {
+				return Optional.of(reason);
+			}
+
+		}
+
+		// private static final class ValidationSupport {
+			
+		// 	private static final ValidationResult valid = new ValidationResult(){
+				
+		// 		public boolean isValid() { 
+		// 			return true; 
+		// 		}
+				
+		// 		public Optional<String> getReason() { 
+		// 			return Optional.empty(); 
+		// 		}
+		// 	};
+		
+		// 	static ValidationResult valid(){
+		// 		return valid;
+		// 	}
+		// }
 		
 	}
 
