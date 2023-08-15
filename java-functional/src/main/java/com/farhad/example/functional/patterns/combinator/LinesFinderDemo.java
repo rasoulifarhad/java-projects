@@ -68,7 +68,7 @@ public class LinesFinderDemo {
 		}
 
 		public static Finder specializedFinder(String... queries) {
-			Finder finder = Finder.all();
+			Finder finder = all();
 			for (String query : queries) {
 				finder = finder.and(Finder.contans(query));
 			}
@@ -84,7 +84,7 @@ public class LinesFinderDemo {
 			return finder;
 		}
 
-		private static Finder all() {
+		public static Finder all() {
 			return txt -> Stream.of(txt.split("\n"))
 							.collect(toList()); 
 		}
@@ -102,7 +102,7 @@ public class LinesFinderDemo {
 		System.out.println();
 		System.out.println(annabelFinder.find(text()));
 
-		Finder allFinder = Finder.all();
+		Finder allFinder = Finders.all();
 		System.out.println();
 		System.out.println(allFinder.not(annabelFinder).find(text()));
 
