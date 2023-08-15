@@ -23,15 +23,6 @@ public class LinesFinderDemo {
 							.collect(toList());
 		}
 
-		static Finder all() {
-			return txt -> Stream.of(txt.split("\n"))
-							.collect(toList()); 
-		}
-
-		static Finder none() {
-			return txt -> new ArrayList<>();
-		}
-
 		default Finder not(Finder notFinder) {
 			return txt -> {
 				List<String> res = this.find(txt);
@@ -85,12 +76,21 @@ public class LinesFinderDemo {
 		}
 
 		public static Finder expandedFinder(String... queries) {
-			Finder finder = Finder.none();
+			Finder finder = none();
 
 			for (String query : queries) {
 				finder = finder.or(Finder.contans(query));
 			}
 			return finder;
+		}
+
+		private static Finder all() {
+			return txt -> Stream.of(txt.split("\n"))
+							.collect(toList()); 
+		}
+
+		private static Finder none() {
+			return txt -> new ArrayList<>();
 		}
 
 	}
