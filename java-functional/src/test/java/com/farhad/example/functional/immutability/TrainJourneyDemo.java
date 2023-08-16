@@ -43,10 +43,6 @@ public class TrainJourneyDemo {
     }
 
     public static void main(String[] args) {
-        // TrainJourney continuation = new TrainJourney(10, null);
-        // TrainJourney start = TrainJourneySupport.link(null, continuation);       
-        // TrainJourney second = TrainJourneySupport.link(start, new TrainJourney(20, null));
-        // TrainJourneySupport.visit(second, t -> System.out.println(t.getPrice() + " - "));
 
         TrainJourney start = new TrainJourney(10, null);
         TrainJourney continuation = new TrainJourney(20, null);
