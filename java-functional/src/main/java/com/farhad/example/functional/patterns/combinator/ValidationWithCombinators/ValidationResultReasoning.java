@@ -14,6 +14,8 @@ import lombok.EqualsAndHashCode;
 // Different rules can be combined to more complex ones. 
 // Applying a rule yields a validation result which describes the outcome. 
 
+// Primitive holds tests a given Predicate and, either, returns valid or a new Invalid. 
+
 public class ValidationResultReasoning {
 
 	static class User {
