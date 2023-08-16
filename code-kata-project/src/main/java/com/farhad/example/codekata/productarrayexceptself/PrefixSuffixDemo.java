@@ -2,25 +2,37 @@ package com.farhad.example.codekata.productarrayexceptself;
 
 import java.util.StringJoiner;
 
-public class ProductOfArrayExceptSelfDemo02 {
+public class PrefixSuffixDemo {
     
-    static class Solution {
+    // Given [x1, x2, x3, Y, x4, x5]
+    // When we want to calc value for index 3 ( Y ) 
+    // Then  Prefix: ([x1, x2, x3]) (Y) Suffix: ([x4, x5])
+    // value at index 2 (x1 * x2 * x3) must pruduct to value at index 4 (x5 * x4)
+    static class Solution{
 
         public int [] productArray(int [] ints) {
 
-            int [] res = new int [ints.length];
-            for (int i = 0; i < res.length; i++) {
-                res[i] = 1;
+            int size = ints.length;
+            int [] res = new int[size];
+            int [] prefix = new int[size];
+            int [] suffix = new int[size];
+
+            int temp = 1;
+            for (int i = 0; i < size; i++) {            
+                prefix[i] = temp ;
+                temp = temp * ints[i];
             }
 
-            for (int i = 0; i < ints.length; i++) {
-                for (int j = 0; j < ints.length; j++) {
-                    if ( i == j ) {
-                        continue;
-                    }
-                    res[i] *= ints[j];
-                }
+            temp = 1;
+            for (int j = size -1 ; j >= 0; j--) {
+                suffix[j] = temp;
+                temp = temp * ints[j];
             }
+
+            for (int i = 0; i < size; i++) {
+                res[i] = prefix[i] * suffix[i];
+            }
+
             return res;
         }
     }
