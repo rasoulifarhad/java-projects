@@ -83,4 +83,13 @@ public class CandyService {
 						});
 	}
 
+	public Collection<Candy> filterByColor03(Collection<Candy> assortedCandy, Color color) {
+		return filter(assortedCandy, candy -> candy.getColor().equals(color));
+	}
+
+	public Collection<Candy> filterByType03(Collection<Candy> assortedCandy, Candy.Type type) {
+		return filter(assortedCandy, candy -> candy.getType().equals(type)); 
+	}
+
+
 }
