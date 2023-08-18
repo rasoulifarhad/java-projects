@@ -50,6 +50,8 @@ public class CandyService {
 		return res;
 	}
 
+	// Of course, we don't want to call the variable here predicate as that tells us how the code is 
+	// doing its work but does not tell us what it is doing and why.
 	public Collection<Candy> filter(Collection<Candy> candies, Predicate<Candy> predicate) {
 		List<Candy> res = new ArrayList<>();
 		for (Candy candy : candies) {
