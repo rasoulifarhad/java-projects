@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.farhad.example.functional.candyfactory.Candy.Color;
-import com.farhad.example.functional.candyfactory.Candy.Type;
-
 // See https://dev.to/scottshipp/real-world-java-with-predicates-and-streams-2jlo
 
 // Right now we only make one kind of candy: 
@@ -28,17 +25,4 @@ public class CandyFactory {
 		return res;
 	}
 
-	public static void main(String[] args) {
-		
-		Collection<Candy> bagOfCandy = CandyFactory.bagOfCandy();
-
-		CandyService candyService = new CandyService();
-		
-		Collection<Candy> redCandies =  candyService.filterByColor(bagOfCandy, Color.RED);
-		int numberOfReds = redCandies.size();
-
-		bagOfCandy = CandyFactory.grabBag();
-		Collection<Candy>  pretzelCandies = candyService.filterByType(bagOfCandy, Type.PRETZEL);
-		int numberOfPretzel = pretzelCandies.size();
-	}
 }

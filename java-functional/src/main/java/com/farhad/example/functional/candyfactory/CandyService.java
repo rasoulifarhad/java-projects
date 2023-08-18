@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.farhad.example.functional.candyfactory.Candy.CandyMatcher;
 import com.farhad.example.functional.candyfactory.Candy.Color;
+import com.farhad.example.functional.candyfactory.Candy.ColorMatcher;
+import com.farhad.example.functional.candyfactory.Candy.TypeMatcher;
 
 public class CandyService {
 	
@@ -34,6 +37,50 @@ public class CandyService {
 			}
 		}
 		return res;
+	}
+
+	public Collection<Candy> filter(Collection<Candy> candies, CandyMatcher matcher) {
+		List<Candy> res = new ArrayList<>();
+		for (Candy candy : candies) {
+			if ( matcher.matches(candy) ) {
+				res.add(candy);
+			}
+		}
+		return res;
+	}
+
+	public Collection<Candy> filterByColor01(Collection<Candy> assortedCandy, Color color) {
+		ColorMatcher matcher = new ColorMatcher(color);
+		return filter(assortedCandy, matcher);
+	}
+
+	public Collection<Candy> filterByType01(Collection<Candy> assortedCandy, Candy.Type type) {
+		TypeMatcher matcher = new TypeMatcher(type);
+		return filter(assortedCandy, matcher);
+	}
+
+	public Collection<Candy> filterByColor02(Collection<Candy> assortedCandy, Color color) {
+		return filter(assortedCandy, 
+					new CandyMatcher() {
+
+						@Override
+						public boolean matches(Candy candy) {
+							return candy.getColor().equals(color);
+						}
+						
+					});
+	}
+
+	public Collection<Candy> filterByType02(Collection<Candy> assortedCandy, Candy.Type type) {
+		return filter(assortedCandy, 
+						new CandyMatcher() {
+
+							@Override
+							public boolean matches(Candy candy) {
+								return candy.getType().equals(type);
+							}
+							
+						});
 	}
 
 }
