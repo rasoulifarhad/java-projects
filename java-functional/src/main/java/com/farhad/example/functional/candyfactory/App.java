@@ -32,5 +32,7 @@ public class App {
 		numberOfReds = redCandies.size();
 		System.out.println(numberOfReds);
 
+		
+
 	}
 }

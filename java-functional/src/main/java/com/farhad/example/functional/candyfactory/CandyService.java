@@ -40,7 +40,7 @@ public class CandyService {
 		return res;
 	}
 
-	public Collection<Candy> filter(Collection<Candy> candies, CandyMatcher matcher) {
+	public Collection<Candy> filterByMatcher(Collection<Candy> candies, CandyMatcher matcher) {
 		List<Candy> res = new ArrayList<>();
 		for (Candy candy : candies) {
 			if ( matcher.matches(candy) ) {
@@ -66,16 +66,16 @@ public class CandyService {
 
 	public Collection<Candy> filterByColor01(Collection<Candy> assortedCandy, Color color) {
 		ColorMatcher matcher = new ColorMatcher(color);
-		return filter(assortedCandy, matcher);
+		return filterByMatcher(assortedCandy, matcher);
 	}
 
 	public Collection<Candy> filterByType01(Collection<Candy> assortedCandy, Candy.Type type) {
 		TypeMatcher matcher = new TypeMatcher(type);
-		return filter(assortedCandy, matcher);
+		return filterByMatcher(assortedCandy, matcher);
 	}
 
 	public Collection<Candy> filterByColor02(Collection<Candy> assortedCandy, Color color) {
-		return filter(assortedCandy, 
+		return filterByMatcher(assortedCandy, 
 					new CandyMatcher() {
 
 						@Override
@@ -87,7 +87,7 @@ public class CandyService {
 	}
 
 	public Collection<Candy> filterByType02(Collection<Candy> assortedCandy, Candy.Type type) {
-		return filter(assortedCandy, 
+		return filterByMatcher(assortedCandy, 
 						new CandyMatcher() {
 
 							@Override
@@ -99,11 +99,11 @@ public class CandyService {
 	}
 
 	public Collection<Candy> filterByColor03(Collection<Candy> assortedCandy, Color color) {
-		return filter(assortedCandy, (CandyMatcher)candy -> candy.getColor().equals(color));
+		return filterByMatcher(assortedCandy, candy -> candy.getColor().equals(color));
 	}
 
 	public Collection<Candy> filterByType03(Collection<Candy> assortedCandy, Candy.Type type) {
-		return filter(assortedCandy, (CandyMatcher)candy -> candy.getType().equals(type)); 
+		return filterByMatcher(assortedCandy, candy -> candy.getType().equals(type)); 
 	}
 
 
