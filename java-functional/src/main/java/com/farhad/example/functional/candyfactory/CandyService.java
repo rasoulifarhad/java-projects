@@ -52,10 +52,12 @@ public class CandyService {
 
 	// Of course, we don't want to call the variable here predicate as that tells us how the code is 
 	// doing its work but does not tell us what it is doing and why.
-	public Collection<Candy> filter(Collection<Candy> candies, Predicate<Candy> predicate) {
+	// A better name is the one we were using, candyMatcher.
+	// Perhaps candySelector or something like that would work well also. 
+	public Collection<Candy> filter(Collection<Candy> candies, Predicate<Candy> candySelector) {
 		List<Candy> res = new ArrayList<>();
 		for (Candy candy : candies) {
-			if ( predicate.test(candy) ) {
+			if ( candySelector.test(candy) ) {
 				res.add(candy);
 			}
 		}
