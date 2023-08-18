@@ -20,6 +20,16 @@ public class RefinedApp {
 		Collection<Candy>  pretzelCandies = candyService.filter(bagOfCandy, candy -> candy.getType().equals(Type.PRETZEL));
 		int numberOfPretzel = pretzelCandies.size();
 		System.out.println(numberOfPretzel);
+
+		numberOfReds = (int)bagOfCandy.stream()
+							.filter(candy -> candy.getColor().equals(Color.RED) )
+							.count();
+
+		System.out.println(numberOfReds);
+
+		numberOfPretzel = (int) bagOfCandy.stream()
+									.filter(candy -> candy.getType().equals(Type.PRETZEL))
+									.count();
 	}
 
 }
