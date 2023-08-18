@@ -3,6 +3,7 @@ package com.farhad.example.functional.candyfactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.farhad.example.functional.candyfactory.Candy.CandyMatcher;
 import com.farhad.example.functional.candyfactory.Candy.Color;
@@ -49,6 +50,16 @@ public class CandyService {
 		return res;
 	}
 
+	public Collection<Candy> filter(Collection<Candy> candies, Predicate<Candy> predicate) {
+		List<Candy> res = new ArrayList<>();
+		for (Candy candy : candies) {
+			if ( predicate.test(candy) ) {
+				res.add(candy);
+			}
+		}
+		return res;
+	}
+
 	public Collection<Candy> filterByColor01(Collection<Candy> assortedCandy, Color color) {
 		ColorMatcher matcher = new ColorMatcher(color);
 		return filter(assortedCandy, matcher);
@@ -84,11 +95,11 @@ public class CandyService {
 	}
 
 	public Collection<Candy> filterByColor03(Collection<Candy> assortedCandy, Color color) {
-		return filter(assortedCandy, candy -> candy.getColor().equals(color));
+		return filter(assortedCandy, (CandyMatcher)candy -> candy.getColor().equals(color));
 	}
 
 	public Collection<Candy> filterByType03(Collection<Candy> assortedCandy, Candy.Type type) {
-		return filter(assortedCandy, candy -> candy.getType().equals(type)); 
+		return filter(assortedCandy, (CandyMatcher)candy -> candy.getType().equals(type)); 
 	}
 
 
