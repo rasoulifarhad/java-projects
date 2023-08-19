@@ -1,0 +1,1 @@
+See https://developer.ibm.com/series/java-8-idioms/
