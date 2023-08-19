@@ -22,6 +22,11 @@ public class MutablesVsParameters {
 
         skippingValuesWithIteratingWithLimit();
 
+        iteratingWithConditionsUsingStreamTakeWhileMethod();
+
+        iteratingInReverseUsingFor();
+
+        iteratingInReverseUsingStreamIterateMethod();
     }
 
     private static void submitTasksUsingIndexVariableInInnerClass() {
@@ -101,5 +106,39 @@ public class MutablesVsParameters {
                         .limit(34)
                         .sum();
         System.out.println("Total= " + total);                        
+    }
+
+    // from java 9
+    // The takeWhile method, along with its counterpart dropWhile, which skips values until a given condition is met, are 
+    // much needed additions to the JDK. The takeWhile method acts like a break, while dropWhile acts like a continue. Starting 
+    // in Java 9, they'll be available for any type of Stream.
+    private static void iteratingWithConditionsUsingStreamTakeWhileMethod() {
+        System.out.println();
+        int total = IntStream
+                        .iterate(1, e -> e + 3)
+                        .takeWhile(i -> i <= 100)
+                        .sum();
+        System.out.println("Total " + total);
+    }
+
+    private static void iteratingInReverseUsingFor() {
+
+        System.out.println();
+        int total = 0;
+        for (int i = 7; i > 0 ; i--) {
+            total += i;
+        }
+        System.out.println("Total= " + total);
+    }
+
+    // The first argument in range or rangeClosed can't be greater than the second argument, so 
+    // we're unable to use either of these methods to iterate in reverse. 
+    private static void iteratingInReverseUsingStreamIterateMethod() {
+        System.out.println();
+        int total = IntStream
+                    .iterate(7, e -> e - 1)
+                    .limit(7)
+                    .sum();
+        System.out.println("Total= " + total);
     }
 }
