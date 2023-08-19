@@ -10,10 +10,12 @@ public class FindNemo {
 		List<String> names = 
 			Arrays.asList("Dory", "Gill", "Bruce", "Nemo", "Darla", "Marlin", "Jacques"); 
 		
-		findNemo(names);
+		findNemoImperative(names);
+
+		findNemoDeclarative(names);
 	}
 
-	private static void findNemo(List<String> names) {
+	private static void findNemoImperative(List<String> names) {
 
 		boolean found = false;
 		for (String name : names) {
@@ -24,6 +26,14 @@ public class FindNemo {
 		}
 
 		if ( found ) {
+			System.out.println("Found Nemo.");
+		} else {
+			System.out.println("Sorry, Nemo not found.");
+		}
+	}
+
+	private static void findNemoDeclarative(List<String> names) {
+		if (names.contains("Nemo")) {
 			System.out.println("Found Nemo.");
 		} else {
 			System.out.println("Sorry, Nemo not found.");
