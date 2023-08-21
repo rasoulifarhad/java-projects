@@ -1,10 +1,15 @@
 package com.farhad.example.java8idioms.passingthrough;
 
+import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class PassThroughLambdas {
@@ -164,6 +169,36 @@ public class PassThroughLambdas {
 			System.out.println();
 			System.out.println("Result = " + res);
 
+		}
+	}
+
+	static class BetterWithMethodReferences {
+
+		public static void main(String[] args) {
+			
+			String [] names = new String[] {"name1", null, "name3", "", "name4"};
+
+			System.out.println();
+			System.out.println(nonNullNamesInUpperCaseUsingLambdaExpressions(Arrays.asList(names)));
+
+			System.out.println();
+			System.out.println(nonNullNamesInUpperCaseUsingMethodReferences(Arrays.asList(names)));
+		}
+
+		// using lambda expressions
+		private static List<String> nonNullNamesInUpperCaseUsingLambdaExpressions(List<String> names) {
+			return names.stream()
+						.filter(name -> Objects.nonNull(name))
+						.map(name -> name.toUpperCase())
+						.collect(collectingAndThen(toList(), list -> unmodifiableList(list)));
+		}
+
+		// Using method references
+		private static List<String> nonNullNamesInUpperCaseUsingMethodReferences(List<String> names) {
+			return names.stream()
+						.filter(Objects::nonNull)
+						.map(String::toUpperCase)
+						.collect(collectingAndThen(toList(), Collections::unmodifiableList));
 		}
 	}
 
