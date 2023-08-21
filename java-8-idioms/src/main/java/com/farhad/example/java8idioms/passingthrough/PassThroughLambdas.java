@@ -125,6 +125,8 @@ public class PassThroughLambdas {
 		}
 	}
 
+	// reduce() with a lambda expression
+	// .reduce(0, (total, e) ‑> Integer.sum(total, e)));
 	static class PassingMultipleArguments {
 
 		public static void main(String[] args) {
@@ -139,6 +141,28 @@ public class PassThroughLambdas {
 						.reduce(0, Integer::sum);
 			System.out.println();
 			System.out.println("Sum = " + sum);
+
+		}
+	}
+
+	// reduce() with a lambda expression that uses a parameter as a target
+	// reduce("", (result, letter) ‑> result.concat(letter)));
+	// First parameter passed though as the target of a call
+	static class PassThroughAsTargetAndArgument {
+
+		public static void main(String[] args) {
+			
+			String [] strings = new String[] {"A", "B", "C", "D"};
+			
+			String res = Arrays.stream(strings)
+									.reduce("", (result, e) -> result.concat(e));
+			System.out.println();
+			System.out.println("Result = " + res);
+
+			res = Arrays.stream(strings)
+									.reduce("", String::concat);
+			System.out.println();
+			System.out.println("Result = " + res);
 
 		}
 	}
