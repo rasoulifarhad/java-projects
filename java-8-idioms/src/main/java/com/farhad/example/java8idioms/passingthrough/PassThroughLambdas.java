@@ -121,8 +121,25 @@ public class PassThroughLambdas {
 				.mapToDouble(Integer::doubleValue)
 				.boxed()
 				.collect(toCollection(LinkedList::new))
-				.forEach(System.out::println);;
+				.forEach(System.out::println);
+		}
+	}
+
+	static class PassingMultipleArguments {
+
+		public static void main(String[] args) {
 			
+			int [] numbers = new int[] {1, 2, 3, 4};
+			int sum = Arrays.stream(numbers)
+						.reduce(0, (total, e) -> Integer.sum(total, e));
+			System.out.println();
+			System.out.println("Sum = " + sum);
+
+			sum = Arrays.stream(numbers)
+						.reduce(0, Integer::sum);
+			System.out.println();
+			System.out.println("Sum = " + sum);
+
 		}
 	}
 
