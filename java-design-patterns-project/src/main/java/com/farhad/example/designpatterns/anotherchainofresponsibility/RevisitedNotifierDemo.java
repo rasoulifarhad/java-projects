@@ -49,6 +49,14 @@ public class RevisitedNotifierDemo {
         .filter(p -> p.test(userProfile04))
         .findFirst()
         .ifPresent(c -> c.accept(userProfile04));
+
+        UserProfile userProfile = new UserProfile(false, false, true);
+        Stream.of(
+            new UserNotifier(UserProfile::isAllowsSms, p -> System.out.println("Sms sent."))
+        )
+        .filter(u -> u.predicate.test(userProfile))
+        .findFirst()
+        .ifPresent(u -> u.consumer.accept(userProfile));
     }
 
     @RequiredArgsConstructor
