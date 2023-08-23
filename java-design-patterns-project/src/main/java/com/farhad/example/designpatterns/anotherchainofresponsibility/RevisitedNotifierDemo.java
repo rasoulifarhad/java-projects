@@ -3,9 +3,11 @@ package com.farhad.example.designpatterns.anotherchainofresponsibility;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+// See https://github.com/yanaga/revisiting-design-patterns/blob/main/src/main/java/com/google/developers/wallet/chain/revisited/RevisitedChainOfResponsibility.java
 public class RevisitedNotifierDemo {
 
     public static void main(String[] args) {
