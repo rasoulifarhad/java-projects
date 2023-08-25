@@ -12,6 +12,9 @@ public class CascadingLambdasDemo {
 
 		System.out.println(totalSelectedValues(numbers, e -> e % 2 == 0));
 		System.out.println(totalSelectedValues(numbers, CascadingLambdasDemo::isEven));
+
+		Predicate<Integer> isOdd = createIsOdd();
+		System.out.println(isOdd.test(3));
 	}
  
 	public static int totalSelectedValues(List<Integer> values, Predicate<Integer> selector) {
@@ -22,5 +25,9 @@ public class CascadingLambdasDemo {
 
 	public static boolean isEven(Integer number) {
 		return number % 2 == 0;
+	}
+
+	public static Predicate<Integer> createIsOdd() {
+		return  number -> number %  2 != 0;
 	}
 }
