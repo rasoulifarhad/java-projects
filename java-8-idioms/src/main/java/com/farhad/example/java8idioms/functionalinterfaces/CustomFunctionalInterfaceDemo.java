@@ -4,6 +4,7 @@ import static java.util.Comparator.comparing;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +35,11 @@ public class CustomFunctionalInterfaceDemo {
 			transformOrderItems.transform(items.stream())
 				.forEach(System.out::println);
 		}
+
+		public void transformAndPrint2(Function<Stream<OrderItem>, Stream<OrderItem>> transformOrderItems) {
+			transformOrderItems.apply(items.stream())
+					.forEach(System.out::println);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -53,5 +59,7 @@ public class CustomFunctionalInterfaceDemo {
 		});
 
 		order.transformAndPrint(orderItems -> orderItems.sorted(comparing(OrderItem::getPrice)));
+
+		order.transformAndPrint2(orderItems -> orderItems.sorted(comparing(OrderItem::getPrice))); 
 	}
 }
