@@ -88,6 +88,24 @@ public class CascadingLambdasDemo {
 			.filter(isGreaterThan.apply(75))
 			.collect(toList());
 		System.out.println(valuesOver75);
+
+
+		Function<Integer, Predicate<Integer>> isGreaterThanrefactored = pivot -> candidate -> candidate > pivot;
+
+		valuesOver25 = numbers1.stream()
+			.filter(isGreaterThanrefactored.apply(25))
+			.collect(toList());
+		System.out.println(valuesOver25);
+
+		valuesOver50 = numbers1.stream()
+			.filter(isGreaterThanrefactored.apply(50))
+			.collect(toList());
+		System.out.println(valuesOver50);
+
+		valuesOver75 = numbers1.stream()
+			.filter(isGreaterThanrefactored.apply(75))
+			.collect(toList());
+		System.out.println(valuesOver75);
 	}
  
 	public static int totalSelectedValues(List<Integer> values, Predicate<Integer> selector) {
