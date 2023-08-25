@@ -1,5 +1,7 @@
 package com.farhad.example.java8idioms.functionalinterfaces;
 
+import static java.util.Comparator.comparing;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -44,9 +46,12 @@ public class CustomFunctionalInterfaceDemo {
 		order.transformAndPrint(new Transformer<Stream<OrderItem>>() {
 
 			@Override
-			public Stream<OrderItem> transform(Stream<OrderItem> input) {
+			public Stream<OrderItem> transform(Stream<OrderItem> orderItems) {
+				return orderItems.sorted(comparing(OrderItem::getPrice));
 			}
 			
 		});
+
+		order.transformAndPrint(orderItems -> orderItems.sorted(comparing(OrderItem::getPrice)));
 	}
 }
