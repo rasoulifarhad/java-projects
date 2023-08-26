@@ -56,6 +56,7 @@ public class ClosuresToCaptureState {
 		runnable.run();
 	}
 
+	// the lambda expression in this code is a closure.
 	public static void lambdaPrint() {
 
 		String location = "World";
@@ -65,5 +66,40 @@ public class ClosuresToCaptureState {
 		runnable.run();
 	}
 
+	static class Sample1 {
+
+		public static void call(Runnable runnable) {
+			System.out.println("calling runnable");
+
+			// level 2 of stack
+			runnable.run();
+		}
+
+		public static void main(String[] args) {
+			int value = 4; // level 1 of stack
+
+			call(
+				() -> System.out.println(value)  // level 3 of stack
+			);
+		}
+	}
+
+	static class Sample2 {
+
+		public static Runnable create() {
+			int value = 4;
+			Runnable runnable = () -> System.out.println(value);
+
+			System.out.println("exiting create");
+			return runnable;
+		}
+
+		public static void main(String[] args) {
+			Runnable runnable = create();
+
+			System.out.println("In main");
+			runnable.run();
+		}
+	}
 
 }
