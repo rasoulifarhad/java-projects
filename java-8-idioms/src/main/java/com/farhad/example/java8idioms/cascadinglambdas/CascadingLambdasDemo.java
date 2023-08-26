@@ -135,6 +135,15 @@ public class CascadingLambdasDemo {
 					.collect(toList());
 	}
 
-	
+	// When you see a lambda expression with a single right-arrow (->), you should know that you are looking at an anonymous function 
+	// that takes parameters (possibly empty) and either performs an action or returns a result value.
+
+    // When you see a lambda expression with two right arrows (->), you are looking at an anonymous function that takes parameters 
+	// (possibly empty) and returns another lambda expression. The returned lambda expression may take its own parameters or it may 
+	// be empty. It may perform an action or return a value. It may even return yet another lambda expression, but that's usually 
+	// overkill and best avoided.
+
+    // In essence, when you see two right-arrows, treat everything to the right of the first arrow as a black box: a lambda expression 
+	// returned by the outer lambda expression.
 
 }
