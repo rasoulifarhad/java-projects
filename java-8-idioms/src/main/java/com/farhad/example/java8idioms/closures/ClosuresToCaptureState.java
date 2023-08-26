@@ -14,8 +14,32 @@ public class ClosuresToCaptureState {
 
 		print();
 		lambdaPrint();
+
+		List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+		List<Integer> doubledNumbers = numbers.stream()
+											.filter(e -> e % 2 == 0)
+											.map(e -> e * 2)
+											.collect(toList());
+		System.out.println(doubledNumbers);
+
+		int factor = 3;
+		List<Integer> tripledNumbers = numbers.stream()
+											.filter(e -> e % 2 == 0)
+											.map(e -> e * factor)
+											.collect(toList());
+		System.out.println(tripledNumbers);
+		
+		int factor2 = 4;
+		List<Integer> quadrupledNumbers = numbers.stream()
+											.filter(e -> e % 2 == 0)
+											.map(e -> e * factor2)
+											.collect(toList());
+		System.out.println(quadrupledNumbers);
+		
 	}
 
+	//  Instead of doubling the value of even numbers in a collection, what if we wanted to triple or quadruple them?
+	//  We can do it by turning our original lambda expression into a closure.
 	private static List<Integer> doubleEvenElements(List<Integer> numbers) {
 		return numbers.stream()
 				.filter(e -> e % 2 == 0)
@@ -23,6 +47,7 @@ public class ClosuresToCaptureState {
 				.collect(toList());
 	} 
 
+	
 	// Lexical scoping:
 	// 
 	// Functions expect variables to be in scope. Because they are anonymous functions at heart, lambdas 
@@ -84,6 +109,7 @@ public class ClosuresToCaptureState {
 		}
 	}
 
+	// The closure holds on to a copy of value in this case.
 	static class Sample2 {
 
 		public static Runnable create() {
