@@ -9,6 +9,7 @@ import com.farhad.example.designpatterns.abstractfactory.kingdom.King;
 
 import lombok.Getter;
 
+// see https://java-design-patterns.com/patterns/abstract-factory/#explanation
 @Getter
 public class App {
 
