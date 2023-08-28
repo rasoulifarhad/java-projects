@@ -1,4 +1,4 @@
-package com.farhad.example.javaidioms.immutableinterface.passbyreference;
+package com.farhad.example.javaidioms.passbyreference;
 
 public class PassByReference {
 	
