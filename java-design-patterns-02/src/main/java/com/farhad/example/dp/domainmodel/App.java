@@ -28,7 +28,7 @@ public class App {
         app.deleteSchema(dataSource);
         app.createSchema(dataSource); 
 
-        CustomerDao customerDao = new CustomerDaoImpl(dataSource);
+        CustomerDao customerDao = new CustomerDaoImpl();
 
         Customer tom = Customer.builder()
                             .name("Tom")
@@ -37,7 +37,7 @@ public class App {
                             .build();
         tom.save();
 
-        ProductDao productDao = new ProductDaoImpl(dataSource);
+        ProductDao productDao = new ProductDaoImpl();
         
         Product egg = Product.builder()
                             .name("Eggs")
@@ -49,14 +49,14 @@ public class App {
          Product butter = Product.builder()
                             .name("Butter")
                             .price(Double.valueOf(20.0))
-                            .expirationDate(LocalDate.now().plusDays(7))
+                            .expirationDate(LocalDate.now().plusDays(9))
                             .productDao(productDao)
                             .build();
         
         Product chease = Product.builder()
                             .name("Chease")
                             .price(Double.valueOf(25.0))
-                            .expirationDate(LocalDate.now().plusDays(7))
+                            .expirationDate(LocalDate.now().plusDays(2))
                             .productDao(productDao)
                             .build();
         
@@ -64,5 +64,24 @@ public class App {
         butter.save();
         chease.save();
 
+        tom.showBalance();
+        tom.showPurchase();
+
+        // buy egg
+        tom.buyProduct(egg);
+        tom.showBalance();
+
+        // buy butter
+        tom.buyProduct(butter);
+        tom.showBalance();
+
+        // buy chese
+        tom.buyProduct(chease);
+        tom.showBalance();
+
+        tom.save();
+
+        tom.showBalance();
+        tom.showPurchase();
        }
 }

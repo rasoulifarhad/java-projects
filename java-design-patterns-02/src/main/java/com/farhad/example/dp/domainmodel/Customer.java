@@ -100,7 +100,7 @@ public class Customer {
     public void showPurchase() {
         Optional<String> purchasesToShow = 
             purchases.stream()
-                .map(p -> p.getName() + "$ " + p.getSalesPrice() )
+                .map(p -> p.getName() + " $" + p.getSalesPrice() )
                 .reduce((p1, p2) -> p1 + ", " + p2);
         if (purchasesToShow.isPresent()) {
             log.info("{} bought: {}", name, purchasesToShow);
