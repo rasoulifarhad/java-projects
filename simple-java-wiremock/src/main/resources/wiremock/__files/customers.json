@@ -1,0 +1,22 @@
+{
+	"customers": [
+		{
+			"customerId": 1,
+			"customerName": "Customer One",
+			"paymentMethods": [
+				"VISA",
+				"MASTER",
+				"AMEX",
+				"CASH"
+			]
+		},
+		{
+			"customerId": 2,
+			"customerName": "Customer Two",
+			"paymentMethods": [
+				"VISA",
+				"MASTER"
+			]
+		}
+	]
+}
