@@ -13,3 +13,7 @@ See https://coderstower.com/2020/01/13/open-close-principle-by-example/
 <br/>
 
 >> This means, we have now two kinds of resume, ***the basic resume and the long resume***.
+
+<br/>
+
+>> Seems like a kind of resume could be an extension point of our module.

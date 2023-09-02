@@ -3,6 +3,8 @@ package com.farhad.example.designpatterns.anotheropenclosedprinciple.first;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import com.farhad.example.designpatterns.anotheropenclosedprinciple.TemplateRender;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

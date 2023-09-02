@@ -1,4 +1,4 @@
-package com.farhad.example.designpatterns.anotheropenclosedprinciple.first;
+package com.farhad.example.designpatterns.anotheropenclosedprinciple;
 
 import java.util.Map;
 

@@ -3,10 +3,11 @@ package com.farhad.example.designpatterns.anotheropenclosedprinciple.second;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import com.farhad.example.designpatterns.anotheropenclosedprinciple.first.TemplateRender;
+import com.farhad.example.designpatterns.anotheropenclosedprinciple.TemplateRender;
 
 import lombok.RequiredArgsConstructor;
 
+// Seems like a kind of resume could be an extension point of our module.
 @RequiredArgsConstructor
 public class ResumeTemplateProcess {
 	private final TemplateRender templateRender;
