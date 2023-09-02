@@ -1,0 +1,1 @@
+See https://coderstower.com/2020/01/13/open-close-principle-by-example/
