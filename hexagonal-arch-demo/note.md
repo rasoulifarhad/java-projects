@@ -1,6 +1,11 @@
 See https://alistair.cockburn.us/hexagonal-architecture/
 See https://github.com/jmgarridopaz/discounter
 
+See also https://github.com/jmgarridopaz/coffee-machine
+See also https://github.com/jmgarridopaz/hexawordle
+See also https://github.com/jmgarridopaz/task-management
+See also https://github.com/jmgarridopaz/lib-commandbus
+
 Calculates the discount to substract from a given amount of money.
 
 ```
