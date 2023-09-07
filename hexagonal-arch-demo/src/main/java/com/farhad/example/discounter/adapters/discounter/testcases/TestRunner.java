@@ -46,7 +46,7 @@ public class TestRunner implements Driver {
 			return new Class[] {NoRateRepositoryTests.class};
 		}
 		if (rateRepositoryType.trim().equals("stub")) {
-			return new Class[] {};
+			return new Class[] {StubRateRepositoryTests.class};
 		}
 		if (rateRepositoryType.trim().equals("file")) {
 			return new Class[] {FileRateRepositoryTests.class};
