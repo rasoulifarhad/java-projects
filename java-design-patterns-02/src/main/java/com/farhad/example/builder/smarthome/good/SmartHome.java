@@ -1,4 +1,4 @@
-package com.farhad.example.builder.good;
+package com.farhad.example.builder.smarthome.good;
 
 import java.util.Objects;
 

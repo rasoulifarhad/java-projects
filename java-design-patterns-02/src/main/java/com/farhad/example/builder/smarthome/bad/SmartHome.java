@@ -1,4 +1,4 @@
-package com.farhad.example.builder.bad;
+package com.farhad.example.builder.smarthome.bad;
 
 import lombok.Getter;
 import lombok.Setter;
