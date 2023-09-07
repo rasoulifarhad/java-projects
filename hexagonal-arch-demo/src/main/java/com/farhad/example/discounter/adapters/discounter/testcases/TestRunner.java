@@ -37,19 +37,19 @@ public class TestRunner implements Driver {
 
 	private Class[] testClassesToRun() {
 		if (rateRepositoryType == null) {
-			return new Class[] {NoRateRepositoryTest.class};
+			return new Class[] {NoRateRepositoryTests.class};
 		} 
 		if (rateRepositoryType.trim().isEmpty()) {
-			return new Class[] {NoRateRepositoryTest.class};
+			return new Class[] {NoRateRepositoryTests.class};
 		}
 		if (rateRepositoryType.trim().equals("none")) {
-			return new Class[] {NoRateRepositoryTest.class};
+			return new Class[] {NoRateRepositoryTests.class};
 		}
 		if (rateRepositoryType.trim().equals("stub")) {
 			return new Class[] {};
 		}
 		if (rateRepositoryType.trim().equals("file")) {
-			return new Class[] {};
+			return new Class[] {FileRateRepositoryTests.class};
 		}
 		return new Class[] {};
 	}

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import com.farhad.example.discounter.application.Amount;
 import com.farhad.example.discounter.application.DiscounterApp;
 
-public class NoRateRepositoryTest {
+public class NoRateRepositoryTests {
 	
 
 	@Test
