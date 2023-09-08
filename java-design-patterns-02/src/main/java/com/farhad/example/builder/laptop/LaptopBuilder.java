@@ -1,5 +1,6 @@
 package com.farhad.example.builder.laptop;
 
+// Concrete Builders (LaptopBuilder) provides a different implementation of the construction steps.
 public class LaptopBuilder implements Builder {
 
 	private Laptop laptop;
