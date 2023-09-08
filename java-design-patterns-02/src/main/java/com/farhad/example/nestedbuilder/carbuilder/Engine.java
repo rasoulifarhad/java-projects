@@ -32,7 +32,7 @@ public class Engine {
 		private int power;
 		private int type;
 
-		private Car.Builder carBuilder;
+		protected Car.Builder carBuilder;
 
 		private Builder() {
 

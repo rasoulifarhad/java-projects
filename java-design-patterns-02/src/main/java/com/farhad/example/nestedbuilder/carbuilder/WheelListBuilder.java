@@ -8,7 +8,8 @@ public class WheelListBuilder {
 	
 		private List<Wheel> wheels;
 
-		private Car.Builder carBuilder;
+		protected Car.Builder carBuilder;
+		
 		private WheelListBuilder() {
 
 		}
@@ -43,6 +44,7 @@ public class WheelListBuilder {
 		// On the side of the WheelBuilder, the method addWheelToList() is added. 
 		// This method adds the instance of the class Wheel to the WheelListBuilder and returns the instance of the class WheelListBuilder.
 		// On the side of the class WheelListBuilder, only the method addWheel() is added.
+		// Thus, each Builder knows its Children and its Parent. 
 
 		public Wheel.Builder addWheel() {
 			Wheel.Builder builder = Wheel.newBuilder();

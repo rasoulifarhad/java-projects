@@ -34,7 +34,7 @@ public class Wheel {
 		private int size;
 		private int type;
 		private int color;
-		private WheelListBuilder wheelListBuilder;
+		protected WheelListBuilder wheelListBuilder;
 
 		private Builder() {
 
