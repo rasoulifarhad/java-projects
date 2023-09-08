@@ -1,6 +1,5 @@
 package com.farhad.example.nestedbuilder.carbuilder;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class CarBuilderClient {
@@ -10,11 +9,14 @@ public class CarBuilderClient {
 		Wheel wheel1 = Wheel.newBuilder().withSize(4).withColor(3).withType(2).build();
 		Wheel wheel2 = Wheel.newBuilder().withSize(4).withColor(3).withType(2).build();
 		Wheel wheel3 = Wheel.newBuilder().withSize(4).withColor(3).withType(2).build();
+		Wheel wheel4 = Wheel.newBuilder().withSize(4).withColor(3).withType(2).build();
 
-		List<Wheel> wheels = Arrays.asList(
-			wheel1,
-			wheel2,
-			wheel3);
+		// List<Wheel> wheels = Arrays.asList(
+		// 	wheel1,
+		// 	wheel2,
+		// 	wheel3);
+
+		List<Wheel> wheels = Car.newWheelListBuilder().withNewList().addWheel(wheel1).addWheel(wheel2).addWheel(wheel3).addWheel(wheel4).build();
 
 		Car car = Car.newBuilder().withEngine(engine).withWheels(wheels).builde();
 
