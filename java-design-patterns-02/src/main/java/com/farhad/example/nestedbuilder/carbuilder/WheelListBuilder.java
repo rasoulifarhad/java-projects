@@ -27,6 +27,28 @@ public class WheelListBuilder {
 			return this;
 		}
 
+		// we want : 
+		//
+		// List<Wheel> wheels = wheelListBuilder
+    	// 		.addWheel().withType(1).withSize(2).withColour(2).addWheelToList()
+        // 		.addWheel().withType(1).withSize(2).withColour(2).addWheelToList()
+        //	    .addWheel().withType(1).withSize(2).withColour(2).addWheelToList()
+        //	    .addWheel().withType(1).withSize(2).withColour(2).addWheelToList()
+        //	    .build();
+		//
+		// As soon as the method addWheel() is called, a new instance of the class WheelBuilder should be returned.
+		// The method addWheelToList() creates the instance of the class Wheel and adds it to the list. 
+		// To achieve it, one has to modify both Builders involved. 
+		// On the side of the WheelBuilder, the method addWheelToList() is added. 
+		// This method adds the instance of the class Wheel to the WheelListBuilder and returns the instance of the class WheelListBuilder.
+		// On the side of the class WheelListBuilder, only the method addWheel() is added.
+
+		public Wheel.Builder addWheel() {
+			Wheel.Builder builder = Wheel.newBuilder();
+			builder.withWheelListBuilder(this);
+			return builder;
+		}
+		
 		public WheelListBuilder addWheel(Wheel wheel) {
 			Objects.requireNonNull(wheels);
 			// this.wheels = this.wheels == null ? withNewList().wheels : this.wheels;
