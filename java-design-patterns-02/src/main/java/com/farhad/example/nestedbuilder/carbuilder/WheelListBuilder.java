@@ -8,6 +8,7 @@ public class WheelListBuilder {
 	
 		private List<Wheel> wheels;
 
+		private Car.Builder carBuilder;
 		private WheelListBuilder() {
 
 		}
@@ -61,6 +62,16 @@ public class WheelListBuilder {
 				throw new IllegalStateException("Wheel number must be 4: " + wheels.size());
 			}
 			return wheels; 
+		}
+
+		public WheelListBuilder withCarBuilder(Car.Builder builder) {
+			this.carBuilder = builder;
+			return this;
+		}
+
+		public Car.Builder done() {
+			this.carBuilder.withWheels(this.build());
+			return carBuilder;
 		}
 
 }

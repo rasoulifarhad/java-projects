@@ -48,6 +48,16 @@ public class Car {
 			return this;
 		}
 
+		public Engine.Builder addEngine() {
+			Engine.Builder builder = Engine.newBuilder().withCarBuilder(this);
+			return builder;
+		}
+
+		public WheelListBuilder addWheels() {
+			WheelListBuilder builder = WheelListBuilder.newBuilder().withNewList().withCarBuilder(this);
+			return builder;
+		}
+
 		public Car builde() {
 			return new Car(this);
 		}

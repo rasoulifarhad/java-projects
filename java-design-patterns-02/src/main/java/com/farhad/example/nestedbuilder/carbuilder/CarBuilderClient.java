@@ -30,6 +30,20 @@ public class CarBuilderClient {
 
 		System.out.println("Car: " + car);
 
+
+		Car c = Car.newBuilder()
+						.addEngine().withPower(160).withType(2).done()
+						.addWheels()
+							.addWheel().withSize(4).withColor(3).withType(2).addWheelToList()
+							.addWheel().withSize(4).withColor(3).withType(2).addWheelToList()
+							.addWheel().withSize(4).withColor(3).withType(2).addWheelToList()
+							.addWheel().withSize(4).withColor(3).withType(2).addWheelToList()
+						.done()
+						.builde();
+
+		System.out.println("Car: " + c);
+
+
 		
 	}
 }
