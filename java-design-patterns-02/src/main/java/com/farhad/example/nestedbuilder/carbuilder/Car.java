@@ -29,10 +29,6 @@ public class Car {
 		return builder;
 	}
 
-	public static WheelListBuilder newWheelListBuilder() {
-		return new WheelListBuilder();
-	}
-
 	public static final class Builder {
 
 		private Engine engine;

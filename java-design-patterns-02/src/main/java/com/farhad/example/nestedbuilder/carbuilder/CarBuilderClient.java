@@ -16,7 +16,7 @@ public class CarBuilderClient {
 		// 	wheel2,
 		// 	wheel3);
 
-		List<Wheel> wheels = WheelListBuilder.newWheelListBuilder().withNewList().addWheel(wheel1).addWheel(wheel2).addWheel(wheel3).addWheel(wheel4).build();
+		List<Wheel> wheels = WheelListBuilder.newBuilder().withNewList().addWheel(wheel1).addWheel(wheel2).addWheel(wheel3).addWheel(wheel4).build();
 
 		Car car = Car.newBuilder().withEngine(engine).withWheels(wheels).builde();
 

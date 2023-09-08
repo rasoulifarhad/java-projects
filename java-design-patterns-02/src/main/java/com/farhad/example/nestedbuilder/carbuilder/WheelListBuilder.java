@@ -12,7 +12,7 @@ public class WheelListBuilder {
 
 		}
 
-		public static WheelListBuilder newWheelListBuilder() {
+		public static WheelListBuilder newBuilder() {
 			return new WheelListBuilder();
 		}
 	
