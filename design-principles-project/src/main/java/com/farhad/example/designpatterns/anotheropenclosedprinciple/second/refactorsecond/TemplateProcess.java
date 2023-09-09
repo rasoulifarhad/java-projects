@@ -9,6 +9,6 @@ public class TemplateProcess {
 	private final TemplateRender templateRender;
 
 	public String processTemplate() {
-		
+		return null;
 	}
 }
