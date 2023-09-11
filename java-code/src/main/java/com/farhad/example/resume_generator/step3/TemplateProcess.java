@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TemplateProcess {
 	
-	private final TemplateRenderer templateRenderer;
+	private final TemplateRender templateRenderer;
 
 	public String processTemplate(String templateName, Map<String, Object> data) {
 		if (templateName.equals("basicResumeTrmplate.template")) {

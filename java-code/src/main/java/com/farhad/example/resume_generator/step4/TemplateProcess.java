@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TemplateProcess {
 	
-	private final TemplateRenderer templateRenderer;
+	private final TemplateRender templateRenderer;
 	private final BasicResumeDataAggregator basicResumeDataAggregator;
 	private final LongResumeDataAggregator longResumeDataAgregator;
 
