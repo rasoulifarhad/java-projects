@@ -3,7 +3,7 @@ package com.farhad.example.resume_generator.step4;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class LongResumeDataAgregator implements DataAggregator {
+public class LongResumeDataAggregator implements DataAggregator {
 
 	@Override
 	public Map<String, Object> aggregate(Map<String, Object> data) {
