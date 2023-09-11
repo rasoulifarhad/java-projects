@@ -1,4 +1,4 @@
-package com.farhad.example.resume_generator.step6.spring_app;
+package com.farhad.example.resume_generator.spring_app;
 
 // import org.springframework.boot.SpringApplication;
 // import org.springframework.boot.autoconfigure.SpringBootApplication;

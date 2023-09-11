@@ -1,4 +1,4 @@
-package com.farhad.example.resume_generator.step6.spring_app;
+package com.farhad.example.resume_generator.spring_app;
 
 // import org.springframework.web.bind.annotation.PathVariable;
 // import org.springframework.web.bind.annotation.PutMapping;
