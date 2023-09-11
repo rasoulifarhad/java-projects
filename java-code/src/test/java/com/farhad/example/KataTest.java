@@ -1,4 +1,4 @@
-package eu.happycoders;
+package com.farhad.example;
 
 import org.junit.jupiter.api.Test;
 
