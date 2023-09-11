@@ -37,5 +37,9 @@ public class ByteBufferDemo {
 
 		buffer.flip();
 		printMetrics(buffer);
+
+		// buffer.rewind();
+		// printMetrics(buffer);
+
 	}
 }

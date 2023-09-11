@@ -1,3 +1,5 @@
+See https://www.happycoders.eu/java/filechannel-memory-mapped-io-locks/
+
 ### What is a FileChannel?
 
 A Channel is a communication link to a file, socket, or another component that provides I/O functionality. Unlike InputStream or OutputStream, a Channel is bidirectional, which means you can use it for both writing and reading.
