@@ -1,0 +1,1 @@
+See https://www.sivalabs.in/tomato-architecture-pragmatic-approach-to-software-design/
