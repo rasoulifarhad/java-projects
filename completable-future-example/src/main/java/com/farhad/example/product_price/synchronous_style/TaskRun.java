@@ -26,7 +26,7 @@ public class TaskRun {
 		Double grossAmount = getGrossAmountInUsd.apply(netAmount, getTax.apply(netAmount));
 
 		log.info("this task finished: {}", grossAmount);
-
+		log.info("another task is running");			 
 	}
 
 	public static void main(String[] args) {
