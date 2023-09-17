@@ -32,7 +32,7 @@ public class TaskRun {
 											exchangeRateEurToUsdFuture, 
 											(price, exchangeRate) -> price * exchangeRate);
 		log.info("task started!!");
-		
+		CompletableFuture<Double> result =
 		netAmountInUsd
 			.thenCompose(amount ->
 					CompletableFuture.supplyAsync(() -> amount * (1 + getTax.apply(amount))))
@@ -42,8 +42,9 @@ public class TaskRun {
 				} else {
 					log.warn("this task failed: {}", throwable.getMessage());
 				}
-			 });
-		
+			 })
+			 ;
+		result.join();
 		log.info("another task is running");			 
 	}
 
@@ -52,7 +53,7 @@ public class TaskRun {
 		TaskRun taskRun = new TaskRun();
 		// taskRun.run();
 		taskRun.run();
-		Thread.sleep(5000);
+		// Thread.sleep(5000);
 	}
 
 }
