@@ -18,6 +18,7 @@ See https://jet-start.sh/docs/how-tos/custom-aggregate-operation
 
 See https://dzone.com/articles/grouping-and-aggregations-with-java-streams
 
+See https://github.com/aliakh/demo-java-completablefuture/tree/master
 
 Example:
 
