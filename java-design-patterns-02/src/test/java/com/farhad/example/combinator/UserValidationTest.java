@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
 
 public class UserValidationTest {
@@ -29,7 +31,7 @@ public class UserValidationTest {
 		ValidationResult result = validation.apply(user);
 		//then
 		assertFalse(result.isValid());
-		assertThat(result.getReason()).isEqualTo("Email is not valid");
+		assertThat(result.getReason().get()).isEqualTo("Email is not valid");
 	}
 
 	@Test
@@ -56,6 +58,22 @@ public class UserValidationTest {
 		ValidationResult result = validation.apply(user);
 		//then
 		assertFalse(result.isValid());
+	}
+
+	@Test
+	public void given_users_when_sortByAgeAnName_then_success() {
+		//given
+		final User secondUser = new User("Second User", 32	, "secondUser@example,com");
+		final User firstUser = new User("First User", 30	, "firstUser@example,com");
+		final User thirdUser = new User("Third User", 32	, "thirdUser@example,com");
+		//when
+		Comparator<User> byAge = Comparator.comparing((User user) -> user.getAge());
+		Comparator<User> byName = Comparator.comparing((User user) -> user.getName());
+
+		Comparator<User> byAgeThenName = byAge.thenComparing(byName);
+		//then
+		assertThat(byAgeThenName.compare(secondUser, firstUser)).isEqualTo(1);
+		assertThat(byAgeThenName.compare(secondUser, thirdUser)).isEqualTo(-1);
 	}
 
 }
