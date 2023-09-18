@@ -1,8 +1,13 @@
 package com.farhad.example.functional.try_success_failure;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,175 +15,82 @@ public class TryBinaryOperatorTest {
 
 
 	@Test
-	public void testIsSuccess(){
-		Try<Integer> result =  Try.apply(this::success);
-
-		assertTrue(result.isSuccess(), "result must be a success");
+	public void testIntegerMinSuccess() {
+		Optional<Try<Integer>> optResult = successNumbers().reduce(TryBinaryOperator.minBy(Comparator.naturalOrder()));
+		assertTrue(optResult.isPresent());
+		Try<Integer> result = optResult.get();
+		assertTrue(result.isSuccess());
+		assertThat(Integer.valueOf(2)).isEqualTo(result.get());
 	}
 
 	@Test
-	public void testIsFailure() {
-		Try<Integer> result =  Try.apply(this::failure);
-
-		assertTrue(result.isFailure(), "result must be a failure");
+	public void testIntegerMaxSuccess() {
+		Optional<Try<Integer>> optResult = successNumbers().reduce(TryBinaryOperator.maxBy(Comparator.naturalOrder()));
+		assertTrue(optResult.isPresent());
+		Try<Integer> result = optResult.get();
+		assertTrue(result.isSuccess());
+		assertThat(Integer.valueOf(195)).isEqualTo(result.get());
 	}
 
 	@Test
-	public void testGetAgainstASuccess() {
-		Try<Integer> result = Try.apply(this::success);
-
-		int intResult = result.get();
-		assertThat(intResult).isEqualTo(42);
+	public void testIntegerSumSuccess() {
+		Optional<Try<Integer>> optResult = successNumbers().reduce(TryBinaryOperator.of(Integer::sum));
+		assertTrue(optResult.isPresent());
+		Try<Integer> result = optResult.get(); 
+		assertTrue(result.isSuccess());
+		assertThat(Integer.valueOf(283)).isEqualTo(result.get());
 	}
 
 	@Test
-	public void testGetAgainstAFailure() {
-		Try<Integer> result = Try.apply(this::failure);
-
-		assertThrows(GetOfFailureException.class, () -> result.get());
+	public void testIntegerMinFailure() {
+		Optional<Try<Integer>> optResult = mixedSuccessFailure().reduce(TryBinaryOperator.minBy(Comparator.naturalOrder()));
+		assertTrue(optResult.isPresent());
+		Try<Integer> result = optResult.get();
+		assertTrue(result.isFailure());
 	}
 
-	@Test
-	public void testUncheckedGetAgainstASuccess() throws Exception {
-		Try<Integer> result = Try.apply(this::success);
-		int intResult = result.checkedGet();
-
-		assertThat(intResult).isEqualTo(42);
+	@Test 
+	public void testCustomComparatorSuccess() {
+		Optional<Try<String>> optResult = strings().reduce(TryBinaryOperator.minBy(compareCharAt(4)));
+		assertTrue(optResult.isPresent());
+		Try<String> result = optResult.get();
+		assertTrue(result.isSuccess());
+		assertThat(result.get()).isEqualTo("foobar");
 	}
 
-	@Test
-	public void testUncheckedGetAgainstAFailure() throws Exception {
-		Try<Integer> result = Try.apply(this::failure);
-
-		assertThrows(NumberFormatException.class, () -> result.checkedGet());
-	}
-
-	@Test
-	public void testForEachAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testForEachAgainstAFailure() {
+	@Test 
+	public void testCustomComparatorFailure() {
+		Optional<Try<String>> optResult = strings().reduce(TryBinaryOperator.minBy(compareCharAt(5)));
+		assertTrue(optResult.isPresent());
+		Try<String> result = optResult.get();
+		assertTrue(result.isFailure());
+		assertTrue(result.failed().get() instanceof StringIndexOutOfBoundsException);
 		
 	}
 
-
-	@Test
-	public void testMapAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testMapAgainstAFailure() {
-		
-	}
-
-	@Test
-	public void testFlatMapAgainstASuccess() {
+	private Stream<Try<String>> strings() {
+		List<String> strings = Arrays.asList("abcdefgh", "foobar", "dummy", "sample");
+		return strings.stream().map(this::success);
 
 	}
 
-	@Test
-	public void testFlatMapAgainstAFailure() {
-		
+	private Stream<Try<Integer>> successNumbers() {
+		List<Integer> ints = Arrays.asList(42, 5, 23, 16, 195, 2);
+		return ints.stream().map(this::success);
 	}
 
-	@Test
-	public void testFilterAgainstASuccess() {
-
+	private Stream<Try<Integer>> mixedSuccessFailure() {
+		return Arrays.asList(success(1), success(2), failure(), success(3)).stream();
 	}
 
-	@Test
-	public void testFilterAgainstAFailure() {
-		
+	private Comparator<String> compareCharAt(int index) {
+		return (a, b) -> Character.compare(a.charAt(index), b.charAt(index));
 	}
 
-	@Test
-	public void testNonMatchingFilter() {
-
+	private <T> Try<T> success(T o) {
+		return Try.apply(() -> o);
 	}
-
-	@Test
-	public void testRecoverAgainstASuccess() {
-
+	private Try<Integer> failure() {
+		return Try.apply(() -> {throw new NumberFormatException("Number not valid.");});	
 	}
-
-	@Test
-	public void testRecoverAgainstAFailure() {
-		
-	}
-
-		@Test
-	public void testRecoverWithAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testRecoverWithAgainstAFailure() {
-		
-	}
-
-	@Test
-	public void testFailedAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testFailedAgainstAFailure() {
-		
-	}
-
-	@Test
-	public void testToOptionalAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testToOptionalAgainstAFailure() {
-		
-	}
-
-		@Test
-	public void testGetOrElseAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testGetOrElseAgainstAFailure() {
-		
-	}
-
-
-	@Test
-	public void testOrElseAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testOrElseAgainstAFailure() {
-		
-	}
-
-		@Test
-	public void testTransformAgainstASuccess() {
-
-	}
-
-	@Test
-	public void testTransformAgainstAFailure() {
-		
-	}
-
-	private int success() {
-        return 42;
-    }
-
-    private String anotherSuccess() {
-        return "Hello World!";
-    }
-
-    private int failure() throws NumberFormatException {
-        throw new NumberFormatException("Number not valid");
-    }
 }
