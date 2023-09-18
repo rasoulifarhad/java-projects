@@ -1,8 +1,11 @@
 package com.farhad.example.functional.try_success_failure;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,33 +57,50 @@ public class TryTest {
 
 	@Test
 	public void testForEachAgainstASuccess() {
-
+		Try<Integer> result = Try.apply(this::success);
+		result.forEach(i -> assertThat(i).isEqualTo(Integer.valueOf(42)));
 	}
 
 	@Test
 	public void testForEachAgainstAFailure() {
-		
+		Try<Integer> result = Try.apply(this::failure);
+		AtomicBoolean  isForeachExecuted = new AtomicBoolean(false);
+		result.forEach(i -> isForeachExecuted.getAndSet(true));
+		assertFalse(isForeachExecuted.get());
+		assertThrows(GetOfFailureException.class, () -> result.get());
 	}
 
 
 	@Test
 	public void testMapAgainstASuccess() {
-
+		Try<Integer> result = Try.apply(this::success);
+		Try<String> mappedResult = result.map(i -> i.toString() + ", Hello World!");
+		assertThat(mappedResult).isEqualTo(new Try.Success<String>("42, Hello World!"));
 	}
 
 	@Test
 	public void testMapAgainstAFailure() {
-		
+		Try<Integer> result = Try.apply(this::failure);
+		AtomicBoolean  isForeachExecuted = new AtomicBoolean(false);
+		result.map(i -> isForeachExecuted.getAndSet(true));
+		assertFalse(isForeachExecuted.get());
+		assertThrows(GetOfFailureException.class, () -> result.get());
 	}
 
 	@Test
 	public void testFlatMapAgainstASuccess() {
-
+		Try<Integer> result = Try.apply(this::success);
+		Try<String> flatMappedResult = result.flatMap(i -> Try.apply(() -> i + ", " + anotherSuccess()));
+		assertThat(flatMappedResult).isEqualTo(new Try.Success<String>("42, Hello World!"));
 	}
 
 	@Test
 	public void testFlatMapAgainstAFailure() {
-		
+		Try<Integer> result = Try.apply(this::failure);
+		AtomicBoolean  isForeachExecuted = new AtomicBoolean(false);
+		result.flatMap(i -> Try.apply(() -> isForeachExecuted.getAndSet(true)));
+		assertFalse(isForeachExecuted.get());
+		assertThrows(GetOfFailureException.class, () -> result.get());
 	}
 
 	@Test
