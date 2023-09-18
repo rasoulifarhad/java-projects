@@ -4,31 +4,23 @@ import java.util.Optional;
 
 import lombok.Value;
 
-public class ValidatorDemo {
-	
-	@Value
-	static class User {
-		final String name;
-		final int age;
-		final String email;
+
+public interface ValidationResult {
+	static ValidationResult valid() {
+		return ValidationSupport.valid();
+	}
+	static ValidationResult inValid(String reason) {
+		return new Invalid(reason);
 	}
 
-	interface ValidationResult {
-		static ValidationResult valid() {
-			return ValidationSupport.valid();
-		}
-		static ValidationResult inValid(String reason) {
-			return new Invalid(reason);
-		}
+	boolean isValid();
 
-		boolean isValid();
-		Optional<String> getReason();
-	}
-	
+	Optional<String> getReason();
+
 	@Value
-	private final static class Invalid implements ValidationResult {
+	public final static class Invalid implements ValidationResult {
 
-		private final String reason;
+		private String reason;
 
 		@Override
 		public boolean isValid() {
@@ -42,7 +34,7 @@ public class ValidatorDemo {
 		
 	}
 
-	private final static class ValidationSupport {
+	public final static class ValidationSupport {
 		private static final ValidationResult valid = new ValidationResult() {
 
 			@Override
@@ -62,7 +54,10 @@ public class ValidatorDemo {
 		}
 	}
 
-	private static <T> T todo() {
+	public static <T> T todo() {
 		throw new UnsupportedOperationException();
 	}
+
 }
+
+
