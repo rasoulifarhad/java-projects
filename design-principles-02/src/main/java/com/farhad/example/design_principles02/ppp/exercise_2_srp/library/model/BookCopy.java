@@ -9,6 +9,8 @@ public class BookCopy {
     private BookTitle title;
     @Getter
     private String id;
+    
+    @Getter
     private Receipt receipt;
     
     public BookCopy(BookTitle title, String id) {

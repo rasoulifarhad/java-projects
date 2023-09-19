@@ -39,9 +39,12 @@ public class Receipt {
     
     ///////////////////////////////////////////////////////
     ///////////BORROW RECEIPTS
-    @Getter
     @Setter
     private Date returnDate;
+
+    public Date getDueDate() {
+        return returnDate;
+    }
 
     public Receipt(int type) {
         this.type = type;
