@@ -13,3 +13,24 @@ public interface CurrencyExchangeService {
 ```
 
 When the domain model is wired up, for example using a dependency injection framework, you can then inject the correct implementation of this interface. You could have one that invokes a local cache, another that invokes a remote web service, a third that is used for testing only and so on.
+
+factories
+
+In this example, we are going to look at a factory that is translating between two bounded contexts. In the shipment context, the `customer` is no longer referred to as a `customer` but as a `shipment recipient`. The **customer ID** is still stored so that we can relate the two concepts together later if needed.
+
+```java
+public class ShipmentRecipientFactory {
+    private final PostOfficeRepository postOfficeRepository;
+    private final StreetAddressRepository streetAddressRepository; 
+
+    // Initializing constructor omitted
+
+    ShipmentRecipient createShipmentRecipient(Customer customer) {
+        var postOffice = postOfficeRepository.findByPostalCode(customer.postalCode());
+        var streetAddress = streetAddressRepository.findByPostOfficeAndName(postOffice, customer.streetAddress());
+        var recipient = new ShipmentRecipient(customer.fullName(), streetAddress);
+        recipient.associateWithCustomer(customer.id());
+        return recipient;
+    }
+}
+```
