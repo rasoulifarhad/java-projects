@@ -32,13 +32,18 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- tag::joda[] -->
+	
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.12.2</version> 
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>dumbster</groupId>
+			<artifactId>dumbster</artifactId>
+			<version>1.6</version>
+			<scope>test</scope>
+		</dependency>		
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -80,6 +85,18 @@
 			<scope>test</scope>
 		</dependency>
 		-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.8</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.5</version>
+        </dependency>		
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>

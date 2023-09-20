@@ -15,6 +15,11 @@ See https://github.com/a-benamor/mars-rover
 See https://github.com/murex/Kata-MarsRover/tree/master/java
 See https://github.com/mrook/mars-rover-kata-java
 
+See https://github.com/Codesai/practice_program/tree/master
+
+See https://github.com/Codesai/code-smells-refactoring-training-java
+
+See https://github.com/lantoli/AdventOfCode
 
 
 

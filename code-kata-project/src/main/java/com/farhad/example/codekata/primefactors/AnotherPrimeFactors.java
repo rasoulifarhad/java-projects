@@ -130,6 +130,8 @@ public class AnotherPrimeFactors {
                     break;
                 case Done:
                     return factors;
+                default:
+                    break;
             }            
         }
 
@@ -152,7 +154,7 @@ public class AnotherPrimeFactors {
                     factors.add(d);
                     n /= d;
                     if (n == 1) {
-                        state = state.Done;
+                        state = State.Done;
                     } else if (n % d != 0) {
                         state = State.Searching;
                     }
