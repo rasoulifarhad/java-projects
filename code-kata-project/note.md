@@ -8,3 +8,15 @@ See https://github.com/adelatorrefoss/kata-refactoring-video-store
 See https://github.com/adelatorrefoss/code-smells-refactoring-training-java
 See https://github.com/adelatorrefoss/BreakingDependenciesExercises
 See https://github.com/agile-asturias/kata-bootstrap-java
+See https://github.com/vfarcic/mars-rover-kata-java
+See https://github.com/vincent-vieira/java-mars-rover-kata/tree/develop
+See https://github.com/adolsalamanca/mars-rover-java
+See https://github.com/a-benamor/mars-rover
+See https://github.com/murex/Kata-MarsRover/tree/master/java
+See https://github.com/mrook/mars-rover-kata-java
+
+
+
+
+
+
