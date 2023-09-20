@@ -1,0 +1,10 @@
+See https://github.com/adelatorrefoss/auction_house_ddd
+See https://github.com/adelatorrefoss/MarsRoverKata
+See https://github.com/adelatorrefoss/tennis-kata-in-java-with-lifull
+See https://github.com/adelatorrefoss/practice_program
+See https://github.com/adelatorrefoss/kata-refactoring-dip-course
+See https://github.com/adelatorrefoss/kata-refactoring-static-configuration
+See https://github.com/adelatorrefoss/kata-refactoring-video-store
+See https://github.com/adelatorrefoss/code-smells-refactoring-training-java
+See https://github.com/adelatorrefoss/BreakingDependenciesExercises
+See https://github.com/agile-asturias/kata-bootstrap-java
