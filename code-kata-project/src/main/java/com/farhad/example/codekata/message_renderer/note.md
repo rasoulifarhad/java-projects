@@ -1,0 +1,1 @@
+See https://github.com/emilybache/MessageRenderer-Test-Design-Kata

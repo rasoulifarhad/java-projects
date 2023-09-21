@@ -2,6 +2,9 @@ package com.farhad.example.codekata.birthday_greetings_kata.original;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +14,7 @@ import com.dumbster.smtp.SmtpMessage;
 
 public class AcceptanceTest {
 
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
 	private static final int NONSTANDARD_PORT = 9999;
 	private BirthdayService birthdayService;
@@ -31,7 +35,9 @@ public class AcceptanceTest {
 	@Test
 	public void willSendGreetings_whenItsSomebodysBirthday() throws Exception {
 
-		birthdayService.sendGreetings("employee_data.txt", new XDate("2008/10/08"), "localhost", NONSTANDARD_PORT);
+		birthdayService.sendGreetings(
+					"employee_data.txt", 
+					LocalDate.parse("2008/10/08", formatter), "localhost", NONSTANDARD_PORT);
 
 		assertEquals( 1, mailServer.getReceivedEmailSize(), "message not sent?");
 		SmtpMessage message = (SmtpMessage) mailServer.getReceivedEmail().next();
@@ -44,7 +50,9 @@ public class AcceptanceTest {
 
 	@Test
 	public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
-		birthdayService.sendGreetings("employee_data.txt", new XDate("2008/01/01"), "localhost", NONSTANDARD_PORT);
+		birthdayService.sendGreetings(
+					"employee_data.txt", 
+					LocalDate.parse("2008/01/01", formatter), "localhost", NONSTANDARD_PORT);
 
 		assertEquals(0, mailServer.getReceivedEmailSize(), "what? messages?");
 	}    

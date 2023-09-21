@@ -1,22 +1,19 @@
-package com.farhad.example.codekata.birthday_greetings_kata.original;
+package com.farhad.example.codekata.birthday_greetings_kata.refactored.core;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 
-@EqualsAndHashCode
+@Data
 public class Employee {
-  
+    
 	private LocalDate birthDate;
 	private String lastName;
     
-    @Getter
 	private String firstName;
 
-    @Getter
 	private String email;
     
     public Employee(String firstName, String lastName, String birthDate, String email) throws ParseException {
@@ -31,4 +28,5 @@ public class Employee {
     public boolean isBirthday(LocalDate today) {
 		return birthDate.compareTo(today) == 0;
     }
+   
 }
