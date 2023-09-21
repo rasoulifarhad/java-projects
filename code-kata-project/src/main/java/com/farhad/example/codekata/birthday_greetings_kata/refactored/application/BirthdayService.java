@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.farhad.example.codekata.birthday_greetings_kata.refactored.core.Employee;
 import com.farhad.example.codekata.birthday_greetings_kata.refactored.core.EmployeeRepository;
-import com.farhad.example.codekata.birthday_greetings_kata.refactored.core.Greeting;
+import com.farhad.example.codekata.birthday_greetings_kata.refactored.core.GreetingMessage;
 import com.farhad.example.codekata.birthday_greetings_kata.refactored.core.MessageService;
 
 public class BirthdayService {
@@ -20,10 +20,24 @@ public class BirthdayService {
 
 
     public void sendGreetings(LocalDate today) {
-        List<Employee> employees = employeeRepository.findEmployeesWhoseBirthdayIs(today);
-        for (Employee employee : employees) {
-            Greeting greetings = new Greeting(employee);
-            messageService.send(greetings);
-        }
+        List<Employee> employees = employeesHavingBirthDay(today);
+        List<GreetingMessage> greetingMessages = generateGreetingMessagesFor(employees);
+        send(greetingMessages);
     }
+
+
+    private void send(List<GreetingMessage> greetingMessages) {
+        messageService.send(greetingMessages);
+    }
+
+
+    private List<Employee> employeesHavingBirthDay(LocalDate today) {
+        List<Employee> employees = employeeRepository.findEmployeesWhoseBirthdayIs(today);
+        return employees;
+    }
+
+
+    private List<GreetingMessage> generateGreetingMessagesFor(List<Employee> employees) {
+        return null;
+    } 
 }

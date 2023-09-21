@@ -1,6 +1,5 @@
 package com.farhad.example.codekata.birthday_greetings_kata.refactored.core;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -16,9 +15,12 @@ public class Employee {
 
 	private String email;
     
-    public Employee(String firstName, String lastName, String birthDate, String email) throws ParseException {
+    public Employee(String firstName, String lastName, String birthDate, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+	    this.birthDate = LocalDate.parse(
+							birthDate, 
+							DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 		this.birthDate = LocalDate.parse(
 							birthDate, 
 							DateTimeFormatter.ofPattern("yyyy/MM/dd"));

@@ -23,7 +23,7 @@ public class GreetingMessage {
         return new GreetingMessage(employee.getEmail(), greeting);
     }
 
-    public String supjedt() {
+    public String subject() {
         return greeting.header();
     }
 
