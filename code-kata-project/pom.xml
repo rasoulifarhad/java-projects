@@ -55,10 +55,7 @@
             <artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
-            <!-- <optional>true</optional> -->
         </dependency>
-		<!-- Logging -->
-		<!--  Using only for slf4j-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -76,15 +73,6 @@
 			<artifactId>datafaker</artifactId>
 			<version>1.9.0</version>
 		</dependency>
-		<!-- end::joda[] -->
-		<!-- 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		-->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
@@ -123,6 +111,7 @@
 
 	<build>
 		<plugins>
+
 		    <!-- <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
