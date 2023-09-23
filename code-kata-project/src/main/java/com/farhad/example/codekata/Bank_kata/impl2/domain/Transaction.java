@@ -6,15 +6,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import lombok.Value;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Value
+@Data
 public class Transaction {
     
     private final static String DATE_FORMAT = "dd/MM/yyyy";
     private final static String EMPTY_DATE  = "          ";
 
+    @EqualsAndHashCode.Exclude
     private DecimalFormat decimalFormater = new DecimalFormat("#.00");
+
+    @EqualsAndHashCode.Exclude
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     private final Amount value;
@@ -38,13 +42,13 @@ public class Transaction {
     }
 
     private StringBuilder addCurrentBalanceTo(StringBuilder builder, Amount currentBalance) {
-        builder.append("|");
+        builder.append("| ");
         return builder.append(currentBalance.toString());
 
     }
 
     private StringBuilder addValueTo(StringBuilder builder) {
-        if(value.isGreaterThan(Amount.of(0)) ) {
+        if(value.isGreaterThan(Amount.amountOf(0)) ) {
             return addCreditTo(builder);
         } 
         return addDebitTo(builder);

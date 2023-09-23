@@ -10,17 +10,17 @@ import lombok.Value;
 @Value
 public class Amount {
     
-    public static final Amount ZERO = of(0);
+    public static final Amount ZERO = amountOf(0);
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private final int value;
 
-    public static Amount of(int value) {
+    public static Amount amountOf(int value) {
         return new Amount(value);
     }
 
     public Amount plus(Amount other) {
         Objects.requireNonNull(other);
-        return of(value + other.value );
+        return amountOf(value + other.value );
     }
 
     public boolean isGreaterThan(Amount other) {
@@ -29,7 +29,7 @@ public class Amount {
     }
 
     public Amount absValue()  {
-        return of(Math.abs(value));
+        return amountOf(Math.abs(value));
     }
 
     @Override
@@ -38,6 +38,6 @@ public class Amount {
     }
 
     public Amount negative() {
-        return of(-value);
+        return amountOf(-value);
     }
 }

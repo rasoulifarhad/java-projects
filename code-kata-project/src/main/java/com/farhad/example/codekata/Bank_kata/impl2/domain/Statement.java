@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Statement {
     
+    public static final String STATEMENT_HEADER = "date       | credit   | debit    | balance";
     private static final int TOP_OF_THE_LIST = 0;
     private List<StatementLine> statementLines = new LinkedList<>();
 
@@ -19,7 +20,7 @@ public class Statement {
     }
 
     private void printHeader(PrintStream printer) {
-        printer.println("date       | credit   | debit    | balance");
+        printer.println(STATEMENT_HEADER);
     }
 
     private void printLines(PrintStream printer) {

@@ -18,7 +18,7 @@ public class Account {
         recordTransaction(value, date);
     }
     
-    public void withdraw(Amount value, LocalDate date) {
+    public void withdrawal(Amount value, LocalDate date) {
         recordTransaction(value.negative(), date);
     }
 
