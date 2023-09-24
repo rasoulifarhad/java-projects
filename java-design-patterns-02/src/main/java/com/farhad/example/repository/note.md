@@ -1,0 +1,1 @@
+See https://github.com/daggerok/fork-iluwatar-java-design-patterns/blob/master/value-object/src/main/java/com/iluwatar/value/object/HeroStat.java
