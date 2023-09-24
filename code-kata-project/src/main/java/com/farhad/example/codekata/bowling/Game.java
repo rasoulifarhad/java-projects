@@ -2,22 +2,32 @@ package com.farhad.example.codekata.bowling;
 
 public class Game {
 
+    private int itsScore = 0;
+    private int[] itsThrows = new int[21];
+    private int itsCurrentThrow = 0;
+    private int itsCurrentFrame = 1;
+    private boolean firstThrow = true;
+
     public int score() {
-        return itsScore;
+        return scoreForFrame(getCurrentFrame() - 1);
     }
 
     public void add(int pins) {
         itsThrows[itsCurrentThrow++] = pins;
         itsScore += pins;
-        adjustCurrentFrame();
+        adjustCurrentFrame(pins);
     }
 
-    private void adjustCurrentFrame() {
+    private void adjustCurrentFrame(int pins) {
         if (firstThrow == true) {
-            firstThrow = false;
-            itsCurrentFrame++;
+            if (pins == 10) {// strike
+                itsCurrentFrame++;
+            } else {
+                firstThrow = false;
+            }
         } else {
             firstThrow = true;
+            itsCurrentFrame++;
         }
     }
 
@@ -27,22 +37,21 @@ public class Game {
         int score = 0;
         for (int currentFrame = 0; currentFrame < theFrame; currentFrame++) {
             int firstThrow = itsThrows[ball++];
-            int secondThrow = itsThrows[ball++];
-            int frameScore = firstThrow + secondThrow;
-            // spare needs next frames first throw
-            if (frameScore == 10)
-                score += frameScore + itsThrows[ball];
-            else
-                score += frameScore;
+
+            if (firstThrow == 10) {
+                score += 10 + itsThrows[ball] + itsThrows[ball + 1];
+            } else {
+                int secondThrow = itsThrows[ball++];
+                int frameScore = firstThrow + secondThrow;
+                // spare needs next frames first throw
+                if (frameScore == 10)
+                    score += frameScore + itsThrows[ball];
+                else
+                    score += frameScore;
+            }
         }
         return score;
     }
-
-    private int itsScore = 0;
-    private int[] itsThrows = new int[21];
-    private int itsCurrentThrow = 0;
-    private int itsCurrentFrame = 0;
-    private boolean firstThrow = true;
 
     public Integer getCurrentFrame() {
         return itsCurrentFrame;
