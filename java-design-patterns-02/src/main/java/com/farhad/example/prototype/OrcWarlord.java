@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @NoArgsConstructor
-@ToString
+@ToString(includeFieldNames = false)
 public class OrcWarlord extends Warlord {
 
     private final String description = "Orcish warlord";

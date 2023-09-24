@@ -3,7 +3,7 @@ package com.farhad.example.prototype;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@ToString
+@ToString(includeFieldNames = false)
 @NoArgsConstructor
 public class ElfMage extends Mage {
     
