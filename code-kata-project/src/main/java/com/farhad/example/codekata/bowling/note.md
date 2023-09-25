@@ -42,3 +42,11 @@ In the second frame, the player knocked down four pins with his first ball and f
 ond. That makes nine pins total, added to the previous frame makes fourteen.
 In the third frame, the player knocked down six pins with his first ball and knocked down the rest with
 his second for a spare. No score can be calculated for this frame until the next ball is rolled.
+
+In the fourth frame, the player knocked down five pins with his first ball. This lets us complete the
+scoring of the spare in frame three. The score for frame three is ten, plus the score in frame two (14),
+plus the first ball of frame four (5), or 29. The final ball of frame four is a spare.
+Frame five is a strike. This lets us finish the score of frame four which is 29 + 10 + 10 = 49.
+Frame six is dismal. The first ball went in the gutter and failed to knock down any pins. The second
+ball knocked down only one pin. The score for the strike in frame five is 49 + 10 + 0 + 1 = 60.
+The rest you can probably figure out for yourself.
