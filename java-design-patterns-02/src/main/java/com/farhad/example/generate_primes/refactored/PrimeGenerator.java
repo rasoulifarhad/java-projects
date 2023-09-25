@@ -5,30 +5,30 @@ public class PrimeGenerator {
      * @param maxValue is the generation limit.
      */
 
-    private static boolean[] isCrossed;
+    private static boolean[] crossedOut;
     private static int[] result;
 
     public static int[] generatePrimes(int maxValue) {
         if (maxValue < 2) {
             return new int[0];
         } else {
-            initializeArrayOfIntegers(maxValue);
-            sieve();
-            loadPrimes();
+            uncrossIntegersUpTo(maxValue);
+            crossOutMultiples();
+            putUncrossedIntegersIntoResult();
             return result;
         }
     }
 
-    private static void initializeArrayOfIntegers(int maxValue) {
-        isCrossed = new boolean[maxValue + 1];
+    private static void uncrossIntegersUpTo(int maxValue) {
+        crossedOut = new boolean[maxValue + 1];
         // initialize array to true.
-        for (int i = 2; i < isCrossed.length; i++) {
-            isCrossed[i] = false;
+        for (int i = 2; i < crossedOut.length; i++) {
+            crossedOut[i] = false;
         }
     }
 
-    private static void sieve() {
-        int maxPrimeFactor =calcMaxPrimeFactor();
+    private static void crossOutMultiples() {
+        int maxPrimeFactor = determineIterationLimit();
         for (int i = 2; i < maxPrimeFactor; i++) {
             if (notCrossed(i)) {
                 crossOutMultiplesOf(i);   
@@ -37,37 +37,40 @@ public class PrimeGenerator {
     }
 
     private static void crossOutMultiplesOf(int i) {
-        for (int multiple = 2 * i; multiple < isCrossed.length; multiple += i) {
-            isCrossed[multiple] = true; 
+        for (int multiple = 2 * i; multiple < crossedOut.length; multiple += i) {
+            crossedOut[multiple] = true; 
         }
     }
 
-    private static int calcMaxPrimeFactor() {
-        double maxPrimeFactor = Math.sqrt(isCrossed.length) + 1;
-        return (int) maxPrimeFactor;
+    private static int determineIterationLimit() {
+        double iterationLimit = Math.sqrt(crossedOut.length) ;
+        return (int) iterationLimit;
     }
     private static boolean isCrossed(int i) {
-        return isCrossed[i];
+        return crossedOut[i];
     }
 
 
     private static boolean notCrossed(int i) {
         return isCrossed(i) == false;
     }
-    private static void loadPrimes() {
-        // how many primes are there?
-        int count = 0;
-        for (int i = 2; i < isCrossed.length; i++) {
-            if (notCrossed(i)) {
-                count++; // bump count.
-            }
-        }
-        result = new int[count];
-        // move the primes into the result
-        for (int i = 2, j = 0; i < isCrossed.length; i++) {
+
+    private static void putUncrossedIntegersIntoResult() {
+        result = new int[numberOfUncrossedIntegers()];
+        for (int i = 2, j = 0; i < crossedOut.length; i++) {
             if (notCrossed(i)) {// if prime
                 result[j++] = i;
             }
         }
+    }
+
+    private static int numberOfUncrossedIntegers() {
+        int count = 0;
+        for (int i = 2; i < crossedOut.length; i++) {
+            if (notCrossed(i)) {
+                count++; // bump count.
+            }
+        }
+        return count;
     }
 }
