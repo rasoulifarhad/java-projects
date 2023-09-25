@@ -2,8 +2,6 @@ package com.farhad.example.codekata.bowling;
 
 public class Game {
 
-    private int itsScore = 0;
-
     private int itsCurrentFrame = 1;
     private boolean firstThrowInFrame = true;
     public Scorer scorer = new Scorer();
@@ -22,7 +20,6 @@ public class Game {
 
     public void add(int pins) {
         scorer.addThrow(pins);
-        itsScore += pins;
         adjustCurrentFrame(pins);
     }
 
