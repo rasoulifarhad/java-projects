@@ -19,27 +19,59 @@
 		<lombok.version>1.18.26</lombok.version>
 		<slf4j.version>2.0.6</slf4j.version>
 		<mockito.version>4.11.0</mockito.version>
+    	<spring-boot.version>2.7.16</spring-boot.version>	
+    	<commons-dbcp.version>1.4</commons-dbcp.version>
+    	<htmlunit.version>2.70.0</htmlunit.version>		
+    	<gson.version>2.10.1</gson.version>		
+    	<guice.version>5.1.0</guice.version>
+    	<system-lambda.version>1.1.0</system-lambda.version>							
 	</properties>
-
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.junit</groupId>
-				<artifactId>junit-bom</artifactId>
-				<version>${junit.bom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>${spring-boot.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+			<version>${htmlunit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.stefanbirkner</groupId>
+			<artifactId>system-lambda</artifactId>
+			<version>${system-lambda.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit</groupId>
+			<artifactId>junit-bom</artifactId>
+			<version>${junit.bom.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- tag::joda[] -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.12.2</version> 
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -66,15 +98,6 @@
 		<artifactId>slf4j-simple</artifactId>
 		<version>${slf4j.version}</version>
 		</dependency>
-		<!-- end::joda[] -->
-		<!-- 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -110,6 +133,11 @@
 			<version>${mockito.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+			<version>2.2.222</version>
+        </dependency>
 
 	</dependencies>
 
