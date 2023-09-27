@@ -20,6 +20,18 @@ See https://dzone.com/articles/grouping-and-aggregations-with-java-streams
 
 See https://github.com/aliakh/demo-java-completablefuture/tree/master
 
+See https://www.linkedin.com/pulse/asynchronous-programming-java-completablefuture-aliaksandr-liakh/
+
+https://www.infoworld.com/article/3687234/how-to-use-callbacks-in-java.html
+https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture/
+https://www.javacodegeeks.com/2013/05/java-8-definitive-guide-to-completablefuture.html
+https://www.slideshare.net/jpaumard/asynchronous-api-in-java8-how-to-use-completablefuture
+https://www.linkedin.com/pulse/asynchronous-programming-java-completablefuture-aliaksandr-liakh/
+https://blog.devops.dev/behavioral-design-patterns-in-java-null-object-design-pattern-9a6192a73fba
+https://java-design-patterns.com/patterns/promise/#related-patterns
+
+
+
 Example:
 
 First, we need to call two long-running methods that return a product price in the EUR and the EUR/USD exchange rate. Then, we need to calculate the net product price from the results of these methods. Then, we need to call the third long-running method that takes the net product price and returns the tax amount. Finally, we need to calculate the gross product price from the net product price and the tax amount.
