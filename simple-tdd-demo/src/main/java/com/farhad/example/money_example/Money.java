@@ -14,12 +14,12 @@ public abstract class Money {
     }    
 
     static Franc franc(int amount) {
-         return new Franc(amount);
+         return new Franc(amount, null);
     }
 
 
     static Money dollar(int amount) {
-         return new Dollar(amount);
+         return new Dollar(amount, null);
     }    
 
     abstract Money times(int multiplier);
