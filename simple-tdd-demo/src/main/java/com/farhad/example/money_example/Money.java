@@ -1,6 +1,6 @@
 package com.farhad.example.money_example;
 
-public abstract class Money {
+public class Money {
 
      protected int amount;
      protected String currency;
@@ -25,7 +25,9 @@ public abstract class Money {
           return new Dollar(amount, "USD");
      }
 
-     abstract Money times(int multiplier);
+     public Money times(int multiplier){
+          return null;
+     }
 
      String currency() {
           return currency;
