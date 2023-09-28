@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 // Equal null
 // Equal object
 // 5 CHF * 2 = 10 CHF
+// Dollar/Franc duplication
+// Common equals
+// Common times
 
 // 1. Add a little test
 // 2. Run all tests and fail
