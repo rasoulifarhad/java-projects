@@ -1,18 +1,16 @@
-package com.farhad.example.functional_interface.vehicle_demo.with_try;
-
-import com.farhad.example.functional_interface.vehicle_demo.with_try.toolkit.Try;
+package com.farhad.example.functional_interface.vehicle_demo.with_lazy_try;
 
 public interface Vehicle {
  
-    Try<Vehicle> wakeUp();
+    Vehicle wakeUp();
 
-    Try<Vehicle> moveForward(Distance distance);
+    Vehicle moveForward(Distance distance);
 
-    Try<Vehicle> moveLeft(Distance distance);
+    Vehicle moveLeft(Distance distance);
 
-    Try<Vehicle> moveRight(Distance distance);
+    Vehicle moveRight(Distance distance);
 
-    Try<Vehicle> stop();
+    Vehicle stop();
 
     Coordinate currentPosition();
 
@@ -28,33 +26,33 @@ public interface Vehicle {
         }
 
         @Override
-        public Try<Vehicle> wakeUp() {
+        public Vehicle wakeUp() {
             System.out.println("vehicle is waking up.");
-            return Try.of(() -> this);
+            return this;
         }
 
         @Override
-        public Try<Vehicle> moveForward(Distance distance) {
+        public Vehicle moveForward(Distance distance) {
             System.out.println("moving forward " + distance);
-            return Try.of(() -> new Default(this.currentPosition().plus(new Coordinate(distance.getValue(), distance.getValue()))));
+            return new Default(this.currentPosition().plus(new Coordinate(distance.getValue(), distance.getValue())));
         }
 
         @Override
-        public Try<Vehicle> moveLeft(Distance distance) {
+        public Vehicle moveLeft(Distance distance) {
             System.out.println("moving left " + distance);
-            return Try.of(() -> new Default(this.currentPosition().plus(new Coordinate(distance.getValue(), 0))));
+            return new Default(this.currentPosition().plus(new Coordinate(distance.getValue(), 0)));
         }
 
         @Override
-        public Try<Vehicle> moveRight(Distance distance) {
+        public Vehicle moveRight(Distance distance) {
             System.out.println("moving right " + distance);
-            return Try.of(() -> new Default(this.currentPosition().plus(new Coordinate(0, distance.getValue()))));
+            return new Default(this.currentPosition().plus(new Coordinate(0, distance.getValue())));
         }
 
         @Override
-        public Try<Vehicle> stop() {
+        public Vehicle stop() {
             System.out.println("stopping the vehicle");
-            return Try.of(() -> this);
+            return this;
         }
 
         @Override
@@ -81,33 +79,33 @@ public interface Vehicle {
         }
 
         @Override
-        public Try<Vehicle> wakeUp() {
+        public Vehicle wakeUp() {
             System.out.println("vehicle is waking up.");
-            return Try.of(() -> new UnableToMoveForward(this.currentPosition()));
+            return new UnableToMoveForward(this.currentPosition());
         }
 
         @Override
-        public Try<Vehicle> moveForward(Distance distance) {
+        public Vehicle moveForward(Distance distance) {
             System.out.println("moving forward " + distance);
             throw new RuntimeException("Unable to move the vehicle forward");
         }
 
         @Override
-        public Try<Vehicle> moveLeft(Distance distance) {
+        public Vehicle moveLeft(Distance distance) {
             System.out.println("moving left " + distance);
-            return Try.of(() -> new UnableToMoveForward(this.currentPosition().plus(new Coordinate(distance.getValue(), 0))));
+            return new UnableToMoveForward(this.currentPosition().plus(new Coordinate(distance.getValue(), 0)));
         }
 
         @Override
-        public Try<Vehicle> moveRight(Distance distance) {
+        public Vehicle moveRight(Distance distance) {
             System.out.println("moving right " + distance);
-            return Try.of(() -> new UnableToMoveForward(this.currentPosition().plus(new Coordinate(0, distance.getValue()))));
+            return new UnableToMoveForward(this.currentPosition().plus(new Coordinate(0, distance.getValue())));
         }
 
         @Override
-        public Try<Vehicle> stop() {
+        public Vehicle stop() {
             System.out.println("stopping the vehicle");
-            return Try.of(() -> new UnableToMoveForward(this.currentPosition()));
+            return new UnableToMoveForward(this.currentPosition());
         }
 
         @Override
