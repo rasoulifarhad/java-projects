@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 // Common times
 // Compare Francs to Dollars
 // Currency?
+// Delete testFrancMultiplication?
 
 // 1. Add a little test
 // 2. Run all tests and fail
