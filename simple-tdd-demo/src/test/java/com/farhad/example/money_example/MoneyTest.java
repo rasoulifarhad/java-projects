@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 // Common equals
 // Common times
 // Compare Francs to Dollars
+// Currency?
 
 // 1. Add a little test
 // 2. Run all tests and fail
