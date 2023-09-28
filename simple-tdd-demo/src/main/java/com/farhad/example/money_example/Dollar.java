@@ -1,7 +1,6 @@
 package com.farhad.example.money_example;
 
-public class Dollar extends Money{
-
+public class Dollar extends Money {
 
     public Dollar(int amount) {
         this.amount = amount;
@@ -12,12 +11,12 @@ public class Dollar extends Money{
         return new Dollar(this.amount * multiplier);
     }
 
-    
-
-
     public int getAmount() {
         return amount;
     }
 
-    
+    @Override
+    String currency() {
+        return "USD";
+    }
 }
