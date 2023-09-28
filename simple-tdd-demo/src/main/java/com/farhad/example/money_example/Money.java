@@ -11,9 +11,14 @@ public abstract class Money {
                 this.getClass().equals(money.getClass());
     }    
 
+    static Franc franc(int amount) {
+         return new Franc(amount);
+    }
+
+
     static Money dollar(int amount) {
          return new Dollar(amount);
-    }
+    }    
 
     abstract Money times(int multiplier);
 }
