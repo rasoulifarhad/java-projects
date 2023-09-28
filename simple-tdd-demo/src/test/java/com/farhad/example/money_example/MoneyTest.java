@@ -6,23 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-// $5 + 10 CHF = $10 if rate is 2:1 
-// $5 * 2 = $10
-// Make “amount” private
-// Dollar side-effects?
-// Money rounding?
-// equals()
-// hashCode()
-// Equal null
-// Equal object
-// 5 CHF * 2 = 10 CHF
-// Dollar/Franc duplication
-// Common equals
-// Common times
-// Compare Francs to Dollars
-// Currency?
-// Delete testFrancMultiplication?
-
 // 1. Add a little test
 // 2. Run all tests and fail
 // 3. Make a little change
