@@ -3,7 +3,8 @@ package com.farhad.example.money_example;
 public abstract class Money {
    
     protected int amount;
-    
+    protected String currency;
+
     
     @Override
     public boolean equals(Object obj) {
@@ -22,5 +23,8 @@ public abstract class Money {
     }    
 
     abstract Money times(int multiplier);
-    abstract String currency();
+
+    String currency() {
+        return currency;
+    }
 }
