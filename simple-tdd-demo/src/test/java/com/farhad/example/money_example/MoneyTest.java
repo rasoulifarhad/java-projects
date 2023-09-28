@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 // hashCode()
 // Equal null
 // Equal object
+// 5 CHF * 2 = 10 CHF
 
 // 1. Add a little test
 // 2. Run all tests and fail
@@ -35,6 +36,13 @@ public class MoneyTest {
     public void testEquality() {
         assertTrue(new Dollar(5).equals(new Dollar(5)));
         assertFalse(new Dollar(5).equals(new Dollar(6)));
+    }
+
+    @Test
+    public void testFrancMultiplication() {
+        Franc five = new Franc(5);
+        assertEquals(new Franc(10), five.times(2));
+        assertEquals(new Franc(15), five.times(3));
     }
 
 }
