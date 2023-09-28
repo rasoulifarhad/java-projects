@@ -1,6 +1,6 @@
 package com.farhad.example.money_example;
 
-public class Dollar {
+public class Dollar extends Money{
 
     private int amount;
 
