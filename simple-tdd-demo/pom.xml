@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.farhad.example</groupId>
-	<artifactId>simple-java-project</artifactId>
+	<artifactId>simple-tdd-demo</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0</version>
 
