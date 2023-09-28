@@ -1,8 +1,9 @@
 package com.farhad.example.Knapsack_problem_0_1;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Knapsack {
     
     private final double value;
@@ -18,10 +19,12 @@ public class Knapsack {
             this.available - item.getWeight());
     }
 
+    // Allows knowing if the knapsack has enough available capacity to receive a given item.
     private boolean canAccept(Item item) {
         return item.getWeight() <= this.available;
     }
 
+    // Compares two Knapsack instances and returns the one with the greatest value.
     private Knapsack maxValue(Knapsack that) {
         return this.value >= that.value ? this : that;
     }
@@ -44,6 +47,8 @@ public class Knapsack {
             capacity);
     }    
 
+    // Takes a list of items and a Knapsack and returns the Knapsack (in fact a new one) 
+    // with as much value as possible packed into it. 
     // private static Knapsack pack(List<Item> items, Knapsack knapsack) {
 
     // }    
