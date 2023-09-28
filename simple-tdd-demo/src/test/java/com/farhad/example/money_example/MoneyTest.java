@@ -1,5 +1,7 @@
 package com.farhad.example.money_example;
 
+import static com.farhad.example.money_example.Money.dollar;
+import static com.farhad.example.money_example.Money.franc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,26 +18,32 @@ public class MoneyTest {
 
     @Test
     public void testMultiplication() {
-        Money five = Money.dollar(5);
-        assertEquals(Money.dollar(10), five.times(2));
-        assertEquals(Money.dollar(15), five.times(3));
+        Money five = dollar(5);
+        assertEquals(dollar(10), five.times(2));
+        assertEquals(dollar(15), five.times(3));
     }
 
     @Test
     public void testEquality() {
-        assertTrue(Money.dollar(5).equals(Money.dollar(5)));
-        assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        assertTrue(Money.franc(5).equals(Money.franc(5)));
-        assertFalse(Money.franc(5).equals(Money.franc(6)));
-        assertFalse(Money.franc(5).equals(Money.dollar(5)));
+        assertTrue(dollar(5).equals(dollar(5)));
+        assertFalse(dollar(5).equals(dollar(6)));
+        assertTrue(franc(5).equals(franc(5)));
+        assertFalse(franc(5).equals(franc(6)));
+        assertFalse(franc(5).equals(dollar(5)));
     }
 
 
     @Test
     public void testFrancMultiplication() {
-        Money five = Money.franc(5);
-        assertEquals(Money.franc(10), five.times(2));
-        assertEquals(Money.franc(15), five.times(3));
+        Money five = franc(5);
+        assertEquals(franc(10), five.times(2));
+        assertEquals(franc(15), five.times(3));
+    }
+
+    @Test
+    public void testCurrency() {
+        assertEquals("USD", dollar(1).currency());
+        assertEquals("CHF", franc(1).currency());
     }
 
 }
