@@ -32,13 +32,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- tag::joda[] -->
+
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.12.2</version> 
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
+
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -50,10 +50,8 @@
             <artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
-            <!-- <optional>true</optional> -->
+
         </dependency>
-		<!-- Logging -->
-		<!--  Using only for slf4j-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -71,15 +69,6 @@
 			<artifactId>datafaker</artifactId>
 			<version>1.9.0</version>
 		</dependency>
-		<!-- end::joda[] -->
-		<!-- 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
