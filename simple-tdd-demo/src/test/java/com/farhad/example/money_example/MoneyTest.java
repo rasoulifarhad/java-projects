@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 // Money rounding?
 // equals()
 // hashCode()
+// Equal null
+// Equal object
 
 // 1. Add a little test
 // 2. Run all tests and fail
@@ -26,9 +28,9 @@ public class MoneyTest {
     public void testMultiplication() {
         Dollar five = new Dollar(5);
         Dollar product = five.times(2);
-        assertEquals(10, product.amount);
+        assertEquals(10, product.getAmount());
         product = five.times(3); 
-        assertEquals(15, product.amount);
+        assertEquals(15, product.getAmount());
     }
 
     @Test
