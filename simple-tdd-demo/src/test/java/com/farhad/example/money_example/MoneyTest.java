@@ -30,14 +30,6 @@ public class MoneyTest {
         assertFalse(franc(5).equals(dollar(5)));
     }
 
-
-    @Test
-    public void testFrancMultiplication() {
-        Money five = franc(5);
-        assertEquals(franc(10), five.times(2));
-        assertEquals(franc(15), five.times(3));
-    }
-
     @Test
     public void testCurrency() {
         assertEquals("USD", dollar(1).currency());
