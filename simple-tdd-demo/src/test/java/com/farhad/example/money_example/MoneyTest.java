@@ -1,6 +1,7 @@
 package com.farhad.example.money_example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 // Make “amount” private
 // Dollar side-effects?
 // Money rounding?
+// equals()
+// hashCode()
 
 // 1. Add a little test
 // 2. Run all tests and fail
@@ -25,6 +28,11 @@ public class MoneyTest {
         assertEquals(10, product.amount);
         product = five.times(3); 
         assertEquals(15, product.amount);
+    }
+
+    @Test
+    public void testEquality() {
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
     }
 
 }
