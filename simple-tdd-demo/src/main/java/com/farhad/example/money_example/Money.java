@@ -1,6 +1,6 @@
 package com.farhad.example.money_example;
 
-public class Money {
+public abstract class Money {
    
     protected int amount;
     
@@ -11,7 +11,9 @@ public class Money {
                 this.getClass().equals(money.getClass());
     }    
 
-    static Dollar dollar(int amount) {
+    static Money dollar(int amount) {
          return new Dollar(amount);
     }
+
+    abstract Money times(int multiplier);
 }
