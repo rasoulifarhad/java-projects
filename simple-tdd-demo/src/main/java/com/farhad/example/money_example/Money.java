@@ -25,10 +25,11 @@ public class Money {
           return new Dollar(amount, "USD");
      }
 
-     public Money times(int multiplier){
-          return null;
-     }
+     public Money times(int multiplier) {
 
+          return new Money(this.amount * multiplier, currency);
+     }
+     
      String currency() {
           return currency;
      }
