@@ -17,12 +17,12 @@ public class Money {
                     this.currency().equals(money.currency());
      }
 
-     static Franc franc(int amount) {
-          return new Franc(amount, "CHF");
+     static Money franc(int amount) {
+          return new Money(amount, "CHF");
      }
 
      static Money dollar(int amount) {
-          return new Dollar(amount, "USD");
+          return new Money(amount, "USD");
      }
 
      public Money times(int multiplier) {
@@ -33,6 +33,10 @@ public class Money {
      String currency() {
           return currency;
      }
+
+     public int getAmount() {
+          return amount;
+     }     
 
      @Override
      public String toString() {
