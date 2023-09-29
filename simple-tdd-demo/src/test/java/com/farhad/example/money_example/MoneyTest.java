@@ -36,4 +36,10 @@ public class MoneyTest {
         assertEquals("CHF", franc(1).currency());
     }
 
+    @Test
+    public void testSimpleAddition() {
+        Money sum = dollar(5).plus(dollar(5));
+        assertEquals(dollar(10), sum);
+    }
+
 }
