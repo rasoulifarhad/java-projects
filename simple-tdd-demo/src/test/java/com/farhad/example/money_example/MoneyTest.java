@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.beans.Expression;
+
 import org.junit.jupiter.api.Test;
 
 // 1. Add a little test
@@ -38,7 +40,8 @@ public class MoneyTest {
 
     @Test
     public void testSimpleAddition() {
-        Money sum = dollar(5).plus(dollar(5));
+        Money five = dollar(5);
+        Expression sum = five.plus(five);
         Bank bank = new Bank();
         Money reduced = bank.reduce(sum, "USD");
         assertEquals(dollar(10), reduced);
