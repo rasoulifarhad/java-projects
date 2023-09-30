@@ -1,7 +1,11 @@
 package com.farhad.example.factory_method.pizastore.pizzas;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.cheese.Cheese;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clams;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.dough.Dough;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.pepperoni.Pepperoni;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.sauce.Sauce;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.veggies.Veggies;
 
 import lombok.Getter;
 //
@@ -36,27 +40,41 @@ import lombok.Getter;
 // We’ve got the same product families (dough, sauce, cheese, veggies, meats) but different 
 // implementations based on region.
 //
+
+// Each pizza holds a set of ingredients that are used in its preparation.
+// 
+// We’ve now made the prepare method abstract. This is where we are going to collect the
+// ingredients needed for the pizza, which of course will come from the ingredient factory.
 public abstract class Pizza {
 
     @Getter
     String name;
 
-    String dough;
+    Dough dough;
 
-    String sauce; 
+    Sauce sauce; 
+    
+    Veggies[] veggies;
 
-    List<String> toppings = new ArrayList<>();
+    Cheese cheese;
 
-    public void prepare() {
-        System.out.println("Preparing " + name);
-        System.out.println("Tossing dough..." );
-        System.out.println("Adding sauce... ");
-        System.out.println("Adding toppings...");
-        for (String topping : toppings) {
-            System.out.println("    " + topping);
-        }
+    Pepperoni pepperoni;
 
-    }
+    Clams clams;
+
+
+    // List<String> toppings = new ArrayList<>();
+
+    public abstract void prepare();
+    // public void prepare() {
+    //     System.out.println("Preparing " + name);
+    //     System.out.println("Tossing dough..." );
+    //     System.out.println("Adding sauce... ");
+    //     System.out.println("Adding toppings...");
+    //     for (String topping : toppings) {
+    //         System.out.println("    " + topping);
+    //     }
+    // }
 
     public void bake() {
         System.out.println("Bake for 25 minutes at 350");        
