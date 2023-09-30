@@ -20,3 +20,4 @@ Kent Beck, Three Rivers Institute
 // Currency?
 // Delete testFrancMultiplication?
 // Return Money from $5 + $5
+// Bank.reduce(Money)
