@@ -1,7 +1,7 @@
 package com.farhad.example.factory_method.pizastore.pizzas;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.cheese.Cheese;
-import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clams;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clam;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.dough.Dough;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.pepperoni.Pepperoni;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.sauce.Sauce;
@@ -40,6 +40,7 @@ import lombok.Getter;
 // We’ve got the same product families (dough, sauce, cheese, veggies, meats) but different 
 // implementations based on region.
 //
+import lombok.Setter;
 
 // Each pizza holds a set of ingredients that are used in its preparation.
 // 
@@ -48,6 +49,7 @@ import lombok.Getter;
 public abstract class Pizza {
 
     @Getter
+    @Setter
     String name;
 
     Dough dough;
@@ -60,7 +62,7 @@ public abstract class Pizza {
 
     Pepperoni pepperoni;
 
-    Clams clams;
+    Clam clam;
 
 
     // List<String> toppings = new ArrayList<>();

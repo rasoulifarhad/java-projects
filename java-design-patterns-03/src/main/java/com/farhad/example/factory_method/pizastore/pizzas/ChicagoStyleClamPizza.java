@@ -16,6 +16,7 @@ public class ChicagoStyleClamPizza extends Pizza {
         dough = pizzaIngredientFactory.createDough();
         sauce = pizzaIngredientFactory.createSauce();
         cheese = pizzaIngredientFactory.createCheese();
+        clam = pizzaIngredientFactory.createClam();
     }
 
 }

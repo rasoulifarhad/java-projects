@@ -4,7 +4,7 @@ import com.farhad.example.factory_method.pizastore.ingredient_factories.PizzaIng
 
 public class ChicagoStyleVeggiePizza extends Pizza {
 
-        private PizzaIngredientFactory pizzaIngredientFactory ;
+    private PizzaIngredientFactory pizzaIngredientFactory ;
 
     public ChicagoStyleVeggiePizza(PizzaIngredientFactory pizzaIngredientFactory) {
         this.pizzaIngredientFactory = pizzaIngredientFactory;

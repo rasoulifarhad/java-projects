@@ -7,7 +7,6 @@ public class NYStyleCheesePizza extends Pizza {
     private PizzaIngredientFactory pizzaIngredientFactory ;
 
     public NYStyleCheesePizza(PizzaIngredientFactory pizzaIngredientFactory) {
-        name = "NY Style Sauce and Cheese Pizza";
         this.pizzaIngredientFactory = pizzaIngredientFactory;
     }
 

@@ -1,5 +1,5 @@
 package com.farhad.example.factory_method.pizastore.ingredient_factories.clams;
 
-public class FrozenClams extends Clams {
+public class FrozenClams extends Clam {
 
 }

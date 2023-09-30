@@ -1,7 +1,7 @@
 package com.farhad.example.factory_method.pizastore.ingredient_factories;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.cheese.Cheese;
-import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clams;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clam;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.dough.Dough;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.pepperoni.Pepperoni;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.sauce.Sauce;
@@ -17,5 +17,5 @@ public interface PizzaIngredientFactory {
     Cheese createCheese();
     Veggies[] createVeggies();
     Pepperoni createPepperoni();
-    Clams createClam();
+    Clam createClam();
 }

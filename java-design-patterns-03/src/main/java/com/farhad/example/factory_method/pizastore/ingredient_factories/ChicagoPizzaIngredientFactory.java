@@ -2,7 +2,7 @@ package com.farhad.example.factory_method.pizastore.ingredient_factories;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.cheese.Cheese;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.cheese.MozzarellaCheese;
-import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clams;
+import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.Clam;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.clams.FrozenClams;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.dough.Dough;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.dough.ThickCrustDough;
@@ -45,7 +45,7 @@ public class ChicagoPizzaIngredientFactory implements PizzaIngredientFactory {
     }
 
     @Override
-    public Clams createClam() {
+    public Clam createClam() {
         return new FrozenClams();
     }
 
