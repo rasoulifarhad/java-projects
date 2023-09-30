@@ -2,17 +2,19 @@ package com.farhad.example.factory_method.pizastore.pizzas;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.PizzaIngredientFactory;
 
-public class NYStyleCheesePizza extends Pizza {
+public class CheesePizza extends Pizza {
     
     private PizzaIngredientFactory pizzaIngredientFactory ;
 
-    public NYStyleCheesePizza(PizzaIngredientFactory pizzaIngredientFactory) {
+    public CheesePizza(PizzaIngredientFactory pizzaIngredientFactory) {
         this.pizzaIngredientFactory = pizzaIngredientFactory;
     }
 
-    // The prepare() method steps through creating
-    // a cheese pizza, and each time it needs an 
-    // ingredient, it asks the factory to produce it.
+    @Override
+    public void cut() {
+        System.out.println("Cutting the pizza into square slices");
+    }
+
     @Override
     public void prepare() {
         System.out.println("preparing " + name);
@@ -20,4 +22,6 @@ public class NYStyleCheesePizza extends Pizza {
         sauce = pizzaIngredientFactory.createSauce();
         cheese = pizzaIngredientFactory.createCheese();
     }
+
+    
 }

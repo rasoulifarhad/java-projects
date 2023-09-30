@@ -2,11 +2,11 @@ package com.farhad.example.factory_method.pizastore.pizzas;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.PizzaIngredientFactory;
 
-public class ChicagoStylePepperoniPizza extends Pizza {
+public class VeggiePizza extends Pizza {
 
     private PizzaIngredientFactory pizzaIngredientFactory ;
 
-    public ChicagoStylePepperoniPizza(PizzaIngredientFactory pizzaIngredientFactory) {
+    public VeggiePizza(PizzaIngredientFactory pizzaIngredientFactory) {
         this.pizzaIngredientFactory = pizzaIngredientFactory;
     }
 

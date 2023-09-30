@@ -2,17 +2,12 @@ package com.farhad.example.factory_method.pizastore.pizzas;
 
 import com.farhad.example.factory_method.pizastore.ingredient_factories.PizzaIngredientFactory;
 
-public class ChicagoStyleCheesePizza extends Pizza {
-    
+public class PepperoniPizza extends Pizza {
+
     private PizzaIngredientFactory pizzaIngredientFactory ;
 
-    public ChicagoStyleCheesePizza(PizzaIngredientFactory pizzaIngredientFactory) {
+    public PepperoniPizza(PizzaIngredientFactory pizzaIngredientFactory) {
         this.pizzaIngredientFactory = pizzaIngredientFactory;
-    }
-
-    @Override
-    public void cut() {
-        System.out.println("Cutting the pizza into square slices");
     }
 
     @Override
@@ -23,5 +18,4 @@ public class ChicagoStyleCheesePizza extends Pizza {
         cheese = pizzaIngredientFactory.createCheese();
     }
 
-    
 }

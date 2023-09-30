@@ -3,15 +3,11 @@ package com.farhad.example.factory_method.pizastore.pizzastores;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.ChicagoPizzaIngredientFactory;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.NYPizzaIngredientFactory;
 import com.farhad.example.factory_method.pizastore.ingredient_factories.PizzaIngredientFactory;
-import com.farhad.example.factory_method.pizastore.pizzas.ChicagoStyleCheesePizza;
-import com.farhad.example.factory_method.pizastore.pizzas.ChicagoStyleClamPizza;
-import com.farhad.example.factory_method.pizastore.pizzas.ChicagoStylePepperoniPizza;
-import com.farhad.example.factory_method.pizastore.pizzas.ChicagoStyleVeggiePizza;
-import com.farhad.example.factory_method.pizastore.pizzas.NYStyleCheesePizza;
-import com.farhad.example.factory_method.pizastore.pizzas.NYStyleClamPizza;
-import com.farhad.example.factory_method.pizastore.pizzas.NYStylePepperoniPizza;
-import com.farhad.example.factory_method.pizastore.pizzas.NYStyleVeggiePizza;
+import com.farhad.example.factory_method.pizastore.pizzas.CheesePizza;
+import com.farhad.example.factory_method.pizastore.pizzas.ClamPizza;
+import com.farhad.example.factory_method.pizastore.pizzas.PepperoniPizza;
 import com.farhad.example.factory_method.pizastore.pizzas.Pizza;
+import com.farhad.example.factory_method.pizastore.pizzas.VeggiePizza;
 
 public class DependentPizzaStore {
     
@@ -21,16 +17,16 @@ public class DependentPizzaStore {
 
             PizzaIngredientFactory factory = new NYPizzaIngredientFactory();
             if(type.equals("cheese")) {
-                pizza = new NYStyleCheesePizza(factory);
+                pizza = new CheesePizza(factory);
                 pizza.setName("New York Style Cheese Pizza");
             } else if (type.equals("veggie")) {
-                pizza = new NYStyleVeggiePizza(factory);
+                pizza = new VeggiePizza(factory);
                 pizza.setName("New York Style Veggie Pizza");
             } else if (type.equals("clam")) {
-                pizza = new NYStyleClamPizza(factory);
+                pizza = new ClamPizza(factory);
                 pizza.setName("New York Style Clam Pizza");
             } else if (type.equals("pepperoni")) {
-                pizza = new NYStylePepperoniPizza(factory);
+                pizza = new PepperoniPizza(factory);
                 pizza.setName("New York Style Pepperoni Pizza");
             } 
 
@@ -38,16 +34,16 @@ public class DependentPizzaStore {
 
             PizzaIngredientFactory factory = new ChicagoPizzaIngredientFactory();
             if(type.equals("cheese")) {
-                pizza = new ChicagoStyleCheesePizza(factory);
+                pizza = new CheesePizza(factory);
                 pizza.setName("Chicago Style Cheese Pizza");
             } else if (type.equals("veggie")) {
-                pizza = new ChicagoStyleVeggiePizza(factory);
+                pizza = new VeggiePizza(factory);
                 pizza.setName("Chicago Style Veggie Pizza");
             } else if (type.equals("clam")) {
-                pizza = new ChicagoStyleClamPizza(factory);
+                pizza = new ClamPizza(factory);
                 pizza.setName("Chicago Style Clam Pizza");
             } else if (type.equals("pepperoni")) {
-                pizza = new ChicagoStylePepperoniPizza(factory);
+                pizza = new PepperoniPizza(factory);
                 pizza.setName("Chicago Style Pepperoni Pizza");
             } 
 
