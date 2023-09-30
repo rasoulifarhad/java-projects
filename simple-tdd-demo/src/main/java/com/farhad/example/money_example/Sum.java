@@ -9,4 +9,9 @@ public class Sum implements Expression{
 
     private Money addend;
     private Money augend;
+
+    public Money reduce(String to) {
+        int amount = augend.amount + addend.amount;
+        return Money.dollar(amount);
+    }
 }
