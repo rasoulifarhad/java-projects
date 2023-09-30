@@ -19,3 +19,4 @@ Kent Beck, Three Rivers Institute
 // Compare Francs to Dollars
 // Currency?
 // Delete testFrancMultiplication?
+// Return Money from $5 + $5
