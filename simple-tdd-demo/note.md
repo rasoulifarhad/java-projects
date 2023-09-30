@@ -22,3 +22,4 @@ Kent Beck, Three Rivers Institute
 // Return Money from $5 + $5
 // Bank.reduce(Money)
 // Reduce Money with conversion
+// Reduce(Bank, String)
