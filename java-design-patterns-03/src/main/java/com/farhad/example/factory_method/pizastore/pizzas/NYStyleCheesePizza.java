@@ -11,13 +11,9 @@ public class NYStyleCheesePizza extends Pizza {
         this.pizzaIngredientFactory = pizzaIngredientFactory;
     }
 
-    // public NYStyleCheesePizza() {
-    //     name = "NY Style Sauce and Cheese Pizza";
-    //     dough = "Thin Crust Dough";
-    //     sauce = "Marinara Sauce";
-    //     toppings.add("Grated Reggiano Cheese");
-    // }
-
+    // The prepare() method steps through creating
+    // a cheese pizza, and each time it needs an 
+    // ingredient, it asks the factory to produce it.
     @Override
     public void prepare() {
         System.out.println("preparing " + name);
