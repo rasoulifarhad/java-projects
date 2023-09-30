@@ -21,3 +21,4 @@ Kent Beck, Three Rivers Institute
 // Delete testFrancMultiplication?
 // Return Money from $5 + $5
 // Bank.reduce(Money)
+// Reduce Money with conversion
