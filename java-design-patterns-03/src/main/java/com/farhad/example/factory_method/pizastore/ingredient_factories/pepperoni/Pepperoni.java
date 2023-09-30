@@ -1,5 +1,5 @@
 package com.farhad.example.factory_method.pizastore.ingredient_factories.pepperoni;
 
-public class Pepperoni {
+public interface Pepperoni {
 
 }

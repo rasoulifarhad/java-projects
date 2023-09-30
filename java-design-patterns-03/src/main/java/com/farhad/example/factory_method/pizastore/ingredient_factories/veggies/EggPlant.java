@@ -1,5 +1,5 @@
 package com.farhad.example.factory_method.pizastore.ingredient_factories.veggies;
 
-public class EggPlant extends Veggies {
+public class EggPlant implements Veggies {
 
 }
