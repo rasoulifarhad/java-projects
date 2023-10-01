@@ -15,4 +15,16 @@ public class Sum implements Expression{
                 addend.reduce(bank, to).amount;
         return new Money(amount, to);
     }
+
+    @Override
+    public Expression times(int multiplier) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'times'");
+    }
+
+    @Override
+    public Expression plus(Expression addend) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'plus'");
+    }
 }
