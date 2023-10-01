@@ -5,8 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
 public class Db {
     
+    private static BasicDataSource dataSource;
+
     private static String db = "jdbc:h2:~/test";
     private static String user = "sa";
     private static String password = "";
@@ -45,5 +51,19 @@ public class Db {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-    }    
+    } 
+    
+    public static DataSource setupDataSource(String connectURI) {
+        if(dataSource == null) {
+            dataSource = new BasicDataSource();
+            dataSource.setDriverClassName(driver);
+            dataSource.setUrl(db);
+        }
+        return dataSource;
+    }   
+
+    public static void shutdownDataSource(DataSource ds) throws SQLException {
+        BasicDataSource bds = (BasicDataSource) ds;
+        bds.close();    
+    } 
 }

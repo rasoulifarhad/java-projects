@@ -24,7 +24,8 @@
     	<htmlunit.version>2.70.0</htmlunit.version>		
     	<gson.version>2.10.1</gson.version>		
     	<guice.version>5.1.0</guice.version>
-    	<system-lambda.version>1.1.0</system-lambda.version>							
+    	<system-lambda.version>1.1.0</system-lambda.version>	
+		<commons.pool.version>2.10.0</commons.pool.version>								
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -148,7 +149,24 @@
 			<artifactId>h2</artifactId>
 			<version>2.1.214</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons.pool.version}</version>
+		  </dependency>
+	  
+		  <dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		  </dependency>
+		  <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.13.0</version>
+			<scope>test</scope>
+		  </dependency>
+	  
 	</dependencies>
 
 	<build>
