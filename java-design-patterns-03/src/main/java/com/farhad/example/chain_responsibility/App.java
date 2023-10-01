@@ -21,6 +21,7 @@ public class App {
             new Calibrate("HUW", "PORT", "ADSL", 2));
         System.out.println(calibratedData);
         
+        // calibratedData = new DeviceTypeCalibration(new TechTypeCalibration( new HuwCalibration())).calibrate();
     }
 
 }
