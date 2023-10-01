@@ -68,4 +68,14 @@ public class MoneyTest {
         Money result = bank.reduce(dollar(1), "USD");
         assertEquals(result, dollar(1));
     }
+
+    @Test
+    public void testReduceMoneyDifferentCurrency() {    
+        Bank bank = new Bank();
+        bank.reduce(null, null);
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(franc(2), "USD");
+        assertEquals(dollar(1) ,result);
+
+    }
 }
