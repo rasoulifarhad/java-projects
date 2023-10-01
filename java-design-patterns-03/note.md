@@ -1,0 +1,1 @@
+See https://timepasstechies.com/category/programming/design-patterns/
