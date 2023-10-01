@@ -112,6 +112,6 @@ public class MoneyTest {
         bank .addRate("CHF", "USD", 2);
         Expression sum = new Sum(fiveBucks, tenFranks).times(2);
         Money result = bank.reduce(sum, "USD");
-        assertEquals( dollar(2), result);
+        assertEquals( dollar(20), result);
     }    
 }
