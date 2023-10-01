@@ -18,13 +18,11 @@ public class Sum implements Expression{
 
     @Override
     public Expression times(int multiplier) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'times'");
+        return null;
     }
 
     @Override
     public Expression plus(Expression addend) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'plus'");
+        return null;
     }
 }
