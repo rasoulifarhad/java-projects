@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class Sum implements Expression{
 
-    private Money addend;
-    private Money augend;
+    private Expression addend;
+    private Expression augend;
 
     public Money reduce(Bank bank, String to) {
         int amount = augend.reduce(bank, to).amount + 
