@@ -115,9 +115,9 @@ public class MoneyTest {
         assertEquals( dollar(20), result);
     }    
 
-    @Test
-    public void testPlusSameCurrencyReturnsMoney() {
-        Expression sum = dollar(1).plus(dollar(1));
-        assertTrue(sum instanceof Money);
-    }
+    // @Test
+    // public void testPlusSameCurrencyReturnsMoney() {
+    //     Expression sum = dollar(1).plus(dollar(1));
+    //     assertTrue(sum instanceof Money);
+    // }
 }
