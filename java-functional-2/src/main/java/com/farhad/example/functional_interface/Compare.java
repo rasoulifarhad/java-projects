@@ -2,9 +2,11 @@ package com.farhad.example.functional_interface;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class Compare {
     
@@ -49,6 +51,25 @@ public class Compare {
         people.stream()
             .max(Person::ageDifference)
             .ifPresent(eldest -> System.out.println("eldest: " + eldest));
+
+        Function<Person, String> byName = person -> person.getName();
+        Function<Person, Integer> byAge = person -> person.getAge();
+
+        printPeople("Sorted in ascending order by age and name: ",
+            people.stream()
+                .sorted(Comparator.comparing(byAge).thenComparing(byName))
+                .collect(toList()));
+        List<Person> olderThan20 = new ArrayList<>();
+        people.stream()
+            .filter(person -> person.getAge() > 20)
+            .forEach(person -> olderThan20.add(person));
+        System.out.println("People older than 20: " + olderThan20);   
+        List<Person> olderThan20_1 = 
+            people.stream()
+                .filter(person -> person.getAge() > 20 )
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        System.out.println("People older than 20: " + olderThan20);   
+
     }
 
     private static void printPeople(final String message, final List<Person> people) {
