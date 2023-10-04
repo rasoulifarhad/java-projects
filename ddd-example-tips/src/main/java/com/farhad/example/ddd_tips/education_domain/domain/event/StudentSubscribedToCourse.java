@@ -3,6 +3,7 @@ package com.farhad.example.ddd_tips.education_domain.domain.event;
 import java.time.Instant;
 
 import com.farhad.example.ddd_tips.education_domain.domain.model.CourseSubscription;
+import com.farhad.example.ddd_tips.education_domain.domain.model.Student;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
@@ -12,6 +13,7 @@ import lombok.Value;
 public class StudentSubscribedToCourse implements DomainEvent{
     
     private CourseSubscription course;
+    private Student student;
     private Instant eventDate;
 
     @Override
