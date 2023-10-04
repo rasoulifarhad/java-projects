@@ -104,6 +104,13 @@ package com.farhad.example.ddd_tips.education_domain;
  *   Student Subscribed to Course Event, Student Unsubscribed from Course Event
  * 
  * The nouns become our aggregates. <<Student>>
+ * 
+ * The STUDENT aggregate 
+ *       +---------+       +--------------+                 
+ *       |         |      *|              |  Subscribe Student to Course Command
+ *       | Student |------>| Subscription |  Unsubscribe Student from Course Command
+ *       |         |       |              |
+ *       +---------+       +--------------+
  */                        
 public class EducationDomainDemo {
     
