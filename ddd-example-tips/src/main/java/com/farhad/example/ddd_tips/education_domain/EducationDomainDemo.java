@@ -111,6 +111,26 @@ package com.farhad.example.ddd_tips.education_domain;
  *       | Student |------>| Subscription |  Unsubscribe Student from Course Command
  *       |         |       |              |
  *       +---------+       +--------------+
+ * 
+ * we need  some of synchronization:
+ * 
+ *  +------------------------+   
+ *  | Saga                   |         +-------------------+ +--------------------+
+ *  |  +-------------------+ |     (1) | Subscribe Student | | Student Subscribed |
+ *  |  | Subscribe Student | | /------>|         to        | |         to         |
+ *  |  |       to          | | |       |   Course Command  | |     Course Event   |
+ *  |  | Course Command    |----       +-------------------+ +--------------------+  
+ *  |  +-------------------+ | |                       | Student |
+ *  |                        | |                       +---------/
+ *  |                        | |
+ *  |                        | |
+ *  |                        | |       +-------------------+ +--------------------+
+ *  |                        | |       | Subscribe Student | | Student Subscribed |
+ *  |                        | \------>|         to        | |         to         |
+ *  |                        |     (1) |   Course Command  | |     Course Event   |
+ *  |                        |         +-------------------+ +--------------------+ 
+ *  |                        |                          | Course |
+ *  +------------------------+                          +--------/
  */                        
 public class EducationDomainDemo {
     
