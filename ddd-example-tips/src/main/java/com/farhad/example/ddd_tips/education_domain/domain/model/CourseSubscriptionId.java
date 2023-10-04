@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor
-public class CourseId {
+public class CourseSubscriptionId {
     
     private String uuid;
 }

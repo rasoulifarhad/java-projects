@@ -2,11 +2,16 @@ package com.farhad.example.ddd_tips.education_domain.domain.event;
 
 import java.time.Instant;
 
-import com.farhad.example.ddd_tips.education_domain.domain.model.Course;
+import com.farhad.example.ddd_tips.education_domain.domain.model.CourseInfo;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
+@Value
+@AllArgsConstructor
 public class CourseRenamed implements DomainEvent {
     
-    private Course course;
+    private CourseInfo courseInfo;
     private Instant eventDate;
 
     @Override
