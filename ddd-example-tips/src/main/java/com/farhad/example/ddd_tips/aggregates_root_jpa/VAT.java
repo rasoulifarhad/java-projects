@@ -5,6 +5,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import lombok.NonNull;
+
 public class VAT implements ValueObject{
     
     private final int percentage;
@@ -68,7 +70,7 @@ public class VAT implements ValueObject{
     @NonNull
     public Money subtractTax(@NonNull Money amount) {
         Objects.requireNonNull(amount, "amount must not be null");
-        var withoutTax = (amount.fixedPointAmount() * 100) / (percentage + 100);
+        int withoutTax = (amount.fixedPointAmount() * 100) / (percentage + 100);
         return new Money(amount.currency(), withoutTax);
     }
 
@@ -81,7 +83,7 @@ public class VAT implements ValueObject{
     @NonNull
     public Money calculateTax(@NonNull Money amount) {
         Objects.requireNonNull(amount, "amount must not be null");
-        var tax = (amount.fixedPointAmount() * percentage) / 100;
+        int tax = (amount.fixedPointAmount() * percentage) / 100;
         return new Money(amount.currency(), tax);
     }
 
