@@ -1,8 +1,11 @@
 package com.farhad.example.ddd_tips.education_domain.domain.event;
 
-import java.time.Instant;
+import java.util.List;
+
+import com.farhad.example.ddd_tips.education_domain.domain.model.DomainIdentifier;
 
 public interface DomainEvent {
     
-    Instant occurredOn();
+    Event event();
+    List<DomainIdentifier> domainIdentiﬁers();
 }
