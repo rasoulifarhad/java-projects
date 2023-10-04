@@ -276,6 +276,8 @@ saga-11 *
  *      - No owner of the event 
  *      - The business decision can easily involve several domain concepts 
  *      - The decision is taken in one place 
+ * 
+ * See https://www.slideshare.net/saratry/the-aggregate-is-dead-long-live-the-aggregate-springiopdf
  */       
 
 public class EducationDomainDemo {
