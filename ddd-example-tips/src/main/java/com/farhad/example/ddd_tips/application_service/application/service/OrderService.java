@@ -1,13 +1,13 @@
-package com.farhad.example.ddd_tips.application_service.application.order;
+package com.farhad.example.ddd_tips.application_service.application.service;
 
 import java.util.List;
 
-import com.farhad.example.ddd_tips.application_service.application.client.ClientAccessException;
-import com.farhad.example.ddd_tips.application_service.application.client.ClientProvider;
 import com.farhad.example.ddd_tips.application_service.domain.model.client.Client;
+import com.farhad.example.ddd_tips.application_service.domain.model.client.ClientAccessException;
+import com.farhad.example.ddd_tips.application_service.domain.model.client.ClientProvider;
 import com.farhad.example.ddd_tips.application_service.domain.model.order.Order;
-import com.farhad.example.ddd_tips.application_service.domain.model.order.OrderAccessPolicy;
 import com.farhad.example.ddd_tips.application_service.domain.model.order.OrderRepository;
+import com.farhad.example.ddd_tips.application_service.domain.model.order.access.OrderAccessPolicy;
 import com.farhad.example.ddd_tips.application_service.domain.model.product.Product;
 
 import lombok.NonNull;
@@ -39,10 +39,11 @@ public class OrderService {
 
     private Order placeOrderFor(Order order, Client client) {
         return order.place(client, orderAccessPolicy)
-            .orElseGet(() -> handleOrderPlacementFailure(order));
+            .getOrElse(() -> handleOrderPlacementFailure(order));
     }
 
     private Order handleOrderPlacementFailure(Order order) {
-        return order.reject();
+        order.reject();
+        return order;
     }
 }

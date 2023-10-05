@@ -18,16 +18,18 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.farhad.example.ddd_tips.application_service.application.client.ClientProvider;
+import com.farhad.example.ddd_tips.application_service.application.service.OrderService;
 import com.farhad.example.ddd_tips.application_service.domain.model.client.Client;
+import com.farhad.example.ddd_tips.application_service.domain.model.client.ClientProvider;
 import com.farhad.example.ddd_tips.application_service.domain.model.order.Order;
-import com.farhad.example.ddd_tips.application_service.domain.model.order.OrderAccessPolicy;
 import com.farhad.example.ddd_tips.application_service.domain.model.order.OrderRepository;
+import com.farhad.example.ddd_tips.application_service.domain.model.order.access.OrderAccessPolicy;
 import com.farhad.example.ddd_tips.application_service.domain.model.product.Product;
 
 import io.vavr.control.Either;
 
 // See https://betterprogramming.pub/the-benefits-of-overlapping-sociable-tests-in-domain-testing-63bb9b6a0a6d
+// See https://github.com/djurasze/SociableDomainUnitTesting
 @ExtendWith(MockitoExtension.class)
 public class SolitaryOrderServiceTest {
 
@@ -83,4 +85,20 @@ public class SolitaryOrderServiceTest {
             // TODO: handle exception
         }
     }
+
+    @Test
+    void shouldRenderReportForSingleProduct() {
+      // given
+       Order order = Order.init("client_1");
+       Product product = new Product("product_1", 100);
+       order.add(Arrays.asList(product));
+       String expectedReport = String.format("Order report:%n %s", product.render());
+   
+       // when
+       String report = order.renderReport();
+   
+       // then
+      assertThat(report)
+        .isEqualTo(expectedReport);
+    }    
 }

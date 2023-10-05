@@ -1,4 +1,4 @@
-package com.farhad.example.ddd_tips.application_service.application.client;
+package com.farhad.example.ddd_tips.application_service.domain.model.client;
 
 public class ClientAccessException extends RuntimeException {
     
