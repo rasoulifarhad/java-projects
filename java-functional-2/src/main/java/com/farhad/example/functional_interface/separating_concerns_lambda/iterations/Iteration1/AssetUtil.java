@@ -30,8 +30,35 @@ public class AssetUtil {
                 .sum();
     }
 
+    public static int totalBondValuesBetter(List<Asset> assets) {
+        return assets.stream()
+                .filter(asset -> asset.getType() == AssetType.BOND)
+                .mapToInt(Asset::getValue)
+                .sum();
+    }
+
+    public static int totalStockValues(List<Asset> assets) {
+        return assets.stream()
+                .mapToInt(asset -> 
+                    asset.getType() == AssetType.STOCK
+                            ? asset.getValue()
+                            : 0)
+                .sum();
+    }
+
+    public static int totalStockValuesBetter(List<Asset> assets) {
+        return assets.stream()
+                .filter(asset -> asset.getType() == AssetType.STOCK)
+                .mapToInt(Asset::getValue)
+                .sum();
+    }
 
     public static void main(String[] args) {
-        System.out.println("Total of all assets: " + totalAssetValues(assets));        
+        System.out.println("Total of all assets: " + totalAssetValues(assets));   
+        System.out.println("Total of bond assets: " + totalBondValues(assets));        
+        System.out.println("Total of bond assets: " + totalBondValuesBetter(assets));        
+        System.out.println("Total of stock assets: " + totalStockValues(assets));        
+        System.out.println("Total of stock assets: " + totalStockValuesBetter(assets));        
+
     }
 }
