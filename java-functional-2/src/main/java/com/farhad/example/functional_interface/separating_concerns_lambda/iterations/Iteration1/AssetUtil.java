@@ -21,6 +21,16 @@ public class AssetUtil {
                 .sum();
     }
 
+    public static int totalBondValues(List<Asset> assets) {
+        return assets.stream()
+                .mapToInt(asset -> 
+                    asset.getType() == AssetType.BOND
+                            ? asset.getValue()
+                            : 0)
+                .sum();
+    }
+
+
     public static void main(String[] args) {
         System.out.println("Total of all assets: " + totalAssetValues(assets));        
     }

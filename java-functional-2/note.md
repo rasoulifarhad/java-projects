@@ -10,3 +10,9 @@ We often create classes to reuse code; we have good intentions, but it’s not a
 ##### Exploring Design Concerns
 
 **Example: Sum asset values**
+
+Concerns:
+
+- how to iterate, 
+- what to total, and 
+- how to total
