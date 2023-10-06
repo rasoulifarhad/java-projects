@@ -25,7 +25,7 @@ public class ListSubDirs {
                 files.addAll(Arrays.asList(filesInSubDir));
             } else {
                 files.add(file);
-            }
+            } 
         }
         System.out.println("Count: " + files.size());
     }
@@ -38,6 +38,6 @@ public class ListSubDirs {
                         ? Stream.of(file)
                         : Stream.of(file.listFiles()))
                 .collect(toList());
-        System.out.println("Count: " + files.size());
+        System.out.println("Count: " + files.size()); 
     }
 }
