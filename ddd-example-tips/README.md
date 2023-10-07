@@ -101,3 +101,18 @@ infrastructure
 
 - Implement the business logic on an entity method and **get external dependencies as parameters** of the method.
 - Create a **Domain Service**.
+
+#### Repositories
+
+Common Repository principles are;
+
+- Define a repository **interface in the Domain Layer** (because it is used in the Domain and Application Layers), **implement in the Infrastructure Layer**.
+- **Do not include business logic** inside the repositories.
+- Repository interface should be **database provider / ORM independent**.
+- **Create repositories for aggregate roots**, not for all entities. Because, sub-collection entities (of an aggregate) should be accessed over the aggregate root.
+
+#### Do Not Include Domain Logic in Repositories
+
+#### Specification 
+
+A specification is a named, reusable, combinable and testable class to filter the Domain Objects based on the business rules.
