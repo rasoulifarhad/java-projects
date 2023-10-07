@@ -2,7 +2,7 @@ package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.applica
 
 public interface UserApplicationService {
 	
-	void create(UserDTO input);
-	void update(UserDTO input);
-	void changePassword(UserDTO input);
+	void create(UserCreationDTO input);
+	void update(UserUpdateDTO input);
+	void changePassword(UserChangePasswordDTO input);
 }
