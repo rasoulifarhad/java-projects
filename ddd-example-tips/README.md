@@ -128,3 +128,16 @@ Domain Services work with Domain Objects. Their methods can **get and return ent
 
 e.g. Assigning an issue to a user 
 
+#### Application Services
+
+- An **Application Service** is a stateless service that implements **use cases** of the application. 
+- An **application service** typically **gets and returns DTOs**. 
+- It is used by the **Presentation Layer**. 
+- It **uses and coordinates the domain objects** (entities, repositories, etc.) to implement the **use cases**.
+
+Common principles of an application service are:
+
+- Implement the **application logic** that is specific to the current use-case. Do not implement the core domain logic inside the application services.
+- **Never get or return entities** for an application service method. This breaks the encapsulation of the Domain Layer. Always **get and return DTOs**.
+
+e.g. Assigning an issue to a user 

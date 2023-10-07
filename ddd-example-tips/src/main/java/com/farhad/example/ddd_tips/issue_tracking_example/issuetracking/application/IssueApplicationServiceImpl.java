@@ -5,7 +5,13 @@ import static com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.d
 
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.CreateCommentDTO;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueApplicationService;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueAssignDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.IssueManager;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.IssueRepository;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.UserRepository;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.BusinessException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,15 +19,30 @@ import lombok.RequiredArgsConstructor;
 public class IssueApplicationServiceImpl implements IssueApplicationService {
 
 	private final IssueRepository issueRerpository;
+	private final UserRepository userRepository;
+	private final IssueManager issueManager; 
 
 
 	@Override
-	public void CreateComment(CreateCommentDTO input) {
+	public void createComment(CreateCommentDTO input) {
 		issueRerpository.findById(from(input.getIssueId()))
 				.ifPresent(issue -> {
 					issue.addComment(USER_1.getUserId(), input.getText());
 					issueRerpository.save(issue);
 				});
 	}
+
+
+	@Override
+	public void assign(IssueAssignDTO input) {
+		User user = userRepository.findById(input.getUserId())
+						.orElseThrow(() -> new BusinessException("IssueTracking.userNotFound"));
+		Issue issue = issueRerpository.findById(input.getIssueId())
+						.orElseThrow(() -> new BusinessException("IssueTracking.issueNotFound"));
+		issueManager.assignTo(issue, user);
+		issueRerpository.save(issue);
+	}
+
+	
 	
 }
