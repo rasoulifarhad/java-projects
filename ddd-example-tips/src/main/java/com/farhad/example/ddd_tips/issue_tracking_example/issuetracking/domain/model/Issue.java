@@ -3,7 +3,6 @@ package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.
 import static java.util.Objects.requireNonNull;
 
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +53,8 @@ public class Issue implements AggregateRoot<IssueId>{
 	private Instant creationTime;
 
 	private Instant lastCommentTime;
+
+	private MilestoneId milestoneId;
 
 	public Issue(IssueId id, String title, String text, Id gitRepositoryId, UserId assignedUserId) {
 		this.id = id;
@@ -124,16 +125,15 @@ public class Issue implements AggregateRoot<IssueId>{
 	// - created 30+ days ago and 
 	// - has no comment in the last 30 days.
 	public boolean isInactive() {
-		Instant daysAgo30 = Instant.now()
-								.truncatedTo(ChronoUnit.DAYS)
-								.minus(30, ChronoUnit.DAYS);
-		return 
-			!isClosed && 
-			assignedUserId == null && 
-			creationTime.isBefore(daysAgo30) &&
-			(lastCommentTime == null || lastCommentTime.isBefore(daysAgo30));
-
-
+		return new InactiveIssueSpecification().isSatisfiedBy(this);
+		// Instant daysAgo30 = Instant.now()
+		// 						.truncatedTo(ChronoUnit.DAYS)
+		// 						.minus(30, ChronoUnit.DAYS);
+		// return 
+		// 	!isClosed && 
+		// 	assignedUserId == null && 
+		// 	creationTime.isBefore(daysAgo30) &&
+		// 	(lastCommentTime == null || lastCommentTime.isBefore(daysAgo30));
 	}
 	public enum IssueCloseReason {
 
