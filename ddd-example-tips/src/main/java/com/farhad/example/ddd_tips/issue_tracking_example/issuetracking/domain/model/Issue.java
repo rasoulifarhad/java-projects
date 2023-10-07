@@ -9,7 +9,9 @@ import java.util.UUID;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository.Id;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue.IssueId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User.UserId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.service.UserIssueService;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.AggregateRoot;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.BusinessException;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -71,6 +73,18 @@ public class Issue implements AggregateRoot<IssueId>{
 						userId));
 	}
 
+	public void assignTo(User user, UserIssueService userIssueService) {
+		int openIssueCount = userIssueService.getOpenIssuesCountFor(user.getId());
+		if(openIssueCount >= 3) {
+			throw new BusinessException("IssueTracking:ConcurrentOpenIssueLimit");
+		}
+		assignedUserId = user.getId();
+	}
+
+	public void cleanAssignment() {
+		assignedUserId = null;
+	}
+
 	public void setTitle(String title) {
 		this.title = requireNonNull(title);
 	}
@@ -81,7 +95,8 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	public void reOpen() {
 		if (isLocked()) {
-			throw new IssueStateException("Can not open a locked issue! Unlock it first"); 
+			// Can not open a locked issue! Unlock it first
+			throw new IssueStateException("IssueTracking:CanNotOpenLockedIssue"); 
 		}
 		isClosed = false;
 		this.closeReason = null;
@@ -89,7 +104,8 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	public void lock() {
 		if(!isClosed()) {
-			throw new IssueStateException("Can not lock opened issue! close it first"); 
+			// Can not lock opened issue! close it first
+			throw new IssueStateException("IssueTracking:CanNotLockOpenedIssue"); 
 		}
 		isLocked = true;
 	}
@@ -97,7 +113,7 @@ public class Issue implements AggregateRoot<IssueId>{
 	public void unlock() {
 		this.isLocked = false;
 	}
-	
+
 	public enum IssueCloseReason {
 
 	}

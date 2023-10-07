@@ -95,3 +95,9 @@ infrastructure
 			HandlingEventRepositoryJpa.java
 	routing
 		ExternalRoutingService.java
+
+
+#### Business Logic in Entities Requiring External Services
+
+- Implement the business logic on an entity method and **get external dependencies as parameters** of the method.
+- Create a **Domain Service**.
