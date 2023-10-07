@@ -17,5 +17,8 @@ Concerns:
 - what to total, and 
 - how to total
 
-Refactoring to Separate a Key Concern
-Delegating Using Lambda Expressions
+> Refactoring to Separate a Key Concern  
+
+> Delegating Using Lambda Expressions  
+
+> Decorating Using Lambda Expressions  
