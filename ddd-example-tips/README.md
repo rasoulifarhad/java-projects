@@ -124,4 +124,7 @@ Domain Services implement domain logic which;
 - Depends on **services and repositories**.
 - Needs to work with **multiple aggregates**, so the logic doesn't properly fit in any of the aggregates.
 
-Domain Services work with Domain Objects. Their methods can **get and return entities, value objects, primitive types**... etc. However, **they don't get/return DTOs**. DTOs is a part of the Application Layer
+Domain Services work with Domain Objects. Their methods can **get and return entities, value objects, primitive types**... etc. However, **they don't get/return DTOs**. DTOs is a part of the Application Layer.
+
+e.g. Assigning an issue to a user 
+

@@ -10,9 +10,7 @@ import java.util.UUID;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository.Id;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue.IssueId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User.UserId;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.service.UserIssueService;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.AggregateRoot;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.BusinessException;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -44,6 +42,7 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	private GitRepository.Id gitRepositoryId;
 
+	@Setter(value = AccessLevel.PACKAGE)
 	private UserId assignedUserId;
 
 	private List<Comment> comments;
@@ -76,14 +75,6 @@ public class Issue implements AggregateRoot<IssueId>{
 						text, 
 						id, 
 						userId));
-	}
-
-	public void assignTo(User user, UserIssueService userIssueService) {
-		int openIssueCount = userIssueService.getOpenIssuesCountFor(user.getId());
-		if(openIssueCount >= 3) {
-			throw new BusinessException("IssueTracking:ConcurrentOpenIssueLimit");
-		}
-		assignedUserId = user.getId();
 	}
 
 	public void cleanAssignment() {
@@ -126,14 +117,6 @@ public class Issue implements AggregateRoot<IssueId>{
 	// - has no comment in the last 30 days.
 	public boolean isInactive() {
 		return new InactiveIssueSpecification().isSatisfiedBy(this);
-		// Instant daysAgo30 = Instant.now()
-		// 						.truncatedTo(ChronoUnit.DAYS)
-		// 						.minus(30, ChronoUnit.DAYS);
-		// return 
-		// 	!isClosed && 
-		// 	assignedUserId == null && 
-		// 	creationTime.isBefore(daysAgo30) &&
-		// 	(lastCommentTime == null || lastCommentTime.isBefore(daysAgo30));
 	}
 	public enum IssueCloseReason {
 
