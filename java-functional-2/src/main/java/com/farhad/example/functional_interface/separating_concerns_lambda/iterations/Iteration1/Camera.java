@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unchecked")
 public class Camera {
     
     private Function<Color, Color> filter;
