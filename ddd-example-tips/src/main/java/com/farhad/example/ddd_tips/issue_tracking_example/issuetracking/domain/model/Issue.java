@@ -43,7 +43,6 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	private GitRepository.Id gitRepositoryId;
 
-	@Setter(value = AccessLevel.PUBLIC)
 	private UserId assignedUserId;
 
 	private List<Comment> comments;
