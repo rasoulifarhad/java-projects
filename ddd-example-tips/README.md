@@ -141,3 +141,27 @@ Common principles of an application service are:
 - **Never get or return entities** for an application service method. This breaks the encapsulation of the Domain Layer. Always **get and return DTOs**.
 
 e.g. Assigning an issue to a user 
+
+An application service method typically has three steps those are implemented here:
+
+1. Get the related domain objects from database to implement the use case.
+2. Use domain objects (domain services, entities, etc.) to perform the actual operation.
+3. Update the changed entities in the database.
+
+#### Data transfer Objects
+
+A **DTO** is a simple object that is used to transfer state (data) between the **Application** and **Presentation** Layers. So, **Application Service** methods **gets and returns DTOs**.
+
+Common DTO Principles & Best Practices:
+
+- A **DTO should be serializable**, by its nature. Because, most of the time it is transferred over network. So, it should have a **parameterless (empty) constructor**.
+- Should not contain any **business logic**.
+- **Never** inherit from or reference to **entities**.
+
+**Input DTOs** (those are passed to the **Application Service** methods) have different natures than **Output DTOs** (those are returned from the **Application Service** methods). So, they will be treated differently.
+
+**Input DTO Best Practices:**
+
+- Do not Define Unused Properties for Input DTOs
+- Do not Re-Use Input DTOs
+- 
