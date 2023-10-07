@@ -4,15 +4,24 @@ import java.util.UUID;
 
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.AggregateRoot;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.Value;
 
-@Data
-public class GitRepository implements AggregateRoot{
-	
+@Getter
+@Setter(value = AccessLevel.PRIVATE)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class GitRepository implements AggregateRoot<GitRepository.Id>{
+
+	@EqualsAndHashCode.Include
 	private GitRepository.Id id;
 	private String name;
+	private int starCount;
 
 	@RequiredArgsConstructor
 	@Value

@@ -2,7 +2,7 @@ package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.
 
 import java.util.UUID;
 
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Label.LableId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Role.RoleId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.AggregateRoot;
 
 import lombok.AccessLevel;
@@ -17,26 +17,25 @@ import lombok.Value;
 @Setter(value = AccessLevel.PRIVATE)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Label implements AggregateRoot<LableId>{
-
+public class Role implements AggregateRoot<RoleId> {
+	
 	@EqualsAndHashCode.Include
-	private LableId id;
+	private RoleId id;
 	private String name;
-	private String color;
+
 
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
 	@Value
-	public static class LableId {
+	public static class RoleId {
 		private final String uuid;
 
-		public static LableId newId() {
-			return new LableId(UUID.randomUUID().toString());
+		public static RoleId newId() {
+			return new RoleId(UUID.randomUUID().toString());
 		}
 
-		public static LableId from(String uuid) {
-			return new LableId(UUID.fromString(uuid).toString());
+		public static RoleId from(String uuid) {
+			return new RoleId(UUID.fromString(uuid).toString());
 		}
 	}
-
 
 }
