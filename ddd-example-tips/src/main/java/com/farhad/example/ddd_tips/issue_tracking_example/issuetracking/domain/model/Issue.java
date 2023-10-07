@@ -27,15 +27,25 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	@EqualsAndHashCode.Include
 	private IssueId id;
+
 	private String title;
+
+	@Setter(value = AccessLevel.PUBLIC)
 	private String text;
+
 	private boolean isClosed;
+
+	private boolean isLocked;
+
 	private IssueCloseReason closeReason;
 
 	private GitRepository.Id gitRepositoryId;
+
+	@Setter(value = AccessLevel.PUBLIC)
 	private UserId assignedUserId;
 
 	private List<Comment> comments;
+
 	private List<IssueLable>  issueLables;
 
 
@@ -43,11 +53,13 @@ public class Issue implements AggregateRoot<IssueId>{
 	public Issue(IssueId id, String title, String text, Id gitRepositoryId, UserId assignedUserId) {
 		this.id = id;
 		this.title = requireNonNull(title);
-		this.text = requireNonNull(text);
+		this.text = text;
 		this.gitRepositoryId = requireNonNull(gitRepositoryId);
-		this.assignedUserId = requireNonNull(assignedUserId);
+		this.assignedUserId = assignedUserId;
 		this.issueLables = new ArrayList<>();
 		this.comments = new ArrayList<>();
+		this.isClosed = false;
+		this.isLocked = false;
 	}
 
 	public void addComment(UserId userId, String text) {
@@ -68,10 +80,24 @@ public class Issue implements AggregateRoot<IssueId>{
 	}
 
 	public void reOpen() {
+		if (isLocked()) {
+			throw new IssueStateException("Can not open a locked issue! Unlock it first"); 
+		}
 		isClosed = false;
 		this.closeReason = null;
 	}
 
+	public void lock() {
+		if(!isClosed()) {
+			throw new IssueStateException("Can not lock opened issue! close it first"); 
+		}
+		isLocked = true;
+	}
+
+	public void unlock() {
+		this.isLocked = false;
+	}
+	
 	public enum IssueCloseReason {
 
 	}
