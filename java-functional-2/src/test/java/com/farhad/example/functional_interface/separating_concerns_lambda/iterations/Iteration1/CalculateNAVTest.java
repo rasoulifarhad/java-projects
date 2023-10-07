@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 public class CalculateNAVTest {
-
+    // https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=GOOG&apikey=C1869ZFS2Y0RJ7KQ&datatype=csv
     @Test
     public void computeStockWorth() {
         final CalculateNAV calculateNAV = 

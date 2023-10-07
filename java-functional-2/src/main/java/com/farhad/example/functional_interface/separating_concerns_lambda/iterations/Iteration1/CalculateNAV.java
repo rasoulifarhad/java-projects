@@ -13,4 +13,10 @@ public class CalculateNAV {
     public BigDecimal computeStockWorth(final String ticker, final int shares) {
         return priceFinder.apply(ticker).multiply(BigDecimal.valueOf(shares));
     }
+
+    public static void main(String[] args) {
+        CalculateNAV calculateNav = new CalculateNAV(AlphavantageFinance::getPrice);
+        System.out.println(String.format("100 shares of Google worth: $%.2f",
+                calculateNav.computeStockWorth("GOOG", 100)));
+    }
 }
