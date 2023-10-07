@@ -44,6 +44,17 @@ public class Issue implements AggregateRoot{
 	private List<Comment> comments = new ArrayList<>();
 	private List<IssueLable>  issueLables = new ArrayList<>();
 
+
+	public void addComment(UserId userId, String text) {
+		comments.add(
+				new Comment(
+						Comment.CommentId.newId(), 
+						text, 
+						id, 
+						userId));
+
+	}
+
 	
 	
 }
