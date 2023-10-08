@@ -215,3 +215,45 @@ All of these are should be implemented by **different Application Service method
 ##### Updating / Manipulating An Entity
 
 Once an entity is created, it is updated/manipulated by the use cases until it is deleted from the system. There can be different types of the use cases directly or indirectly changes an entity.
+
+
+#### Domain Logic & Application Logic
+
+Business Logic in the Domain Driven Design is split into two parts (layers): 
+
+- Domain Logic and 
+- Application Logic
+
+Domain Logic consists of the Core Domain Rules of the system while Application Logic implements application specific Use Cases.
+
+##### Multiple Application Layers
+
+DDD helps to **deal with complexity** when your system is large. Especially, if there are **multiple applications** are being developed in a **single domain**, then the **Domain Logic vs Application Logic separation** becomes much more important.
+
+Assume that you are building a system that has multiple applications;
+
+- A **Public Web Site Application**, built with Spring MVC, to show your products to users. Such a web site doesn't require authentication to see the products. The users login to the web site, only if they are performing some actions (like adding a product to the basket).
+- A **Back Office Application**, built with Angular UI (that uses REST APIs). This application used by office workers of the company to manage the system (like editing product descriptions).
+- A **Mobile Application** that has much simpler UI compared to the Public Web Site. It may communicate to the server via REST APIs or another technology (like TCP sockets).
+
+
+Every application will have different **requirements**, different **use cases** (Application Service methods), different **DTOs**, different **validation** and **authorization** rules... etc.
+
+Mixing all these logics into a single application layer makes your services contain too many if conditions with **complicated business logic** makes your code **harder to develop, maintain and test** and leads to potential bugs.
+
+If you've multiple applications with a single domain;
+
+- Create **separate application layers** for each application/client type and implement application specific business logic in these separate layers.
+- Use a **single domain layer** to share the core domain logic.
+
+
+**To be more clear about the implementation, you can create different projects for each application types.**
+
+
+Example: Creating a new Organization in a Domain Service
+
+Example: Creating a new Organization in an Application Service
+
+Discussion: Why don't we move the payment logic into the domain service?
+
+Example: CRUD Operations
