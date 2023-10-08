@@ -8,7 +8,7 @@ import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.applicat
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueAssignDTO;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueCreationDTO;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueDTO;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.Mapper;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueMapper;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.IssueManager;
@@ -25,7 +25,7 @@ public class IssueApplicationServiceImpl implements IssueApplicationService {
 	private final IssueRepository issueRerpository;
 	private final UserRepository userRepository;
 	private final IssueManager issueManager; 
-	private final Mapper<Issue, IssueDTO> mapper;
+	private final IssueMapper mapper;
 
 	@Override
 	public void createComment(CreateCommentDTO input) {
@@ -61,7 +61,7 @@ public class IssueApplicationServiceImpl implements IssueApplicationService {
 			issueManager.assignTo(issue, user);
 		}
 		issueRerpository.save(issue);
-		return mapper.map(issue);
+		return mapper.toIssueDTO(issue);
 	}
 
 	
