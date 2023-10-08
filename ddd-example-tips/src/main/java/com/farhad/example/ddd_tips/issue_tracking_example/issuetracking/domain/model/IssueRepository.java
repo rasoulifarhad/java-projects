@@ -12,6 +12,8 @@ public interface IssueRepository {
 
 	void save(Issue issue);
 	List<Issue> getIssues(Specification<Issue> spec);
-	Integer count(Specification<Issue> spec); 
+	Integer count(Specification<Issue> spec);
+
+	boolean any(Specification<Issue> specification ); 
 	
 }

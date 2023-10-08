@@ -50,11 +50,11 @@ public class IssueApplicationServiceImpl implements IssueApplicationService {
 
 	@Override
 	public IssueDTO create(IssueCreationDTO input) {
-		Issue issue = new Issue(
-			Issue.IssueId.newId(), 
-			input.getTitle(), 
-			input.getText(), 
-			GitRepository.Id.from(input.getGitRepositoryId()));
+		Issue issue = 
+			issueManager.create(
+					GitRepository.Id.from(input.getGitRepositoryId()), 
+					input.getTitle(), 
+					input.getText());
 		if(input.getAssignedUserId() != null) {
 			User user = userRepository.findById(User.UserId.from(input.getAssignedUserId()))
 							.orElseThrow(() -> new BusinessException("IssueTracking.assignedUserNotFound"));

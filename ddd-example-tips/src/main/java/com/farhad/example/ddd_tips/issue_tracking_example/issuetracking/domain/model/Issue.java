@@ -55,7 +55,7 @@ public class Issue implements AggregateRoot<IssueId>{
 
 	private MilestoneId milestoneId;
 
-	public Issue(IssueId id, String title, String text, Id gitRepositoryId, UserId assignedUserId) {
+	Issue(IssueId id, String title, String text, Id gitRepositoryId, UserId assignedUserId) {
 		this.id = id;
 		this.title = requireNonNull(title);
 		this.text = text;
@@ -68,7 +68,7 @@ public class Issue implements AggregateRoot<IssueId>{
 		this.creationTime = Instant.now();
 	}
 
-	public Issue(IssueId id, String title, String text, Id gitRepositoryId) {
+	Issue(IssueId id, String title, String text, Id gitRepositoryId) {
 		this(id, title, text, gitRepositoryId, null);
 	}
 

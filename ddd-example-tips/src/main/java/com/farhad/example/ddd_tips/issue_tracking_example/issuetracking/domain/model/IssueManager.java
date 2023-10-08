@@ -8,7 +8,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IssueManager implements DomainService {
 
+
 	private final IssueRepository issueRepository;
+
+	public Issue create(GitRepository.Id gitRepositoryId, String title, String text) {
+		if (issueRepository.any( i -> i.getTitle().equals(title))) {
+			throw new BusinessException("IssueTracking.issieWithSameTitleExist");
+		}
+		return new Issue(
+			Issue.IssueId.newId(), 
+			title, 
+			text, 
+			gitRepositoryId);
+	}
 
 	public void assignTo(Issue issue, User user) {
 		int openIssueCount =  issueRepository.count(i -> 
