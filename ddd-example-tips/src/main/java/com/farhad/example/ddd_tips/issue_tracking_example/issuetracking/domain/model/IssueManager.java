@@ -31,5 +31,8 @@ public class IssueManager implements DomainService {
 		}
 		issue.setAssignedUserId(user.getId());
 	}
+
+	public void changeTitle(Issue issue, String title) {
+	}
 	
 }

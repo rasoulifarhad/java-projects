@@ -197,3 +197,21 @@ For example, assume that you **don't want** to allow to create an issue if there
 **Where to implement this rule?** 
 
 It is **not proper** to implement this rule in the **Application Service**, because it is a **core business (domain) rule** that should always be checked. This rule should be implemented in a **Domain Service**.  we need to force the **Application Layer** always to use the **Domain Service** to create a new Entity.
+
+**Discussion: Why is the duplicate Title check not implemented in the Application Service?**
+
+We could simply say "Because it is a **core domain logic** and should be implemented in the Domain Layer". However, it brings a new question "**How did you decide** that it is a core domain logic, but not an application logic?"
+
+For this example, a simple question can help us to make the decision: "If we have another way (use case) of creating an issue, should we still apply the same rule? Is that rule should always be implemented". You may think "Why do we have a second way of creating an issue?". However, in real life, you have;
+
+- **End users** of the application may create issues in your application's standard UI.
+- You may have a second **back office** application that is used by your own employees and you may want to provide a way of creating issues (probably with different authorization rules in this case).
+- You may have an HTTP API that is open to **3rd-party clients** and they create issues.
+- You may have a **background worker** service that do something and creates issues if it detects some problems. In this way, it will create an issue without any user interaction (and probably without any standard authorization check).
+- You may have a button on the UI that **converts** something (for example, a discussion) to an issue.
+
+All of these are should be implemented by **different Application Service methods**, but they **always** follow the rule: Title of the new issue can not be same of any existing issue! That's why this logic is a **core domain logic**, should be located in the Domain Layer and **should not be duplicated** in all these application service methods.
+
+##### Updating / Manipulating An Entity
+
+Once an entity is created, it is updated/manipulated by the use cases until it is deleted from the system. There can be different types of the use cases directly or indirectly changes an entity.

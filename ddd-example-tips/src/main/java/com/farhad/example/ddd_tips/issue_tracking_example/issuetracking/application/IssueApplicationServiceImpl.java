@@ -64,6 +64,26 @@ public class IssueApplicationServiceImpl implements IssueApplicationService {
 		return mapper.toIssueDTO(issue);
 	}
 
+
+	@Override
+	public IssueDTO update(String issueId, IssueCreationDTO input) {
+
+		Issue issue = issueRerpository.findById(Issue.IssueId.from(issueId))
+			.orElseThrow(() -> new BusinessException("IssueTracking.issueNotFound"));
+		
+		issueManager.changeTitle(issue, input.getTitle());
+		if(input.getAssignedUserId() != null) {
+			User user = userRepository.findById(User.UserId.from(input.getAssignedUserId()))
+							.orElseThrow(() -> new BusinessException("IssueTracking.assognedUserNotFound"));
+			issueManager.assignTo(issue, user);
+		}
+
+		issue.setText(input.getText());
+		issueRerpository.save(issue);
+
+		return mapper.toIssueDTO(issue);
+	}
+
 	
 	
 }

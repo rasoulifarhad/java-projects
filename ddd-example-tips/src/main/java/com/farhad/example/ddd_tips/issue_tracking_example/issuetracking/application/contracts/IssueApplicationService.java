@@ -4,4 +4,5 @@ public interface IssueApplicationService {
 	public void createComment(CreateCommentDTO input);
 	public void assign(IssueAssignDTO input);
 	IssueDTO create(IssueCreationDTO input);
+	IssueDTO update(String issueId, IssueCreationDTO input);
 }
