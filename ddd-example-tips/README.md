@@ -284,3 +284,6 @@ Example: CRUD Operations
 
 - **Do not** create Domain Service methods just for simple CRUD operations **without any domain logic**.
 - **Never** pass **DTOs** to or return **DTOs** from the Domain Services.
+
+
+Application Services can directly work with repositories to query, create, update or delete data unless there are some domain logics should be performed during these operations. In such cases, create Domain Service methods, but only for those really necessary.
