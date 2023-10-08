@@ -250,10 +250,37 @@ If you've multiple applications with a single domain;
 **To be more clear about the implementation, you can create different projects for each application types.**
 
 
-Example: Creating a new Organization in a Domain Service
+**Example: Creating a new Organization in a Domain Service**
 
-Example: Creating a new Organization in an Application Service
 
-Discussion: Why don't we move the payment logic into the domain service?
+- **CORRECT**: It first checks for duplicate organization name and and throws exception in this case. This is something related to core domain rule and we never allow duplicated names.
+- **WRONG**: Domain Services should not perform authorization. Authorization should be done in the Application Layer.
+- **WRONG**: It logs a message with including the Current User's UserName. Domain service should not be depend on the Current User. Domain Services should be usable even if there is no user in the system. Current User (Session) should be a Presentation/Application Layer related concept.
+- **WRONG**: It sends an email about this new organization creation. We think this is also a use case specific business logic. You may want to create different type of emails in different use cases or don't need to send emails in some cases.
+
+**Example: Creating a new Organization in an Application Service**
+
+- **CORRECT**: Application Service methods should be unit of work (transactional). ABP's Unit Of Work system makes this automatic (even without need to add [UnitOfWork] attribute for the Application Services).
+- **CORRECT**: Authorization should be done in the application layer. Here, it is done by using the [Authorize] attribute.
+- **CORRECT**: Payment (an infrastructure service) is called to charge money for this operation (Creating an Organization is a paid service in our business).
+- **CORRECT**: Application Service method is responsible to save changes to the database.
+- **CORRECT**: We can send email as a notification to the system admin.
+- **WRONG**: Do not return entities from the Application Services. Return a DTO instead.
+
+**Discussion: Why don't we move the payment logic into the domain service?**
+
+You may wonder why the payment code is not inside the `OrganizationManager`. It is an **important thing** and we never want to **miss the payment**.
+
+However, **being important is not sufficient** to consider a code as a Core Business Logic. We may have **other use cases** where we don't charge money to create a new Organization. Examples;
+
+- An admin user can use a Back Office Application to create a new organization without any payment.
+- A background-working data import/integration/synchronization system may also need to create organizations without any payment operation.
+
+As you see, **payment is not a necessary operation to create a valid organization**. It is a use-case specific application logic.
+
 
 Example: CRUD Operations
+
+
+- **Do not** create Domain Service methods just for simple CRUD operations **without any domain logic**.
+- **Never** pass **DTOs** to or return **DTOs** from the Domain Services.
