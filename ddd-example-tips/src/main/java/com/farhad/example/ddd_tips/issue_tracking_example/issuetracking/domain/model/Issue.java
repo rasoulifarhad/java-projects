@@ -68,6 +68,10 @@ public class Issue implements AggregateRoot<IssueId>{
 		this.creationTime = Instant.now();
 	}
 
+	public Issue(IssueId id, String title, String text, Id gitRepositoryId) {
+		this(id, title, text, gitRepositoryId, null);
+	}
+
 	public void addComment(UserId userId, String text) {
 		comments.add(
 				new Comment(

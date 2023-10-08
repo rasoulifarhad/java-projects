@@ -3,4 +3,5 @@ package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.applica
 public interface IssueApplicationService {
 	public void createComment(CreateCommentDTO input);
 	public void assign(IssueAssignDTO input);
+	IssueDTO create(IssueCreationDTO input);
 }

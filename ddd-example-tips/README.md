@@ -164,4 +164,24 @@ Common DTO Principles & Best Practices:
 
 - Do not Define Unused Properties for Input DTOs
 - Do not Re-Use Input DTOs
-- 
+
+
+**Output DTO Best Practices:**
+
+- Keep output DTO count minimum. Reuse where possible (exception: Do not reuse input DTOs as output DTOs).
+- Output DTOs can contain more properties than used in the client code.
+- Return entity DTO from Create and Update methods. The main goals of these suggestions are;
+- Make client code easy to develop and extend;
+	- Dealing with similar, but not same DTOs are problematic on the client side.
+	- It is common to need to other properties on the UI/client in the future. Returning all properties (by considering security and privileges) of an entity makes client code easy to improve without requiring to touch to the backend code.
+	- If you are opening your API to 3rd-party clients that you don't know requirements of each client.
+- Make the server side code easy to develop and extend;
+	- You have less class to understand and maintain.
+	- You can reuse the Entity->DTO object mapping code.
+	- Returning same types from different methods make it easy and clear to create new methods.
+
+
+**Object to Object Mapping**
+
+- **Use** auto object mapping only for **Entity to output DTO** mappings.
+- **Do not use** auto object mapping for **input DTO to Entity** mappings.
