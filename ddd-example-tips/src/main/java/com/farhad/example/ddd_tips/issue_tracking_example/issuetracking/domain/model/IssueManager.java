@@ -33,6 +33,15 @@ public class IssueManager implements DomainService {
 	}
 
 	public void changeTitle(Issue issue, String title) {
+
+		if(issue.getTitle().equals(title)) {
+			return;
+		}
+		if (issueRepository.any( i -> i.getTitle().equals(title))) {
+			throw new BusinessException("IssueTracking.issieWithSameTitleExist");
+		}
+
+		issue.setTitle(title);
 	}
 	
 }
