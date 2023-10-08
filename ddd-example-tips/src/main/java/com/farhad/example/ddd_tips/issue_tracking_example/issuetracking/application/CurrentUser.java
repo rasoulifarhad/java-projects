@@ -9,10 +9,11 @@ import lombok.Value;
 @Value
 public class CurrentUser {
 	
-	public static final CurrentUser USER_1 = CurrentUser.from("user_1");
+	public static final CurrentUser USER_1 = CurrentUser.from("user_1","user_1");
 	private final UserId userId;
+	private final String name;
 
-	public static CurrentUser from(String userId) {
-		return new CurrentUser(UserId.from(userId));
+	public static CurrentUser from(String userId, String name) {
+		return new CurrentUser(UserId.from(userId), name);
 	}
 }
