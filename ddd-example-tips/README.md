@@ -2,7 +2,7 @@
 
 - https://dzone.com/articles/aggregate-pattern
 - https://abp.io/e9f5b0c2-e5e7-41bb-a484-7b87a88c1bba/Implementing_Domain_Driven_Design.pdf
-
+- see https://www.jug.ch/events/slides/211019_jMolecules.pdf
 
 ### Domain Layer Building Blocks
 
@@ -287,3 +287,60 @@ Example: CRUD Operations
 
 
 Application Services can directly work with repositories to query, create, update or delete data unless there are some domain logics should be performed during these operations. In such cases, create Domain Service methods, but only for those really necessary.
+
+
+
+
+#### 
+
+
+- jmolecules-architecture — annotations to express architectural styles in code.
+
+	- jmolecules-cqrs-architecture — CQRS architecture
+
+		- @Command
+
+		- @CommandDispatcher
+
+		- @CommandHandler
+
+		- @QueryModel
+
+	- jmolecules-layered-architecture — Layered architecture
+
+		- @DomainLayer
+
+		- @ApplicationLayer
+
+		- @InfrastructureLayer
+
+		- @InterfaceLayer
+
+	- jmolecules-onion-architecture — Onion architecture
+
+		- Classic
+
+			- @DomainModelRing
+
+			- @DomainServiceRing
+
+			- @ApplicationServiceRing
+
+			- @InfrastructureRing
+
+		- Simplified (does not separate domain model and services)
+
+			- @DomainRing
+
+			- @ApplicationRing
+
+			- @InfrastructureRing
+
+	- jmolecules-hexagonal-architecture — Hexagonal architecture
+
+		- @Application
+
+		- @(Primary|Secondary)Adapter
+
+		- @(Primary|Secondary)Port
+
