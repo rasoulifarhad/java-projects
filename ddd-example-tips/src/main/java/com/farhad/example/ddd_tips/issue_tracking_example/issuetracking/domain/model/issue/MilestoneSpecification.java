@@ -1,7 +1,8 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue;
 
 import java.util.Objects;
 
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.MilestoneId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.Specification;
 
 import lombok.NonNull;

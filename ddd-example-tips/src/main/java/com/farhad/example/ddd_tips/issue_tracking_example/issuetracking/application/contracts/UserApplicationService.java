@@ -2,6 +2,11 @@ package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.applica
 
 import java.util.List;
 
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.user.UserChangePasswordDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.user.UserCreationDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.user.UserDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.user.UserUpdateDTO;
+
 public interface UserApplicationService {
 	
 	UserDTO create(UserCreationDTO input);

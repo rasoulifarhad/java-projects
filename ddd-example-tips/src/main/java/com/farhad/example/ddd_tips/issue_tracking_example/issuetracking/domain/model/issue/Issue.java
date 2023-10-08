@@ -1,4 +1,4 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Comment;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository.Id;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue.IssueId;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User.UserId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.MilestoneId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue.IssueId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user.User.UserId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.AggregateRoot;
 
 import lombok.AccessLevel;

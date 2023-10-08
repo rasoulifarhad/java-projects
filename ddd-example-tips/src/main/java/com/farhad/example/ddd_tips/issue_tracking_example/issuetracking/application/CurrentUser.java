@@ -1,6 +1,6 @@
 package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application;
 
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User.UserId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user.User.UserId;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Value;

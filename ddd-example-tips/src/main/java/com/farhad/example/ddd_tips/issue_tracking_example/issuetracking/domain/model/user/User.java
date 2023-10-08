@@ -1,4 +1,4 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user;
 
 import java.util.ArrayList;
 import java.util.List;

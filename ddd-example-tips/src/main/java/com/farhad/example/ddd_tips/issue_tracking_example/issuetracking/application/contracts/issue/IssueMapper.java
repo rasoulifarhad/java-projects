@@ -1,10 +1,10 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.issue;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue;
 
 @Mapper
 public interface IssueMapper {

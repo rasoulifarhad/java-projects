@@ -1,20 +1,20 @@
 package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application;
 
 import static com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.CurrentUser.USER_1;
-import static com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue.IssueId.from;
+import static com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue.IssueId.from;
 
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.CreateCommentDTO;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueApplicationService;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueAssignDTO;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueCreationDTO;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueDTO;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.IssueMapper;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.issue.IssueAssignDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.issue.IssueCreationDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.issue.IssueDTO;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.application.contracts.issue.IssueMapper;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.IssueManager;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.IssueRepository;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.User;
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.UserRepository;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.IssueManager;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.IssueRepository;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user.User;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user.UserRepository;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.BusinessException;
 
 import lombok.RequiredArgsConstructor;

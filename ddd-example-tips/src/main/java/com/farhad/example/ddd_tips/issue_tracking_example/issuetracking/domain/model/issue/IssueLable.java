@@ -1,7 +1,7 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue;
 
-import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Issue.IssueId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.Label.LableId;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue.IssueId;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.ValueObject;
 
 import lombok.AllArgsConstructor;

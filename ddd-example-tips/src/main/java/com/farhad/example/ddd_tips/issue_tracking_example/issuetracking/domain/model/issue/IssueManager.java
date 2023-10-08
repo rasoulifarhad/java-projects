@@ -1,5 +1,7 @@
-package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model;
+package com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue;
 
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.GitRepository;
+import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.user.User;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.BusinessException;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.shared.DomainService;
 
