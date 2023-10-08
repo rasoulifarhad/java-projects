@@ -185,3 +185,15 @@ Common DTO Principles & Best Practices:
 
 - **Use** auto object mapping only for **Entity to output DTO** mappings.
 - **Do not use** auto object mapping for **input DTO to Entity** mappings.
+
+#### Entity Creation
+
+Creating an object from an **Entity** / **Aggregate Root** class is the first step of the lifecycle of that entity. The **Aggregate** / **Aggregate Root** Rules & Best Practices section suggests to **create a primary constructor** for the Entity class that guarantees to **create a valid entity**. So, whenever we need to create an instance of that entity, we should always **use that constructor**.
+
+##### Applying Domain Rules on Entity Creation
+
+For example, assume that you **don't want** to allow to create an issue if there is already an issue with **exactly the same Title**.
+
+**Where to implement this rule?** 
+
+It is **not proper** to implement this rule in the **Application Service**, because it is a **core business (domain) rule** that should always be checked. This rule should be implemented in a **Domain Service**.  we need to force the **Application Layer** always to use the **Domain Service** to create a new Entity.
