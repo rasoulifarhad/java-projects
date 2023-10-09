@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.solid_principles.first;
+package com.farhad.example.design_principles02.solid_principles.second;
 
 import lombok.Getter;
 
@@ -24,16 +24,4 @@ public class Invoice {
 		return price * (1 + taxRate);
 	}
 
-	public void printInvoice() {
-		System.out.println(quantity + "x " + book.getName() + " " +          book.getPrice() + "$");
-		System.out.println("Discount Rate: " + discountRate);
-		System.out.println("Tax Rate: " + taxRate);
-		System.out.println("Total: " + total);
-	}
-
-	public void saveToFile(String filename) {
-
-	}
-
-	
 }
