@@ -29,5 +29,10 @@ public class App {
 		System.out.println();
 		System.out.println("Deliver order and notify customer ...");
 		CustomerAsyncs.deliverOrderNotifyCustomer();
+
+		System.out.println();
+		System.out.println("exceptionally() ...");
+		CustomerAsyncs.fetchOrderTotalException();
+
 	}
 }

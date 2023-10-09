@@ -1,5 +1,6 @@
 package com.farhad.example.java_coding_problems.completable_future;
 
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -114,6 +115,22 @@ public final class CustomerAsyncs {
 	}
 
 	public static void fetchOrderTotalException() throws InterruptedException, ExecutionException {
+
+		CompletableFuture<Integer> cfTotalOrder = CompletableFuture.supplyAsync(() -> {
+				System.out.println("Compute total: : "  +   Thread.currentThread().getName());
+				int surrogate = new Random().nextInt(1000);
+				if(surrogate > 500) {
+					throw new IllegalStateException("Invoice service is not responding");
+				} else {
+					return 1000;
+				}
+		}).exceptionally(ex -> {
+			System.out.println("Exception: " + ex + " Thread: " + Thread.currentThread().getName());
+			return 0;
+		});
+
+		int result = cfTotalOrder.get();
+		System.out.println("Total: " + result);
 
 	}
 	public static void fetchInvoiceTotalSignChainOfException() throws InterruptedException, ExecutionException {
