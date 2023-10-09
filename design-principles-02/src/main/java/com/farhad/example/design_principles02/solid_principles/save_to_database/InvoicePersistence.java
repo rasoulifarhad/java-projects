@@ -11,4 +11,9 @@ public class InvoicePersistence {
 	public void saveToFile(){
 		
 	}
+
+	public void saveToDatabase() {
+		
+	}
+
 }

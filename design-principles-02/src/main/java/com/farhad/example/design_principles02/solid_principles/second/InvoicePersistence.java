@@ -12,7 +12,4 @@ public class InvoicePersistence {
 
 	}
 
-	public void saveToDatabase() {
-		
-	}
 }
