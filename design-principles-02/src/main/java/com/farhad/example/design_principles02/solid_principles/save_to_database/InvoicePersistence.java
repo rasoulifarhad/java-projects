@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.solid_principles.second;
+package com.farhad.example.design_principles02.solid_principles.save_to_database;
 
 import lombok.RequiredArgsConstructor;
 
@@ -9,10 +9,6 @@ public class InvoicePersistence {
 
 
 	public void saveToFile(){
-
-	}
-
-	public void saveToDatabase() {
 		
 	}
 }
