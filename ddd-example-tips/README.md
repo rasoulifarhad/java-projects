@@ -559,5 +559,41 @@ public void register(Module newModule) {
    
 ![](DDD-12.avif)
 
+![](DDD-14.avif)
 
+![](DDD-13.avif)
+
+```java
+public class StudentRepository {
+    public List<Student> satisfiedBy(ICriteria... criterias) {
+       Optional<Condition> combined = Arrays.stream(criterias)
+               .map(ICriteria::getCriteria)
+               .reduce(Condition::and);
+       if (!combined.isPresent()) {
+           throw new UnsupportedOperationException("One criteria is needed to fetch the students.");
+       }
+       Select<?> selectStatements = DSL.select()
+               .from(table("STUDENT"))
+               .where(combined.get());
+       return selectStatements.fetch().into(Student.class);
+    }
+    public void archive(List<StudentId> studentIds) {
+        studentIds.stream()
+           .map(studentId -> field("ID").eq(studentId))
+           .forEach(condition -> DSL.deleteFrom(table("STUDENT")).where(condition));
+    }
+}
+
+public class GraduationService {
+   public List<Student> graduatingStudentByMajor(String major) {
+       StudentRepository studentRepository = new StudentRepository();
+       String year = "final_year";
+       return studentRepository.satisfiedBy(ByMajor.of(major), ByYear.of(year));
+   }
+   public void graduateStudents(List<StudentId> studentIds){
+       StudentRepository studentRepository = new StudentRepository();
+       studentRepository.archive(studentIds);
+   }
+}
+```
 7.  
