@@ -1,4 +1,4 @@
-package com.farhad.example.ddd_tips.flight_monitoring_system.fourth;
+package com.farhad.example.ddd_tips.flight_monitoring_system.fifth;
 
 // each plane is assigned a flight plan which is supposed to describe the entire air travel.
 // what planes do while flying, they follow a route.
@@ -18,5 +18,5 @@ package com.farhad.example.ddd_tips.flight_monitoring_system.fourth;
 // the route, cruise altitude, the cruise speed, the type of airplane, even information about the crew members.
 public class Aircraft {
 	
-	private Route route;
+	private FlightPlan flightPlan;
 }
