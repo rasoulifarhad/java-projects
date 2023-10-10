@@ -344,3 +344,220 @@ Application Services can directly work with repositories to query, create, updat
 
 		- @(Primary|Secondary)Port
 
+
+### Models in Software
+
+1.  Model Association
+
+> model associations as much one-directional relationships as possible.  
+
+
+
+![](association-model.avif)
+
+
+```java
+public class Course {
+  String courseName;
+  String courseCode;
+  Map teachers;
+  ...
+}
+
+public class Course {
+  String courseName;
+  String courseCode;
+  Set teachers;
+  ...
+}
+```
+
+2. Model Entity and Value Object
+   
+![](entity-value-object.avif)
+
+```java
+public interface Identifier {}
+public interface ValueObject {}
+public interface Entity<ID extends Identifier> {}
+
+public class StaffId implements Identifier {
+    private final String StaffId;
+    ...
+}
+public class Teacher implements Entity<StaffId> {
+    private String Name;
+    private Office office;
+}
+public class Office implements ValueObject{
+    private final String faculty;
+    private final String roomNumber;
+
+    ...
+    @Override
+    public int hashCode() {...}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) { return true; }
+        if (o == null || o.getClass() != getClass()) { return false; }
+        return faculty.equals(((Office) o).faculty) && roomNumber.equals(((Office) o).roomNumber);
+    }
+}
+```
+
+3. Model Services
+   
+![](service.avif)
+
+
+4. Aggregate
+   
+![](DDD-8.avif)
+
+```java
+public abstract class AggregateRoot<ID extends Identifier> implements Entity<ID> {
+   private final ID id;
+   protected AggregateRoot(ID id) { this.id = id; }
+   public ID getId() { return id; }
+}
+
+public class StudentId implements  Identifier {
+   private final String id;
+   public StudentId() { id = UUID.randomUUID().toString(); }
+}
+
+public class Student extends AggregateRoot<StudentId> {
+   private final ModuleHistory moduleHistory;
+   private final ActiveModules activeModules;
+   private final Major major;
+
+   public Student(Major major) {
+       super(new StudentId());
+       this.moduleHistory = new ModuleHistory();
+       this.activeModules = new ActiveModules();
+       this.major = major;
+   }
+
+   public StudentId getStudentId() { return getId(); }
+
+   public void register(Module newModule){
+       int currentEnrolled = activeModules.getNumOfCurrentEnrolledModules();
+       int taken = moduleHistory.getNumOfModulesTaken();
+       if (taken + 1 > 40) {
+           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+       }
+       if (currentEnrolled + 1 > 6){
+           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+       }
+       activeModules.register(newModule);
+   }
+}
+
+public class ModuleHistory implements ValueObject {
+   private final Map<String, List<Module>> moduleHistories;
+   public ModuleHistory() { this.moduleHistories = new HashMap<>(); }
+   public int getNumOfModulesTaken() { return moduleHistories.size(); }
+}
+
+public class ActiveModules implements ValueObject {
+   private final List<Module> modules;
+   public ActiveModules() { modules = new ArrayList<>(); }
+   public int getNumOfCurrentEnrolledModules() { return modules.size(); }
+   public void register(Module newModule) { modules.add(newModule); }
+}
+
+public class Major implements ValueObject {
+   private final List<Module> coreModules;
+   private final String name;
+   public Major(List<Module> coreModules, String name) {
+       this.coreModules = coreModules;
+       this.name = name;
+   }
+}
+```
+
+5. Factory
+   
+![](DDD-9.avif)
+
+
+![](DDD-10.avif)
+
+
+```java
+public class StudentFactory {
+   private final static int DEFAULT_MAX_PER_TERM = 6;
+   private final static int DEFAULT_MAX_PER_DEGREE = 40;
+
+   public static Student create(String name, String majorName) {
+       Major major = new Major(majorName);
+       List<Module> coreModules = Collections.emptyList();
+       major.addCoreModules(coreModules);
+       Student student = new Student(name, major);
+       student.addTermPolicies(MaximumModulePerTerm.ofNewPolicy(DEFAULT_MAX_PER_TERM));
+       student.addDegreePolicies(MaximumModulePerDegree.ofNewPolicy(DEFAULT_MAX_PER_DEGREE));
+       student.addDegreePolicies(MajorQualifiedByCoreModules.ofNewPolicy(coreModules));
+       return student;
+   }
+}
+```
+
+![](DDD-11.avif)
+
+```java
+
+public interface ModulePolicy {
+   public boolean isSatisfiedBy(List<Module> modules);
+}
+public class MaximumModulePerTerm implements ModulePolicy {
+   ...
+   public static MaximumModulePerTerm ofNewPolicy(int maxModulesPerTerm) {
+       return new MaximumModulePerTerm(maxModulesPerTerm);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerTerm;
+   }
+}
+public class MaximumModulePerDegree implements ModulePolicy {
+   ...
+   public static MaximumModulePerDegree ofNewPolicy(int maxModulesPerDegree) {
+       return new MaximumModulePerDegree(maxModulesPerDegree);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerDegree;
+   }
+}
+
+public class MajorQualifiedByCoreModules implements ModulePolicy {
+   ...
+   public static MajorQualifiedByCoreModules ofNewPolicy(List<Module> coreModules){
+       return new MajorQualifiedByCoreModules(coreModules);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> taken) {
+       return taken.containsAll(coreModules);
+   }
+}
+```
+
+```java
+public void register(Module newModule) {
+   boolean isOkForCurrentTerm = termPolicies.stream().allMatch(activeModules::satisfyPolicy);
+   if (!isOkForCurrentTerm)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+   boolean isOkForDegree = degreePolicies.stream().allMatch(moduleHistory::satisfyPolicy);
+   if (!isOkForDegree)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+   activeModules.register(newModule);
+}
+```
+
+6. Repository
+   
+![](DDD-12.avif)
+
+
+7.  
