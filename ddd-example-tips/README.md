@@ -596,4 +596,155 @@ public class GraduationService {
    }
 }
 ```
-7.  
+
+7. Side Effect Free Functions
+   
+This is a command (side effect method) as it updates the student's GPA. 
+
+```java
+public void completeTerm(Student student, Map<String, Integer> results) {
+   ActiveModules activeModules = student.getActiveModules();
+   Integer sumOfWeightedResults = activeModules.getModules()
+           .stream()
+           .reduce(0,
+                   (subSum, module) -> subSum + results.get(module.getModuleName()) * module.getPoints(),
+                   Integer::sum);
+   Integer sumOfPoints = activeModules.getModules()
+           .stream()
+           .reduce(0,
+                   (subPoints, module) -> subPoints + module.getPoints(),
+                   Integer::sum);
+
+   double gpa = ((double) sumOfWeightedResults) / sumOfPoints;
+   studentRepository.updateGPA(gpa, student.getStudentId().getId());
+}
+```
+
+We could refactor a little bit here to extract side effect free function:
+
+```java
+public void completeTerm(Student student, Map<String, Integer> results) {
+   ActiveModules activeModules = student.getActiveModules();
+   double gpa = calculateGpa(results, activeModules.getModules());
+   studentRepository.updateGPA(gpa, student.getStudentId().getId());
+}
+public double calculateGpa(Map<String, Integer> results, List<Module> modules) {
+   Integer sumOfWeightedResults = modules.stream()
+           .reduce(0,
+                   (subSum, module) -> subSum + results.get(module.getModuleName()) * module.getPoints(),
+                   Integer::sum);
+   Integer sumOfPoints = modules.stream()
+           .reduce(0,
+                   (subPoints, module) -> subPoints + module.getPoints(),
+                   Integer::sum);
+
+   return ((double) sumOfWeightedResults) / sumOfPoints;
+}
+```
+
+ imagine if you would have to calculate the accumulated GPA which is based on the previous terms' GPA and the calculation is stateful now, we can still make use the of the side effect free function to wrap the important business logic:
+
+```java
+private double calculateAccumulatedGpa(double previousGpa, Map<String, Integer> results, List<Module> modules);
+```
+
+
+8. Intention Revealing Interfaces
+
+![](DDD-15.avif)
+
+```java
+public interface ModulePolicy {}
+public class MaximumModulePerTerm implements ModulePolicy {}
+public class MaximumModulePerDegree implements ModulePolicy {}
+public class MajorQualifiedByCoreModules implements ModulePolicy {}
+
+```
+
+
+9. Concept Contours  
+10. Bounded Context
+
+![](DDD-17.avif)
+
+
+![](DDD-18.avif)
+
+
+```java
+
+package org.xudong.module;
+public class ModuleBase implements Entity<ModuleCode> {
+   private String moduleName;
+   private String description;
+   private List<String> offeringTerms;
+   private ModuleCode moduleCode;
+
+   public ModuleBase(builder br) {
+       this.moduleName = br.moduleName;
+       this.description = br.description;
+       this.offeringTerms = br.offeringTerms;
+       this.moduleCode = br.moduleCode;
+   }
+   public static class builder {
+       private String moduleName;
+       private String description;
+       private List<String> offeringTerms = Collections.emptyList();
+       private final ModuleCode moduleCode;
+       public builder(ModuleCode moduleCode) {
+           this.moduleCode = moduleCode;
+       }
+       public builder withModuleName(String moduleName) {
+           this.moduleName = moduleName;
+           return this;
+       }
+       public builder withDescription(String description) {
+           this.description = description;
+           return this;
+       }
+       public builder withOfferingTerm(List<String> offeringTerms) {
+           this.offeringTerms = offeringTerms;
+           return this;
+       }
+       public ModuleBase build() {
+           return new ModuleBase(this);
+       }
+   }
+}
+
+package org.xudong.student;
+public class Module implements ValueObject {
+   private final ModuleBase moduleBasic;
+   private final String grade;
+   public Module(String moduleName, ModuleBase moduleBasic, String grade) {
+       this.moduleBasic = moduleBasic;
+       this.grade = grade;
+   }
+}
+
+package org.xudong.teacher;
+
+public class Module implements ValueObject {
+   private final ModuleBase moduleBase;
+   private final Map<StudentId, Double> grades;
+   private final List<String> feedbacks;
+
+   public Module(ModuleBase moduleBase) {
+       this.moduleBase = moduleBase;
+       this.grades = Collections.emptyMap();
+       this.feedbacks = Collections.emptyList();
+   }
+}
+```
+
+11. Context Map
+
+![](DDD-19.avif)
+
+
+12. Anti-Corruption Layer
+
+![](DDD-20.avif)
+
+
+13.  
