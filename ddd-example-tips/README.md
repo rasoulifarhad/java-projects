@@ -344,3 +344,407 @@ Application Services can directly work with repositories to query, create, updat
 
 		- @(Primary|Secondary)Port
 
+
+### Models in Software
+
+1.  Model Association
+
+> model associations as much one-directional relationships as possible.  
+
+
+
+![](association-model.avif)
+
+
+```java
+public class Course {
+  String courseName;
+  String courseCode;
+  Map teachers;
+  ...
+}
+
+public class Course {
+  String courseName;
+  String courseCode;
+  Set teachers;
+  ...
+}
+```
+
+2. Model Entity and Value Object
+   
+![](entity-value-object.avif)
+
+```java
+public interface Identifier {}
+public interface ValueObject {}
+public interface Entity<ID extends Identifier> {}
+
+public class StaffId implements Identifier {
+    private final String StaffId;
+    ...
+}
+public class Teacher implements Entity<StaffId> {
+    private String Name;
+    private Office office;
+}
+public class Office implements ValueObject{
+    private final String faculty;
+    private final String roomNumber;
+
+    ...
+    @Override
+    public int hashCode() {...}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) { return true; }
+        if (o == null || o.getClass() != getClass()) { return false; }
+        return faculty.equals(((Office) o).faculty) && roomNumber.equals(((Office) o).roomNumber);
+    }
+}
+```
+
+3. Model Services
+   
+![](service.avif)
+
+
+4. Aggregate
+   
+![](DDD-8.avif)
+
+```java
+public abstract class AggregateRoot<ID extends Identifier> implements Entity<ID> {
+   private final ID id;
+   protected AggregateRoot(ID id) { this.id = id; }
+   public ID getId() { return id; }
+}
+
+public class StudentId implements  Identifier {
+   private final String id;
+   public StudentId() { id = UUID.randomUUID().toString(); }
+}
+
+public class Student extends AggregateRoot<StudentId> {
+   private final ModuleHistory moduleHistory;
+   private final ActiveModules activeModules;
+   private final Major major;
+
+   public Student(Major major) {
+       super(new StudentId());
+       this.moduleHistory = new ModuleHistory();
+       this.activeModules = new ActiveModules();
+       this.major = major;
+   }
+
+   public StudentId getStudentId() { return getId(); }
+
+   public void register(Module newModule){
+       int currentEnrolled = activeModules.getNumOfCurrentEnrolledModules();
+       int taken = moduleHistory.getNumOfModulesTaken();
+       if (taken + 1 > 40) {
+           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+       }
+       if (currentEnrolled + 1 > 6){
+           throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+       }
+       activeModules.register(newModule);
+   }
+}
+
+public class ModuleHistory implements ValueObject {
+   private final Map<String, List<Module>> moduleHistories;
+   public ModuleHistory() { this.moduleHistories = new HashMap<>(); }
+   public int getNumOfModulesTaken() { return moduleHistories.size(); }
+}
+
+public class ActiveModules implements ValueObject {
+   private final List<Module> modules;
+   public ActiveModules() { modules = new ArrayList<>(); }
+   public int getNumOfCurrentEnrolledModules() { return modules.size(); }
+   public void register(Module newModule) { modules.add(newModule); }
+}
+
+public class Major implements ValueObject {
+   private final List<Module> coreModules;
+   private final String name;
+   public Major(List<Module> coreModules, String name) {
+       this.coreModules = coreModules;
+       this.name = name;
+   }
+}
+```
+
+5. Factory
+   
+![](DDD-9.avif)
+
+
+![](DDD-10.avif)
+
+
+```java
+public class StudentFactory {
+   private final static int DEFAULT_MAX_PER_TERM = 6;
+   private final static int DEFAULT_MAX_PER_DEGREE = 40;
+
+   public static Student create(String name, String majorName) {
+       Major major = new Major(majorName);
+       List<Module> coreModules = Collections.emptyList();
+       major.addCoreModules(coreModules);
+       Student student = new Student(name, major);
+       student.addTermPolicies(MaximumModulePerTerm.ofNewPolicy(DEFAULT_MAX_PER_TERM));
+       student.addDegreePolicies(MaximumModulePerDegree.ofNewPolicy(DEFAULT_MAX_PER_DEGREE));
+       student.addDegreePolicies(MajorQualifiedByCoreModules.ofNewPolicy(coreModules));
+       return student;
+   }
+}
+```
+
+![](DDD-11.avif)
+
+```java
+
+public interface ModulePolicy {
+   public boolean isSatisfiedBy(List<Module> modules);
+}
+public class MaximumModulePerTerm implements ModulePolicy {
+   ...
+   public static MaximumModulePerTerm ofNewPolicy(int maxModulesPerTerm) {
+       return new MaximumModulePerTerm(maxModulesPerTerm);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerTerm;
+   }
+}
+public class MaximumModulePerDegree implements ModulePolicy {
+   ...
+   public static MaximumModulePerDegree ofNewPolicy(int maxModulesPerDegree) {
+       return new MaximumModulePerDegree(maxModulesPerDegree);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> modules) {
+       return modules.size() < maxModulesPerDegree;
+   }
+}
+
+public class MajorQualifiedByCoreModules implements ModulePolicy {
+   ...
+   public static MajorQualifiedByCoreModules ofNewPolicy(List<Module> coreModules){
+       return new MajorQualifiedByCoreModules(coreModules);
+   }
+   @Override
+   public boolean isSatisfiedBy(List<Module> taken) {
+       return taken.containsAll(coreModules);
+   }
+}
+```
+
+```java
+public void register(Module newModule) {
+   boolean isOkForCurrentTerm = termPolicies.stream().allMatch(activeModules::satisfyPolicy);
+   if (!isOkForCurrentTerm)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(40) in total");
+   boolean isOkForDegree = degreePolicies.stream().allMatch(moduleHistory::satisfyPolicy);
+   if (!isOkForDegree)
+       throw new UnsupportedOperationException("Registered Modules have exceeded the maximum number(6) for current semester");
+   activeModules.register(newModule);
+}
+```
+
+6. Repository
+   
+![](DDD-12.avif)
+
+![](DDD-14.avif)
+
+![](DDD-13.avif)
+
+```java
+public class StudentRepository {
+    public List<Student> satisfiedBy(ICriteria... criterias) {
+       Optional<Condition> combined = Arrays.stream(criterias)
+               .map(ICriteria::getCriteria)
+               .reduce(Condition::and);
+       if (!combined.isPresent()) {
+           throw new UnsupportedOperationException("One criteria is needed to fetch the students.");
+       }
+       Select<?> selectStatements = DSL.select()
+               .from(table("STUDENT"))
+               .where(combined.get());
+       return selectStatements.fetch().into(Student.class);
+    }
+    public void archive(List<StudentId> studentIds) {
+        studentIds.stream()
+           .map(studentId -> field("ID").eq(studentId))
+           .forEach(condition -> DSL.deleteFrom(table("STUDENT")).where(condition));
+    }
+}
+
+public class GraduationService {
+   public List<Student> graduatingStudentByMajor(String major) {
+       StudentRepository studentRepository = new StudentRepository();
+       String year = "final_year";
+       return studentRepository.satisfiedBy(ByMajor.of(major), ByYear.of(year));
+   }
+   public void graduateStudents(List<StudentId> studentIds){
+       StudentRepository studentRepository = new StudentRepository();
+       studentRepository.archive(studentIds);
+   }
+}
+```
+
+7. Side Effect Free Functions
+   
+This is a command (side effect method) as it updates the student's GPA. 
+
+```java
+public void completeTerm(Student student, Map<String, Integer> results) {
+   ActiveModules activeModules = student.getActiveModules();
+   Integer sumOfWeightedResults = activeModules.getModules()
+           .stream()
+           .reduce(0,
+                   (subSum, module) -> subSum + results.get(module.getModuleName()) * module.getPoints(),
+                   Integer::sum);
+   Integer sumOfPoints = activeModules.getModules()
+           .stream()
+           .reduce(0,
+                   (subPoints, module) -> subPoints + module.getPoints(),
+                   Integer::sum);
+
+   double gpa = ((double) sumOfWeightedResults) / sumOfPoints;
+   studentRepository.updateGPA(gpa, student.getStudentId().getId());
+}
+```
+
+We could refactor a little bit here to extract side effect free function:
+
+```java
+public void completeTerm(Student student, Map<String, Integer> results) {
+   ActiveModules activeModules = student.getActiveModules();
+   double gpa = calculateGpa(results, activeModules.getModules());
+   studentRepository.updateGPA(gpa, student.getStudentId().getId());
+}
+public double calculateGpa(Map<String, Integer> results, List<Module> modules) {
+   Integer sumOfWeightedResults = modules.stream()
+           .reduce(0,
+                   (subSum, module) -> subSum + results.get(module.getModuleName()) * module.getPoints(),
+                   Integer::sum);
+   Integer sumOfPoints = modules.stream()
+           .reduce(0,
+                   (subPoints, module) -> subPoints + module.getPoints(),
+                   Integer::sum);
+
+   return ((double) sumOfWeightedResults) / sumOfPoints;
+}
+```
+
+ imagine if you would have to calculate the accumulated GPA which is based on the previous terms' GPA and the calculation is stateful now, we can still make use the of the side effect free function to wrap the important business logic:
+
+```java
+private double calculateAccumulatedGpa(double previousGpa, Map<String, Integer> results, List<Module> modules);
+```
+
+
+8. Intention Revealing Interfaces
+
+![](DDD-15.avif)
+
+```java
+public interface ModulePolicy {}
+public class MaximumModulePerTerm implements ModulePolicy {}
+public class MaximumModulePerDegree implements ModulePolicy {}
+public class MajorQualifiedByCoreModules implements ModulePolicy {}
+
+```
+
+
+9. Concept Contours  
+10. Bounded Context
+
+![](DDD-17.avif)
+
+
+![](DDD-18.avif)
+
+
+```java
+
+package org.xudong.module;
+public class ModuleBase implements Entity<ModuleCode> {
+   private String moduleName;
+   private String description;
+   private List<String> offeringTerms;
+   private ModuleCode moduleCode;
+
+   public ModuleBase(builder br) {
+       this.moduleName = br.moduleName;
+       this.description = br.description;
+       this.offeringTerms = br.offeringTerms;
+       this.moduleCode = br.moduleCode;
+   }
+   public static class builder {
+       private String moduleName;
+       private String description;
+       private List<String> offeringTerms = Collections.emptyList();
+       private final ModuleCode moduleCode;
+       public builder(ModuleCode moduleCode) {
+           this.moduleCode = moduleCode;
+       }
+       public builder withModuleName(String moduleName) {
+           this.moduleName = moduleName;
+           return this;
+       }
+       public builder withDescription(String description) {
+           this.description = description;
+           return this;
+       }
+       public builder withOfferingTerm(List<String> offeringTerms) {
+           this.offeringTerms = offeringTerms;
+           return this;
+       }
+       public ModuleBase build() {
+           return new ModuleBase(this);
+       }
+   }
+}
+
+package org.xudong.student;
+public class Module implements ValueObject {
+   private final ModuleBase moduleBasic;
+   private final String grade;
+   public Module(String moduleName, ModuleBase moduleBasic, String grade) {
+       this.moduleBasic = moduleBasic;
+       this.grade = grade;
+   }
+}
+
+package org.xudong.teacher;
+
+public class Module implements ValueObject {
+   private final ModuleBase moduleBase;
+   private final Map<StudentId, Double> grades;
+   private final List<String> feedbacks;
+
+   public Module(ModuleBase moduleBase) {
+       this.moduleBase = moduleBase;
+       this.grades = Collections.emptyMap();
+       this.feedbacks = Collections.emptyList();
+   }
+}
+```
+
+11. Context Map
+
+![](DDD-19.avif)
+
+
+12. Anti-Corruption Layer
+
+![](DDD-20.avif)
+
+
+13.  
