@@ -1,8 +1,6 @@
+package com.farhad.example.functional_interface;
 import java.math.BigDecimal;
 import java.util.function.Predicate;
-
-import com.farhad.example.functional_interface.AlphavantageFinance;
-import com.farhad.example.functional_interface.StockInfo;
 
 public class StockUtil {
     
