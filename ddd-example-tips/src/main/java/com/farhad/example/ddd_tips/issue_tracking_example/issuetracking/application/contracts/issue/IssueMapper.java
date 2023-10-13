@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 import com.farhad.example.ddd_tips.issue_tracking_example.issuetracking.domain.model.issue.Issue;
 
 @Mapper
-public interface IssueMapper {
+public interface IssueMapper { 
 	IssueMapper INSTANCE = Mappers.getMapper( IssueMapper.class );
 
 	@Mapping(source = "id.uuid", target = "issueId")

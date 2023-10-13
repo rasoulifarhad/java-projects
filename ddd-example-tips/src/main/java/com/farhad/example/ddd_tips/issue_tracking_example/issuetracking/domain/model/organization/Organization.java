@@ -14,13 +14,13 @@ import lombok.Value;
 
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class Organization implements AggregateRoot<Organization.OrganizationId> {
 
-	@EqualsAndHashCode.Include
 	private OrganizationId id;
+
 	private String name;
 
 
