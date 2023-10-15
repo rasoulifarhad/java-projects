@@ -13,6 +13,10 @@ public class Incentive {
 	// We might need to connect to third-party services to acquire certain data.
 	// Process all the parameters 
 	// Provide the current year's incentive to the client	
+
+	// 1. When a client calls `Incentive` with an `employee_id`, `Incentive` fetches the list of applicable KPIs for that employee.
+    // 2. It then makes a call to each KPI class. While calling a specific KPI class, it checks the employee’s department and, based on that, creates an object of the appropriate `KPI+Dep` class and calls its method to calculate the incentive for that KPI.
+    // 3. The calculated value is then passed back to the `Incentive` class. `Incentive` class will sum up incentive amount from each KPI and give that to Client.
 	Amount getIncentiveOf(EmployeeId id){
 		return  getKPIListOf(id).stream()
 						.map(kpi -> kpi.getKPIIncentiveOf(id))
