@@ -1,21 +1,9 @@
 package com.farhad.example.creational_patterns_demo.incentive_module;
 
-import java.util.UUID;
+//Key Performance Indicator
+public abstract class KPI {
 
-public class KPI {
-
-	private UUID id;
-	private void connectTopDB(){
-
-	}
-
-	private void secretLogicOfIncentive(){
-
-	}
-
-	Amount getIncentiveOf(EmployId id){
-		return  null;
-	}
+	public abstract Amount getIncentiveOf(EmployId id);
 
 	
 }
