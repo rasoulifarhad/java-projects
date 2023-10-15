@@ -4,5 +4,8 @@ public class Totals {
 
 	public double grandTotal;
 	public double discount;
+	public Totals applyDiscount(double discount2) {
+		return null;
+	}
 
 }

@@ -12,4 +12,21 @@ public class App {
 		totals.grandTotal = totals.grandTotal - discount;
 		totals.discount = discount;
 	}
+
+	// Tell, Don’t Ask
+	public void applyDiscount2(Customer customer, long order_id, double discount) {
+		Totals totals = customer	
+							.orders
+							.find(order_id)
+							.getTotals()
+							.applyDiscount(discount);
+	}
+
+	// Tell, Don’t Ask
+	public void applyDiscount3(Customer customer, long order_id, double discount) {
+		Totals totals = customer	
+							.findOrder(order_id)
+							.getTotals()
+							.applyDiscount(discount);
+	}
 }
