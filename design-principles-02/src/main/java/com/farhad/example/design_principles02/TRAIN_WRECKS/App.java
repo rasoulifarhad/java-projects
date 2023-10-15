@@ -29,4 +29,12 @@ public class App {
 							.getTotals()
 							.applyDiscount(discount);
 	}
+
+	// Tell, Don’t Ask
+	public void applyDiscount4(Customer customer, long order_id, double discount) {
+		Totals totals = customer	
+							.findOrder(order_id)
+							.applyDiscount(discount);
+	}
+
 }

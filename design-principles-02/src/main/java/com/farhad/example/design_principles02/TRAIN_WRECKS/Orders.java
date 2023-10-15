@@ -6,4 +6,8 @@ public class Orders {
 		return null;
 	}
 
+	public Order last() {
+		return null;
+	}
+
 }

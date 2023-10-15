@@ -6,4 +6,12 @@ public class Order {
 		return null;
 	}
 
+	public Totals applyDiscount(double discount) {
+		return null;
+	}
+
+	public Totals totals() {
+		return null;
+	}
+
 }
