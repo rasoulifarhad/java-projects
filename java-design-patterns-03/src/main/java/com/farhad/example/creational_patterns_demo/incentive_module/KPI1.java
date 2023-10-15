@@ -1,16 +1,23 @@
 package com.farhad.example.creational_patterns_demo.incentive_module;
 
-public class KPI1 extends KPI {
+import java.util.Collections;
+import java.util.List;
+
+public class KPI1 implements KPI {
 	private void connectTopDB(){
 
 	}
 
-	private void secretLogicOfIncentive(){
-
+	private List<String> findDepartmentOf(EmployeeId id) {
+		return Collections.emptyList();
+	}
+	public Amount getKPI1IncentiveOf(EmployeeId id){
+		return null;
 	}
 
-	public Amount getIncentiveOf(EmployId id){
-		return null;
+	@Override
+	public Amount getKPIIncentiveOf(EmployeeId id) {
+		return getKPI1IncentiveOf(id);
 	}
 	
 }

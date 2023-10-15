@@ -8,15 +8,15 @@ import lombok.Value;
 
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Value
-public class EmployId {
+public class EmployeeId {
 	
 	private UUID uuid;
 
-	public static EmployId newId() {
-		return new EmployId(UUID.randomUUID());
+	public static EmployeeId newId() {
+		return new EmployeeId(UUID.randomUUID());
 	}
 
-	public static EmployId from(String uuidString){
-		return new EmployId(UUID.fromString(uuidString));
+	public static EmployeeId from(String uuidString){
+		return new EmployeeId(UUID.fromString(uuidString));
 	}
 }

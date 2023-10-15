@@ -10,6 +10,6 @@ public interface Service {
 	// We might need to connect to third-party services to acquire certain data.
 	// Process all the parameters 
 	// Provide the current year's incentive to the client	
-	Amount getIncentiveOf(EmployId id);
-	Amount getKYCOf(EmployId id);
+	Amount getIncentiveOf(EmployeeId id);
+	Amount getKYCOf(EmployeeId id);
 }

@@ -13,16 +13,16 @@ public class Incentive {
 	// We might need to connect to third-party services to acquire certain data.
 	// Process all the parameters 
 	// Provide the current year's incentive to the client	
-	Amount getIncentiveOf(EmployId id){
+	Amount getIncentiveOf(EmployeeId id){
 		return  getKPIListOf(id).stream()
-						.map(kpi -> kpi.getIncentiveOf(id))
+						.map(kpi -> kpi.getKPIIncentiveOf(id))
 						.map(Amount::getValue)
 						.reduce(BigDecimal::add)
 						.map(value -> new Amount(value))
 						.orElse(new Amount(BigDecimal.ZERO));
 	}
 
-	private List<KPI>  getKPIListOf(EmployId employId) {
+	private List<KPI>  getKPIListOf(EmployeeId employId) {
 		return Collections.emptyList();
 	}
 	
