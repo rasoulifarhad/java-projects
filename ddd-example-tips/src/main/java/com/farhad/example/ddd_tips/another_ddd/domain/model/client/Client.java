@@ -1,4 +1,4 @@
-package com.farhad.example.ddd_tips.another_ddd.domain.model;
+package com.farhad.example.ddd_tips.another_ddd.domain.model.client;
 
 public interface Client {
 
