@@ -1,42 +1,48 @@
 package com.farhad.example.design_principles02.good_code.ocp.bad;
 
-public class SomeClass {
+public class App {
 	
 	public static final int TYPE_UNDEFINED = 0;
 	public static final int TYPE_LEGAL_AG = 1;
 	public static final int TYPE_LEGAL_PG = 2;
 	public static final int TYPE_TEMPORARY = 3;
-	public void someMethode() {
 
-		boolean ok = false;
+	public static void main(String[] args) {
+		
+		printResultFor(TYPE_LEGAL_AG, "LEGAL_AG");
+		printResultFor(TYPE_LEGAL_PG, "LEGAL_PG");
+		printResultFor(TYPE_TEMPORARY, "LEGAL_PG");
+		printResultFor(TYPE_LEGAL_PG, "TEMPORARY");
 
-		String buildType = "LEGAL_AG";
+	}
+
+	private static void printResultFor(int archType, String buildType) {
+		
+		boolean isOk = false;
 		String prefix = "";
-		int archType =1;
-
 		switch (archType) {
 			case TYPE_LEGAL_AG:
 				if(buildType.equals("LEGAL_AG") || buildType.equals("LEGAL_AGPG")) {
-					ok = true;
+					isOk = true;
 				}
 				break;
 			case TYPE_LEGAL_PG:
 				if(buildType.equals("LEGAL_PG") || buildType.equals("LEGAL_AGPG")) {
-					ok = true;
+					isOk = true;
 				}
 				break;
 			case TYPE_TEMPORARY:
 				if(buildType.equals("TEMPORARY") || buildType.equals("PRV")) {
-					ok = true;
+					isOk = true;
 				}
 				prefix = "AP";
 				break;
 			default:
 				break;
 		}
+		
+		System.out.println("isOk: " + isOk + ", prefix: " + prefix );
 
-		if(!ok) {
-			System.out.println("Error");
-		} 
 	}
+
 }
