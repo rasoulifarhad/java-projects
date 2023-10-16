@@ -17,17 +17,28 @@ public class Incentive {
 	// 1. When a client calls `Incentive` with an `employee_id`, `Incentive` fetches the list of applicable KPIs for that employee.
     // 2. It then makes a call to each KPI class. While calling a specific KPI class, it checks the employee’s department and, based on that, creates an object of the appropriate `KPI+Dep` class and calls its method to calculate the incentive for that KPI.
     // 3. The calculated value is then passed back to the `Incentive` class. `Incentive` class will sum up incentive amount from each KPI and give that to Client.
-	Amount getIncentiveOf(EmployeeId id){
-		return  getKPIListOf(id).stream()
-						.map(kpi -> kpi.getKPIIncentiveOf(id))
-						.map(Amount::getValue)
-						.reduce(BigDecimal::add)
-						.map(value -> new Amount(value))
-						.orElse(new Amount(BigDecimal.ZERO));
-	}
 
-	private List<KPI>  getKPIListOf(EmployeeId employId) {
+	public List<String> getKPIListOfEmployee() {
 		return Collections.emptyList();
 	}
+
+	public Amount getIncentiveOfEmployee(){
+		List<String> kpis = getKPIListOfEmployee();
+		return kpis.stream()
+					.map(this::findIncentiveOfKpi)
+					.map(Amount::getValue)
+					.reduce(BigDecimal::add)
+					.map(value -> new Amount(value))
+					.orElse(new Amount(BigDecimal.ZERO));
+	}
+
+	Amount findIncentiveOfKpi(String type) {
+		KPI kpi = factory.createKPIOfType(type);
+		return kpi.getKPIIncentiveOf();
+	}
+		
+
+	private Factory factory;
+	private EmployeeId employeeId;
 	
 }

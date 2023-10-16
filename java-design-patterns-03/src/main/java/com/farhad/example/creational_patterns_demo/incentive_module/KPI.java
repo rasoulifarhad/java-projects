@@ -4,6 +4,6 @@ package com.farhad.example.creational_patterns_demo.incentive_module;
 public interface KPI {
 
 	
-	Amount getKPIIncentiveOf(EmployeeId id  );
+	Amount getKPIIncentiveOf();
 	
 }
