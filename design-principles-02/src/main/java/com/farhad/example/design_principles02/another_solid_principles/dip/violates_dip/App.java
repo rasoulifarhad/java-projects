@@ -15,10 +15,10 @@ public class App {
 		myShelf.addBook(book_01);
 
 		// Store asks us to enable customers to add DVDs to their shelves, too
-
+		
 		DVD dvd_01 = new DVD();
-		ShelfFoeDvd myShelf2 = new ShelfFoeDvd();
-		myShelf2.addDVD(dvd_01);
+		myShelf.addDVD(dvd_01);
+
 		
 
 
