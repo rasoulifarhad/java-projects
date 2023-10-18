@@ -19,6 +19,9 @@ public class App {
 		DVD dvd_01 = new DVD();
 		myShelf.addDVD(dvd_01);
 
+		// The solution is to create an abstraction layer for the lower-level classes (Book and DVD). We’ll do so by introducing the Product 
+		// interface, both classes will implement it.
+
 		
 
 
