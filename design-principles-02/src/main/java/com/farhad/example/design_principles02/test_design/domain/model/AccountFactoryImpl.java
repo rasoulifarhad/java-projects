@@ -11,6 +11,9 @@ public class AccountFactoryImpl implements AccountFactory {
 			case Silver:
 				account = new SilverAccount();
 				break;
+			case Bronze:
+				account = new BronzeAccount();
+				break;
 			case Gold:
 				account = new GoldAccount();
 				break;
