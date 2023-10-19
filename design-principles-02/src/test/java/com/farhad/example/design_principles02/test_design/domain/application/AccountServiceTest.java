@@ -3,12 +3,13 @@ package com.farhad.example.design_principles02.test_design.domain.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import com.farhad.example.design_principles02.test_design.domain.adapter.persistence.FakeAccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
@@ -39,10 +40,10 @@ public class AccountServiceTest {
 	void addingTransactionToAccountDelegatesToAccountInstance() {
 		//given
 		Account account = new Account();
-		AccountRepository accountRepository = new FakeAccountRepository(account);
-		AccountService accountService = new AccountServiceImpl(accountRepository);
+		AccountRepository mockAccountRepository = new FakeAccountRepository(account);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
 		//when
-		accountService.addTransactionToAccount("Training Account", 100d);
+		accountService.addTransactionToAccount("Trading Account", 100d);
 		//then
 		assertThat(account.getBalance()).isEqualTo(100d);
 	}
@@ -51,11 +52,11 @@ public class AccountServiceTest {
 	void addingTransactionToAccountDelegatesToAccountInstanceWithMockito() {
 		//given
 		Account account = new Account();
-		AccountRepository accountRepository = mock(AccountRepository.class);
-		when(accountRepository.getByName(any())).thenReturn(account);
-		AccountService accountService = new AccountServiceImpl(accountRepository);
+		AccountRepository mockAccountRepository = mock(AccountRepository.class);
+		when(mockAccountRepository.getByName("Trading Account")).thenReturn(account);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
 		//when
-		accountService.addTransactionToAccount("Training Account", 100d);
+		accountService.addTransactionToAccount("Trading Account", 100d);
 		//then
 		assertThat(account.getBalance()).isEqualTo(100d);
 	}
@@ -71,21 +72,40 @@ public class AccountServiceTest {
 	@Test
 	void doNotThrownWhenAccountNotFound() {
 		//given
-		AccountRepository accountRepository = mock(AccountRepository.class);
-		AccountService accountService = new AccountServiceImpl(accountRepository);
+		AccountRepository mockAccountRepository = mock(AccountRepository.class);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
 		//when
-		accountService.addTransactionToAccount("Training Account",	100d);
+		accountService.addTransactionToAccount("Trading Account",	100d);
 		//then
+	}
+
+	@Test
+	void accountRepositoryExceptionsAreWrappedInThrowBusinessServiceException() {
+		//given
+		AccountRepository mockAccountRepository = mock(AccountRepository.class);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+
+		when(mockAccountRepository.getByName("Trading Account")).thenThrow(new DomainException(new RuntimeException("Error")));
+		//when
+		//then
+		BusinessException businessException = assertThrows(BusinessException.class, 
+								() -> accountService.addTransactionToAccount("Trading Account", 100d));
+		assertTrue(businessException.getCause() instanceof DomainException);
 	}
 
 	@Test
 	void accountExceptionsAreWrappedInThrowBusinessServiceException() {
 		//given
-		when(mockAccountRepository.getByName(any())).thenThrow(new DomainException(new RuntimeException("Error")));
+		Account account = Mockito.spy(Account.class);
+		AccountRepository mockAccountRepository = mock(AccountRepository.class);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+
+		when(mockAccountRepository.getByName("Trading Account")).thenReturn(account);
+		doThrow(new DomainException("Error in addTransaction.")).when(account).addTransaction(100d);
 		//when
 		//then
 		BusinessException businessException = assertThrows(BusinessException.class, 
-								() -> accountService.addTransactionToAccount("Training Account", 100d));
+								() -> accountService.addTransactionToAccount("Trading Account", 100d));
 		assertTrue(businessException.getCause() instanceof DomainException);
 	}
 
