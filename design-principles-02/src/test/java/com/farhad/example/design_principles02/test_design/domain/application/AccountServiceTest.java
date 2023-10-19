@@ -1,6 +1,6 @@
 package com.farhad.example.design_principles02.test_design.domain.application;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ public class AccountServiceTest {
 		//when
 		accountService.addTransactionToAccount("Training Account", 100d);
 		//then
-		fail();
+		assertThat(account.getBalance()).isEqualTo(100d);
 	}
 
 	@Test
