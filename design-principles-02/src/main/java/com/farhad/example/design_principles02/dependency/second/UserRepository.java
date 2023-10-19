@@ -1,7 +1,6 @@
-package com.farhad.example.design_principles02.dependency.first;
+package com.farhad.example.design_principles02.dependency.second;
 
 import java.util.UUID;
-
 
 public class UserRepository {
 

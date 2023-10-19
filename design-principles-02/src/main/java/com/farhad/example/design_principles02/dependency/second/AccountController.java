@@ -1,7 +1,6 @@
-package com.farhad.example.design_principles02.dependency.first;
+package com.farhad.example.design_principles02.dependency.second;
 
 import java.util.UUID;
-
 
 public class AccountController {
 	
@@ -13,9 +12,7 @@ public class AccountController {
 
 	// [Http Post]
 	public void changePassword(UUID userId, String newPassword ) {
-		UserRepository userRepository = new UserRepository();
-		User user = userRepository.findById(userId);
-		securityService.changePassword(user, newPassword);
+		securityService.changePassword(userId, newPassword);
 	}
 
 	
