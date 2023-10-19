@@ -10,5 +10,12 @@ public class App {
 		myShelf.addProduct(book_01);
 		DVD dvd_01 = new DVD();
 		myShelf.addProduct(dvd_01);
+
+		Reader keyboard = new Keyboard();
+		Writer printer = new Printer();
+		
+		CharCopier charCopier = new CharCopier();
+		charCopier.copy(keyboard, printer);
+
 	}
 }
