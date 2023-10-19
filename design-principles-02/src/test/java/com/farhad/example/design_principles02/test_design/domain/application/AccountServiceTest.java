@@ -10,9 +10,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.function.Consumer;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import com.farhad.example.design_principles02.test_design.domain.adapter.persistence.FakeAccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
@@ -26,24 +27,12 @@ import lombok.Setter;
 
 public class AccountServiceTest {
 	
-	private AccountRepository fakeAccountRepository;
-	
-	private AccountRepository mockAccountRepository;
-
-	// System under Test (SuT)
-	private AccountService accountService;
-
-	private Account mockAccount;
 
 	private AccountServiceBuilder accountServiceBuilder;
 	  
 
 	@BeforeEach
 	public void setup() {
-		mockAccount = mock(Account.class);
-		mockAccountRepository = mock(AccountRepository.class);
-		accountService = new AccountServiceImpl(mockAccountRepository);
-		fakeAccountRepository = new FakeAccountRepository(new Account());
 		accountServiceBuilder = AccountServiceBuilder.of();
 	}
 
@@ -62,14 +51,15 @@ public class AccountServiceTest {
 	@Test
 	void addingTransactionToAccountDelegatesToAccountInstanceWithMockito() {
 		//given
-		Account account = mock(Account.class);
-		AccountRepository mockAccountRepository = mock(AccountRepository.class);
-		when(mockAccountRepository.getByName("Trading Account")).thenReturn(account);
-		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+
+		AccountService accountService = 
+							accountServiceBuilder
+									.withAccountCalled("Trading Account")
+									.build();
 		//when
 		accountService.addTransactionToAccount("Trading Account", 100d);
 		//then
-		verify(account,times(1)).addTransaction(100d);
+		verify(accountServiceBuilder.account,times(1)).addTransaction(100d);
 	}
 
 	@Test
@@ -83,8 +73,7 @@ public class AccountServiceTest {
 	@Test
 	void doNotThrownWhenAccountNotFound() {
 		//given
-		AccountRepository mockAccountRepository = mock(AccountRepository.class);
-		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+		AccountService accountService = accountServiceBuilder.build();
 		//when
 		accountService.addTransactionToAccount("Trading Account",	100d);
 		//then
@@ -93,10 +82,13 @@ public class AccountServiceTest {
 	@Test
 	void accountRepositoryExceptionsAreWrappedInThrowBusinessServiceException() {
 		//given
-		AccountRepository mockAccountRepository = mock(AccountRepository.class);
-		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
-
-		when(mockAccountRepository.getByName("Trading Account")).thenThrow(new DomainException(new RuntimeException("Error")));
+		AccountService accountService = 
+			accountServiceBuilder
+				.withRepositoryConsumer(accountRepository -> 
+					when(accountRepository.getByName("Trading Account"))
+						.thenThrow(
+							new DomainException(new RuntimeException("Error"))))
+				.build();
 		//when
 		//then
 		BusinessException businessException = assertThrows(BusinessException.class, 
@@ -107,12 +99,14 @@ public class AccountServiceTest {
 	@Test
 	void accountExceptionsAreWrappedInThrowBusinessServiceException() {
 		//given
-		Account account = Mockito.spy(Account.class);
-		AccountRepository mockAccountRepository = mock(AccountRepository.class);
-		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+		AccountService accountService = 
+			accountServiceBuilder
+				.withAccountCalled("Trading Account")
+				.withAccountConsumer(account -> 
+					doThrow(new DomainException("Error in addTransaction."))
+						.when(account).addTransaction(100d))
+				.build();
 
-		when(mockAccountRepository.getByName("Trading Account")).thenReturn(account);
-		doThrow(new DomainException("Error in addTransaction.")).when(account).addTransaction(100d);
 		//when
 		//then
 		BusinessException businessException = assertThrows(BusinessException.class, 
@@ -125,7 +119,6 @@ public class AccountServiceTest {
 		//given
 		AccountService accountService = accountServiceBuilder
 						.withAccountCalled("Trading Account")
-						// .addTransactionOfValue(200d)
 						.build(); 
 		//when
 		accountService.addTransactionToAccount("Trading Account", 100d);
@@ -160,6 +153,16 @@ public class AccountServiceTest {
 		public AccountServiceBuilder withAccountCalled(String accountName) {
 			account = mock(Account.class);
 			when(accountRepository.getByName(accountName)).thenReturn(account);
+			return this;
+		}
+
+		public AccountServiceBuilder withRepositoryConsumer(Consumer<AccountRepository> consume) {
+			consume.accept(accountRepository);
+			return this;
+		}
+
+		public AccountServiceBuilder withAccountConsumer(Consumer<Account> consume) {
+			consume.accept(account);
 			return this;
 		}
 
