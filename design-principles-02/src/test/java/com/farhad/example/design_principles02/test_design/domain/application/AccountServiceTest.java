@@ -4,9 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import com.farhad.example.design_principles02.test_design.domain.adapter.persistence.FakeAccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
@@ -14,6 +15,23 @@ import com.farhad.example.design_principles02.test_design.domain.model.Account;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
 
 public class AccountServiceTest {
+	
+	private AccountRepository fakeAccountRepository;
+	
+	private AccountRepository mockAccountRepository;
+
+	// System under Test (SuT)
+	private AccountService accountService;
+
+	private Account mockAccount;
+
+	@BeforeEach
+	public void setup() {
+		mockAccount = mock(Account.class);
+		mockAccountRepository = mock(AccountRepository.class);
+		accountService = new AccountServiceImpl(mockAccountRepository);
+		fakeAccountRepository = new FakeAccountRepository(new Account());
+	}
 
 	@Test
 	void addingTransactionToAccountDelegatesToAccountInstance() {
@@ -32,7 +50,7 @@ public class AccountServiceTest {
 		//given
 		Account account = new Account();
 		AccountRepository accountRepository = mock(AccountRepository.class);
-		Mockito.when(accountRepository.getByName(any())).thenReturn(account);
+		when(accountRepository.getByName(any())).thenReturn(account);
 		AccountService accountService = new AccountServiceImpl(accountRepository);
 		//when
 		accountService.addTransactionToAccount("Training Account", 100d);
@@ -58,6 +76,15 @@ public class AccountServiceTest {
 		//then
 	}
 
+	@Test
+	void accountExceptionsAreWrappedInThrowBusinessServiceException() {
+		//given
+		when(mockAccountRepository.getByName(any())).thenThrow(new RuntimeException("Error"));
+		//when
+		//then
+		assertThrows(BusinessException.class, 
+						() -> accountService.addTransactionToAccount("Training Account", 100d));
+	}
 
 	@Test
 	void t() {
