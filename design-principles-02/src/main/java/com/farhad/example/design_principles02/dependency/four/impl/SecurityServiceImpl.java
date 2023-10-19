@@ -1,5 +1,6 @@
 package com.farhad.example.design_principles02.dependency.four.impl;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import com.farhad.example.design_principles02.dependency.four.SecurityService;
@@ -12,6 +13,7 @@ public class SecurityServiceImpl implements SecurityService{
 	private final UserRepository userRepository;
 
 	public SecurityServiceImpl(UserRepository userRepository) {
+		Objects.requireNonNull(userRepository);
 		this.userRepository = userRepository;
 	}
 

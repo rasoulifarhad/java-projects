@@ -1,5 +1,6 @@
 package com.farhad.example.design_principles02.dependency.four;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class AccountController {
@@ -7,6 +8,7 @@ public class AccountController {
 	private final SecurityService securityService;
 
 	public AccountController(SecurityService securityService) {
+		Objects.requireNonNull(securityService);
 		this.securityService = securityService;
 	}
 
