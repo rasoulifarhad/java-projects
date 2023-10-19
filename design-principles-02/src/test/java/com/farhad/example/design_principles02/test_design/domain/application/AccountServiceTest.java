@@ -1,6 +1,7 @@
 package com.farhad.example.design_principles02.test_design.domain.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 
@@ -38,6 +39,16 @@ public class AccountServiceTest {
 		//then
 		assertThat(account.getBalance()).isEqualTo(100d);
 	}
+
+	@Test
+	void canNotCreateAccountServiceWithNullAccountRepository() {
+		//given
+		//when
+		//then
+		assertThrows(NullPointerException.class, () ->new AccountServiceImpl(null) );
+	}
+
+
 	@Test
 	void t() {
 		//given
