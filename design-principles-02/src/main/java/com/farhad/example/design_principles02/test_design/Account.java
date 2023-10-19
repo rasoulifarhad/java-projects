@@ -4,7 +4,7 @@ public class Account {
 
 	private double balance;
 	public void addTransaction(double amount) {
-		balance = amount;
+		balance += amount;
 	}
 
 	public double getBalance() {

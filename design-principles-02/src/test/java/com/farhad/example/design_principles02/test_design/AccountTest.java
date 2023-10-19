@@ -35,6 +35,19 @@ public class AccountTest {
 		//then
 		assertThat(account.getBalance()).isEqualTo(100d);
 	}
+
+
+	@Test
+	void addingTwoTransactionsCreatesSummationBalance() {
+		//given
+		Account account = new Account();
+		account.addTransaction(50d);
+		//when
+		account.addTransaction(75d);
+		//then
+		assertThat(account.getBalance()).isEqualTo(125d);
+	}
+	
 	@Test
 	void t() {
 		//given
