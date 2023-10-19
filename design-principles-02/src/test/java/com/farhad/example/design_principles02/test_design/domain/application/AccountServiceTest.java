@@ -2,6 +2,7 @@ package com.farhad.example.design_principles02.test_design.domain.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,6 +14,7 @@ import com.farhad.example.design_principles02.test_design.domain.adapter.persist
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
 import com.farhad.example.design_principles02.test_design.domain.model.Account;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
+import com.farhad.example.design_principles02.test_design.domain.model.DomainException;
 
 public class AccountServiceTest {
 	
@@ -79,11 +81,12 @@ public class AccountServiceTest {
 	@Test
 	void accountExceptionsAreWrappedInThrowBusinessServiceException() {
 		//given
-		when(mockAccountRepository.getByName(any())).thenThrow(new RuntimeException("Error"));
+		when(mockAccountRepository.getByName(any())).thenThrow(new DomainException(new RuntimeException("Error")));
 		//when
 		//then
-		assertThrows(BusinessException.class, 
-						() -> accountService.addTransactionToAccount("Training Account", 100d));
+		BusinessException businessException = assertThrows(BusinessException.class, 
+								() -> accountService.addTransactionToAccount("Training Account", 100d));
+		assertTrue(businessException.getCause() instanceof DomainException);
 	}
 
 	@Test
