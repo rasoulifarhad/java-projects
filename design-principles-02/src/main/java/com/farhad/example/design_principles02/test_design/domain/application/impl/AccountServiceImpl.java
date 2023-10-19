@@ -3,7 +3,9 @@ package com.farhad.example.design_principles02.test_design.domain.application.im
 import com.farhad.example.design_principles02.test_design.domain.application.AccountService;
 import com.farhad.example.design_principles02.test_design.domain.application.BusinessException;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountBase;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountFactory;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountType;
 import com.farhad.example.design_principles02.test_design.domain.model.DomainException;
 
 import lombok.NonNull;
@@ -14,6 +16,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@NonNull
 	private final AccountRepository accountRepository;
+
+	private AccountFactory accountFactory;
 
 	@Override
 	public void addTransactionToAccount(String accountName, double amount) {
@@ -27,5 +31,11 @@ public class AccountServiceImpl implements AccountService {
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
+	}
+
+	@Override
+	public AccountBase createAccount(AccountType type) {
+		AccountBase account = AccountBase.createAccount(type);
+		return accountRepository.newAccount(account);
 	}
 }
