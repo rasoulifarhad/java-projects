@@ -9,7 +9,7 @@ public class AccountTest {
 	@Test
 	void addingTransactionChangesBalance() {
 		//given
-		Account account = new Account();
+		AccountBase account = AccountBase.silver();
 		//when
 		account.addTransaction(200d);
 		//then
@@ -21,7 +21,7 @@ public class AccountTest {
 		//given
 
 		//when
-		Account account = new Account();
+		AccountBase account = AccountBase.silver();
 		//then
 		assertThat(account.getBalance()).isEqualTo(0d);
 	}
@@ -29,7 +29,7 @@ public class AccountTest {
 	@Test
 	void adding100TransactionChangesBalance() {
 		//given
-		Account account = new Account();
+		AccountBase account = AccountBase.silver();
 		//when
 		account.addTransaction(100d);
 		//then
@@ -40,7 +40,7 @@ public class AccountTest {
 	@Test
 	void addingTwoTransactionsCreatesSummationBalance() {
 		//given
-		Account account = new Account();
+		AccountBase account = AccountBase.silver();
 		account.addTransaction(50d);
 		//when
 		account.addTransaction(75d);

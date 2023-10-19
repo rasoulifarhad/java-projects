@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import com.farhad.example.design_principles02.test_design.domain.adapter.persistence.FakeAccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
-import com.farhad.example.design_principles02.test_design.domain.model.Account;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountBase;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.model.DomainException;
 
@@ -39,7 +39,7 @@ public class AccountServiceTest {
 	@Test
 	void addingTransactionToAccountDelegatesToAccountInstance() {
 		//given
-		Account account = new Account();
+		AccountBase account = AccountBase.silver();
 		AccountRepository mockAccountRepository = new FakeAccountRepository(account);
 		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
 		//when
@@ -140,7 +140,7 @@ public class AccountServiceTest {
 
 		@Getter
 		@Setter(value = AccessLevel.PRIVATE)
-		private Account account;
+		private AccountBase account;
 
 		private AccountServiceBuilder() {
 			accountRepository = mock(AccountRepository.class);
@@ -151,7 +151,7 @@ public class AccountServiceTest {
 			return new AccountServiceBuilder();
 		}
 		public AccountServiceBuilder withAccountCalled(String accountName) {
-			account = mock(Account.class);
+			account = mock(AccountBase.class);
 			when(accountRepository.getByName(accountName)).thenReturn(account);
 			return this;
 		}
@@ -161,7 +161,7 @@ public class AccountServiceTest {
 			return this;
 		}
 
-		public AccountServiceBuilder withAccountConsumer(Consumer<Account> consume) {
+		public AccountServiceBuilder withAccountConsumer(Consumer<AccountBase> consume) {
 			consume.accept(account);
 			return this;
 		}

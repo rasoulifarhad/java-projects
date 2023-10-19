@@ -2,12 +2,9 @@ package com.farhad.example.design_principles02.test_design.domain.model;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public class Account {
+public abstract class AccountBase {
 
 	@Getter
 	@Setter(value = AccessLevel.PROTECTED)
@@ -17,21 +14,20 @@ public class Account {
 	@Setter(value = AccessLevel.PROTECTED)
 	protected int rewardPoints;
 
-	@NonNull
-	private final AccountType accountType;
-
-
-	public Account() {
-		this(AccountType.Default);
-	}
-
 	public void addTransaction(double amount) {
 		rewardPoints += calculateRewardPoints(amount);
 		balance += amount;
 	}
 
-	public int calculateRewardPoints(double amount) {
-		return 0;
-	}
-	
+	public abstract int calculateRewardPoints(double amount);
+
+	public static SilverAccount silver() {
+		return new SilverAccount();
+	} 
+	public static GoldAccount gold() {
+		return new GoldAccount();
+	} 
+	public static PlatinumAccount palatinum() {
+		return new PlatinumAccount();
+	} 
 }

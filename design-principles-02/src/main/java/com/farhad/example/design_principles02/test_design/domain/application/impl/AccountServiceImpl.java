@@ -2,7 +2,7 @@ package com.farhad.example.design_principles02.test_design.domain.application.im
 
 import com.farhad.example.design_principles02.test_design.domain.application.AccountService;
 import com.farhad.example.design_principles02.test_design.domain.application.BusinessException;
-import com.farhad.example.design_principles02.test_design.domain.model.Account;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountBase;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.model.DomainException;
 
@@ -18,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void addTransactionToAccount(String accountName, double amount) {
 		try {
-			Account account = accountRepository.getByName(accountName);
+			AccountBase account = accountRepository.getByName(accountName);
 			if(account != null) {
 				account.addTransaction(amount);
 			}
