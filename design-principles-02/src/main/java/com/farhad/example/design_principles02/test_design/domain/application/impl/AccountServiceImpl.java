@@ -16,6 +16,8 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void addTransactionToAccount(String accountName, double amount) {
 		Account account = accountRepository.getByName(accountName);
-		account.addTransaction(amount);
+		if(account != null) {
+			account.addTransaction(amount);
+		}
 	}
 }

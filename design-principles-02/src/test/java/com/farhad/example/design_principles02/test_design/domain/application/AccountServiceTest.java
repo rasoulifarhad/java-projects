@@ -48,6 +48,16 @@ public class AccountServiceTest {
 		assertThrows(NullPointerException.class, () ->new AccountServiceImpl(null) );
 	}
 
+	@Test
+	void doNotThrownWhenAccountNotFound() {
+		//given
+		AccountRepository accountRepository = mock(AccountRepository.class);
+		AccountService accountService = new AccountServiceImpl(accountRepository);
+		//when
+		accountService.addTransactionToAccount("Training Account",	100d);
+		//then
+	}
+
 
 	@Test
 	void t() {
