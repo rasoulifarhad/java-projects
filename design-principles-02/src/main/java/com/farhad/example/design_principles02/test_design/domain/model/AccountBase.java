@@ -21,13 +21,36 @@ public abstract class AccountBase {
 
 	public abstract int calculateRewardPoints(double amount);
 
+	public static AccountBase createAccount(AccountType type) {
+
+		AccountBase accountBase = null;
+
+		switch (type) {
+			case Silver:
+				accountBase = new SilverAccount();
+				break;
+			case Gold:
+				accountBase = new GoldAccount();
+				break;
+			case Platinum:
+				accountBase = new PlatinumAccount();
+				break;
+			default:
+				break;
+		}
+		return accountBase;
+	}
+
 	public static SilverAccount silver() {
 		return new SilverAccount();
 	} 
+
 	public static GoldAccount gold() {
 		return new GoldAccount();
 	} 
+
 	public static PlatinumAccount palatinum() {
 		return new PlatinumAccount();
 	} 
+	
 }
