@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import com.farhad.example.design_principles02.test_design.domain.adapter.persistence.FakeAccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.application.impl.AccountServiceImpl;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountBase;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountFactory;
+import com.farhad.example.design_principles02.test_design.domain.model.AccountFactoryImpl;
 import com.farhad.example.design_principles02.test_design.domain.model.AccountRepository;
 import com.farhad.example.design_principles02.test_design.domain.model.DomainException;
 
@@ -29,11 +31,13 @@ public class AccountServiceTest {
 	
 
 	private AccountServiceBuilder accountServiceBuilder;
+	private AccountFactory accountFactory;
 	  
 
 	@BeforeEach
 	public void setup() {
 		accountServiceBuilder = AccountServiceBuilder.of();
+		accountFactory = new AccountFactoryImpl();
 	}
 
 	@Test
@@ -41,7 +45,7 @@ public class AccountServiceTest {
 		//given
 		AccountBase account = AccountBase.silver();
 		AccountRepository mockAccountRepository = new FakeAccountRepository(account);
-		AccountService accountService = new AccountServiceImpl(mockAccountRepository);
+		AccountService accountService = new AccountServiceImpl(mockAccountRepository, accountFactory);
 		//when
 		accountService.addTransactionToAccount("Trading Account", 100d);
 		//then
@@ -67,7 +71,7 @@ public class AccountServiceTest {
 		//given
 		//when
 		//then
-		assertThrows(NullPointerException.class, () ->new AccountServiceImpl(null) );
+		assertThrows(NullPointerException.class, () ->new AccountServiceImpl(null, null) );
 	}
 
 	@Test
@@ -137,6 +141,7 @@ public class AccountServiceTest {
 		
 		private AccountService accountService;
 		private AccountRepository accountRepository;
+		private AccountFactory accountFactory;
 
 		@Getter
 		@Setter(value = AccessLevel.PRIVATE)
@@ -144,7 +149,8 @@ public class AccountServiceTest {
 
 		private AccountServiceBuilder() {
 			accountRepository = mock(AccountRepository.class);
-			accountService = new AccountServiceImpl(accountRepository);
+			accountFactory = new AccountFactoryImpl();
+			accountService = new AccountServiceImpl(accountRepository, accountFactory);
 		}
 
 		public static AccountServiceBuilder of() {

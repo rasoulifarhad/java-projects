@@ -23,22 +23,22 @@ public abstract class AccountBase {
 
 	public static AccountBase createAccount(AccountType type) {
 
-		AccountBase accountBase = null;
+		AccountBase account = null;
 
 		switch (type) {
 			case Silver:
-				accountBase = new SilverAccount();
+				account = new SilverAccount();
 				break;
 			case Gold:
-				accountBase = new GoldAccount();
+				account = new GoldAccount();
 				break;
 			case Platinum:
-				accountBase = new PlatinumAccount();
+				account = new PlatinumAccount();
 				break;
 			default:
 				break;
 		}
-		return accountBase;
+		return account;
 	}
 
 	public static SilverAccount silver() {
@@ -52,5 +52,5 @@ public abstract class AccountBase {
 	public static PlatinumAccount palatinum() {
 		return new PlatinumAccount();
 	} 
-	
+
 }

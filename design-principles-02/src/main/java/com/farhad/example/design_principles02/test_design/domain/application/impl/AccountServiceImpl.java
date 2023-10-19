@@ -17,7 +17,8 @@ public class AccountServiceImpl implements AccountService {
 	@NonNull
 	private final AccountRepository accountRepository;
 
-	private AccountFactory accountFactory;
+	@NonNull
+	private final AccountFactory accountFactory;
 
 	@Override
 	public void addTransactionToAccount(String accountName, double amount) {
@@ -35,7 +36,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public AccountBase createAccount(AccountType type) {
-		AccountBase account = AccountBase.createAccount(type);
+		// AccountBase account = AccountBase.createAccount(type);
+		AccountBase account = accountFactory.createAccount(type);
 		return accountRepository.newAccount(account);
 	}
 }
