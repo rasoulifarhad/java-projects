@@ -8,3 +8,5 @@ See https://github.com/test-driven-development/video-store/tree/master
 See https://github.com/AxonIQ/food-ordering-demo/tree/master
 See https://github.com/test-driven-development/design-patterns-in-java/tree/master
 See https://github.com/mploed/ddd-with-spring
+
+See https://resources.unity.com/games/level-up-your-code-with-game-programming-patterns?ungated=true
