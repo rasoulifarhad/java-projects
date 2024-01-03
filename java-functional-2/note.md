@@ -23,3 +23,5 @@ Concerns:
 > Delegating Using Lambda Expressions  
 
 > Decorating Using Lambda Expressions  
+
+See ScoreExplanatoryGroup
