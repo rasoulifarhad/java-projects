@@ -3,6 +3,9 @@ See https://github.com/writeoncereadmany/bowling
 See https://github.com/writeoncereadmany/GildedRose-Refactoring-Kata
 See https://github.com/writeoncereadmany/fcis-pear
 See https://www.jfokus.se/jfokus15/preso/Pragmatic%20Functional%20Refactoring%20with%20Java%208.pdf
+See https://blog.tlinkowski.pl/2018/filterer-pattern/#solution
+See https://blog.tlinkowski.pl/2019/filterer-pattern-in-10-steps/
+
 
 ### Separating Concerns Using Lambda Expressions
 
@@ -25,3 +28,5 @@ Concerns:
 > Decorating Using Lambda Expressions  
 
 See ScoreExplanatoryGroup
+
+
