@@ -53,13 +53,13 @@
             <artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
-            <!-- <optional>true</optional> -->
+			<!-- <optional>true</optional> -->
         </dependency>
 		<!-- Logging -->
 		<dependency>
-			<groupId>com.google.common</groupId> 
-			<artifactId>google-collect</artifactId>
-			<version>${google.common.version}</version>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>33.0.0-jre</version>
 		</dependency>
 		<!--  Using only for slf4j-->
 		<dependency>
@@ -127,7 +127,7 @@
 
 	<build>
 		<plugins>
-		    <!-- <plugin>
+			<!-- <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
                 <version>${delombok-maven-plugin.version}</version>
