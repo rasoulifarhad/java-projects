@@ -6,4 +6,6 @@ public interface Issue {
 	int endOffset();
 
 	IssueType type();
+
+	double probability();
 }

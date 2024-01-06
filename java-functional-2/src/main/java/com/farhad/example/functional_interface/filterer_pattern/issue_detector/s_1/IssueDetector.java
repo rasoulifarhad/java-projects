@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface IssueDetector {
 	List<Issue> detect(String text);
+
+	List<Issue> detect(String text, double probabilityThreshold);
 }
