@@ -7,4 +7,7 @@ public interface Filterer<G extends Group, E extends Item> {
 
 	G by(Predicate<? super E> predicate);
 
+	default G byName(String name) {
+		return by(item -> item.name().equals(name) );
+	}
 }

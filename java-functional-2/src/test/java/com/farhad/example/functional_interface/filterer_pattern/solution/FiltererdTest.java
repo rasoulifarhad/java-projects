@@ -18,10 +18,9 @@ public class FiltererdTest {
 		PlainItem _ab = new PlainItem("ab");
 
 		ImmutableList<PlainItem> items = ImmutableList.of(
-			_a,
-			_b,
-			_ab
-		);
+				_a,
+				_b,
+				_ab);
 
 		PlainGroup group = new PlainGroup(items);
 
@@ -31,5 +30,28 @@ public class FiltererdTest {
 		// Then
 		assertThat(filteredGroup.items().size()).isEqualTo(2);
 		assertTrue(filteredGroup.items().contains(_a));
+	}
+	
+	@Test
+	public void testFilteredByName() {
+		// Given
+		PlainItem _a = new PlainItem("a");
+		PlainItem _b = new PlainItem("b");
+		PlainItem _ab = new PlainItem("ab");
+
+		ImmutableList<PlainItem> items = ImmutableList.of(
+				_a,
+				_b,
+				_ab);
+
+		PlainGroup group = new PlainGroup(items);
+
+		// When
+		PlainGroup filteredGroup = group.filtered().byName("ab");
+
+		// Then
+		assertThat(filteredGroup.items().size()).isEqualTo(1);
+		assertTrue(filteredGroup.items().contains(_ab));
+
 	}
 }
