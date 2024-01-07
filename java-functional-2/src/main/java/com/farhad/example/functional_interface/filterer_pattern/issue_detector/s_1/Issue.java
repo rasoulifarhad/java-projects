@@ -7,4 +7,8 @@ public interface Issue {
 
 	IssueType type();
 
+	default int length() {
+		return endOffset() - startOffset();
+	}
+
 }
