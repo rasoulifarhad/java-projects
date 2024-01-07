@@ -3,7 +3,5 @@ package com.farhad.example.functional_interface.filterer_pattern.issue_detector.
 import java.util.List;
 
 public interface IssueDetector {
-	List<ProbableIssue> detect(String text);
-
 	List<ProbableIssue> detect(String text, double probabilityThreshold);
 }
