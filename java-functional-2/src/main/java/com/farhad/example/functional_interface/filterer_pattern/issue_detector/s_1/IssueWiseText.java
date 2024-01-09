@@ -3,11 +3,11 @@ package com.farhad.example.functional_interface.filterer_pattern.issue_detector.
 import java.util.List;
 import java.util.function.Predicate;
 
-public interface IssueWiseText<I extends Issue> {
+public interface IssueWiseText {
 
 	String text();
 
-	List<I> issues();
+	List<? extends Issue> issues();
 
-	IssueWiseText<I> filtered(Predicate<? super I> issueFilter);
+	IssueWiseText filtered(Predicate<? super Issue> issueFilter);
 }

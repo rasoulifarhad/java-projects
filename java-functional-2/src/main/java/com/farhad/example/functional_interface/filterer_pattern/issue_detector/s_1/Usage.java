@@ -8,7 +8,7 @@ public class Usage {
 	// 	return textStream.collect(IssueCoverage.collector(issue -> true));
 	// }
 
-	static double IssueCoverage(Stream<? extends IssueWiseText<?>> textStream) {
+	static double IssueCoverage(Stream<? extends IssueWiseText> textStream) {
 		return textStream.collect(IssueCoverage.collector());
 	}
 	// static double IssueCoverage(Stream<? extends IssueWiseText<?>> textStream, IssueType issueType) {
@@ -16,14 +16,14 @@ public class Usage {
 	// }
 
 
-	static double IssueCoverage(Stream<? extends IssueWiseText<?>> textStream, IssueType issueType) {
+	static double IssueCoverage(Stream<? extends IssueWiseText> textStream, IssueType issueType) {
 		return textStream
 					.map(issueWiseText -> issueWiseText.filtered(issue -> issue.type() == issueType) )
 					.collect(IssueCoverage.collector());
 
 	}
 
-	static Stream<IssueWiseText<Issue>> testCAseStream() {
+	static Stream<IssueWiseText> testCAseStream() {
 		return Stream.of();
 	}
 }

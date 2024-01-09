@@ -13,7 +13,7 @@ public class IssueCoverage {
 	// 		Collector.Characteristics.UNORDERED);
 	// }
 
-	static Collector<IssueWiseText<?>, ?, Double> collector() {
+	static Collector<IssueWiseText, ?, Double> collector() {
 		return Collector.of(
 			Accumulator::new, 
 			Accumulator::accumulate, 
@@ -38,7 +38,7 @@ public class IssueCoverage {
 		// 	totalTextLength += issueWiseText.text().length();
 		// }
 
-		void accumulate(IssueWiseText<?> issueWiseText) {
+		void accumulate(IssueWiseText issueWiseText) {
 			totalIssueLength += issueWiseText.issues().stream().mapToInt(Issue::length).sum();
 			totalTextLength += issueWiseText.text().length();
 		}
