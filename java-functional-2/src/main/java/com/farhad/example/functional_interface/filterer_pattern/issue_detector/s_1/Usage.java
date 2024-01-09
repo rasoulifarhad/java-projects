@@ -23,6 +23,21 @@ public class Usage {
 
 	}
 
+	// static double IssueCoverage(Stream<? extends IssueWiseText<? extends ProbableIssue>> textStream, double minProbability) {
+	// 	return textStream
+	// 				.map(issueWiseText -> issueWiseText.filtered(issue -> issue.probability() >= minProbability) )
+	// 				.collect(IssueCoverage.collector());
+
+	// }
+
+	static double IssueCoverage(Stream<? extends ProbabilisticIssueWiseText> textStream, double minProbability) {
+		return textStream
+				.map(issueWiseText -> issueWiseText.filteredProbabilistic(issue -> issue.probability() >= minProbability))
+				.collect(IssueCoverage.collector());
+
+	}
+
+
 	static Stream<IssueWiseText> testCAseStream() {
 		return Stream.of();
 	}
