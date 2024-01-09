@@ -18,7 +18,7 @@ public class Usage {
 
 	static double IssueCoverage(Stream<? extends IssueWiseText> textStream, IssueType issueType) {
 		return textStream
-					.map(issueWiseText -> issueWiseText.filtered(issue -> issue.type() == issueType) )
+					.map(issueWiseText -> issueWiseText.filtered().by(issue -> issue.type() == issueType ) )
 					.collect(IssueCoverage.collector());
 
 	}
@@ -32,7 +32,7 @@ public class Usage {
 
 	static double IssueCoverage(Stream<? extends ProbabilisticIssueWiseText> textStream, double minProbability) {
 		return textStream
-				.map(issueWiseText -> issueWiseText.filteredProbabilistic(issue -> issue.probability() >= minProbability))
+				.map(issueWiseText -> issueWiseText.filtered().by(issue -> issue.probability() >= minProbability))
 				.collect(IssueCoverage.collector());
 
 	}
