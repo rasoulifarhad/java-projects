@@ -5,8 +5,13 @@ import java.util.stream.Stream;
 public class Usage {
 
 	static double IssueCoverage(Stream<? extends IssueWiseText<?>> textStream) {
-		return textStream.collect(IssueCoverage.collector());
+		return textStream.collect(IssueCoverage.collector(issue -> true));
 	}
+
+	static double IssueCoverage(Stream<? extends IssueWiseText<?>> textStream, IssueType issueType) {
+		return textStream.collect(IssueCoverage.collector(issue -> issue.type() == issueType));
+	}
+
 	static Stream<IssueWiseText<Issue>> testCAseStream() {
 		return Stream.of();
 	}
