@@ -8,9 +8,12 @@ public class StudentTest {
 
 	@Test
 	public void studentBuilderTest() {
-		StudentBuilder builder = new StudentBuilder("first", "last");
+		StudentBuilder builder = new StudentBuilder("first", "last", "under - grad");
 
-		// Student student = builder.withAadhar(12345)
-		// 		.withHobby("hobby").build();  // compileError
+		Student student = builder.withAadhar(12345)
+				.withHobby("hobby")
+				.withCity("city")
+				.build();
+		System.out.println(student);
 	}
 }

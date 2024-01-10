@@ -12,14 +12,14 @@ public class Person {
 	private String city;
 	private long aadharId;
 
-	protected Person(PersonBuilder builder) {
+	protected Person(PersonBuilder<?> builder) {
 		this.firstName = builder.firstName;
 		this.lastName = builder.lastName;
 		this.city = builder.city;
 		this.aadharId = builder.aadharId;
 	}
 
-	public static class PersonBuilder {
+	public static class PersonBuilder<SELF extends PersonBuilder<SELF>> {
 		private String firstName;
 		private String lastName;
 		private String city;
@@ -29,14 +29,14 @@ public class Person {
 			this.lastName = lastName;
 		}
 
-		public PersonBuilder withCity(String city) {
+		public SELF withCity(String city) {
 			this.city = city;
-			return this;
+			return (SELF)this;
 		}
 
-		public PersonBuilder withAadhar(long aadharId) {
+		public SELF withAadhar(long aadharId) {
 			this.aadharId = aadharId;
-			return this;
+			return (SELF)this;
 		}
 
 		public Person build() {

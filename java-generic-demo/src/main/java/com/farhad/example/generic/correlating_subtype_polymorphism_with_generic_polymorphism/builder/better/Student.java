@@ -5,21 +5,25 @@ import lombok.Getter;
 @Getter
 public class Student extends Person {
 
+	private String degree;
 	private String hobby;
 
 	
 	public Student(StudentBuilder builder) {
 		super(builder);
+		this.degree = builder.degree;
 		this.hobby = builder.hobby;
 	}
 
 
-	public static class StudentBuilder extends PersonBuilder {
+	public static class StudentBuilder extends PersonBuilder<StudentBuilder> {
 
+		private String degree;
 		private String hobby;
 
-		public StudentBuilder(String firstName, String lastName) {
+		public StudentBuilder(String firstName, String lastName, String degree) {
 			super(firstName, lastName);
+			this.degree = degree;
 		}
 
 	
