@@ -1,4 +1,4 @@
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.vehicle;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.vehicle.bad;
 
 public class Bus extends Vehicle implements Comparable<Bus>{
 

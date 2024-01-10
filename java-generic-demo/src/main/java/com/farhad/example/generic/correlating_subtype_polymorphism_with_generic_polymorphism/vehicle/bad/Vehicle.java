@@ -1,4 +1,4 @@
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.vehicle;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.vehicle.bad;
 
 import lombok.Getter;
 import lombok.Setter;
