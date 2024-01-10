@@ -219,3 +219,9 @@ All indexes, or references, to specific constants in the constant pool table are
   table: an array of variable-length items of some type. The number of items in the table is identified by a preceding count number (the count is a u2), but the size in bytes of the table can only be determined by examining each of its items.
   ```  
 
+
+
+See https://blog.jooq.org/the-dangers-of-correlating-subtype-polymorphism-with-generic-polymorphism/
+See https://levelup.gitconnected.com/java-generics-advanced-cases-d05db19b47d5
+See https://micsymposium.org/mics_2009_proceedings/mics2009_submission_56.pdf
+See https://unlinkedlist.org/2023/04/05/java-recursive-generics/

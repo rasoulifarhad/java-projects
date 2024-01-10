@@ -1,7 +1,9 @@
 package com.farhad.example.generic.pecs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -98,5 +100,17 @@ public class GenericUserExampleTest {
         List<Customer> customers = new ArrayList<>();
         UserUtils.addCustomers(customers, new Customer("customer1"), new VipCustomer("vip customer 1"));
         customers.stream().forEach(c -> log.info("added: {}", c));
+    }
+
+    @Test
+    public void CovarianceTest() {
+        List<Integer> ints = new ArrayList<>();
+        serialize(ints);
+
+        
+    }
+
+    <E extends Serializable> void serialize(Collection<E> collection) {
+        System.out.println("text");
     }
 }
