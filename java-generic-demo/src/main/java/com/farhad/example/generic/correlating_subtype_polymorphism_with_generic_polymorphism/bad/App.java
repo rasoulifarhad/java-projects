@@ -1,4 +1,4 @@
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.example;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.bad;
 
 public class App {
 

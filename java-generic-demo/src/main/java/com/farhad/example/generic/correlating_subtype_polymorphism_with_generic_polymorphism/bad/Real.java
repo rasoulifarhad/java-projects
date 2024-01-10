@@ -1,5 +1,5 @@
 
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.example;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.bad;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
