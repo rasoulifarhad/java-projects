@@ -225,3 +225,7 @@ See https://blog.jooq.org/the-dangers-of-correlating-subtype-polymorphism-with-g
 See https://levelup.gitconnected.com/java-generics-advanced-cases-d05db19b47d5
 See https://micsymposium.org/mics_2009_proceedings/mics2009_submission_56.pdf
 See https://unlinkedlist.org/2023/04/05/java-recursive-generics/
+See https://medium.com/@hazraarka072/fluent-builder-and-powering-it-up-with-recursive-generics-in-java-483005a85fcd
+See https://vyazelenko.com/2012/03/02/recursive-generics-to-the-rescue/
+See https://levelup.gitconnected.com/java-generics-advanced-cases-d05db19b47d5  
+See https://www.sitepoint.com/self-types-with-javas-generics/
