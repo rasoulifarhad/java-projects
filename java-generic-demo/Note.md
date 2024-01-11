@@ -230,3 +230,7 @@ See https://vyazelenko.com/2012/03/02/recursive-generics-to-the-rescue/
 See https://levelup.gitconnected.com/java-generics-advanced-cases-d05db19b47d5  
 See https://www.sitepoint.com/self-types-with-javas-generics/
 See https://dzone.com/articles/introduction-generics-java-%E2%80%93-0?source=post_page-----483005a85fcd--------------------------------
+See https://www.sitepoint.com/self-types-with-javas-generics/
+See http://www.cs.toronto.edu/~hojjat/148s07/lectures/week9/11bst.pdf
+See https://micsymposium.org/mics_2009_proceedings/mics2009_submission_56.pdf
+See https://www.enjoyalgorithms.com/blog/insertion-in-binary-search-tree
