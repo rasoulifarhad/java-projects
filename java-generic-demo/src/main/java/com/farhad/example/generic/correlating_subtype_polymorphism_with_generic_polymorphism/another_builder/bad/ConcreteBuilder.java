@@ -1,4 +1,4 @@
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder.bad;
 
 public class ConcreteBuilder extends ConstraintBuilder {
 

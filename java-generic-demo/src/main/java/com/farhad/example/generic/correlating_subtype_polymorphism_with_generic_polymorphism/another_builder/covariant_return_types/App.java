@@ -1,4 +1,4 @@
-package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder;
+package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder.covariant_return_types;
 
 public class App {
 
