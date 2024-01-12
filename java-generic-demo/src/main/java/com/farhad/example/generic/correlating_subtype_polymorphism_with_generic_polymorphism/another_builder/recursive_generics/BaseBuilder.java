@@ -1,23 +1,24 @@
 package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder.recursive_generics;
 
-public abstract class BaseBuilder {
+@SuppressWarnings("unchecked")
+public abstract class BaseBuilder<E extends BaseBuilder<E>> {
 
 	private void addField(Class<?> clazz, String name) {
 	}
 
-	public BaseBuilder addIntField(String name) {
+	public E addIntField(String name) {
 		addField(Integer.class, name);
-		return this;
+		return (E) this;
 	}
 	
-	public BaseBuilder addLongField(String name) {
+	public E addLongField(String name) {
 		addField(Long.class, name);
-		return this;
+		return (E) this;
 	}
 
-	public BaseBuilder addDoubleField(String name) {
+	public E addDoubleField(String name) {
 		addField(Double.class, name);
-		return this;
+		return (E) this;
 	}
 
 	public abstract Object build();

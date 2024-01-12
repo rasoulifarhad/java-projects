@@ -1,24 +1,26 @@
 package com.farhad.example.generic.correlating_subtype_polymorphism_with_generic_polymorphism.another_builder.recursive_generics;
 
-public abstract class ConstraintBuilder extends BaseBuilder {
+@SuppressWarnings("unchecked")
 
-	public ConstraintBuilder equalTo(Number value) {
-		return this;
+public abstract class ConstraintBuilder<E extends ConstraintBuilder<E>> extends BaseBuilder<E> {
+
+	public E equalTo(Number value) {
+		return (E) this;
 	}
 
-	public ConstraintBuilder greaterThan(Number value) {
-		return this;
+	public E greaterThan(Number value) {
+		return (E) this;
 	}
 
-	public ConstraintBuilder lessThan(Number value) {
-		return this;
+	public E lessThan(Number value) {
+		return (E) this;
 	}
 
-	public ConstraintBuilder greaterOrEqualTo(Number value) {
-		return this;
+	public E greaterOrEqualTo(Number value) {
+		return (E) this;
 	}
 
-	public ConstraintBuilder lessOrEqualTo(Number value) {
-		return this;
+	public E lessOrEqualTo(Number value) {
+		return (E) this;
 	}
 }
