@@ -234,3 +234,6 @@ See https://www.sitepoint.com/self-types-with-javas-generics/
 See http://www.cs.toronto.edu/~hojjat/148s07/lectures/week9/11bst.pdf
 See https://micsymposium.org/mics_2009_proceedings/mics2009_submission_56.pdf
 See https://www.enjoyalgorithms.com/blog/insertion-in-binary-search-tree
+See https://dzone.com/articles/what-is-functor
+See https://dzone.com/articles/what-is-applicative
+See https://dzone.com/articles/what-is-a-monad-basic-theory-for-a-java-developer
