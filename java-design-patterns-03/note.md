@@ -4,6 +4,7 @@ See https://www.opencodez.com/java/command-design-pattern.htm
 See https://ima.udg.edu/~sellares/EINF-ES1/CommandToni.pdf
 See https://github.com/PacktPublishing/Practical-Design-Patterns-for-Java-Developers/tree/main
 See https://github.com/PacktPublishing/Java-Coding-Problems/tree/master
+See https://www.jot.fm/issues/issue_2006_03/article3/
 
 ### Command 
 

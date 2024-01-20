@@ -8,6 +8,8 @@ See https://blog.tlinkowski.pl/2019/filterer-pattern-in-10-steps/
 See https://blog.tlinkowski.pl/2018/complex-subtyping-vs-parametrization/
 See https://blog.devgenius.io/conquering-functional-programming-in-java-part-1-functions-9deab03200a1
 See https://blog.devgenius.io/conquering-functional-programming-in-java-part-2-functions-in-java-baf53a8146f4
+See https://github.com/palatable/lambda
+See https://research.sylviastuurman.nl/wp-content/uploads/2019/11/REPLACING_PATTERNS.pdf
 
 ### Separating Concerns Using Lambda Expressions
 
