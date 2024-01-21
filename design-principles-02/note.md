@@ -12,3 +12,4 @@ See https://github.com/mploed/ddd-with-spring
 See https://resources.unity.com/games/level-up-your-code-with-game-programming-patterns?ungated=true
 
 See https://dl.acm.org/doi/fullHtml/10.1145/3489449.3489972
+See https://github.com/jstevenperry/IBM-Developer/tree/master
