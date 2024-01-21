@@ -2,7 +2,7 @@ package com.farhad.example.command.demo4;
 
 public class Manager extends Invoker {
 
-    @Override
+	@Override
     public void invokeCommand() {
        getCommand().execute() ;
     }
