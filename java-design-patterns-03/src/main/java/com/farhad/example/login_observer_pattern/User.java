@@ -1,13 +1,11 @@
 package com.farhad.example.login_observer_pattern;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class User {
 
 	protected String username;
@@ -23,6 +21,14 @@ public abstract class User {
 		this.userType = userType;
 	}
 
-	
+	public User(String username, String password, String userType,
+			String passportNo, String address, String telephone) {
+		this.username = username;
+		this.password = password;
+		this.userType = userType;
+		this.passportNo = passportNo;
+		this.address = address;
+		this.telephone = telephone;
+	}	
 
 }
