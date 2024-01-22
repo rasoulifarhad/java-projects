@@ -10,5 +10,8 @@ public class App {
 
 		context.setStrategy(Strategies.STRATEGYB);
 		context.executeStrategy();
+
+		context.setStrategy(i -> 1000 * i);
+		context.executeStrategy();
 	}
 }
