@@ -11,6 +11,7 @@ See https://blog.devgenius.io/conquering-functional-programming-in-java-part-2-f
 See https://github.com/palatable/lambda
 See https://research.sylviastuurman.nl/wp-content/uploads/2019/11/REPLACING_PATTERNS.pdf
 
+
 ### Separating Concerns Using Lambda Expressions
 
 We often create classes to reuse code; we have good intentions, but it’s not always the right choice. By using higher-order functions, we can accomplish the same goals without needing a hierarchy of classes.
