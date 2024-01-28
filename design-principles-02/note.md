@@ -13,3 +13,8 @@ See https://resources.unity.com/games/level-up-your-code-with-game-programming-p
 
 See https://dl.acm.org/doi/fullHtml/10.1145/3489449.3489972
 See https://github.com/jstevenperry/IBM-Developer/tree/master
+See https://github.com/Alvence/NextGen_POS_demo/tree/master
+See https://github.com/Alvence/monopoly_demo
+See https://github.com/oop-study/awesome-design-patterns
+See https://github.com/asimihsan/stockstalk/tree/master
+See https://github.com/miguelemos/ddd-domain-driven-design/tree/master
