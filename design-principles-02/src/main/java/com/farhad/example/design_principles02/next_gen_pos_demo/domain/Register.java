@@ -37,11 +37,13 @@ public class Register {
 		return productCatalog.getProductDescription(itemId);
 	}
 
-	// public Money getTotal() {
-	// 	return currentSale.getTotal();
-	// }
+	// remove that
+	public Money getTotal() {
+		return currentSale.getTotal();
+	}
 
-	// public String printReceipt() {
-	// 	return currentSale.printReceipt();
-	// }	
+	// remove that
+	public String printReceipt() {
+		return currentSale.printReceipt();
+	}	
 }

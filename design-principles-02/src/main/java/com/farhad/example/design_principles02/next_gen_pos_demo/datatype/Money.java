@@ -46,6 +46,10 @@ public class Money implements Comparable<Money> {
 		return new Money(value, currency);
 	}
 
+	public static Money of(BigDecimal value) {
+		return new Money(value, DEFAULT_CURRENCY);
+	}
+
 	public static Money of(int value, Currency currency) {
 		return new Money(new BigDecimal(Integer.toString(value)), currency);
 	}
