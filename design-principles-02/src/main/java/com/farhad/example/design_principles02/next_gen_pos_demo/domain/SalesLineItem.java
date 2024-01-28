@@ -24,7 +24,7 @@ public class SalesLineItem {
 	}
 
 	public Money getSubtotal() {
-		return productDescription.getPrice().multiply(quantity);
+		return productDescription.getPrice().times(quantity);
 	}
 
 }

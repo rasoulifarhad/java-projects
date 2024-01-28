@@ -45,6 +45,18 @@ public class Sale {
 	}
 
 	public Money getBalance() {
-		return payment.getAmount().sub(getTotal());
+		return payment.getAmount().minus(getTotal());
 	}
+
+	// public String printReceipt() {
+	// 	StringBuilder receipt = new StringBuilder();
+	// 	for (SalesLineItem item : lineItems) {
+	// 		receipt.append(item.toString());
+	// 		receipt.append("\n");
+	// 	}
+	// 	receipt.append("Total:       " + getTotal() + "\n");
+	// 	receipt.append("Paid amount: " + payment.getAmount() + "\n");
+	// 	receipt.append("Balance:     " + getBalance());
+	// 	return receipt.toString();
+	// }	
 }

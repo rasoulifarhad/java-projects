@@ -16,4 +16,8 @@ public class Payment {
 	public static Payment create(Money amountTendered) {
 		return new Payment(amountTendered);
 	}
+
+	public void authorize() {
+		
+	}
 }

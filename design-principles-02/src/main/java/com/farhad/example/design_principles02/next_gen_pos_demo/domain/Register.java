@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Register {
 
-	private final ProductCatalog productCatalog;
-	private Sale currentSale;
 	private final Store store;
+	private final ProductCatalog productCatalog;
+	private Sale currentSale = null;
 
 	public void makeNewSale() {
 		this.currentSale = new Sale();
@@ -28,7 +28,7 @@ public class Register {
 	}
 	
 	public void makePayment(Money cashTendered ) {
-		Payment payment = currentSale.makePayment(cashTendered);
+		currentSale.makePayment(cashTendered);
 		store.addCompleteSale(currentSale);
 
 	}
@@ -37,4 +37,11 @@ public class Register {
 		return productCatalog.getProductDescription(itemId);
 	}
 
+	// public Money getTotal() {
+	// 	return currentSale.getTotal();
+	// }
+
+	// public String printReceipt() {
+	// 	return currentSale.printReceipt();
+	// }	
 }

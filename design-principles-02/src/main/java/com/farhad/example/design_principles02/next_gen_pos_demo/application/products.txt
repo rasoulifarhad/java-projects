@@ -1,0 +1,19 @@
+itemId = 1
+price = 13.00
+description = product 1
+
+itemId = 2
+price = 3.00
+description = product 2
+
+itemId = 3
+price = 100.00
+description = product 3
+
+itemId = 4
+price = 80.00
+description = product 4
+
+itemId = 5
+price = 50.00
+description = product 5
