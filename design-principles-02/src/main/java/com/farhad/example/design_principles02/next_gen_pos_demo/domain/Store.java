@@ -22,12 +22,13 @@ public class Store {
 		this.address = address;
 		this.name = name;
 		this.productCatalog = productCatalog;
+		this.register = new Register(this, productCatalog);
 	}
 
-	public Store(Address address, String name) {
-		this.address = address;
-		this.name = name;
-	}
+	// public Store(Address address, String name) {
+	// 	this.address = address;
+	// 	this.name = name;
+	// }
 
 
 	public void addCompleteSale(Sale sale) {
