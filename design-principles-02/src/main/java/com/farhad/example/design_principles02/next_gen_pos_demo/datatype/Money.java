@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 import lombok.Getter;
+import lombok.Value;
 
+@Value
 public class Money implements Comparable<Money> {
 
 	private static Currency DEFAULT_CURRENCY = Currency.getInstance("USD");
