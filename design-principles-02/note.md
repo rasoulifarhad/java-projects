@@ -18,3 +18,5 @@ See https://github.com/Alvence/monopoly_demo
 See https://github.com/oop-study/awesome-design-patterns
 See https://github.com/asimihsan/stockstalk/tree/master
 See https://github.com/miguelemos/ddd-domain-driven-design/tree/master
+See https://nilamkhairnarblog.files.wordpress.com/2018/11/assig6.pdf
+See https://www.it.uu.se/edu/course/homepage/asd/ht14/Lecture%204.pdf
