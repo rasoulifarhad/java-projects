@@ -12,6 +12,8 @@ public class Register {
 	private final ProductCatalog productCatalog;
 	private Sale currentSale = null;
 
+	private AccountingAdapter accountingAdapter;
+
 	public void makeNewSale() {
 		this.currentSale = new Sale();
 	}
@@ -30,6 +32,7 @@ public class Register {
 	public void makePayment(Money cashTendered ) {
 		currentSale.makePayment(cashTendered);
 		store.addCompleteSale(currentSale);
+		accountingAdapter.postSale(currentSale);
 
 	}
 
