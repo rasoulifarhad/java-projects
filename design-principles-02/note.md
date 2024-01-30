@@ -20,3 +20,9 @@ See https://github.com/asimihsan/stockstalk/tree/master
 See https://github.com/miguelemos/ddd-domain-driven-design/tree/master
 See https://nilamkhairnarblog.files.wordpress.com/2018/11/assig6.pdf
 See https://www.it.uu.se/edu/course/homepage/asd/ht14/Lecture%204.pdf
+
+See https://www.slideshare.net/GunasundariSelvaraj/unit-1-251313061
+See https://www.slideshare.net/GunasundariSelvaraj/unit-2-251313063
+See https://www.slideshare.net/GunasundariSelvaraj/unit-4-251313071
+See https://www.slideshare.net/guna287176/unit-i-251298918
+See https://www.slideshare.net/guna287176/unit-3-251298919
