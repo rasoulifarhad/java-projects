@@ -9,4 +9,11 @@ public class Piece {
 
 	// played on
 	private ChessBoard chessBoard;
+
+	public void move() {
+		
+	}
+	public PossibleMoves getAllMoves() {
+		return null;
+	}
 }

@@ -59,5 +59,14 @@ public class Sale {
 		receipt.append("Paid amount: " + payment.getAmount() + "\n");
 		receipt.append("Balance:     " + getBalance());
 		return receipt.toString();
-	}	
+	}
+	
+	public Money getTenderedAmountOfPayment() {
+		return payment.getAmount();
+	}
+
+	public AccountHolder getAccountHolderOfPayment() {
+		return payment.getAccount().getAccountHolder();
+	}
+
 }

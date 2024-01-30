@@ -8,9 +8,16 @@ import lombok.Value;
 public class Payment {
 
 	private Money amount;
+	private Account account;
 
 	private Payment(Money amountTendered) {
 		this.amount = amountTendered;
+		this.account = null;
+	}
+
+	private Payment(Money amountTendered, Account account) {
+		this.amount = amountTendered;
+		this.account = account;
 	}
 
 	public static Payment create(Money amountTendered) {

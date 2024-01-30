@@ -14,4 +14,8 @@ public class ChessGame {
 
 	// played using
 	private List<Piece> pieces;
+
+	public void playChess() {
+		
+	}
 }
