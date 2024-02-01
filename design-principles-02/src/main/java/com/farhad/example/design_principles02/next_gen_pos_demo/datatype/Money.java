@@ -73,11 +73,28 @@ public class Money implements Comparable<Money> {
 		return new Money(value.min(money.getValue()));
 	}
 
+	public Money mul(Money money) {
+		return new Money(value.multiply(money.getValue()));
+	}
+
+	public Money mul(double amount) {
+		return mul(Money.of(amount));
+	}
+
 	@Override
 	public int compareTo(Money o) {
 		checkCurrenciesMatch(o);
 		return this.value.compareTo(o.value);
 	}
+
+	public boolean lessThan(Money ather) {
+		return compareTo(ather) < 0;
+	}
+
+	public boolean greaterThan(Money ather) {
+		return compareTo(ather) > 0;
+	}
+
 
 	private void checkCurrenciesMatch(Money o) {
 		if (!this.currency.equals(o.getCurrency())) {

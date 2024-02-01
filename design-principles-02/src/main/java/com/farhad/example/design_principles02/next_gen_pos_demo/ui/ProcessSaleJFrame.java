@@ -76,7 +76,11 @@ public class ProcessSaleJFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// delegate event to register
-				register.makeNewSale();
+				try {
+					register.makeNewSale();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 				// output for observation
 				txtArea.setText("");

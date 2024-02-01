@@ -7,21 +7,26 @@ import java.util.List;
 import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.Money;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class Sale {
 
+
+	@Setter
+	private SalePricingStrategy pricingStrategy;
 	private boolean isComplete;
 	private List<SalesLineItem> lineItems;
 	private Instant time;
 	private Payment payment;
 	private List<TaxLineItem> taxLineItems;
 
-	public Sale() {
+	public Sale() throws Exception {
 		lineItems = new ArrayList<>();
 		taxLineItems = new ArrayList<>();
 		isComplete = false;
 		time = Instant.now();
+		pricingStrategy = PricingStrategyFactory.getInstance().getSalePricingStrategy();
 	}
 
 
@@ -69,6 +74,11 @@ public class Sale {
 
 	public AccountHolder getAccountHolderOfPayment() {
 		return payment.getAccount().getAccountHolder();
+	}
+
+
+	public Money getPreDiscountTotal() {
+		return getTotal();
 	}
 
 }

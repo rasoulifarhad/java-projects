@@ -10,7 +10,7 @@ import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.Money;
 public class SaleTest {
 
 	@Test
-	public void makeLineItemTest() {
+	public void makeLineItemTest() throws Exception {
 		// given
 		Sale sale = new Sale();
 		Money total = Money.of(7.5);

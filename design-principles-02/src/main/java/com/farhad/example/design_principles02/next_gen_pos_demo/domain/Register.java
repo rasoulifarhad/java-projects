@@ -14,7 +14,7 @@ public class Register {
 
 	private AccountingAdapter accountingAdapter;
 
-	public void makeNewSale() {
+	public void makeNewSale() throws Exception {
 		this.currentSale = new Sale();
 	}
 	
