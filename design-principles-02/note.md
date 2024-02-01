@@ -26,3 +26,5 @@ See https://www.slideshare.net/GunasundariSelvaraj/unit-2-251313063
 See https://www.slideshare.net/GunasundariSelvaraj/unit-4-251313071
 See https://www.slideshare.net/guna287176/unit-i-251298918
 See https://www.slideshare.net/guna287176/unit-3-251298919
+
+See https://medium.com/@in10se/mastering-grasp-design-principles-for-better-software-design-a21b5ec29e89

@@ -15,9 +15,11 @@ public class Sale {
 	private List<SalesLineItem> lineItems;
 	private Instant time;
 	private Payment payment;
+	private List<TaxLineItem> taxLineItems;
 
 	public Sale() {
 		lineItems = new ArrayList<>();
+		taxLineItems = new ArrayList<>();
 		isComplete = false;
 		time = Instant.now();
 	}
