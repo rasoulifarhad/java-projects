@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.Address;
+import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.CustomerId;
 
 import lombok.Data;
 
@@ -34,6 +35,11 @@ public class Store {
 	public void addCompleteSale(Sale sale) {
 
 		completedSales.add(sale);
+	}
+
+	public Customer getCustomer(CustomerId customerId) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getCustomer'");
 	}
 
 }

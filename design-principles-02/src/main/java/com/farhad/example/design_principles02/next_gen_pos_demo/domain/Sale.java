@@ -20,6 +20,7 @@ public class Sale {
 	private Instant time;
 	private Payment payment;
 	private List<TaxLineItem> taxLineItems;
+	private Customer customer;
 
 	public Sale() throws Exception {
 		lineItems = new ArrayList<>();
@@ -79,6 +80,12 @@ public class Sale {
 
 	public Money getPreDiscountTotal() {
 		return getTotal();
+	}
+
+
+	public void enterCustomerForDiscount(Customer customer) {
+		this.customer = customer;
+		PricingStrategyFactory.getInstance().addCustomerPricingStrategy(this);
 	}
 
 }

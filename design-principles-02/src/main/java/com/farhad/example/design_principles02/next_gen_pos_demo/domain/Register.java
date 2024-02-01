@@ -1,5 +1,6 @@
 package com.farhad.example.design_principles02.next_gen_pos_demo.domain;
 
+import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.CustomerId;
 import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.ItemId;
 import com.farhad.example.design_principles02.next_gen_pos_demo.datatype.Money;
 
@@ -48,5 +49,11 @@ public class Register {
 	// remove that
 	public String printReceipt() {
 		return currentSale.printReceipt();
-	}	
+	}
+	
+	public void enterCustomerForDiscount(CustomerId customerId) {
+		Customer customer = store.getCustomer(customerId);
+		currentSale.enterCustomerForDiscount(customer);
+
+	}
 }
