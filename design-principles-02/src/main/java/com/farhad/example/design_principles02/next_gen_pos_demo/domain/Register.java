@@ -30,7 +30,7 @@ public class Register {
 
 	}
 	
-	public void makePayment(Money cashTendered ) {
+	public void makeCashPayment(Money cashTendered ) {
 		currentSale.makePayment(cashTendered);
 		store.addCompleteSale(currentSale);
 		accountingAdapter.postSale(currentSale);

@@ -134,7 +134,7 @@ public class ProcessSaleJFrame extends JFrame{
 					return;
 				}
 				// delegate event to register
-				register.makePayment(Money.of(new BigDecimal(paid)));
+				register.makeCashPayment(Money.of(new BigDecimal(paid)));
 				;
 				// output for observation
 				txtArea.append("Print receipt:\n");
