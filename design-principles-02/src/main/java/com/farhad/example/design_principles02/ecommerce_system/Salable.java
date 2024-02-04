@@ -7,7 +7,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class Salable {
 
-	private Product product;
-	private int quantity;
+	private double cost;
+
+	public double price() {
+		return cost;
+	}
 
 }

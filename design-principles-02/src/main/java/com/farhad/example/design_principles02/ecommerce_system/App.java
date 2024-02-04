@@ -31,6 +31,22 @@ package com.farhad.example.design_principles02.ecommerce_system;
 // - Don’t concern clients (SalesOrder) over this detail
 // - In other words, use the Singleton design pattern
 //
+// In the Ecommerce system, we will now 
+// 
+// - “Decorate” a SalesTicket and 
+// - “Observe” a Customer
+//
+// Decorate SalesTicketPrinter
+//
+// - Assume the SalesTicketPrinter currently creates an html sales receipt   Airline Ticket
+// - New Requirement: Add header with company name, add footer that is an advertisement, during 
+//   the holidays add holiday relevant header(s) and footer(s), we’re not sure how many
+//
+// One solution
+//
+// - Place control in SalesTicketPrinter, Then you need flags to control what header(s) get printed
+//
+//
 public class App {
 
 }
