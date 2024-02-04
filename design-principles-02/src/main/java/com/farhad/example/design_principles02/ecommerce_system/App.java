@@ -51,6 +51,12 @@ package com.farhad.example.design_principles02.ecommerce_system;
 //     functionality in the correct order needed
 //   - Start chain with decorators, end with original object
 //
+// Observe Customer
+//
+// - New Requirements: Send an email to a new customer and verify the customer's address with the post office
+//
+// - If this was it, hard code Customer behavior when being added to data base
+// 
 public class App {
 
 }
