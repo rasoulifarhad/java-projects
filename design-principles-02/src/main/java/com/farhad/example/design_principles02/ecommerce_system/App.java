@@ -45,7 +45,11 @@ package com.farhad.example.design_principles02.ecommerce_system;
 // One solution
 //
 // - Place control in SalesTicketPrinter, Then you need flags to control what header(s) get printed
-//
+// - If there are many types of headers and footers, with only one being printed each time, use Strategy
+// - If there are more than one header and footer, and the ordering changes, and the number of combinations grows,
+//   - use the Decorator design pattern to chain together the desired 
+//     functionality in the correct order needed
+//   - Start chain with decorators, end with original object
 //
 public class App {
 
