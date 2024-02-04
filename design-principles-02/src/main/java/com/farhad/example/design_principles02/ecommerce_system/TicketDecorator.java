@@ -5,11 +5,15 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor	
-public abstract class TicketDicoratore implements TicketPrinter {
+public abstract class TicketDecorator implements TicketPrinter {
 
 	protected TicketPrinter ticketPrinter;
 
 	@Override
-	public abstract void printTicket();
+	public void printTicket() {
+		if (ticketPrinter != null) {
+			ticketPrinter.printTicket();
+		}
+	}
 
 }

@@ -1,8 +1,8 @@
 package com.farhad.example.design_principles02.ecommerce_system;
 
-public class HeaderDecorator extends TicketDecorator {
+public class HeaderDecorator2 extends TicketDecorator {
 
-	public HeaderDecorator(TicketPrinter ticketPrinter) {
+	public HeaderDecorator2(TicketPrinter ticketPrinter) {
 		super(ticketPrinter);
 	}
 
@@ -14,7 +14,7 @@ public class HeaderDecorator extends TicketDecorator {
 	}
 
 	private void printHeader() {
-		System.out.println("@@ Header One @@");
+		System.out.println("@@ Header two @@");
 	}
 
 }

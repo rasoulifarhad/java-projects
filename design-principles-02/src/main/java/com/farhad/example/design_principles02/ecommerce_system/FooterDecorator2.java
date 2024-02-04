@@ -1,8 +1,8 @@
 package com.farhad.example.design_principles02.ecommerce_system;
 
-public class FooterDecorator extends TicketDecorator {
+public class FooterDecorator2 extends TicketDecorator {
 
-	public FooterDecorator(TicketPrinter ticketPrinter) {
+	public FooterDecorator2(TicketPrinter ticketPrinter) {
 		super(ticketPrinter);
 	}
 
@@ -14,7 +14,7 @@ public class FooterDecorator extends TicketDecorator {
 	}
 
 	private void printFooter() {
-		System.out.println("%% FOOTER one %%");
+		System.out.println("%% FOOTER two %%");
 	}
 
 }
