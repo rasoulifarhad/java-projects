@@ -57,6 +57,24 @@ package com.farhad.example.design_principles02.ecommerce_system;
 //
 // - If this was it, hard code Customer behavior when being added to data base
 // 
+// Or use Observer
+// 
+// - With additional behaviors (such as send advertisements via snail mail), there may be a 
+//   changing list of objects that need notification that a new customer is being added
+//
+// - These objects will have different interfaces 
+// 
+//   - SendEmail, SendCouponsViaSnailMail, SellPrivateInformationToTelemarketers, ....
+//
+// Next up: change two objects into "Observers"
+//
+// Observer
+//
+// - Have Customer extend Observable
+// - Have all of the objects that need notification  implement Observer (all have the update method
+// - Have some configurer add the correct observers to the Customer object with addObservers
+// - Have the addCustomer method send the message notifyObservers
+// 
 public class App {
 
 }

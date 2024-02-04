@@ -1,14 +1,9 @@
 package com.farhad.example.design_principles02.ecommerce_system;
 
-import lombok.Data;
+public class Customer extends java.util.Observable {
 
-@Data
-public class Customer {
-
-	private AddressVerification addressVerification;
-	private WelcomeEmail welcomeEmail;
 
 	public void addCustomer() {
-
+		notifyObservers();
 	}
 }
