@@ -11,6 +11,26 @@ package com.farhad.example.design_principles02.ecommerce_system;
 //   - modify existing SalesOrder to handle U.S. taxes
 //   - extend the existing SalesOrder object and modify the tax rules so it applies to the new country  
 //   - consider what is variable in the design / encapsulate the concept the varies
+//
+// In England, old-age pensioners are not required to pay taxes on sales items
+//
+// How can this be handled?
+//
+// 1. Pass age of the Customer to TaxCalculator object
+// 2. Be more general and pass a Customer object
+// 3. Be even more general and pass a reference to the SalesOrder object (this) to the 
+//    TaxCalculator and let that EnglishStrategy object ask SalesOrder for customer age 
+//    (post some html to the client)
+//
+// Don’t need more than one instance of each TaxCalculator class
+//
+// Solution:
+//
+// - Let Strategy objects handle the instantiation
+// - Let there be only one instance
+// - Don’t concern clients (SalesOrder) over this detail
+// - In other words, use the Singleton design pattern
+//
 public class App {
 
 }
