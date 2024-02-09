@@ -3,6 +3,7 @@ package com.farhad.example.design_principles02.rock_and_roll.second;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Inventory {
 
@@ -21,11 +22,10 @@ public class Inventory {
 		guitars.add(new Guitar(serialNumbeer, price, builder, model, type, backWood, topWood));
 	}
 
-	public Guitar search(Guitar exampleGuitar) {
+	public List<Guitar> search(Guitar exampleGuitar) {
 		return guitars.stream()
 				.filter(g -> matched(exampleGuitar).test(g))
-				.findFirst()
-				.orElse(null);
+				.collect(Collectors.toList());
 	}
 
 	private Predicate<Guitar> matched(Guitar exampleGuitar) {
