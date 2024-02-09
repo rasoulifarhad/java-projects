@@ -34,7 +34,7 @@ public class Inventory {
 				return false;
 			}
 			String model = exampleGuitar.getModel();
-			if ((model != null) && (!model.equals("")) && (!model.equals(g.getModel()))) {
+			if ((model != null) && (!model.equals("")) && (!model.toLowerCase().equals(g.getModel().toLowerCase()))) {
 				return false;
 			}
 			if (exampleGuitar.getType() != g.getType()) {
