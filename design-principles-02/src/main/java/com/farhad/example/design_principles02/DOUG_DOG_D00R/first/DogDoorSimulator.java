@@ -15,6 +15,7 @@ package com.farhad.example.design_principles02.DOUG_DOG_D00R.first;
 //    6.5. The dog door opens (again).
 //
 // 7. Dog goes back inside.
+// 8. The door shuts automatically.
 public class DogDoorSimulator {
 
 	public static void main(String[] args) {
