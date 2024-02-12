@@ -28,3 +28,6 @@ See https://www.slideshare.net/guna287176/unit-i-251298918
 See https://www.slideshare.net/guna287176/unit-3-251298919
 
 See https://medium.com/@in10se/mastering-grasp-design-principles-for-better-software-design-a21b5ec29e89
+See https://www.thoughtworks.com/insights/blog/agile-project-management/domain-modeling-what-you-need-to-know-before-coding
+See https://github.com/Jmgiacone/Pokemon/tree/master
+See https://github.com/sarahdahippo-zz/pokemon-battle/tree/master
