@@ -1,8 +1,5 @@
 package com.farhad.example.design_principles02.DOUG_DOG_D00R.third;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -16,16 +13,6 @@ public class Remote {
 			door.close();
 		} else {
 			door.open();
-			final Timer timer = new Timer();
-			timer.schedule(new TimerTask() {
-
-				@Override
-				public void run() {
-					door.close();
-					timer.cancel();
-				}
-
-			}, 5000);
 		}
 	}
 }
