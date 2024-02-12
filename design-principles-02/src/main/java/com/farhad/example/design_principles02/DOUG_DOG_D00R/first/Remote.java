@@ -15,4 +15,4 @@ public class Remote {
 			door.open();
 		}
 	}
-}
+}	

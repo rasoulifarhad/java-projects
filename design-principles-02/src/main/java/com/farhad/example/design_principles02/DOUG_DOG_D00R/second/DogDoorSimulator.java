@@ -13,6 +13,17 @@ public class DogDoorSimulator {
 
 		System.out.println("\nDog's all done...");
 
-		System.out.println("\ndog's back inside...");
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			System.out.println();
+		}
+
+		System.out.println("...but he's stuck outside!");
+
+		System.out.println("\ndog starts barking...");
+		System.out.println("...so she/he grabs the remote control.");
+		remote.pressButton();
+		System.out.println("\nDog's back inside...");
 	}
 }
