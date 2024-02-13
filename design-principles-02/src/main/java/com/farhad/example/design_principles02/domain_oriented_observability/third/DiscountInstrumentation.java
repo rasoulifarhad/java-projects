@@ -36,4 +36,15 @@ public class DiscountInstrumentation {
 		log.info("attempting to apply discount code: {}", discountCode);
 	}
 
+
+	public void addingItemToCart(ProductId productId, ShoppingCartId shoppingCartId) {
+		log.info("adding product {} to cart {}", productId, shoppingCartId);
+
+	}
+	public void itemAddedToCart(Product product, double totalPrice, int size) {
+		this.analytics.tarck("Product Added To Cart", Collections.singletonMap("sku", product.getSku()));
+		this.metrics.gauge("shopping-cart-total", totalPrice);
+		this.metrics.gauge("shopping-cart-size", size);
+	}
+
 }

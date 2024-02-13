@@ -6,4 +6,6 @@ public interface Metrics {
 
 	void increment(String string, Map<String, Object> singletonMap);
 
+	void gauge(String string, Object totalPrice);
+
 }
