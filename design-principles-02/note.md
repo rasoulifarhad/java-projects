@@ -31,3 +31,4 @@ See https://medium.com/@in10se/mastering-grasp-design-principles-for-better-soft
 See https://www.thoughtworks.com/insights/blog/agile-project-management/domain-modeling-what-you-need-to-know-before-coding
 See https://github.com/Jmgiacone/Pokemon/tree/master
 See https://github.com/sarahdahippo-zz/pokemon-battle/tree/master
+See https://martinfowler.com/articles/domain-oriented-observability.html
