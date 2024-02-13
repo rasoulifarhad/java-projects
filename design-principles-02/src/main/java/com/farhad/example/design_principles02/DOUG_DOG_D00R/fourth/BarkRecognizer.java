@@ -8,8 +8,22 @@ public class BarkRecognizer {
 	private final DogDoor dogDoor;
 
 	// Every time the hardware hears a bark, it will call this method with the sound of the bark it heard
-	public void recognize(String bark) {
-		System.out.println("   BarkRecognizer: Heard a '" + bark + "'");
-		dogDoor.open();
+	// public void recognize(String bark) {
+	// 	System.out.println("   BarkRecognizer: Heard a '" + bark + "'");
+	// 	if (dogDoor.getAllowedBark().equals(bark)) {
+	// 		dogDoor.open();
+	// 	} else {
+	// 		System.out.println("This dog is not allowed.");
+	// 	}
+	// }
+
+	public void recognize(Bark bark) {
+		System.out.println("   BarkRecognizer: Heard a '" + bark.getSound() + "'");
+		if (dogDoor.getAllowedBark().equals(bark)) {
+			dogDoor.open();
+		} else {
+			System.out.println("This dog is not allowed.");
+		}
 	}
+
 }

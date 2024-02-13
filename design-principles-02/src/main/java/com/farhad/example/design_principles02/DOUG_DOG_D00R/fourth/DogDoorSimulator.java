@@ -35,9 +35,10 @@ public class DogDoorSimulator {
 		DogDoor dogDoor = new DogDoor();
 		BarkRecognizer barkRecognizer = new BarkRecognizer(dogDoor);
 
+		Bark bark = new Bark("Woof");
 		// simulate the hardwares hearing a bark
 		System.out.println("Dog barks to go outside...");
-		barkRecognizer.recognize("Woof");
+		barkRecognizer.recognize(bark);
 
 		System.out.println("\nDog has gone outside...");
 
@@ -51,8 +52,9 @@ public class DogDoorSimulator {
 
 		System.out.println("...but he's stuck outside!");
 
+		bark = new Bark("Woof");
 		System.out.println("\nDog starts barking...");
-		barkRecognizer.recognize("Woof");
+		barkRecognizer.recognize(bark);
 
 		System.out.println("\nDog's back inside...");
 	}

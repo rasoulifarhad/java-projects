@@ -10,10 +10,13 @@ public class DogDoor {
 
 	private boolean open;
 
+	// @Getter
+	// @Setter
+	// private String AllowedBark;
+
 	@Getter
 	@Setter
-	private String AllowedBark;
-
+	private Bark allowedBark;
 	public DogDoor() {
 		this.open = false;
 	}
