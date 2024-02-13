@@ -4,6 +4,7 @@ package com.farhad.example.design_principles02.domain_oriented_observability.thi
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ShoppingCart {
 
 
+	@Getter
 	private ShoppingCartId shoppingCartId;
 	
 	private final DiscountService discountService;
@@ -43,18 +45,22 @@ public class ShoppingCart {
 	
 	public void addToCard(ProductId productId) {
 
-		instrumentation.addingItemToCart(productId, shoppingCartId);
+		instrumentation.addingProductToCart(productId, this);
 		Product product = productService.lookupProduct(productId);
 
 		products.add(product);
 		recalculateTotal();
 
-		instrumentation.itemAddedToCart(product, totalPrice(), products.size());
+		instrumentation.addedProductToCart(product, this);
 
 	}
 
-	private double totalPrice() {
+	public double totalPrice() {
 		return 0;
+	}
+
+	public int size() {
+		return products.size();
 	}
 
 	private void recalculateTotal() {

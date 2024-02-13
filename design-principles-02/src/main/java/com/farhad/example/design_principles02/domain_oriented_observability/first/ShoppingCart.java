@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ShoppingCart {
 
 
+	@Getter
 	private ShoppingCartId shoppingCartId;
 
 	private final DiscountService discountService;
@@ -68,6 +70,10 @@ public class ShoppingCart {
 	}
 
 	private void recalculateTotal() {
+	}
+
+	public int size() {
+		return products.size();
 	}
 
 }

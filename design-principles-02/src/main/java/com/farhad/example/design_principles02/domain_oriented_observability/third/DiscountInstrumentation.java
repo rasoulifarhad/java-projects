@@ -37,14 +37,14 @@ public class DiscountInstrumentation {
 	}
 
 
-	public void addingItemToCart(ProductId productId, ShoppingCartId shoppingCartId) {
-		log.info("adding product {} to cart {}", productId, shoppingCartId);
+	public void addingProductToCart(ProductId productId, ShoppingCart shoppingCart) {
+		log.info("adding product {} to cart {}", productId, shoppingCart.getShoppingCartId());
 
 	}
-	public void itemAddedToCart(Product product, double totalPrice, int size) {
+	public void addedProductToCart(Product product, ShoppingCart shoppingCart) {
 		this.analytics.tarck("Product Added To Cart", Collections.singletonMap("sku", product.getSku()));
-		this.metrics.gauge("shopping-cart-total", totalPrice);
-		this.metrics.gauge("shopping-cart-size", size);
+		this.metrics.gauge("shopping-cart-total", shoppingCart.totalPrice());
+		this.metrics.gauge("shopping-cart-size", shoppingCart.size());
 	}
 
 }

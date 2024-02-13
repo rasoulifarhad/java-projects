@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ShoppingCart {
 
 
+	@Getter
 	private ShoppingCartId shoppingCartId;
 
 	private final DiscountService discountService;
@@ -47,26 +49,27 @@ public class ShoppingCart {
 	
 	public void addToCard(ProductId productId) {
 
-		instrumentAddingItemToCart(productId, shoppingCartId);
+		instrumentAddingProductToCart(productId, this);
 
 		Product product = productService.lookupProduct(productId);
 
 		products.add(product);
 		recalculateTotal();
 
-		instrumentItemAddedToCart(product, totalPrice(), products.size());
+		instrumentAddedProductToCart(product, this);
 
 	}
 	
-	public void instrumentAddingItemToCart(ProductId productId, ShoppingCartId shoppingCartId) {
-		log.info("adding product {} to cart {}", productId, shoppingCartId);
+
+	public void instrumentAddingProductToCart(ProductId productId, ShoppingCart shoppingCart) {
+		log.info("adding product {} to cart {}", productId, shoppingCart.getShoppingCartId());
 
 	}
 
-	public void instrumentItemAddedToCart(Product product, double totalPrice, int size) {
+	public void instrumentAddedProductToCart(Product product, ShoppingCart shoppingCart) {
 		this.analytics.tarck("Product Added To Cart", Collections.singletonMap("sku", product.getSku()));
-		this.metrics.gauge("shopping-cart-total", totalPrice);
-		this.metrics.gauge("shopping-cart-size", size);
+		this.metrics.gauge("shopping-cart-total", shoppingCart.totalPrice());
+		this.metrics.gauge("shopping-cart-size", shoppingCart.size());
 	}
 
 	private double totalPrice() {
@@ -74,6 +77,10 @@ public class ShoppingCart {
 	}
 
 	private void recalculateTotal() {
+	}
+
+	public int size() {
+		return products.size();
 	}
 
 	private void instrumentDiscountApplied(Discount discount, double amountDiscounted) {
