@@ -1,6 +1,6 @@
 package com.farhad.example.design_principles02.domain_oriented_observability.sixth;
 
-public class DiscountApplied implements Announce {
+public class DiscountApplied implements Announcement {
 
 	public DiscountApplied(DiscountCode code) {
 		//TODO Auto-generated constructor stub

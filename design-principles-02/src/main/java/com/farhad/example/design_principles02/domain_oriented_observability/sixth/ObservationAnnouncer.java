@@ -2,5 +2,5 @@ package com.farhad.example.design_principles02.domain_oriented_observability.six
 
 public interface ObservationAnnouncer {
 
-	void announce(Announce announce );
+	void announce(Announcement announce );
 }
