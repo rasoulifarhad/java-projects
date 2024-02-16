@@ -32,3 +32,5 @@ See https://www.thoughtworks.com/insights/blog/agile-project-management/domain-m
 See https://github.com/Jmgiacone/Pokemon/tree/master
 See https://github.com/sarahdahippo-zz/pokemon-battle/tree/master
 See https://martinfowler.com/articles/domain-oriented-observability.html
+See https://codeburst.io/rule-your-domain-model-d4beae6806c
+
