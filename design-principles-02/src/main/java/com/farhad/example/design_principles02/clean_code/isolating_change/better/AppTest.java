@@ -4,7 +4,7 @@ public class AppTest {
 
 	public static void main(String[] args) {
 		
-		FixedStockExchangeSup stockExchange = new FixedStockExchangeSup();
+		FixedStockExchangeStub stockExchange = new FixedStockExchangeStub();
 		stockExchange.fix("MSFT", 100);
 
 		Portfolio portfolio = new Portfolio(stockExchange);

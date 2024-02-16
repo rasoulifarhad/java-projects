@@ -3,7 +3,7 @@ package com.farhad.example.design_principles02.clean_code.isolating_change.bette
 import java.util.HashMap;
 import java.util.Map;
 
-public class FixedStockExchangeSup implements StockExchange {
+public class FixedStockExchangeStub implements StockExchange {
 
 	private Map<String, Double> stocks = new HashMap<>();
 
