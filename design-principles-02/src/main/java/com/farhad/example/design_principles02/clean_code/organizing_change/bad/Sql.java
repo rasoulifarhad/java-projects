@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.clean_code.organizing_change.demo01;
+package com.farhad.example.design_principles02.clean_code.organizing_change.bad;
 
 import lombok.RequiredArgsConstructor;
 
