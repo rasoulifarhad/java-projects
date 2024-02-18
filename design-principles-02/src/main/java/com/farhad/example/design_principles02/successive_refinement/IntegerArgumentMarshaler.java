@@ -10,9 +10,12 @@ public class IntegerArgumentMarshaler implements ArgumentMarshaler {
 
 	private int intValue = 0;
 
-	public static int getValue(ArgumentMarshaler argumentMarshaler) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getValue'");
+	public static int getValue(ArgumentMarshaler am) {
+		if (am != null && am instanceof IntegerArgumentMarshaler) {
+			return ((IntegerArgumentMarshaler) am).intValue;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
