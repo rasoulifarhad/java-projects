@@ -1,10 +1,10 @@
-package com.farhad.example.design_principles02.dessert.bad.dessert;
+package com.farhad.example.design_principles02.dessert.better.dessert;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.farhad.example.design_principles02.dessert.bad.icecream.IceCream;
-import com.farhad.example.design_principles02.dessert.bad.topping.Topping;
+import com.farhad.example.design_principles02.dessert.better.icecream.IceCream;
+import com.farhad.example.design_principles02.dessert.better.topping.Topping;
 
 import lombok.Getter;
 
@@ -20,7 +20,7 @@ public class Cone implements Dessert {
 		toppings = new ArrayList<>();
 	}
 
-	public void addScoop(IceCream iceCream) {
+	public void addIceCream(IceCream iceCream) {
 		iceCreams.add(iceCream);
 	}
 
