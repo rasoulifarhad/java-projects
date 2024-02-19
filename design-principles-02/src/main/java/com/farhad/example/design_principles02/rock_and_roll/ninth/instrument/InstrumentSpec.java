@@ -18,7 +18,11 @@ public class InstrumentSpec {
 	}
 
 	public InstrumentSpec(Map<String, Object> properties) {
-		this.properties = properties;
+		if (properties == null) {
+			this.properties = new HashMap<>();
+		} else {
+			this.properties = new HashMap<>(properties);
+		}
 	}
 
 	public Object getProperty(String propertyName) {
