@@ -11,7 +11,7 @@ import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.sha
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Type;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Wood;
 
-public class FindGuitarTester {
+public class FindInstrument {
 	
 	public static void main(String[] args) {
 
