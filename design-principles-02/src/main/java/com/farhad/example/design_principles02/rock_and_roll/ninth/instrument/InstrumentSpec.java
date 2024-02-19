@@ -1,45 +1,37 @@
 package com.farhad.example.design_principles02.rock_and_roll.ninth.instrument;
 
-import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Builder;
-import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Type;
-import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Wood;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import lombok.Getter;
 
 @Getter
 public class InstrumentSpec {
 
-	private Builder builder;
-	private String model;
-	private Type type;
-	private Wood backWood;
+	@Getter
+	private Map<String, Object> properties;
 
-	private Wood topWood;
+	public InstrumentSpec() {
+		properties = new HashMap<>();
+	}
 
-	public InstrumentSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-		this.builder = builder;
-		this.model = model;
-		this.type = type;
-		this.backWood = backWood;
-		this.topWood = topWood;
+	public InstrumentSpec(Map<String, Object> properties) {
+		this.properties = properties;
+	}
+
+	public Object getProperty(String propertyName) {
+		return properties.getOrDefault(propertyName, null);
 	}
 
 	public boolean matches(InstrumentSpec example) {
-		if (this.getBuilder() != example.getBuilder()) {
-			return false;
-		}
-		String model = this.getModel();
-		if ((model != null) && (!model.equals("")) && (!model.toLowerCase().equals(example.getModel().toLowerCase()))) {
-			return false;
-		}
-		if (this.getType() != example.getType()) {
-			return false;
-		}
-		if (this.getBackWood() != example.getBackWood()) {
-			return false;
-		}
-		if (this.getTopWood() != example.getTopWood()) {
-			return false;
+		Set<Entry<String, Object>> exampleEntries = example.getProperties().entrySet();
+
+		for (Entry<String, Object> entry : exampleEntries) {
+			if (!entry.getValue().equals(properties.get(entry.getKey()))) {
+				return false;
+			}
 		}
 		return true;
 	}
