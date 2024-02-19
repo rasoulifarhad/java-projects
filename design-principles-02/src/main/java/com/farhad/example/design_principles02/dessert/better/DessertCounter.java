@@ -11,6 +11,12 @@ import com.farhad.example.design_principles02.dessert.better.topping.Topping;
 //   changes.adding a topping should be done to the Dessert class es directly.
 // - Syrup is an implementation of topping. we do'nt need  a methodto to add a syrup  in Sundae class (coding to an implementation)
 // - there are a LOT of serve() implementations . we should try an encapsulate what varies, and put all the serving code in one place.
+// 
+// OO Principels
+//
+// - Encapsulate what varies
+// - Code to interface rather than to an implementation
+// - Each class in your application should have only one reason to change
 public class DessertCounter {
 
 	enum DessertType {
