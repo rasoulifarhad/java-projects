@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.Instrument;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentSpec;
-import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentType;
 
 public class Inventory {
 
@@ -20,8 +19,8 @@ public class Inventory {
 				.orElse(null);
 	}
 
-	public void addInstrument(InstrumentType instrumentType, String serialNumbeer, double price, InstrumentSpec spec) {
-		instruments.add(new Instrument(instrumentType, serialNumbeer, price, spec));
+	public void addInstrument(String serialNumbeer, double price, InstrumentSpec spec) {
+		instruments.add(new Instrument(serialNumbeer, price, spec));
 	}
 
 	public List<? extends Instrument> search(InstrumentSpec exampleSpec) {

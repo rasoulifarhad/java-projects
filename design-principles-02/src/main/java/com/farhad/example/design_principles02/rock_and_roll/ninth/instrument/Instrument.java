@@ -25,8 +25,6 @@ import lombok.Getter;
 public class Instrument {
 
 	@Getter
-	private InstrumentType instrumentType;
-	@Getter
 	private String serialNumbeer;
 
 	@Getter
@@ -35,7 +33,7 @@ public class Instrument {
 	@Getter
 	private InstrumentSpec spec;
 	
-	public Instrument(InstrumentType instrumentType, String serialNumbeer, double price, InstrumentSpec spec) {
+	public Instrument(String serialNumbeer, double price, InstrumentSpec spec) {
 		this.serialNumbeer = serialNumbeer;
 		this.price = price;
 		this.spec = spec;

@@ -19,6 +19,7 @@ public class FindGuitarTester {
 		Inventory inventory = new Inventory();
 		initializeInventory(inventory);
 		Map<String, Object> properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
@@ -48,6 +49,7 @@ public class FindGuitarTester {
 
 	private static void initializeInventory(Inventory inventory) {
 		Map<String, Object> properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
@@ -57,9 +59,10 @@ public class FindGuitarTester {
 
 		InstrumentSpec instrumentSpec = new InstrumentSpec(properties);
 
-		inventory.addInstrument(InstrumentType.GUITAR, "V1234", 1234.95, instrumentSpec);
+		inventory.addInstrument("V1234", 1234.95, instrumentSpec);
 
 		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
@@ -67,10 +70,11 @@ public class FindGuitarTester {
 		properties.put("backWood", Wood.ALDER);
 		properties.put("topkWood", Wood.ALDER);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument(InstrumentType.GUITAR, "V6789", 1321.95, instrumentSpec);
+		inventory.addInstrument("V6789", 1321.95, instrumentSpec);
 
 
 		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.MANDOLIN);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
@@ -78,9 +82,10 @@ public class FindGuitarTester {
 		properties.put("backWood", Wood.ALDER);
 		properties.put("topkWood", Wood.ALDER);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument(InstrumentType.MANDOLIN, "V1234", 1234.95, instrumentSpec);
+		inventory.addInstrument("V1234", 1234.95, instrumentSpec);
 
 		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.MANDOLIN);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
@@ -88,7 +93,7 @@ public class FindGuitarTester {
 		properties.put("backWood", Wood.ALDER);
 		properties.put("topkWood", Wood.ALDER);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument(InstrumentType.MANDOLIN, "V6789", 1321.95, instrumentSpec);
+		inventory.addInstrument("V6789", 1321.95, instrumentSpec);
 
 	}
 
