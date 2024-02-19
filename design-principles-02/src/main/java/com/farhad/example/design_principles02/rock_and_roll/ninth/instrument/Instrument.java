@@ -2,25 +2,14 @@ package com.farhad.example.design_principles02.rock_and_roll.ninth.instrument;
 
 import lombok.Getter;
 
-// Classes are really about behavior, guitar, mandolin, and the other instruments do'nt have 
-// different behavior. but they have different properties...so we have to have subclasses for 
-// each instrument. right?
-// 
-// because instrument class represents a concept , and not an actual object, it really should be abstract.
-// so we have to have subclasses for each instrument type.
+// apply the ease-of-change test:
 //
-// each different type  of instrument has different properties, and uses a different subclass of 
-// instrumentSpec, so we need an instrument -spwcific constructor for each type of instrument.
-//
-// When you do'nt know what to do to solve a design problem, just run through the OO principles 
-// you know, and see if any of them might help improve your software's design.
-//
-// - Inheritance
-// - Polymorphism
-// - Abstraction
-// - Encapsulation(encapsulate what varies) - since the properties in each instrument type are what varies.
-//                                            can we somehow encapsulate those properties away fro instrument
-//                                            and instrumentSpec completely?
+// - How many classes did you have to add    to support new Instrument type?
+// - How many classes did you have to change to support  new Instrument type?
+// - suppose that we decided that we wanted to start keeping up with year an instrument was made in.
+//   How many classes whould you need to change to support keeping up with this new information?
+// - also we want to add a new property, neckWood, that tracks what wood is used in the neck of an 
+//   instrument. How many classes whould you need to change to support this property?
 
 public class Instrument {
 
