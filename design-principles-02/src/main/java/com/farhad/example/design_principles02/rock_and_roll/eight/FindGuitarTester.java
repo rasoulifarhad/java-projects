@@ -3,6 +3,7 @@ package com.farhad.example.design_principles02.rock_and_roll.eight;
 import java.util.List;
 
 import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.Instrument;
+import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentType;
 import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.guitar.GuitarSpec;
 import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.mandolin.MandolinSpec;
 import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.mandolin.Style;
@@ -43,18 +44,18 @@ public class FindGuitarTester {
 		GuitarSpec guitarSpec = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, "", Wood.ALDER,
 				Wood.ALDER);
 
-		inventory.addInstrument("V1234", 1234.95, guitarSpec);
+		inventory.addInstrument(InstrumentType.GUITAR, "V1234", 1234.95, guitarSpec);
 
 		guitarSpec = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, "", Wood.ALDER, Wood.ALDER);
-		inventory.addInstrument("V6789", 1321.95, guitarSpec);
+		inventory.addInstrument(InstrumentType.GUITAR, "V6789", 1321.95, guitarSpec);
 
 
 		MandolinSpec mandolinSpec = new MandolinSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Style.A, Wood.ALDER,
 				Wood.ALDER);
-		inventory.addInstrument("V1234", 1234.95, mandolinSpec);
+		inventory.addInstrument(InstrumentType.MANDOLIN, "V1234", 1234.95, mandolinSpec);
 
 		mandolinSpec = new MandolinSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Style.F, Wood.ALDER, Wood.ALDER);
-		inventory.addInstrument("V6789", 1321.95, mandolinSpec);
+		inventory.addInstrument(InstrumentType.MANDOLIN, "V6789", 1321.95, mandolinSpec);
 
 	}
 
