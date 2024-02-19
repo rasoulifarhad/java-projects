@@ -38,7 +38,7 @@ public class FindInstrument {
 						System.out.println("     " + propName + ": " + g.getSpec().getProperty(propName));
 					}
 				}
-				System.out.println("  " + "You can have this " + g.getSpec().getProperty("instrumentType") + " for $" + g.getPrice() + "\n----");
+				System.out.println("   " + "You can have this " + g.getSpec().getProperty("instrumentType") + " for $" + g.getPrice() + "\n----");
 			});
 			// System.out.println(machedGuitars);
 		} else {
