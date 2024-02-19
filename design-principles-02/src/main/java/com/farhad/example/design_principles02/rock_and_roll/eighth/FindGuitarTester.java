@@ -1,15 +1,15 @@
-package com.farhad.example.design_principles02.rock_and_roll.eight;
+package com.farhad.example.design_principles02.rock_and_roll.eighth;
 
 import java.util.List;
 
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.Instrument;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentType;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.guitar.GuitarSpec;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.mandolin.MandolinSpec;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.mandolin.Style;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Builder;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Type;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Wood;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.Instrument;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.InstrumentType;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.guitar.GuitarSpec;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.mandolin.MandolinSpec;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.mandolin.Style;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Builder;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Type;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Wood;
 
 public class FindGuitarTester {
 	

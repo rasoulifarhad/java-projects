@@ -1,9 +1,9 @@
-package com.farhad.example.design_principles02.rock_and_roll.eight.instrument.mandolin;
+package com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.mandolin;
 
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentSpec;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Builder;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Type;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Wood;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.InstrumentSpec;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Builder;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Type;
+import com.farhad.example.design_principles02.rock_and_roll.eighth.instrument.share.Wood;
 
 import lombok.Getter;
 

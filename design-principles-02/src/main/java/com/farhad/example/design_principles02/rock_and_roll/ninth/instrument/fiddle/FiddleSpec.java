@@ -1,9 +1,9 @@
-package com.farhad.example.design_principles02.rock_and_roll.eight.instrument.fiddle;
+package com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.fiddle;
 
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentSpec;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Builder;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Type;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.share.Wood;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentSpec;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Builder;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Type;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Wood;
 
 import lombok.Getter;
 

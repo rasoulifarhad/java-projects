@@ -1,12 +1,12 @@
-package com.farhad.example.design_principles02.rock_and_roll.eight;
+package com.farhad.example.design_principles02.rock_and_roll.ninth;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.Instrument;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentSpec;
-import com.farhad.example.design_principles02.rock_and_roll.eight.instrument.InstrumentType;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.Instrument;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentSpec;
+import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentType;
 
 public class Inventory {
 
