@@ -8,7 +8,6 @@ import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.Ins
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentSpec;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.InstrumentType;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Builder;
-import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Style;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Type;
 import com.farhad.example.design_principles02.rock_and_roll.ninth.instrument.share.Wood;
 
@@ -18,95 +17,121 @@ public class FindGuitarTester {
 
 		Inventory inventory = new Inventory();
 		initializeInventory(inventory);
+
 		Map<String, Object> properties = new HashMap<>();
-		properties.put("instrumentType", InstrumentType.GUITAR);
-		properties.put("builder", Builder.FENDER);
-		properties.put("model", "Stratocastor");
-		properties.put("type", Type.ELECTRIC);
-		properties.put("numStrings", "");
-		properties.put("backWood", Wood.ALDER);
-		properties.put("topkWood", Wood.ALDER);
-		InstrumentSpec whatBuyerLikes = new InstrumentSpec(properties);
-		List<? extends Instrument> machedGuitars = inventory.search(whatBuyerLikes);
-
-		showInstruments(machedGuitars);
-
-		properties = new HashMap<>();
 		properties.put("builder", Builder.GIBSON);
 		properties.put("backWood", Wood.MAPLE);
 
-		whatBuyerLikes = new InstrumentSpec(properties);
-		machedGuitars = inventory.search(whatBuyerLikes);
+		InstrumentSpec clientSpec = new InstrumentSpec(properties);
+		List<? extends Instrument> machedGuitars = inventory.search(clientSpec);
 		showInstruments(machedGuitars);
 	}
 
 	private static void showInstruments(List<? extends Instrument> machedGuitars) {
 		if (!machedGuitars.isEmpty()) {
-			System.out.println("Buyer, you might like these guitars: ");
+			System.out.println("You might like these instruments: ");
 			machedGuitars.forEach(g -> {
-				System.out.println("  We have a " +
-						g.getSpec().getProperty("builder") + " " +
-						g.getSpec().getProperty("model") + " " +
-						g.getSpec().getProperty("type") + " guitar:");
-				System.out.println("     " + g.getSpec().getProperty("backWood") + " back and side,");
-				System.out.println("     " + g.getSpec().getProperty("topWood") + " top.");
-				System.out.println("  " + "You can have it for only $" + g.getPrice() + "!");
-				System.out.println("-----");
+				System.out.println("We have a " +
+						g.getSpec().getProperty("instrumentType") + " with the fofollowing properties:");
+				for (String propName : g.getSpec().getProperties().keySet()) {
+					if (!propName.equals("instrumentType")) {
+						System.out.println("     " + propName + ": " + g.getSpec().getProperty(propName));
+					}
+				}
+				System.out.println("  " + "You can have this " + g.getSpec().getProperty("instrumentType") + " for $" + g.getPrice() + "\n----");
 			});
 			// System.out.println(machedGuitars);
 		} else {
-			System.out.println("Sorry, Buyer, we have nothing for you.");
+			System.out.println("Sorry, we have nothing for you.");
 		}
 	}
 
 	private static void initializeInventory(Inventory inventory) {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("instrumentType", InstrumentType.GUITAR);
-		properties.put("builder", Builder.FENDER);
-		properties.put("model", "Stratocastor");
-		properties.put("type", Type.ELECTRIC);
-		properties.put("numStrings", "");
-		properties.put("backWood", Wood.ALDER);
-		properties.put("topkWood", Wood.ALDER);
-
+		properties.put("builder", Builder.COLLINGS);
+		properties.put("model", "CJ");
+		properties.put("type", Type.ACOUSTIC);
+		properties.put("numStrings", 6);
+		properties.put("backWood", Wood.INDIAN_ROSEWOOD);
+		properties.put("topkWood", Wood.SITKA);
 		InstrumentSpec instrumentSpec = new InstrumentSpec(properties);
+		inventory.addInstrument("11277", 3999.95, instrumentSpec);
 
-		inventory.addInstrument("V1234", 1234.95, instrumentSpec);
+		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
+		properties.put("builder", Builder.MARTIN);
+		properties.put("model", "D-18");
+		properties.put("type", Type.ACOUSTIC);
+		properties.put("numStrings", 6);
+		properties.put("backWood", Wood.MAHOGANY);
+		properties.put("topkWood", Wood.ADIRONDACK);
+		instrumentSpec = new InstrumentSpec(properties);
+		inventory.addInstrument("122784", 5495.95, instrumentSpec);
 
 		properties = new HashMap<>();
 		properties.put("instrumentType", InstrumentType.GUITAR);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
-		properties.put("numStrings", "");
+		properties.put("numStrings", 6);
 		properties.put("backWood", Wood.ALDER);
-		properties.put("topkWood", Wood.ALDER);
+		properties.put("topkWood", Wood.SITKA);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument("V6789", 1321.95, instrumentSpec);
-
+		inventory.addInstrument("95693", 1499.95, instrumentSpec);
 
 		properties = new HashMap<>();
-		properties.put("instrumentType", InstrumentType.MANDOLIN);
+		properties.put("instrumentType", InstrumentType.GUITAR);
 		properties.put("builder", Builder.FENDER);
 		properties.put("model", "Stratocastor");
 		properties.put("type", Type.ELECTRIC);
-		properties.put("style", Style.A);
+		properties.put("numStrings", 6);
 		properties.put("backWood", Wood.ALDER);
-		properties.put("topkWood", Wood.ALDER);
+		properties.put("topkWood", Wood.SITKA);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument("V1234", 1234.95, instrumentSpec);
+		inventory.addInstrument("9512", 1549.95, instrumentSpec);
+
+		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
+		properties.put("builder", Builder.GIBSON);
+		properties.put("model", "SG `61 Reissue");
+		properties.put("type", Type.ELECTRIC);
+		properties.put("numStrings", 6);
+		properties.put("backWood", Wood.MAHOGANY);
+		properties.put("topkWood", Wood.MAHOGANY);
+		instrumentSpec = new InstrumentSpec(properties);
+		inventory.addInstrument("82765501", 1890.95, instrumentSpec);
+
+		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.GUITAR);
+		properties.put("builder", Builder.GIBSON);
+		properties.put("model", "Less Paul");
+		properties.put("type", Type.ELECTRIC);
+		properties.put("numStrings", 6);
+		properties.put("backWood", Wood.MAPLE);
+		properties.put("topkWood", Wood.MAPLE);
+		instrumentSpec = new InstrumentSpec(properties);
+		inventory.addInstrument("70108276", 2295.95, instrumentSpec);
 
 		properties = new HashMap<>();
 		properties.put("instrumentType", InstrumentType.MANDOLIN);
-		properties.put("builder", Builder.FENDER);
-		properties.put("model", "Stratocastor");
-		properties.put("type", Type.ELECTRIC);
-		properties.put("style", Style.F);
-		properties.put("backWood", Wood.ALDER);
-		properties.put("topkWood", Wood.ALDER);
+		properties.put("builder", Builder.GIBSON);
+		properties.put("model", "F5-G");
+		properties.put("type", Type.ACOUSTIC);
+		properties.put("backWood", Wood.MAPLE);
+		properties.put("topkWood", Wood.MAPLE);
 		instrumentSpec = new InstrumentSpec(properties);
-		inventory.addInstrument("V6789", 1321.95, instrumentSpec);
+		inventory.addInstrument("9019920", 5495.95, instrumentSpec);
 
+		properties = new HashMap<>();
+		properties.put("instrumentType", InstrumentType.BANJO);
+		properties.put("builder", Builder.GIBSON);
+		properties.put("model", "RB-3");
+		properties.put("numStrings", 5);
+		properties.put("type", Type.ACOUSTIC);
+		properties.put("backWood", Wood.MAPLE);
+		instrumentSpec = new InstrumentSpec(properties);
+		inventory.addInstrument("8900231", 2945.95, instrumentSpec);
 	}
 
 }
