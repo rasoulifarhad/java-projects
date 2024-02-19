@@ -29,6 +29,18 @@ public class FindGuitarTester {
 		InstrumentSpec whatBuyerLikes = new InstrumentSpec(properties);
 		List<? extends Instrument> machedGuitars = inventory.search(whatBuyerLikes);
 
+		showInstruments(machedGuitars);
+
+		properties = new HashMap<>();
+		properties.put("builder", Builder.GIBSON);
+		properties.put("backWood", Wood.MAPLE);
+
+		whatBuyerLikes = new InstrumentSpec(properties);
+		machedGuitars = inventory.search(whatBuyerLikes);
+		showInstruments(machedGuitars);
+	}
+
+	private static void showInstruments(List<? extends Instrument> machedGuitars) {
 		if (!machedGuitars.isEmpty()) {
 			System.out.println("Buyer, you might like these guitars: ");
 			machedGuitars.forEach(g -> {
