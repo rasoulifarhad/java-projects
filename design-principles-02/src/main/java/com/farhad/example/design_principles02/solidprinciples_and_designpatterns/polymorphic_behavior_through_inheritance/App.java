@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.polymorphic_behavior_through_inheritance;
+package com.farhad.example.design_principles02.solidprinciples_and_designpatterns.polymorphic_behavior_through_inheritance;
 
 public class App {
 
