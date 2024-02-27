@@ -22,7 +22,7 @@ public class RenterApp {
 
 
 	private void displayQtyOnHand() {
-		lender.displayQtyOnHand();
+		System.out.println(lender.getQtyOnHand());
 	}
 
 	private void rentCommand() {

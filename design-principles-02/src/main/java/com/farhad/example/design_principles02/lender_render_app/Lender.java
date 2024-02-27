@@ -27,8 +27,5 @@ public class Lender {
 		renter.tellResult("Thanks for returning the bug promptly.");
 	}
 
-	public void displayQtyOnHand() {
-		System.out.println(qtyOnHand);
-	}
 
 }
