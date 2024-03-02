@@ -16,7 +16,6 @@ public class RenterApp {
 		} else {
 			throw new IllegalArgumentException("Unknown action: " + actionType);
 		}
-		displayQtyOnHand();
 	}
 
 
@@ -27,10 +26,12 @@ public class RenterApp {
 
 	private void rentCommand() {
 		lender.rentItem(renter);
+		displayQtyOnHand();
 	}
 
 	private void returnCommand() {
 		lender.rentItem(renter);
+		displayQtyOnHand();
 	}
 
 	public static void main(String[] args) {
