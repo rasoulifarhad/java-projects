@@ -75,4 +75,9 @@ public class SalesInvoice extends Frame {
 		salesInvoice.buildUI();
 	}
 
+	public void updateTotals() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'updateTotals'");
+	}
+
 }
