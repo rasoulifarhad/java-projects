@@ -9,7 +9,7 @@ See https://github.com/cs4125/jj
 See https://github.com/shaswat-indian/OOADP-Lab
 See https://blog.stackademic.com/design-patterns-bridge-ce8af9bc0901
 See https://stacktraceguru.com/bridge-design-pattern/
-	
+See https://dotnettutorials.net/lesson/bridge-design-pattern-real-time-example/	
 
 
 
