@@ -7,6 +7,12 @@ See https://github.com/PacktPublishing/Java-Coding-Problems/tree/master
 See https://www.jot.fm/issues/issue_2006_03/article3/
 See https://github.com/cs4125/jj
 See https://github.com/shaswat-indian/OOADP-Lab
+See https://blog.stackademic.com/design-patterns-bridge-ce8af9bc0901
+See https://stacktraceguru.com/bridge-design-pattern/
+	
+
+
+
 ### Command 
 
 The command design pattern is one of the behavioral design patterns. This design pattern can be considered for use when there is clear segregation between requester and executor of an action or a command.
