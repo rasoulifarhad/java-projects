@@ -11,7 +11,10 @@ See https://blog.stackademic.com/design-patterns-bridge-ce8af9bc0901
 See https://stacktraceguru.com/bridge-design-pattern/
 See https://dotnettutorials.net/lesson/bridge-design-pattern-real-time-example/	
 See https://medium.com/@oppahansi
-
+See https://medium.com/@oppahansi/code-smells-left-overs-7b51f0f7ae83
+See https://medium.com/@oppahansi/code-smells-couplers-db180c1bb925
+See https://medium.com/@oppahansi/code-smells-bloaters-ff433cec263b
+See https://medium.com/@oppahansi/refactoring-techniques-in-software-development-part-1-c2e59f744d2c
 
 ### Command 
 
