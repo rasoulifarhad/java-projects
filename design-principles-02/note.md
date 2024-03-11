@@ -36,7 +36,12 @@ See https://codeburst.io/rule-your-domain-model-d4beae6806c
 
 See https://www.designgurus.io/course-play/grokking-the-object-oriented-design-interview/doc/637d2288eeb90d2166ac95be
 See https://github.com/gopalbala/parkinglot
-
+See https://dotnettutorials.net/lesson/abstraction-in-java/
+See https://dotnettutorials.net/lesson/abstract-classes-and-abstract-methods-in-java/
+See https://dotnettutorials.net/lesson/inheritance-in-java/
+See https://dotnettutorials.net/course/java-design-patterns/
+See https://dotnettutorials.net/lesson/interface-in-java/
+See https://dotnettutorials.net/lesson/association-composition-and-aggregation-in-java/
 
 ### parking lot
 
