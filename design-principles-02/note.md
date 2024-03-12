@@ -42,6 +42,8 @@ See https://dotnettutorials.net/lesson/inheritance-in-java/
 See https://dotnettutorials.net/course/java-design-patterns/
 See https://dotnettutorials.net/lesson/interface-in-java/
 See https://dotnettutorials.net/lesson/association-composition-and-aggregation-in-java/
+See http://butunclebob.com/ArticleS.MichaelFeathers.DesigningAwayPreconditions
+See http://butunclebob.com/ArticleS.MichaelFeathers.AnObjectIsaChoice
 
 ### parking lot
 
