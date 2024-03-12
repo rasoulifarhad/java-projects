@@ -15,6 +15,8 @@ See https://medium.com/@oppahansi/code-smells-left-overs-7b51f0f7ae83
 See https://medium.com/@oppahansi/code-smells-couplers-db180c1bb925
 See https://medium.com/@oppahansi/code-smells-bloaters-ff433cec263b
 See https://medium.com/@oppahansi/refactoring-techniques-in-software-development-part-1-c2e59f744d2c
+See https://www.martinfowler.com/bliki/CallSuper.html
+See https://www.martinfowler.com/tags/bad%20things.html
 
 ### Command 
 
