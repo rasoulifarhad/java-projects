@@ -18,7 +18,7 @@ public class Game {
 	// the score function iterate through all the frames, and calculate all 
 	// their scores.
 	public int score() {
-		return -1;
+		return 0;
 		// return frames.stream()
 		// 			.mapToInt(Frame::score)
 		// 		.sum();
