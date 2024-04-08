@@ -25,6 +25,11 @@ public class BowlingGameTest {
 		g.roll(5);
 	}
 
+	private void rollStrike() {
+		g.roll(10);
+	}
+
+
 	@Test
 	public void testGutterGame() {
 		rollMany(20, 0);
@@ -48,7 +53,7 @@ public class BowlingGameTest {
 
 	@Test
 	public void rollOneStrike() {
-		g.roll(10); // strike
+		rollStrike();
 		g.roll(3);
 		g.roll(4);
 		rollMany(16, 0);
