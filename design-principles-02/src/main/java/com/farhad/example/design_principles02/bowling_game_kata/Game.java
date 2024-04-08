@@ -39,9 +39,6 @@ public class Game {
 			}
 		}
 		return score;
-		// return frames.stream()
-		// 			.mapToInt(Frame::score)
-		// 		.sum();
 	}
 
 	private boolean isStrike(int frameIndex) {
