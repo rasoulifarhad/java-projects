@@ -16,9 +16,7 @@ public class BowlingGameTest {
 
 	@Test
 	public void testGutterGame() {
-		int n = 20;
-		int pins = 0;
-		rollMany(n, pins);
+		rollMany(20, 0);
 		assertEquals(0, g.score());
 	}
 
