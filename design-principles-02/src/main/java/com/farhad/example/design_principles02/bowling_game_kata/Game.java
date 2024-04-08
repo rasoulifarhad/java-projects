@@ -22,6 +22,10 @@ public class Game {
 	// the score function iterate through all the frames, and calculate all 
 	// their scores.
 	// score() dose not calculate score, but name dose not implies that it dose.
+	//
+	// - ugly comment in test.
+	// - ugly comment in conditional.
+	// - i is a bad name for this variable
 	public int score() {
 		int score = 0;
 		int i = 0;
