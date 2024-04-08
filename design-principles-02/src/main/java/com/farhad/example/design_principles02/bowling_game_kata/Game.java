@@ -23,13 +23,11 @@ public class Game {
 	// their scores.
 	// score() dose not calculate score, but name dose not implies that it dose.
 	//
-	// ugly comment in testOneStrike.
-    // ugly comment in conditional.
 	public int score() {
 		int score = 0;
 		int frameIndex = 0;
 		for (int frame = 0; frame < 10; frame++) {
-			if(rolls[frameIndex] == 10) { // strike
+			if(isStrike(frameIndex)) { 
 				score += 10 + strikeBouns(frameIndex);
 				frameIndex++;
 			} else if (isSpare(frameIndex)) {
@@ -44,6 +42,10 @@ public class Game {
 		// return frames.stream()
 		// 			.mapToInt(Frame::score)
 		// 		.sum();
+	}
+
+	private boolean isStrike(int frameIndex) {
+		return rolls[frameIndex] == 10;
 	}
 
 	private int spareBouns(int frameIndex) {
