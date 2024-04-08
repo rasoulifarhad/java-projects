@@ -25,6 +25,10 @@ public class Game {
 	// their scores.
 	// score() dose not calculate score, but name dose not implies that it dose.
 	public int score() {
+		int score = 0;
+		for (int i = 0; i < rolls.length; i++) {
+			score += rolls[i];
+		}
 		return score;
 		// return frames.stream()
 		// 			.mapToInt(Frame::score)
