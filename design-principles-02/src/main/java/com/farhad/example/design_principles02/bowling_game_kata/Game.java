@@ -23,7 +23,6 @@ public class Game {
 	// their scores.
 	// score() dose not calculate score, but name dose not implies that it dose.
 	//
-	// - ugly comment in test.
 	public int score() {
 		int score = 0;
 		int frameIndex = 0;
