@@ -4,13 +4,15 @@ import java.util.List;
 
 public class Game {
 
-		// A game has 10 frames
+	private int score = 0;
+
+	// A game has 10 frames
 	private List<Frame> frames;
 
 	// is called each time the player rolls a ball. The argument is the number of
 	// pins knocked down.
 	public void roll(int pins) {
-
+		score += pins;
 	}
 
 	// is called only at the very end of the game. It returns the total score for
@@ -18,7 +20,7 @@ public class Game {
 	// the score function iterate through all the frames, and calculate all 
 	// their scores.
 	public int score() {
-		return 0;
+		return score;
 		// return frames.stream()
 		// 			.mapToInt(Frame::score)
 		// 		.sum();
