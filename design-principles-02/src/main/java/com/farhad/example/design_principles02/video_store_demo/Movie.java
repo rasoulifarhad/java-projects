@@ -1,14 +1,15 @@
 package com.farhad.example.design_principles02.video_store_demo;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
-public class Movie {
+@Getter
+public abstract class Movie {
 
-	public static final int REGULAR = 1;
-	public static final int NEW_RELEASE = 2;
-	public static final int CHILDREN = 3;
-
+	
 	private String title;
 	private int priceCode;
+
+	public abstract double getCharge(int daysRented);
+
+	public abstract int getFrequentRenterPoints(int daysRented);
 }
