@@ -11,18 +11,37 @@ public class AsciiStatement extends Statement {
 
 	@Override
 	public String generate() {
-		String result = "Rental Record for " + customer.getName() + "\n";
+		return header() + lineItems() + footer();
+	}
+
+	private String header() {
+		return "Rental Record for " + customer.getName() + "\n";
+	}
+
+	private String lineItems() {
+		String result = "";
 		for (Rental rental : customer.getRentals()) {
 			// show figures for this rental
 			result += "\t" + rental.getMovie().getTitle() + "\t" +
 			String.valueOf(rental.getCharge()) + "\n";
 		}
-		// add footer lines
-		result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-		result += "You earned " + String.valueOf(
-				getTotalFrequentRenterPoints()) +
-				" frequent renter points";
 		return result;
 	}
+
+	private String footer() {
+		return totalCharge() + totalFrequentRenterPoints();
+	}
+
+	private String totalCharge() {
+		return "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+	}
+
+	private String totalFrequentRenterPoints() {
+		return "You earned " + String.valueOf(
+				getTotalFrequentRenterPoints()) +
+				" frequent renter points";
+	}
+
+
 
 }
