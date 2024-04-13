@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.video_store_demo;
+package com.farhad.example.design_principles02.video_store_demo.demo1;
 
 public class NewReleaseMovie extends Movie {
 
