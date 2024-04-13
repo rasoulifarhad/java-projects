@@ -13,7 +13,6 @@ public class Customer {
 
 	public String statement() {
 
-
 		String result = "Rental record for " + getName() + "\n";
 		for (Rental rental : rentals) {
 			//show figures for this rental
@@ -22,6 +21,18 @@ public class Customer {
 		//add footer lines
 		result += "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
 		result += "You earned  " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
+		return result;
+	}
+	
+	public String htmlStatement() {
+		String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
+		for (Rental rental : rentals) {
+			result += rental.getMovie().getTitle() + ": " + String.valueOf(rental.getCharge()) + "<BR>\n";
+		}
+		// add footer lines 
+		result += "<P>You owe <EM>" + String.valueOf(getTotalAmount()) + "</EM><P>\n";
+		result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints())
+				+ "</EM> frequent renter points<P>";
 		return result;
 	}
 	
