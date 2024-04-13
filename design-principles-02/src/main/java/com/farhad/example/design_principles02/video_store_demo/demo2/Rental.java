@@ -8,5 +8,19 @@ import lombok.RequiredArgsConstructor;
 public class Rental {
 
 	private final Movie movie;
+
+	@Getter
 	private final int daysRented;
+
+	public String getMovieTitle() {
+		return movie.getTitle();
+	}
+
+	public double getCharge() {
+		return movie.getCharge(getDaysRented());
+	}
+
+	public int getFrequentRenterPoints() {
+		return movie.getFrequentRenterPoints(getDaysRented());
+	}
 }
