@@ -1,6 +1,10 @@
 package com.farhad.example.design_principles02.video_store_demo;
 
-public class ChildrensMoview extends Movie {
+public class ChildrensMovie extends Movie {
+
+	public ChildrensMovie(String title) {
+		super(title);
+	}
 
 	@Override
 	public double getCharge(int daysRented) {

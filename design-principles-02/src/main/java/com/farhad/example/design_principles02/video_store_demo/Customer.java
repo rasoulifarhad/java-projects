@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@Getter
 public class Customer {
 
 	@Getter
-	private String name;
+
+	private final String name;
+
 	private List<Rental> rentals = new ArrayList<>();
+
+	public void addRental(Rental rental) {
+
+		rentals.add(rental);
+	}
 
 	public String statement() {
 
