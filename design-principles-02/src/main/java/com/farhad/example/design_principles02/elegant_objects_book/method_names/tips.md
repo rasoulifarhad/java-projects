@@ -25,6 +25,10 @@ InputStream load(URL url);
 String read(File file);
 
 int add(int x, int y);
+
+boolean equals(Object obj);
+
+boolean exists();
 ```
 
 They should be replaced with:
@@ -35,6 +39,10 @@ InputStream stream(URL url);
 String content(File file);
 
 int sum(int x, int y);
+
+boolean equalsTo(Object obj);
+
+boolean present();
 ```
 
 _Manipulators_ are methods that makes modifications to the real-world entity being abstracted by an object. it always return _void_.
