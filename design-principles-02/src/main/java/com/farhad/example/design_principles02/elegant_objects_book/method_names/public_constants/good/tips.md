@@ -1,0 +1,1 @@
+We should not share data between objects. instead, we should create _new classes_ that help us share functionality.

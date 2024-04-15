@@ -1,4 +1,4 @@
-package com.farhad.example.design_principles02.elegant_objects_book.method_names.public_constants;
+package com.farhad.example.design_principles02.elegant_objects_book.method_names.public_constants.bad;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
