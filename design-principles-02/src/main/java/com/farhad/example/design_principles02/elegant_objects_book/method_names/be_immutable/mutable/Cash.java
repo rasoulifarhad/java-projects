@@ -6,15 +6,31 @@ import lombok.ToString;
 public class Cash {
 
 	private int dollars;
-
+	private int cents;
 
 	public Cash(int dollars) {
-		this.dollars = dollars;
+		this(dollars, 0);
 	}
+
+	
+
+	public Cash(int dollars, int cents) {
+		this.dollars = dollars;
+		this.cents = cents;
+	}
+
+
 
 	public void mul(int factor) {
 		dollars *= factor;
+		if (cents > 0/* something is wrong */) {
+			throw new RuntimeException("oops...");
+		}
+		
+		this.cents *= factor;
 	}
+
+	
 
 	
 }
