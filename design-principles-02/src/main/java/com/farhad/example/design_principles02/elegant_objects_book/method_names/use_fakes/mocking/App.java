@@ -18,17 +18,7 @@ public class App {
 			
 			Cash dollar = new Cash(exchange, 500);
 			Cash euro = dollar.in("EUR");
-			assert "¢1500".equals(euro.toString());
-
-		}
-		{
-			Exchange exchange = Mockito.mock(Exchange.class);
-			Mockito.doReturn(3)
-					.when(exchange)
-					.rate("USD", "EUR");
-
-			Cash dollar = new Cash(exchange, 500);
-			Cash euro = dollar.in2("EUR");
+			System.out.println(euro.toString());
 			assert "¢1500".equals(euro.toString());
 
 		}

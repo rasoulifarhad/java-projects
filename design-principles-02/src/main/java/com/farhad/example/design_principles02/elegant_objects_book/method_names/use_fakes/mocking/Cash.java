@@ -11,12 +11,6 @@ public class Cash {
 	public Cash in(String currency) {
 		return new Cash(
 				this.exchange,
-				this.cents * this.exchange.rate("USD", currency));
-	}
-
-	public Cash in2(String currency) {
-		return new Cash(
-				this.exchange,
 				this.cents * this.exchange.rate(currency));
 	}
 
