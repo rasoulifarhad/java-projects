@@ -4,4 +4,6 @@ public interface Exchange {
 
 	int rate(String origin, String target);
 
+	int rate(String target);
+
 }

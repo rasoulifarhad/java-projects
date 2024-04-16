@@ -15,4 +15,8 @@ public class NYSE implements Exchange {
 		return 2;
 	}
 
+	@Override
+	public int rate(String currency) {
+		return 2;
+	}
 }

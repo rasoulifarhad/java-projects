@@ -14,6 +14,12 @@ public class Cash {
 				this.cents * this.exchange.rate("USD", currency));
 	}
 
+	public Cash in2(String currency) {
+		return new Cash(
+				this.exchange,
+				this.cents * this.exchange.rate("USD", currency));
+	}
+
 	@Override
 	public String toString() {
 		return "¢" + cents + "";
