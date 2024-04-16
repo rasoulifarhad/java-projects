@@ -1,12 +1,21 @@
 package com.farhad.example.design_principles02.elegant_objects_book.method_names.be_immutable.mutable;
 
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
-@ToString
+// @ToString
+@Getter
+@Setter
 public class Cash {
+
 
 	private int dollars;
 	private int cents;
+
+	
+	public Cash() {
+	}
+
 
 	public Cash(int dollars) {
 		this(dollars, 0);
@@ -39,7 +48,14 @@ public class Cash {
 		}
 
 		this.cents *= factor;
+	}
+
+
+	@Override
+	public String toString() {
+		return String.format("$%d.%d",dollars, cents);
 	}	
+
 
 	
 }

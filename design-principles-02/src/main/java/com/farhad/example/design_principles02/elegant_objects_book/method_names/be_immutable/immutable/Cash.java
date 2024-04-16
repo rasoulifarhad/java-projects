@@ -1,9 +1,7 @@
 package com.farhad.example.design_principles02.elegant_objects_book.method_names.be_immutable.immutable;
 
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
-@ToString
 @RequiredArgsConstructor
 public class Cash {
 
@@ -17,9 +15,15 @@ public class Cash {
 
 
 	public Cash mul(int factor) {
-		if(cents > 0) {
+		if (cents > 0) {
 			throw new RuntimeException("oops...");
 		}
 		return new Cash(this.dollars * factor, this.cents * factor);
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("$%d.%d", dollars, cents);
+	}
+
 }

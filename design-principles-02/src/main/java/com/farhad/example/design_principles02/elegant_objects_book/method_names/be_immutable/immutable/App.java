@@ -6,5 +6,8 @@ public class App {
 		Cash five = new Cash(5);
 		Cash fifty = five.mul(10);
 		System.out.println(fifty);
+
+		Cash price = new Cash(29, 95);
+		System.out.println(price);
 	}
 }

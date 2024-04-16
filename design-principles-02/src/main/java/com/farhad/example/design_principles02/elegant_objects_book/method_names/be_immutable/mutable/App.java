@@ -21,5 +21,15 @@ public class App {
 		System.out.println(map.get(four));
 
 
+		// Temporal coupling
+		Cash price = new Cash();
+		price.setDollars(29);
+		price.setCents(95);
+		System.out.println(price);
+
+		Cash price2 = new Cash();
+		price2.setDollars(29);
+		System.out.println(price2);
+		price2.setCents(95);
 	}
 }
