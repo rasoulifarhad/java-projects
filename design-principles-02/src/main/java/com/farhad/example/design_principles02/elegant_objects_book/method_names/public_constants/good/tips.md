@@ -38,3 +38,4 @@ Would be much better to create a number of simple classes that would represent t
 String body = new PostRequest(new HttpRequest()).fetch();
 ```
  
+Now, _PostRequest_ knows how to configure _HttpRequest_ so it makes a POST request instead of a default GET one.
