@@ -12,30 +12,23 @@ public class Cash {
 	private int dollars;
 	private int cents;
 
-	
 	public Cash() {
 	}
-
 
 	public Cash(int dollars) {
 		this(dollars, 0);
 	}
-
-	
 
 	public Cash(int dollars, int cents) {
 		this.dollars = dollars;
 		this.cents = cents;
 	}
 
-
-
 	public void mul(int factor) {
 		this.dollars *= factor;
-		if (cents > 0/* something is wrong */) {
-			throw new RuntimeException("oops...");
-		}
-		
+		// if (cents > 0/* something is wrong */) {
+		// 	throw new RuntimeException("oops...");
+		// }
 		this.cents *= factor;
 	}
 

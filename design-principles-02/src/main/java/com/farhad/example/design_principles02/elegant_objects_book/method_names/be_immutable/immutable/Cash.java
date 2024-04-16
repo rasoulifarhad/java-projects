@@ -15,9 +15,9 @@ public class Cash {
 
 
 	public Cash mul(int factor) {
-		if (cents > 0) {
-			throw new RuntimeException("oops...");
-		}
+		// if (cents > 0) {
+		// 	throw new RuntimeException("oops...");
+		// }
 		return new Cash(this.dollars * factor, this.cents * factor);
 	}
 	

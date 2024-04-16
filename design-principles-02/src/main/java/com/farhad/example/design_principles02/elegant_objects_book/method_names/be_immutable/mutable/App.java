@@ -2,6 +2,10 @@ package com.farhad.example.design_principles02.elegant_objects_book.method_names
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class App {
 
@@ -40,10 +44,35 @@ public class App {
 
 		{
 			// side effect-free
+			System.out.println();
 			Cash five = new Cash(5);
 			print(five);
 			System.out.println(five);
 
+		}
+
+		{
+			System.out.println();
+			final Cash cash = new Cash(15, 10);
+			final CountDownLatch start = new CountDownLatch(1);
+			final Callable<Object> script = new Callable<Object>() {
+
+				@Override
+				public Object call() throws Exception {
+					start.await();
+					cash.mul(2);
+					System.out.println(cash);
+					return null;
+				}
+				
+			};
+
+			final ExecutorService svc = Executors.newCachedThreadPool();
+			svc.submit(script);
+			svc.submit(script);
+			start.countDown();
+
+			svc.shutdown();
 		}
 	}
 	
