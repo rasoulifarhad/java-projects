@@ -22,7 +22,7 @@ public class Cash {
 
 
 	public void mul(int factor) {
-		dollars *= factor;
+		this.dollars *= factor;
 		if (cents > 0/* something is wrong */) {
 			throw new RuntimeException("oops...");
 		}
@@ -30,7 +30,16 @@ public class Cash {
 		this.cents *= factor;
 	}
 
-	
+	public void failureAtomicity_mul(int factor) {
+		int before = this.dollars;
+		this.dollars *= factor;
+		if (cents > 0/* something is wrong */) {
+			this.dollars = before;
+			throw new RuntimeException("oops...");
+		}
+
+		this.cents *= factor;
+	}	
 
 	
 }
