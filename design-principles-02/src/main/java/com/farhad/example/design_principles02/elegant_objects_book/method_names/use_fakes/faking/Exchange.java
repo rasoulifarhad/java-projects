@@ -4,4 +4,12 @@ public interface Exchange {
 
 	int rate(String origin, String target);
 
+	final class Fake implements Exchange {
+
+		@Override
+		public int rate(String origin, String target) {
+			return 3;
+		}
+
+	}
 }
