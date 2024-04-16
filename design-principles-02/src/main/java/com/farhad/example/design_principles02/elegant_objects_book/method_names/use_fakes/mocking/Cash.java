@@ -17,7 +17,7 @@ public class Cash {
 	public Cash in2(String currency) {
 		return new Cash(
 				this.exchange,
-				this.cents * this.exchange.rate("USD", currency));
+				this.cents * this.exchange.rate(currency));
 	}
 
 	@Override
