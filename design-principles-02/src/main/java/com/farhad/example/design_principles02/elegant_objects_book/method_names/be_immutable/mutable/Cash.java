@@ -50,6 +50,12 @@ public class Cash {
 		this.cents *= factor;
 	}
 
+	public void print(Cash price) {
+
+		System.out.println("Today price is: " + price);
+		price.mul(2);
+		System.out.println("Buy now, tomarrow price is: " + price);
+	}
 
 	@Override
 	public String toString() {
