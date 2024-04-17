@@ -13,5 +13,9 @@ public interface Exchange {
 		public int toUsd(String source) {
 			return this.origin.rate(source, "USD");
 		}
+
+		public int euroToUsd() {
+			return this.toUsd("EUR");
+		}
 	}
 }

@@ -6,5 +6,7 @@ public class App {
 		
 		int rate = new Exchange.Smart(new NYSE("secret"))
 				.toUsd("EUR");
+		rate = new Exchange.Smart(new NYSE("secret"))
+				.euroToUsd();
 	}
 }
