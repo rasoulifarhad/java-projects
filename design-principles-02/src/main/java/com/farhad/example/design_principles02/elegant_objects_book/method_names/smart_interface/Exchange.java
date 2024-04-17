@@ -18,4 +18,23 @@ public interface Exchange {
 			return this.toUsd("EUR");
 		}
 	}
+
+	@RequiredArgsConstructor
+	final class Fast implements Exchange {
+
+		private final Exchange origin;
+		@Override
+		public int rate(String source, String target) {
+			if (source.equals(target)) {
+				return 1;
+			} else {
+				return this.origin.rate(source, target);
+			}
+		}
+
+		public int toUsd(String source) {
+			return this.origin.rate(source, "USD");
+		}
+
+	}
 }
