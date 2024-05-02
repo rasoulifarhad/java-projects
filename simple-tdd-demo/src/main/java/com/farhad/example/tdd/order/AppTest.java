@@ -1,5 +1,7 @@
 package com.farhad.example.tdd.order;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.Instant;
 import java.util.List;
 
@@ -25,6 +27,6 @@ public class AppTest {
         
         // Then
         List<Order> allOrders = orderDatabase.selectAllOrders();
-
+        assertThat(allOrders).contains(order);
     }
 }
