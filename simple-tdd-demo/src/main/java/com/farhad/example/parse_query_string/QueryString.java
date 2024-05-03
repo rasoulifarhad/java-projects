@@ -1,5 +1,8 @@
 package com.farhad.example.parse_query_string;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class QueryString {
 
     private String query;
@@ -20,14 +23,13 @@ public class QueryString {
     }
 
     public Object valueFor(String name) {
+        Map<String, String> map = new HashMap<>();
         String [] pairs = query.split("&");
         for (String pair : pairs) {
             String [] nameValue = pair.split("=");
-            if(name.equals(nameValue[0])) {
-                return nameValue[1];
-            }
+            map.put(nameValue[0], nameValue[1]);
         }
-        throw new RuntimeException(name + " not found");
+        return map.get(name);
     }
 
 }
