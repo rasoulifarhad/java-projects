@@ -5,6 +5,9 @@ public class QueryString {
     private String query;
 
     public QueryString(String query) {
+        if(query == null) {
+            throw new NullPointerException();
+        }
         this.query = query;
     }
 
