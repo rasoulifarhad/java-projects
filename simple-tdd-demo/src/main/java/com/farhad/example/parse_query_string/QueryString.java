@@ -17,11 +17,13 @@ public class QueryString {
     }
 
     private void parseQueryString(String queryString) {
-        String [] pairs = query.split("&");
-        for (String pair : pairs) {
-            String [] nameValue = pair.split("=");
-            map.put(nameValue[0], nameValue[1]);
-        }
+        if(!"".equals(queryString)) {
+            String [] pairs = query.split("&");
+            for (String pair : pairs) {
+                String [] nameValue = pair.split("=");
+                map.put(nameValue[0], nameValue[1]);
+            }
+            }
     }
 
     public Integer count() {
