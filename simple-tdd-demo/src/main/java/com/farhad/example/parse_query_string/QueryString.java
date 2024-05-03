@@ -12,10 +12,8 @@ public class QueryString {
     }
 
     public Integer count() {
-        if("".equals(query)) {
-            return 0;
-        }
-        return  1;
+        String [] pairs = query.split("&");
+        return pairs.length;
     }
 
     public Object valueFor(String name) {
