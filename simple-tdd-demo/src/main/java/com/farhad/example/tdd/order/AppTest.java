@@ -21,7 +21,7 @@ public class AppTest {
         orderDatabase.connect();
         orderDatabase.clean();
         OrderProcessing orderProcessing = new OrderProcessing(orderDatabase, new FileLog());
-        Order order = new Order("customer 1", "", "product 1", Instant.now(), 1);
+        Order order = anonymousOrder();
 
         // When
         orderProcessing.place(order);
@@ -31,13 +31,17 @@ public class AppTest {
         assertThat(allOrders).contains(order);
     }
 
+    private Order anonymousOrder() {
+        return new Order("customer 1", "", "product 1", Instant.now(), 1);
+    }
+
     public void shouldInsertNewOrderToDatabaseWhenOrderIsPlaced_fake()  {
         // Given
         OrderDatabase orderDatabase = new FakeOrderDatabase();
         orderDatabase.connect();
         orderDatabase.clean();
         OrderProcessing orderProcessing = new OrderProcessing(orderDatabase, new FileLog());
-        Order order = new Order("customer 1", "", "product 1", Instant.now(), 1);
+        Order order = anonymousOrder();
 
         // When
         orderProcessing.place(order);
@@ -57,7 +61,7 @@ public class AppTest {
         orderDatabase.connect();
         orderDatabase.clean();
         OrderProcessing orderProcessing = new OrderProcessing(orderDatabase, new FileLog());
-        Order order = new Order("customer 1", "", "product 1", Instant.now(), 1);
+        Order order = anonymousOrder();
 
         // When
         orderProcessing.place(order);
