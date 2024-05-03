@@ -18,4 +18,9 @@ public class QueryString {
         return  1;
     }
 
+    public Object valueFor(String string) {
+        String [] nameAndVale = query.split("=");
+        return nameAndVale[1];
+    }
+
 }

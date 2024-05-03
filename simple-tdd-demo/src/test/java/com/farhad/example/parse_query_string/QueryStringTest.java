@@ -9,14 +9,15 @@ public class QueryStringTest {
 
     @Test
     public void testOneNameValuePair() {
-        QueryString qs = new QueryString("name=value");
-        assertEquals(1, qs.count());
+        QueryString query = new QueryString("name=value");
+        assertEquals(1, query.count());
+        assertEquals("value", query.valueFor("name"));
     }
 
     @Test
     public void testNoNameValuePairs() {
-        QueryString qs = new QueryString("");
-        assertEquals(0, qs.count());
+        QueryString query = new QueryString("");
+        assertEquals(0, query.count());
     }
 
     @Test
