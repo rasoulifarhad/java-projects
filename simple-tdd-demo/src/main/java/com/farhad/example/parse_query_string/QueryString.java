@@ -18,9 +18,15 @@ public class QueryString {
         return  1;
     }
 
-    public Object valueFor(String string) {
-        String [] nameAndVale = query.split("=");
-        return nameAndVale[1];
+    public Object valueFor(String name) {
+        String [] pairs = query.split("&");
+        for (String pair : pairs) {
+            String [] nameValue = pair.split("=");
+            if(name.equals(nameValue[0])) {
+                return nameValue[1];
+            }
+        }
+        throw new RuntimeException(name + " not found");
     }
 
 }
