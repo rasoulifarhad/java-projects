@@ -6,12 +6,22 @@ import java.util.Map;
 public class QueryString {
 
     private String query;
+    Map<String, String> map = new HashMap<>();
 
-    public QueryString(String query) {
-        if(query == null) {
+    public QueryString(String queryString) {
+        if(queryString == null) {
             throw new NullPointerException();
         }
-        this.query = query;
+        this.query = queryString;
+        parseQueryString(queryString);
+    }
+
+    private void parseQueryString(String queryString) {
+        String [] pairs = query.split("&");
+        for (String pair : pairs) {
+            String [] nameValue = pair.split("=");
+            map.put(nameValue[0], nameValue[1]);
+        }
     }
 
     public Integer count() {
@@ -23,7 +33,7 @@ public class QueryString {
     }
 
     public Object valueFor(String name) {
-        Map<String, String> map = new HashMap<>();
+        
         String [] pairs = query.split("&");
         for (String pair : pairs) {
             String [] nameValue = pair.split("=");
