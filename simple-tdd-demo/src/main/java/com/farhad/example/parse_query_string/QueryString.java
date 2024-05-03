@@ -15,13 +15,17 @@ public class QueryString {
     }
 
     private void parseQueryString(String queryString) {
-        if(!"".equals(queryString)) {
-            String [] pairs = queryString.split("&");
-            for (String pair : pairs) {
-                String [] nameValue = pair.split("=");
-                map.put(nameValue[0], nameValue[1]);
-            }
-            }
+        
+        if("".equals(queryString)) {
+            return;
+        }
+        
+        String [] pairs = queryString.split("&");
+        for (String pair : pairs) {
+            String [] nameValue = pair.split("=");
+            map.put(nameValue[0], nameValue[1]);
+        }
+
     }
 
     public Integer count() {
