@@ -9,7 +9,7 @@ public class QueryString {
     }
 
     public Integer count() {
-        return  0;
+        return  1;
     }
 
 }
