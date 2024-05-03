@@ -11,4 +11,10 @@ public class QueryStringTest {
         QueryString qs = new QueryString("name=value");
         assertEquals(1, qs.count());
     }
+
+    @Test
+    public void testNoNameValuePairs() {
+        QueryString qs = new QueryString("");
+        assertEquals(0, qs.count());
+    }
 }

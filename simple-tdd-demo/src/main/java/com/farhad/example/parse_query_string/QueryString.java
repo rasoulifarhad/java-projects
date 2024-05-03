@@ -2,13 +2,16 @@ package com.farhad.example.parse_query_string;
 
 public class QueryString {
 
-    private String string;
+    private String query;
 
-    public QueryString(String string) {
-        this.string = string;
+    public QueryString(String query) {
+        this.query = query;
     }
 
     public Integer count() {
+        if("".equals(query)) {
+            return 0;
+        }
         return  1;
     }
 
