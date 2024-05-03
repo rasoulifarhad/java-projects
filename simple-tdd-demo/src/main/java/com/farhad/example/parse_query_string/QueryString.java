@@ -12,6 +12,9 @@ public class QueryString {
     }
 
     public Integer count() {
+        if("".equals(query)) {
+            return 0;
+        }
         String [] pairs = query.split("&");
         return pairs.length;
     }
