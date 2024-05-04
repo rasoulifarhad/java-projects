@@ -9,7 +9,7 @@ public class Frame extends ImageDecorator {
     @Override
     public String getDescription() {
         return target.getDescription() + " " + 
-            String.format("(Frame)");
+            String.format(", Frameed");
     }
 
 

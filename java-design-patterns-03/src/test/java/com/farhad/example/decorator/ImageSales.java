@@ -13,7 +13,7 @@ public class ImageSales {
             new Print(19, 11, 
                 new Frame(
                     new Mat("Lime Green",
-                        new PhotoImage("Goodbye at the S", "1968/ifd.00042.jpg"))));
+                        new PhotoImage("Goodbye at the station", "1968/ifd.00042.jpg"))));
         addToPrintOrder(im2);
     }
 

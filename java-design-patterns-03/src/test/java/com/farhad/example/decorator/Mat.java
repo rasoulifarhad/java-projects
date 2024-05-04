@@ -5,19 +5,19 @@ import lombok.Getter;
 public class Mat extends ImageDecorator {
 
     @Getter
-    private String mat;
+    private String color;
 
 
-    public Mat(String mat, PhotoImage target) {
+    public Mat(String color, PhotoImage target) {
         super(target);
-        this.mat = mat;
+        this.color = color;
     }
 
 
     @Override
     public String getDescription() {
         return target.getDescription() + " " + 
-            String.format("(%s)", getMat());
+            String.format(", Matted(%s)", getColor());
     }
 
 
