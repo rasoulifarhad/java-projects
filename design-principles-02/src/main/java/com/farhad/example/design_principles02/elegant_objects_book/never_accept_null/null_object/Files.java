@@ -15,7 +15,8 @@ public class Files {
     }
 
     public Collection<File> find(Mask mask) {
-
+        // no need to defensive programing. use ignorant approache. 
+        // Objects.requireNonNull(mask);
         return 
             files.stream()
                 .filter(mask::matches)
