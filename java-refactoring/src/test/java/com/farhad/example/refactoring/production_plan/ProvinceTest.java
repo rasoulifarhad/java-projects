@@ -19,9 +19,16 @@ public class ProvinceTest {
         assertEquals(province.getShortfall(), 5);
     }
 
-    
+
     @Test
     public void profitTest() {
         assertEquals(province.getProfit(), 230);
+    }
+
+    @Test
+    public void changeProductionTest() {
+        province.getProducers().get(0).setProduction("20");
+        assertEquals(province.getShortfall(), -6);
+        assertEquals(province.getProfit(), 292);
     }
 }
