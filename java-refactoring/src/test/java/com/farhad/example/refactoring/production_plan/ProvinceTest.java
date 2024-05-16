@@ -11,4 +11,10 @@ public class ProvinceTest {
         Province province = new Province(SampleProvinceData.get());
         assertEquals(province.getShortfall(), 5);
     }
+
+    @Test
+    public void profitTest() {
+        Province province = new Province(SampleProvinceData.get());
+        assertEquals(province.getProfit(), 230);
+    }
 }
