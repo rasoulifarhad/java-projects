@@ -13,12 +13,11 @@ public class ProvinceTest {
     public void setup() {
         asia = new Province(SampleProvinceData.get());
     }
-    
+
     @Test
     public void shortfallTest() {
         assertEquals(asia.getShortfall(), 5);
     }
-
 
     @Test
     public void profitTest() {
@@ -37,5 +36,18 @@ public class ProvinceTest {
         asia.setDemand("0");
         assertEquals(asia.getShortfall(), -25);
         assertEquals(asia.getProfit(), 0);
+    }
+
+    // At this point, I may start to wonder if a negative demand resulting in a negative profit
+    // really makes any sense for the domain. Shouldn’t the minimum demand be zero? In
+    // which case, perhaps, the setter should react differently to a negative argument—raising
+    // an error or setting the value to zero anyway. These are good questions to ask, and
+    // writing tests like this helps me think about how the code ought to react to boundary
+    // cases.
+    @Test
+    public void negativeDemand() {
+        asia.setDemand("-1");
+        assertEquals(asia.getShortfall(), -26);
+        assertEquals(asia.getProfit(), -10);
     }
 }
