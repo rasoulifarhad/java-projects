@@ -1,6 +1,7 @@
 package com.farhad.example.refactoring.production_plan;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,5 +50,10 @@ public class ProvinceTest {
         asia.setDemand("-1");
         assertEquals(asia.getShortfall(), -26);
         assertEquals(asia.getProfit(), -10);
+    }
+
+    @Test
+    public void emptyStringDemand() {
+        assertThrows(NumberFormatException.class, () -> asia.setDemand(""));
     }
 }
