@@ -7,28 +7,35 @@ import org.junit.jupiter.api.Test;
 
 public class ProvinceTest {
 
-    private Province province;
+    private Province asia;
 
     @BeforeEach
     public void setup() {
-        province = new Province(SampleProvinceData.get());
+        asia = new Province(SampleProvinceData.get());
     }
     
     @Test
     public void shortfallTest() {
-        assertEquals(province.getShortfall(), 5);
+        assertEquals(asia.getShortfall(), 5);
     }
 
 
     @Test
     public void profitTest() {
-        assertEquals(province.getProfit(), 230);
+        assertEquals(asia.getProfit(), 230);
     }
 
     @Test
     public void changeProductionTest() {
-        province.getProducers().get(0).setProduction("20");
-        assertEquals(province.getShortfall(), -6);
-        assertEquals(province.getProfit(), 292);
+        asia.getProducers().get(0).setProduction("20");
+        assertEquals(asia.getShortfall(), -6);
+        assertEquals(asia.getProfit(), 292);
+    }
+
+    @Test
+    public void zeroDemand() {
+        asia.setDemand("0");
+        assertEquals(asia.getShortfall(), -25);
+        assertEquals(asia.getProfit(), 0);
     }
 }

@@ -1,5 +1,6 @@
 package com.farhad.example.refactoring.production_plan;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.farhad.example.refactoring.production_plan.Doc.DocProducer;
@@ -30,5 +31,15 @@ public class SampleProvinceData {
                     DocProducer.builder().name("Attalia").cost(12).production(10).build(),
                     DocProducer.builder().name("Sinope").cost(10).production(6).build()))
             .build();   
+    }
+
+    public static Doc noProducers() {
+        return Doc.builder()
+            .name("No Producers")
+            .demand(30)
+            .price(20)
+            .producers(new ArrayList<>())
+            .build();   
+
     }
 }
