@@ -5,8 +5,7 @@ public class PriceOrder {
     public double priceOrder(Product product, int quantity, ShippingMethod shippingMethod) {
 
         PriceData priceData = calculatePricingData(product, quantity);
-        double price = applyShipping(priceData, shippingMethod);
-        return price;
+        return applyShipping(priceData, shippingMethod);
     }
 
     private PriceData calculatePricingData(Product product, int quantity) {
