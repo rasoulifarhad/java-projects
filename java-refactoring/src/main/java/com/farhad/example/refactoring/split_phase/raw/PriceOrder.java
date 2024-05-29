@@ -7,11 +7,11 @@ public class PriceOrder {
         double basePrice = product.basePrice() * quantity;
         double discount = Math.max(quantity - product.discountThreshold(), 0)
             * product.basePrice() * product.discountRate();
-        double price = applyShipping(quantity, shippingMethod, basePrice, discount);
+        double price = applyShipping(basePrice, shippingMethod, quantity, discount);
         return price;
     }
 
-    private double applyShipping(int quantity, ShippingMethod shippingMethod, double basePrice, double discount) {
+    private double applyShipping(double basePrice, ShippingMethod shippingMethod,  int quantity, double discount) {
         double shippingPerCase = (basePrice > shippingMethod.discountThreshold())
             ? shippingMethod.discountedFee() : shippingMethod.feePerCase();
         double shippingCost = quantity * shippingPerCase;
