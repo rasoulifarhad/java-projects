@@ -19,7 +19,6 @@ public class PriceOrder {
         double shippingPerCase = (priceData.basePrice() > shippingMethod.discountThreshold())
             ? shippingMethod.discountedFee() : shippingMethod.feePerCase();
         double shippingCost = priceData.quantity() * shippingPerCase;
-        double price = priceData.basePrice() - priceData.discount() + shippingCost;
-        return price;
+        return priceData.basePrice() - priceData.discount() + shippingCost;
     }
 }
