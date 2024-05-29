@@ -13,8 +13,7 @@ public class PriceOrder {
         double basePrice = product.basePrice() * quantity;
         double discount = Math.max(quantity - product.discountThreshold(), 0)
             * product.basePrice() * product.discountRate();
-        PriceData priceData = new PriceData(basePrice, quantity, discount);
-        return priceData;
+        return new PriceData(basePrice, quantity, discount);
     }
 
     private double applyShipping(PriceData priceData, ShippingMethod shippingMethod) {
