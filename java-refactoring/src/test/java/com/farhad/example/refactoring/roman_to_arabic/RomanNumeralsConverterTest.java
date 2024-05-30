@@ -1,5 +1,6 @@
 package com.farhad.example.refactoring.roman_to_arabic;
 
+import static com.farhad.example.refactoring.roman_to_arabic.RomanNumeralsConverter.convert;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,16 +16,16 @@ public class RomanNumeralsConverterTest {
 
     @Test
     public void convertI() {
-        assertEquals(RomanNumeralsConverter.convert("I"), 1);
+        assertEquals(convert("I"), 1);
     }
 
     @Test
     public void convertV() {
-        assertEquals(RomanNumeralsConverter.convert("V"), 5);
+        assertEquals(convert("V"), 5);
     }
 
     @Test
     public void convertX() {
-        assertEquals(RomanNumeralsConverter.convert("X"), 10);
+        assertEquals(convert("X"), 10);
     }
 }
