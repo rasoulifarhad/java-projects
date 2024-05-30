@@ -74,3 +74,4 @@ Many other operations can be supported efficiently with a ListenableFuture that 
 When several operations should begin as soon as another operation starts -- "fan-out" -- ListenableFuture just works: it triggers all of the requested callbacks. With slightly more work, we can "fan-in," or trigger a ListenableFuture to get computed as soon as several other futures have all finished: see the implementation of Futures.allAsList for an example.
   
 See https://dzone.com/articles/demystifying-javas-compare-and-swap-cas
+See https://blogs.oracle.com/javamagazine/post/java-thread-synchronization-raceconditions-locks-conditions
