@@ -21,7 +21,7 @@ public class RomanNumeralsConverter {
         int previous =0;
 
         for (char ch : roman.toCharArray()) {
-            if(romanSymbols.containsKey(ch)) {
+            if(doseSymblesContainsRomanCharacter(ch)) {
                 current = symbolValue(ch);
                 if(previous >= current) {
                     sum += current;
@@ -36,6 +36,10 @@ public class RomanNumeralsConverter {
         }
 
         return sum;
+    }
+
+    private static boolean doseSymblesContainsRomanCharacter(char ch) {
+        return romanSymbols.containsKey(ch);
     }
 
     private static Integer symbolValue(char ch) {
