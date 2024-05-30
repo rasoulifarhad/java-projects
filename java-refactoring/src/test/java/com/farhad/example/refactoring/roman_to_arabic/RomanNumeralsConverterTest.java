@@ -15,8 +15,8 @@ public class RomanNumeralsConverterTest {
     @Test
     public void convertsSingleRomanDigit() {
         RomanNumeralsConverter converter = new RomanNumeralsConverter();
-        String romanNumber = "I";
-        int  arabicNumber = converter.convert(romanNumber);
+        String romanNumeral = "I";
+        int  arabicNumber = converter.convert(romanNumeral);
         assertEquals(arabicNumber, 1);
     }
 }
