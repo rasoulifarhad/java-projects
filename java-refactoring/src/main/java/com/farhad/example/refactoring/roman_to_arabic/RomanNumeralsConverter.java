@@ -15,6 +15,7 @@ public class RomanNumeralsConverter {
     };
 
     public static int convert(String roman) {
+        roman = roman.toUpperCase();
         int sum = 0;
         for (char ch : roman.toCharArray()) {
             if(romanSymbols.containsKey(ch)) {
