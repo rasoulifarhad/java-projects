@@ -12,7 +12,7 @@ public class RomanNumeralsConverter {
             } else if(ch == 'X') {
                 sum += 10;
             } else {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(String.format("Illegal roman character %s", ch));
             }
         }
 
