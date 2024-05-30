@@ -5,9 +5,10 @@ public class RomanNumeralsConverter {
     public int convert(String roman) {
         if (roman.equals("I")){
             return 1;
-        }
-        else{
+        } else if (roman.equals("V")) {
             return 5;
+        } else {
+            return 10;
         }
     }
 

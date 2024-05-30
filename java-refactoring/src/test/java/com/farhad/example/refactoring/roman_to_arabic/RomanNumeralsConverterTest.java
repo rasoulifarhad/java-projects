@@ -29,4 +29,9 @@ public class RomanNumeralsConverterTest {
     public void convertV() {
         assertEquals(c.convert("V"), 5);
     }
+
+    @Test
+    public void convertX() {
+        assertEquals(c.convert("X"), 10);
+    }
 }
