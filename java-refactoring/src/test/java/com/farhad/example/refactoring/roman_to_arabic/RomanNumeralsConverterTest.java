@@ -49,5 +49,29 @@ public class RomanNumeralsConverterTest {
         assertEquals(convert("X"), 10);
     }
 
+    @Test
+    public void convertIX() {
+        assertEquals(convert("IX"), 9);
+    }
+
+    @Test
+    public void convertXXXVI() {
+        assertEquals(convert("XXXVI"), 36);
+    }
+
+    @Test
+    public void convertMMXII() {
+        assertEquals(convert("MMXII"), 2012);
+    }
+
+    @Test
+    public void convertVII() {
+        assertEquals(convert("VII"), 7);
+    }
+
+    @Test
+    public void convertvii() {
+        assertEquals(convert("vii"), 7);
+    }
 
 }
