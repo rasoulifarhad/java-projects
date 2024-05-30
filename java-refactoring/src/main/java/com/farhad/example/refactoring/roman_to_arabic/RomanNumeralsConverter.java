@@ -15,19 +15,18 @@ public class RomanNumeralsConverter {
     };
 
     public static int convert(String roman) {
-        roman = roman.toUpperCase();
         int sum = 0;
         int current = 0;
         int previous =0;
 
-        for (char ch : roman.toCharArray()) {
+        String reverseRoman = getReverseRoman(roman.toUpperCase());
+        for (char ch : reverseRoman.toCharArray()) {
             if(doseSymblesContainsRomanCharacter(ch)) {
                 current = symbolValue(ch);
-                if(previous >= current) {
-                    sum += current;
+                if(current < previous) {
+                    sum -= current;
                 } else {
-                    sum -= previous;
-                    sum += (current - previous);
+                    sum += current;
                 }
                 previous = current;
             } else {
@@ -36,6 +35,10 @@ public class RomanNumeralsConverter {
         }
 
         return sum;
+    }
+
+    private static String getReverseRoman(String roman) {
+        return new StringBuffer(roman).reverse().toString();
     }
 
     private static boolean doseSymblesContainsRomanCharacter(char ch) {
