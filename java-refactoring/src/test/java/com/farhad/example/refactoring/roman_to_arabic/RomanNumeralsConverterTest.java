@@ -13,10 +13,18 @@ public class RomanNumeralsConverterTest {
     }
 
     @Test
-    public void convertsSingleRomanDigit() {
+    public void convertI() {
         RomanNumeralsConverter converter = new RomanNumeralsConverter();
         String romanNumeral = "I";
         int  arabicNumber = converter.convert(romanNumeral);
         assertEquals(arabicNumber, 1);
+    }
+
+    @Test
+    public void convertV() {
+        RomanNumeralsConverter converter = new RomanNumeralsConverter();
+        String romanNumeral = "V";
+        int  arabicNumber = converter.convert(romanNumeral);
+        assertEquals(arabicNumber, 5);
     }
 }
