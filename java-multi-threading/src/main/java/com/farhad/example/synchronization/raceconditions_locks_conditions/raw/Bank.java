@@ -1,4 +1,4 @@
-package com.farhad.example.synchronization.raceconditions_locks_conditions;
+package com.farhad.example.synchronization.raceconditions_locks_conditions.raw;
 
 import java.util.Arrays;
 
