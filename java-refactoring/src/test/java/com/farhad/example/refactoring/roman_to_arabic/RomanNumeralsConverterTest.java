@@ -28,4 +28,14 @@ public class RomanNumeralsConverterTest {
     public void convertX() {
         assertEquals(convert("X"), 10);
     }
+
+    @Test
+    public void convertII() {
+        assertEquals(convert("II"), 2);
+    }
+
+    @Test
+    public void convertIII() {
+        assertEquals(convert("III"), 3);
+    }
 }
