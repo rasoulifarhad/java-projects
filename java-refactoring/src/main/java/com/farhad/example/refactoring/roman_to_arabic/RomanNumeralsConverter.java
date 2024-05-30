@@ -17,9 +17,19 @@ public class RomanNumeralsConverter {
     public static int convert(String roman) {
         roman = roman.toUpperCase();
         int sum = 0;
+        int current = 0;
+        int previous =0;
+
         for (char ch : roman.toCharArray()) {
             if(romanSymbols.containsKey(ch)) {
-                sum += romanSymbols.get(ch);
+                current = romanSymbols.get(ch);
+                if(previous >= current) {
+                    sum += current;
+                } else {
+                    sum -= previous;
+                    sum += (current - previous);
+                }
+                previous = current;
             } else {
                 throw new IllegalArgumentException(String.format("Illegal roman character %s", ch));
             }
