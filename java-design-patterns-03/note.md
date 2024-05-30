@@ -17,6 +17,8 @@ See https://medium.com/@oppahansi/code-smells-bloaters-ff433cec263b
 See https://medium.com/@oppahansi/refactoring-techniques-in-software-development-part-1-c2e59f744d2c
 See https://www.martinfowler.com/bliki/CallSuper.html
 See https://www.martinfowler.com/tags/bad%20things.html
+See https://medium.com/@jonblankenship/using-the-specification-pattern-to-build-a-data-driven-rules-engine-b3db95189ff8
+See https://github.com/jonblankenship/stock-alerts/tree/master
 
 ### Command 
 
