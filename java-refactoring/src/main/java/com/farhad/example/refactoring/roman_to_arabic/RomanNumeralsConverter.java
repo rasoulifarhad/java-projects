@@ -22,7 +22,7 @@ public class RomanNumeralsConverter {
 
         for (char ch : roman.toCharArray()) {
             if(romanSymbols.containsKey(ch)) {
-                current = romanSymbols.get(ch);
+                current = symbolValue(ch);
                 if(previous >= current) {
                     sum += current;
                 } else {
@@ -36,6 +36,10 @@ public class RomanNumeralsConverter {
         }
 
         return sum;
+    }
+
+    private static Integer symbolValue(char ch) {
+        return romanSymbols.get(ch);
     }
 
 
