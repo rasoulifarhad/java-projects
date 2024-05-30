@@ -3,9 +3,17 @@ package com.farhad.example.refactoring.roman_to_arabic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RomanNumeralsConverterTest {
+
+    private RomanNumeralsConverter converter;
+
+    @BeforeEach
+    public void setup() {
+        converter = new RomanNumeralsConverter();
+    }
 
     @Test
     public void isJunitWorking() {
@@ -14,7 +22,6 @@ public class RomanNumeralsConverterTest {
 
     @Test
     public void convertI() {
-        RomanNumeralsConverter converter = new RomanNumeralsConverter();
         String romanNumeral = "I";
         int  arabicNumber = converter.convert(romanNumeral);
         assertEquals(arabicNumber, 1);
@@ -22,7 +29,6 @@ public class RomanNumeralsConverterTest {
 
     @Test
     public void convertV() {
-        RomanNumeralsConverter converter = new RomanNumeralsConverter();
         String romanNumeral = "V";
         int  arabicNumber = converter.convert(romanNumeral);
         assertEquals(arabicNumber, 5);
