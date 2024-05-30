@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class RomanNumeralsConverterTest {
 
-    private RomanNumeralsConverter converter;
+    private RomanNumeralsConverter c;
 
     @BeforeEach
     public void setup() {
-        converter = new RomanNumeralsConverter();
+        c = new RomanNumeralsConverter();
     }
 
     @Test
@@ -22,15 +22,11 @@ public class RomanNumeralsConverterTest {
 
     @Test
     public void convertI() {
-        String romanNumeral = "I";
-        int  arabicNumber = converter.convert(romanNumeral);
-        assertEquals(arabicNumber, 1);
+        assertEquals(c.convert("I"), 1);
     }
 
     @Test
     public void convertV() {
-        String romanNumeral = "V";
-        int  arabicNumber = converter.convert(romanNumeral);
-        assertEquals(arabicNumber, 5);
+        assertEquals(c.convert("V"), 5);
     }
 }
