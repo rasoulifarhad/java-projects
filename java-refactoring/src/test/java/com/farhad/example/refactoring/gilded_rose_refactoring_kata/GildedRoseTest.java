@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
+    private Item createAndUpdate(int sellIn, int quality) {
+        Item[] items = new Item[] { new Item("foo", sellIn, quality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        return app.items[0];
+    }
+    
     @Test
     void foo() {
         Item item = createAndUpdate(0, 0);
@@ -33,11 +40,6 @@ class GildedRoseTest {
 
     }
 
-    private Item createAndUpdate(int sellIn, int quality) {
-        Item[] items = new Item[] { new Item("foo", sellIn, quality) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        return app.items[0];
-    }
+ 
 
 }
