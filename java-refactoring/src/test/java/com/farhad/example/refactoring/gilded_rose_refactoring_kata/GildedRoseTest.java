@@ -80,7 +80,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void backstagePassesDropTo0() {
+    public void backstagePassesQualityDropTo0() {
         Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 0, 25);
         assertEquals(0, item.quality);
     }
