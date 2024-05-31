@@ -2,12 +2,10 @@ package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 class GildedRose {
 
+    static final int MAXIMUM_QUALITY = 50;
     static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
     static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
-
     static final String AGED_BRIE = "Aged Brie";
-
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -24,7 +22,7 @@ class GildedRose {
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
+                if (items[i].quality < MAXIMUM_QUALITY) {
                     items[i].quality = items[i].quality + 1;
 
                     if (items[i].name.equals(BACKSTAGE_PASSES)) {
