@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 
 public class Assortment {
 
+    private String doc;
     private List<Album> albums;
 
     public List<Album> getAlbums() {
@@ -24,7 +26,11 @@ public class Assortment {
     
     public static Assortment fromJson(String json) {
         try {
-            return Json.mapper().readValue(json, Assortment.class);
+            Assortment result = Json.mapper()
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .readValue(json, Assortment.class);
+            result.doc = json;
+            return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
