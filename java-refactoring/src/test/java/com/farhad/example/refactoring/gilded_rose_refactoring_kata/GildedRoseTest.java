@@ -61,4 +61,27 @@ class GildedRoseTest {
         assertEquals(42, item.quality);
     }
 
+    @Test
+    public void backstagePassesIncreasesInQuality() {
+        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 15, 25);
+        assertEquals(26, item.quality);
+    }
+
+    @Test
+    public void backstagePassesIncreasesInQualityBy2() {
+        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 25);
+        assertEquals(27, item.quality);
+    }
+
+    @Test
+    public void backstagePassesIncreasesInQualityBy3() {
+        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 5, 25);
+        assertEquals(28, item.quality);
+    }
+
+    @Test
+    public void backstagePassesDropTo0() {
+        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 0, 25);
+        assertEquals(0, item.quality);
+    }
 }
