@@ -12,7 +12,7 @@ class GildedRoseTest {
         app.updateQuality();
         return app.items[0];
     }
-    
+
     @Test
     void foo() {
         Item item = createAndUpdate("foo", 0, 0);
@@ -53,7 +53,7 @@ class GildedRoseTest {
         item = createAndUpdate("Aged Brie", 15, 50);
         assertEquals(50, item.quality);
     }
-    
+
     @Test
     public void sulfurasNeverHasToBeSoldOrDecreasesInQuality() {
         Item item = createAndUpdate("Sulfuras, Hand of Ragnaros", 1, 42);
@@ -116,6 +116,12 @@ class GildedRoseTest {
         assertEquals(50, item.quality);
     }
 
-}    
+    @Test
+    void degradeInQualityUnlessSulfuras() {
+        Item item = createAndUpdate("foo", -1, 1);
+        assertEquals(0, item.quality);
 
-
+        item = createAndUpdate("Sulfuras, Hand of Ragnaros", -1, 1);
+        assertEquals(1, item.quality);
+    }
+}
