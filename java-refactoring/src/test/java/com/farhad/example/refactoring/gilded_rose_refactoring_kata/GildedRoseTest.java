@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
-    private Item createAndUpdate(int sellIn, int quality) {
-        Item[] items = new Item[] { new Item("foo", sellIn, quality) };
+    private Item createAndUpdate(String product, int sellIn, int quality) {
+        Item[] items = new Item[] { new Item(product, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         return app.items[0];
@@ -15,31 +15,35 @@ class GildedRoseTest {
     
     @Test
     void foo() {
-        Item item = createAndUpdate(0, 0);
+        Item item = createAndUpdate("foo", 0, 0);
         assertEquals("foo", item.name);
     }
 
     @Test
     public void systemLowersValues() {
 
-        Item item = createAndUpdate(15, 25);
+        Item item = createAndUpdate("foo", 15, 25);
         assertEquals(14, item.sellIn);
         assertEquals(24, item.quality);
     }
 
     @Test
     public void qualityDegradesTwiceAsFast() {
-        Item item = createAndUpdate(0, 17);
+        Item item = createAndUpdate("foo", 0, 17);
         assertEquals(15, item.quality);
     }
 
     @Test
     public void qualityIsNeverNegative() {
-        Item item = createAndUpdate(0, 0);
+        Item item = createAndUpdate("foo", 0, 0);
         assertEquals(0, item.quality);
-
     }
 
+    @Test
+    public void agedBrieIncreaseInQuality() {
+        Item item = createAndUpdate("Aged Brie", 15, 25);
+        assertEquals(26, item.quality);
+    }
  
 
 }
