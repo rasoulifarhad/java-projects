@@ -23,23 +23,23 @@ class GildedRose {
                     && !isBackstagePasses(item)) {
                 if (item.quality > 0) {
                     if (!isSulfuras(item)) {
-                        item.quality = item.quality - 1;
+                        item.quality--;
                     }
                 }
             } else {
                 if (item.quality < MAXIMUM_QUALITY) {
-                    item.quality = item.quality + 1;
+                    item.quality++;
 
                     if (isBackstagePasses(item)) {
                         if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
                             if (item.quality < MAXIMUM_QUALITY) {
-                                item.quality = item.quality + 1;
+                                item.quality++;
                             }
                         }
 
                         if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
                             if (item.quality < MAXIMUM_QUALITY) {
-                                item.quality = item.quality + 1;
+                                item.quality++;
                             }
                         }
                     }
@@ -55,7 +55,7 @@ class GildedRose {
                     if (!isBackstagePasses(item)) {
                         if (item.quality > 0) {
                             if (!isSulfuras(item)) {
-                                item.quality = item.quality - 1;
+                                item.quality--;
                             }
                         }
                     } else {
@@ -63,7 +63,7 @@ class GildedRose {
                     }
                 } else {
                     if (item.quality < MAXIMUM_QUALITY) {
-                        item.quality = item.quality + 1;
+                        item.quality++;
                     }
                 }
             }
