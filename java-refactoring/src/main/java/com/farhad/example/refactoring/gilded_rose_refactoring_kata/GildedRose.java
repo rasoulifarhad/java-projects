@@ -25,8 +25,6 @@ class GildedRose {
                 handleBackstagePasses(item);
             } else if(isSulfuras(item)) {
                 handleSulfuras(item);
-            } else {
-                handleSpecificItem(item);
             }
         }
     }
