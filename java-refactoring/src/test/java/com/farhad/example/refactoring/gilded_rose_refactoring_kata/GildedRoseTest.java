@@ -1,11 +1,13 @@
 package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.AGED_BRIE;
+import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.BACKSTAGE_PASSES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
+
 
     private Item createAndUpdate(String name, int sellIn, int quality) {
         Item[] items = new Item[] { new Item(name, sellIn, quality) };
@@ -64,25 +66,25 @@ class GildedRoseTest {
 
     @Test
     public void backstagePassesIncreasesInQuality() {
-        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 15, 25);
+        Item item = createAndUpdate(BACKSTAGE_PASSES, 15, 25);
         assertEquals(26, item.quality);
     }
 
     @Test
     public void backstagePassesIncreasesInQualityBy2() {
-        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 25);
+        Item item = createAndUpdate(BACKSTAGE_PASSES, 10, 25);
         assertEquals(27, item.quality);
     }
 
     @Test
     public void backstagePassesIncreasesInQualityBy3() {
-        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 5, 25);
+        Item item = createAndUpdate(BACKSTAGE_PASSES, 5, 25);
         assertEquals(28, item.quality);
     }
 
     @Test
     public void backstagePassesQualityDropTo0() {
-        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 0, 25);
+        Item item = createAndUpdate(BACKSTAGE_PASSES, 0, 25);
         assertEquals(0, item.quality);
     }
 
@@ -101,13 +103,13 @@ class GildedRoseTest {
 
     @Test
     public void backstagePassMaximumQuality() {
-        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 48);
+        Item item = createAndUpdate(BACKSTAGE_PASSES, 10, 48);
         assertEquals(50, item.quality);
 
-        item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 49);
+        item = createAndUpdate(BACKSTAGE_PASSES, 10, 49);
         assertEquals(50, item.quality);
 
-        item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 5, 49);
+        item = createAndUpdate(BACKSTAGE_PASSES, 5, 49);
         assertEquals(50, item.quality);
     }
 
