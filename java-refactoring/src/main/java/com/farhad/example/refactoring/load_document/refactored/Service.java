@@ -1,5 +1,7 @@
 package com.farhad.example.refactoring.load_document.refactored;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -10,11 +12,15 @@ public class Service {
     public String tuesdayMusic(String query) {
         try {
             Assortment data = Assortment.fromJson(dataSource.getAlbumList(query));
-            return Json.mapper().writeValueAsString(data);
+            return saveAssortment(data);
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new RuntimeException(e);
         }
+    }
+
+    private String saveAssortment(Assortment data) throws JsonProcessingException {
+        return Json.mapper().writeValueAsString(data);
     }
 
 }
