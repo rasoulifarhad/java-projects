@@ -19,18 +19,44 @@ class GildedRose {
             Item item = items[i];
             if (isNormalItem(item)) {
                 handleNormalItem(item);
-            } else if(isAgedBrie(item)) {
+            } else if (isAgedBrie(item)) {
                 handleAgedBrie(item);
+            } else if(isBackstagePasses(item)) {
+                handleBackstagePasses(item);
             } else {
                 handleSpecificItem(item);
             }
         }
     }
 
+    private void handleBackstagePasses(Item item) {
+        if (item.quality < MAXIMUM_QUALITY) {
+            item.quality++;
+
+            if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
+                if (item.quality < MAXIMUM_QUALITY) {
+                    item.quality++;
+                }
+            }
+
+            if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
+                if (item.quality < MAXIMUM_QUALITY) {
+                    item.quality++;
+                }
+            }
+        }
+
+        item.sellIn--;
+
+        if (item.sellIn < 0) {
+                item.quality = 0;
+        }
+    }
+
     private void handleAgedBrie(Item item) {
         if (item.quality < MAXIMUM_QUALITY) {
             item.quality++;
-        }  
+        }
         item.sellIn--;
 
         if (item.sellIn < 0) {
@@ -38,7 +64,7 @@ class GildedRose {
                 item.quality++;
             }
         }
-        
+
     }
 
     private void handleSpecificItem(Item item) {
