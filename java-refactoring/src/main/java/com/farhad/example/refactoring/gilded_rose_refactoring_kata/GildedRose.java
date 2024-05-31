@@ -17,16 +17,32 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if(isNormalItem(item)) {
+            if (isNormalItem(item)) {
                 handleNormalItem(item);
+            } else if(isAgedBrie(item)) {
+                handleAgedBrie(item);
             } else {
                 handleSpecificItem(item);
             }
         }
     }
 
+    private void handleAgedBrie(Item item) {
+        if (item.quality < MAXIMUM_QUALITY) {
+            item.quality++;
+        }  
+        item.sellIn--;
+
+        if (item.sellIn < 0) {
+            if (item.quality < MAXIMUM_QUALITY) {
+                item.quality++;
+            }
+        }
+        
+    }
+
     private void handleSpecificItem(Item item) {
-        if (!( isAgedBrie(item) || isBackstagePasses(item)) ) {
+        if (!(isAgedBrie(item) || isBackstagePasses(item))) {
             if (item.quality > 0) {
                 if (!isSulfuras(item)) {
                     item.quality--;
@@ -49,7 +65,6 @@ class GildedRose {
                 }
             }
         }
-        
 
         if (!isSulfuras(item)) {
             item.sellIn--;
@@ -61,7 +76,7 @@ class GildedRose {
                     item.quality++;
                 }
             } else if (isBackstagePasses(item)) {
-                    item.quality = 0;
+                item.quality = 0;
             } else {
 
                 if (item.quality > 0) {
@@ -70,19 +85,19 @@ class GildedRose {
                     }
                 }
             }
-            
+
         }
     }
 
     private void handleNormalItem(Item item) {
-        if(item.sellIn == 0) {
+        if (item.sellIn == 0) {
             item.quality -= 2;
         } else {
             item.quality--;
         }
         item.sellIn--;
 
-        if(item.quality < 0) {
+        if (item.quality < 0) {
             item.quality = 0;
         }
     }
