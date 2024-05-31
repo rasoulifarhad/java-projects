@@ -4,9 +4,7 @@ class GildedRose {
 
     static final int BACKSTAGE_PASSES_THRESHOLD1 = 11;
     static final int BACKSTAGE_PASSES_THRESHOLD2 = 6;
-
     static final int MAXIMUM_QUALITY = 50;
-
     static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     static final String AGED_BRIE = "Aged Brie";
@@ -50,19 +48,20 @@ class GildedRose {
             }
 
             if (item.sellIn < 0) {
-                if (!isAgedBrie(item)) {
-                    if (!isBackstagePasses(item)) {
+                if (isAgedBrie(item)) {
+                    if (item.quality < MAXIMUM_QUALITY) {
+                        item.quality++;
+                    }
+                } else {
+                    if (isBackstagePasses(item)) {
+                        item.quality = 0;
+                    } else {
+
                         if (item.quality > 0) {
                             if (!isSulfuras(item)) {
                                 item.quality--;
                             }
                         }
-                    } else {
-                        item.quality = 0;
-                    }
-                } else {
-                    if (item.quality < MAXIMUM_QUALITY) {
-                        item.quality++;
                     }
                 }
             }
