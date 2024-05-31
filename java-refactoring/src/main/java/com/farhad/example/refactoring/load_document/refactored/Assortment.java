@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 public class Assortment {
@@ -16,7 +17,12 @@ public class Assortment {
     }
 
     public String toJson() {
-        return doc;
+        try {
+            return Json.mapper().writeValueAsString(this);
+            
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public static Assortment fromJson(String json) {
