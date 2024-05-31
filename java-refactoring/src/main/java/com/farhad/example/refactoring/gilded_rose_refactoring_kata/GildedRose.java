@@ -2,6 +2,8 @@ package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 class GildedRose {
 
+    static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
     static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
     static final String AGED_BRIE = "Aged Brie";
@@ -17,7 +19,7 @@ class GildedRose {
             if (!items[i].name.equals(AGED_BRIE)
                     && !items[i].name.equals(BACKSTAGE_PASSES)) {
                 if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                    if (!items[i].name.equals(SULFURAS)) {
                         items[i].quality = items[i].quality - 1;
                     }
                 }
@@ -41,7 +43,7 @@ class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!items[i].name.equals(SULFURAS)) {
                 items[i].sellIn = items[i].sellIn - 1;
             }
 
@@ -49,7 +51,7 @@ class GildedRose {
                 if (!items[i].name.equals(AGED_BRIE)) {
                     if (!items[i].name.equals(BACKSTAGE_PASSES)) {
                         if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                            if (!items[i].name.equals(SULFURAS)) {
                                 items[i].quality = items[i].quality - 1;
                             }
                         }

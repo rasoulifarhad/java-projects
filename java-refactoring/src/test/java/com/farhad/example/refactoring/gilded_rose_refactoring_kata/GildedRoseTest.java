@@ -2,11 +2,13 @@ package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.AGED_BRIE;
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.BACKSTAGE_PASSES;
+import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.SULFURAS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
+
 
 
     private Item createAndUpdate(String name, int sellIn, int quality) {
@@ -59,7 +61,7 @@ class GildedRoseTest {
 
     @Test
     public void sulfurasNeverHasToBeSoldOrDecreasesInQuality() {
-        Item item = createAndUpdate("Sulfuras, Hand of Ragnaros", 1, 42);
+        Item item = createAndUpdate(SULFURAS, 1, 42);
         assertEquals(1, item.sellIn);
         assertEquals(42, item.quality);
     }
@@ -124,7 +126,7 @@ class GildedRoseTest {
         Item item = createAndUpdate("foo", -1, 1);
         assertEquals(0, item.quality);
 
-        item = createAndUpdate("Sulfuras, Hand of Ragnaros", -1, 1);
+        item = createAndUpdate(SULFURAS, -1, 1);
         assertEquals(1, item.quality);
     }
 }
