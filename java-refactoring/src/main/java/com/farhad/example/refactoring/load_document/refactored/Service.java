@@ -19,7 +19,11 @@ public class Service {
         }
     }
 
-    private Assortment loadAssotment(String query) throws IOException {
-        return Json.mapper().readValue(dataSource.getAlbumList(query), Assortment.class);
+    private Assortment loadAssotment(String query) {
+        try {
+            return Json.mapper().readValue(dataSource.getAlbumList(query), Assortment.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
