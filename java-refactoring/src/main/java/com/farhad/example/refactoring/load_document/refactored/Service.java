@@ -12,7 +12,7 @@ public class Service {
     public String tuesdayMusic(String query) {
         try {
             Assortment data = Assortment.fromJson(dataSource.getAlbumList(query));
-            return saveAssortment(data);
+            return data.toJson();
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new RuntimeException(e);
