@@ -1,5 +1,6 @@
 package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
+import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.AGED_BRIE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class GildedRoseTest {
 
     @Test
     public void agedBrieIncreaseInQuality() {
-        Item item = createAndUpdate("Aged Brie", 15, 25);
+        Item item = createAndUpdate(AGED_BRIE, 15, 25);
         assertEquals(26, item.quality);
     }
 
@@ -50,7 +51,7 @@ class GildedRoseTest {
         Item item = createAndUpdate("foo", 15, 52);
         assertEquals(51, item.quality);
 
-        item = createAndUpdate("Aged Brie", 15, 50);
+        item = createAndUpdate(AGED_BRIE, 15, 50);
         assertEquals(50, item.quality);
     }
 
@@ -87,14 +88,14 @@ class GildedRoseTest {
 
     @Test
     public void agedBrieNeverExpires() {
-        Item item = createAndUpdate("Aged Brie", 0, 42);
+        Item item = createAndUpdate(AGED_BRIE, 0, 42);
         assertEquals(-1, item.sellIn);
         assertEquals(44, item.quality);
     }
 
     @Test
     public void agedBrieSellInNegative() {
-        Item item = createAndUpdate("Aged Brie", -1, 42);
+        Item item = createAndUpdate(AGED_BRIE, -1, 42);
         assertEquals(44, item.quality);
     }
 
@@ -112,7 +113,7 @@ class GildedRoseTest {
 
     @Test
     public void agedBrieMaximumQuality() {
-        Item item = createAndUpdate("Aged Brie", -1, 49);
+        Item item = createAndUpdate(AGED_BRIE, -1, 49);
         assertEquals(50, item.quality);
     }
 
