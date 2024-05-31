@@ -20,53 +20,57 @@ class GildedRose {
             if(isNormalItem(item)) {
                 handleNormalItem(item);
             } else {
-            if (!( isAgedBrie(item) || isBackstagePasses(item)) ) {
+                handleSpecificItem(item);
+            }
+        }
+    }
+
+    private void handleSpecificItem(Item item) {
+        if (!( isAgedBrie(item) || isBackstagePasses(item)) ) {
+            if (item.quality > 0) {
+                if (!isSulfuras(item)) {
+                    item.quality--;
+                }
+            }
+        } else if (item.quality < MAXIMUM_QUALITY) {
+            item.quality++;
+
+            if (isBackstagePasses(item)) {
+                if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
+                    if (item.quality < MAXIMUM_QUALITY) {
+                        item.quality++;
+                    }
+                }
+
+                if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
+                    if (item.quality < MAXIMUM_QUALITY) {
+                        item.quality++;
+                    }
+                }
+            }
+        }
+        
+
+        if (!isSulfuras(item)) {
+            item.sellIn--;
+        }
+
+        if (item.sellIn < 0) {
+            if (isAgedBrie(item)) {
+                if (item.quality < MAXIMUM_QUALITY) {
+                    item.quality++;
+                }
+            } else if (isBackstagePasses(item)) {
+                    item.quality = 0;
+            } else {
+
                 if (item.quality > 0) {
                     if (!isSulfuras(item)) {
                         item.quality--;
                     }
                 }
-            } else if (item.quality < MAXIMUM_QUALITY) {
-                item.quality++;
-
-                if (isBackstagePasses(item)) {
-                    if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
-                        if (item.quality < MAXIMUM_QUALITY) {
-                            item.quality++;
-                        }
-                    }
-
-                    if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
-                        if (item.quality < MAXIMUM_QUALITY) {
-                            item.quality++;
-                        }
-                    }
-                }
             }
             
-
-            if (!isSulfuras(item)) {
-                item.sellIn--;
-            }
-
-            if (item.sellIn < 0) {
-                if (isAgedBrie(item)) {
-                    if (item.quality < MAXIMUM_QUALITY) {
-                        item.quality++;
-                    }
-                } else if (isBackstagePasses(item)) {
-                        item.quality = 0;
-                } else {
-
-                    if (item.quality > 0) {
-                        if (!isSulfuras(item)) {
-                            item.quality--;
-                        }
-                    }
-                }
-                
-            }
-        }
         }
     }
 
