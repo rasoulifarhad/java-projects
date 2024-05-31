@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 class GildedRoseTest {
 
-    private Item createAndUpdate(String product, int sellIn, int quality) {
-        Item[] items = new Item[] { new Item(product, sellIn, quality) };
+    private Item createAndUpdate(String name, int sellIn, int quality) {
+        Item[] items = new Item[] { new Item(name, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         return app.items[0];
