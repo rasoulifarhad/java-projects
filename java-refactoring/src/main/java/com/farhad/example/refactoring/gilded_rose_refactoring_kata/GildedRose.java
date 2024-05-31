@@ -21,19 +21,19 @@ class GildedRose {
     }
 
     private void updateItemQuality(Item item) {
-        handleNormalItem(item);
-        handleAgedBrie(item);
-        handleBackstagePasses(item);
-        handleSulfuras(item);
+        handleIfNormalItem(item);
+        handleIfAgedBrieItem(item);
+        handleIfBackstagePassesItem(item);
+        handleIfSulfurasItem(item);
     }
 
-    private void handleSulfuras(Item item) {
+    private void handleIfSulfurasItem(Item item) {
         if (isSulfuras(item)) {
 
         }
     }
 
-    private void handleBackstagePasses(Item item) {
+    private void handleIfBackstagePassesItem(Item item) {
 
         if (isBackstagePasses(item)) {
 
@@ -61,7 +61,7 @@ class GildedRose {
         }
     }
 
-    private void handleAgedBrie(Item item) {
+    private void handleIfAgedBrieItem(Item item) {
         if (isAgedBrie(item)) {
             if (item.quality < MAXIMUM_QUALITY) {
                 item.quality++;
@@ -76,7 +76,7 @@ class GildedRose {
         }
     }
 
-    private void handleNormalItem(Item item) {
+    private void handleIfNormalItem(Item item) {
         if (isNormalItem(item)) {
             if (item.sellIn == 0) {
                 item.quality -= 2;
