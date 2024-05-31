@@ -18,16 +18,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
             if(isNormalItem(item)) {
-                if(item.sellIn == 0) {
-                    item.quality -= 2;
-                } else {
-                    item.quality--;
-                }
-                item.sellIn--;
-
-                if(item.quality < 0) {
-                    item.quality = 0;
-                }
+                handleNormalItem(item);
             } else {
             if (!( isAgedBrie(item) || isBackstagePasses(item)) ) {
                 if (item.quality > 0) {
@@ -76,6 +67,19 @@ class GildedRose {
                 
             }
         }
+        }
+    }
+
+    private void handleNormalItem(Item item) {
+        if(item.sellIn == 0) {
+            item.quality -= 2;
+        } else {
+            item.quality--;
+        }
+        item.sellIn--;
+
+        if(item.quality < 0) {
+            item.quality = 0;
         }
     }
 
