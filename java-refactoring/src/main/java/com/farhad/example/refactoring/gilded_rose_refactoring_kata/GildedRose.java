@@ -18,7 +18,16 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
             if(isNormalItem(item)) {
+                if(item.sellIn == 0) {
+                    item.quality -= 2;
+                } else {
+                    item.quality--;
+                }
+                item.sellIn--;
 
+                if(item.quality < 0) {
+                    item.quality = 0;
+                }
             } else {
             if (!( isAgedBrie(item) || isBackstagePasses(item)) ) {
                 if (item.quality > 0) {
@@ -71,7 +80,7 @@ class GildedRose {
     }
 
     private boolean isNormalItem(Item item) {
-        return false;
+        return !(isAgedBrie(item) || isBackstagePasses(item) || isSulfuras(item));
     }
 
     private boolean isSulfuras(Item item) {
