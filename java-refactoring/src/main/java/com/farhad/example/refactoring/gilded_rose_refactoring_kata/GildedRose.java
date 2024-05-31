@@ -23,25 +23,24 @@ class GildedRose {
                         item.quality--;
                     }
                 }
-            } else {
-                if (item.quality < MAXIMUM_QUALITY) {
-                    item.quality++;
+            } else if (item.quality < MAXIMUM_QUALITY) {
+                item.quality++;
 
-                    if (isBackstagePasses(item)) {
-                        if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
-                            if (item.quality < MAXIMUM_QUALITY) {
-                                item.quality++;
-                            }
+                if (isBackstagePasses(item)) {
+                    if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
+                        if (item.quality < MAXIMUM_QUALITY) {
+                            item.quality++;
                         }
+                    }
 
-                        if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
-                            if (item.quality < MAXIMUM_QUALITY) {
-                                item.quality++;
-                            }
+                    if (item.sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
+                        if (item.quality < MAXIMUM_QUALITY) {
+                            item.quality++;
                         }
                     }
                 }
             }
+            
 
             if (!isSulfuras(item)) {
                 item.sellIn--;
@@ -52,18 +51,17 @@ class GildedRose {
                     if (item.quality < MAXIMUM_QUALITY) {
                         item.quality++;
                     }
-                } else {
-                    if (isBackstagePasses(item)) {
+                } else if (isBackstagePasses(item)) {
                         item.quality = 0;
-                    } else {
+                } else {
 
-                        if (item.quality > 0) {
-                            if (!isSulfuras(item)) {
-                                item.quality--;
-                            }
+                    if (item.quality > 0) {
+                        if (!isSulfuras(item)) {
+                            item.quality--;
                         }
                     }
                 }
+                
             }
         }
     }
