@@ -2,7 +2,11 @@ package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 class GildedRose {
 
+    static final int BACKSTAGE_PASSES_THRESHOLD1 = 11;
+    static final int BACKSTAGE_PASSES_THRESHOLD2 = 6;
+
     static final int MAXIMUM_QUALITY = 50;
+
     static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     static final String AGED_BRIE = "Aged Brie";
@@ -26,13 +30,13 @@ class GildedRose {
                     items[i].quality = items[i].quality + 1;
 
                     if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                        if (items[i].sellIn < 11) {
+                        if (items[i].sellIn < BACKSTAGE_PASSES_THRESHOLD1) {
                             if (items[i].quality < MAXIMUM_QUALITY) {
                                 items[i].quality = items[i].quality + 1;
                             }
                         }
 
-                        if (items[i].sellIn < 6) {
+                        if (items[i].sellIn < BACKSTAGE_PASSES_THRESHOLD2) {
                             if (items[i].quality < MAXIMUM_QUALITY) {
                                 items[i].quality = items[i].quality + 1;
                             }
