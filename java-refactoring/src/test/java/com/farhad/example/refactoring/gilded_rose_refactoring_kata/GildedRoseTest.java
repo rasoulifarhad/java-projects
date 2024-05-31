@@ -44,6 +44,16 @@ class GildedRoseTest {
         Item item = createAndUpdate("Aged Brie", 15, 25);
         assertEquals(26, item.quality);
     }
+
+    @Test
+    public void qualityNeverMoreThan50() {
+        Item item = createAndUpdate("foo", 15, 52);
+        assertEquals(51, item.quality);
+
+        item = createAndUpdate("Aged Brie", 15, 50);
+        assertEquals(50, item.quality);
+    }
+    
  
 
 }
