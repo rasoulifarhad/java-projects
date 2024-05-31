@@ -8,6 +8,8 @@ class GildedRose {
     static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     static final String AGED_BRIE = "Aged Brie";
+    static final String CONJURED = "Conjured";
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -25,6 +27,14 @@ class GildedRose {
         handleIfAgedBrieItem(item);
         handleIfBackstagePassesItem(item);
         handleIfSulfurasItem(item);
+        handleIfConjuredItem(item);
+    }
+
+    private void handleIfConjuredItem(Item item) {
+        if(isConjuredItem(item)) {
+            item.sellIn--;
+            item.quality -= 2;
+        }
     }
 
     private void handleIfSulfurasItem(Item item) {
@@ -92,7 +102,7 @@ class GildedRose {
     }
 
     private boolean isNormalItem(Item item) {
-        return !(isAgedBrie(item) || isBackstagePasses(item) || isSulfuras(item));
+        return !(isAgedBrie(item) || isBackstagePasses(item) || isSulfuras(item) || isConjuredItem(item));
     }
 
     private boolean isSulfuras(Item item) {
@@ -106,4 +116,9 @@ class GildedRose {
     private boolean isAgedBrie(Item item) {
         return item.name.equals(AGED_BRIE);
     }
+
+    private boolean isConjuredItem(Item item) {
+        return item.name.equals(CONJURED);
+    }
+
 }

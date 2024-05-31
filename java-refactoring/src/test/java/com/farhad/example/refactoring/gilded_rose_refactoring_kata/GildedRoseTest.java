@@ -2,6 +2,7 @@ package com.farhad.example.refactoring.gilded_rose_refactoring_kata;
 
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.AGED_BRIE;
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.BACKSTAGE_PASSES;
+import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.CONJURED;
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.MAXIMUM_QUALITY;
 import static com.farhad.example.refactoring.gilded_rose_refactoring_kata.GildedRose.SULFURAS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -128,4 +129,11 @@ class GildedRoseTest {
         item = createAndUpdate(SULFURAS, -1, 1);
         assertEquals(1, item.quality);
     }
+
+    @Test
+    public void conjuredDegradeTwiceAsFast() {
+        Item item = createAndUpdate(CONJURED, 15, 25);
+        assertEquals(23, item.quality);
+    }
+
 }
