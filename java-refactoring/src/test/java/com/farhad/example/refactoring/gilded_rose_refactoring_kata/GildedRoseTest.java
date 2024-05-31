@@ -50,7 +50,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityNeverMoreThan50() {
+    public void qualityNeverMoreThanMaximum() {
         Item item = createAndUpdate("foo", 15, 52);
         assertEquals(51, item.quality);
 
@@ -105,19 +105,19 @@ class GildedRoseTest {
     @Test
     public void backstagePassMaximumQuality() {
         Item item = createAndUpdate(BACKSTAGE_PASSES, 10, 48);
-        assertEquals(50, item.quality);
+        assertEquals(MAXIMUM_QUALITY, item.quality);
 
         item = createAndUpdate(BACKSTAGE_PASSES, 10, 49);
-        assertEquals(50, item.quality);
+        assertEquals(MAXIMUM_QUALITY, item.quality);
 
         item = createAndUpdate(BACKSTAGE_PASSES, 5, 49);
-        assertEquals(50, item.quality);
+        assertEquals(MAXIMUM_QUALITY, item.quality);
     }
 
     @Test
     public void agedBrieMaximumQuality() {
         Item item = createAndUpdate(AGED_BRIE, -1, 49);
-        assertEquals(50, item.quality);
+        assertEquals(MAXIMUM_QUALITY, item.quality);
     }
 
     @Test
