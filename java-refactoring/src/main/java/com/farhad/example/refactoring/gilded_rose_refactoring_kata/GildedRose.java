@@ -23,10 +23,15 @@ class GildedRose {
                 handleAgedBrie(item);
             } else if(isBackstagePasses(item)) {
                 handleBackstagePasses(item);
+            } else if(isSulfuras(item)) {
+                handleSulfuras(item);
             } else {
                 handleSpecificItem(item);
             }
         }
+    }
+
+    private void handleSulfuras(Item item) {
     }
 
     private void handleBackstagePasses(Item item) {
