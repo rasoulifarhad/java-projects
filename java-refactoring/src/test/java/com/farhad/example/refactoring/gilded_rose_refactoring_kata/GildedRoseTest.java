@@ -54,6 +54,11 @@ class GildedRoseTest {
         assertEquals(50, item.quality);
     }
     
- 
+    @Test
+    public void sulfurasNeverHasToBeSoldOrDecreasesInQuality() {
+        Item item = createAndUpdate("Sulfuras, Hand of Ragnaros", 1, 42);
+        assertEquals(1, item.sellIn);
+        assertEquals(42, item.quality);
+    }
 
 }
