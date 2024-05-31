@@ -97,6 +97,18 @@ class GildedRoseTest {
         Item item = createAndUpdate("Aged Brie", -1, 42);
         assertEquals(44, item.quality);
     }
+
+    @Test
+    public void backstagePassMaximumQuality() {
+        Item item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 48);
+        assertEquals(50, item.quality);
+
+        item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 10, 49);
+        assertEquals(50, item.quality);
+
+        item = createAndUpdate("Backstage passes to a TAFKAL80ETC concert", 5, 49);
+        assertEquals(50, item.quality);
+    }
 }    
 
 
