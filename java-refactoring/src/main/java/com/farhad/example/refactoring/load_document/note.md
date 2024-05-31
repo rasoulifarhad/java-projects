@@ -40,3 +40,4 @@ information about assortments of music albums:
 ```
 
 See https://martinfowler.com/articles/refactoring-document-load.html
+Se https://martinfowler.com/tags/refactoring.html
