@@ -26,6 +26,10 @@ public class Assortment {
         }
     }
     
+    public String enrichedJson() {
+        return doc.toString();
+    }
+
     public static Assortment fromJson(String json) {
         try {
             Assortment result = Json.mapper()
