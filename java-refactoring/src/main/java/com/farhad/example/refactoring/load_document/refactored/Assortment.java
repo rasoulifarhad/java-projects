@@ -27,7 +27,9 @@ public class Assortment {
     }
     
     public String enrichedJson() {
-        return doc.toString();
+        JsonNode result = doc.deepCopy();
+        getAlbums().forEach(a -> a.enrichJson(result));
+        return result.toString();
     }
 
     public static Assortment fromJson(String json) {
