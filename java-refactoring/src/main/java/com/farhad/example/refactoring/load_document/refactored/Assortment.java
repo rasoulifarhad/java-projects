@@ -6,10 +6,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class Assortment {
 
-    private String doc;
+    private JsonNode doc;
     private List<Album> albums;
 
     public List<Album> getAlbums() {
@@ -30,7 +31,7 @@ public class Assortment {
             Assortment result = Json.mapper()
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .readValue(json, Assortment.class);
-            result.doc = json;
+            result.doc = Json.mapper().readTree(json);
             return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
