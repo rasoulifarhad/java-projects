@@ -1,5 +1,7 @@
 package com.farhad.example.refactoring.load_document.refactored;
 
+import static java.util.stream.Collectors.summingInt;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +20,9 @@ public class Album {
         return Collections.unmodifiableList(tracks);
     }
 
-
+    public int getLengthInSeconds() {
+        return tracks.stream()
+            .collect(summingInt(Track::getLengthInSeconds));
+    }
     
 }
