@@ -11,7 +11,7 @@ public class AssortmentTest {
     @Test
     public void enrichedJson() throws Exception {
         JsonNode expected = Json.mapper().readTree("src/test/enrichedJson.json");
-        JsonNode actual = Json.mapper().readTree(getAssortment().enrichedJson());
+        JsonNode actual = Json.mapper().readTree(getAssortment().toJson());
         assertEquals(expected, actual);
     }
 

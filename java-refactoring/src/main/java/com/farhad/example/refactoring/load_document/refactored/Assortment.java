@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -18,15 +17,6 @@ public class Assortment {
     }
 
     public String toJson() {
-        try {
-            return Json.mapper().writeValueAsString(this);
-            
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
-    public String enrichedJson() {
         JsonNode result = doc.deepCopy();
         getAlbums().forEach(a -> a.enrichJson(result));
         return result.toString();
