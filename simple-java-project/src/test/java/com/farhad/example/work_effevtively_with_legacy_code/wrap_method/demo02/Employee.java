@@ -15,7 +15,7 @@ public class Employee {
         dispatchPayment(date);
     }
 
-    public void dispatchPayment(Date date) {
+    private void dispatchPayment(Date date) {
         Money amount = new Money(0.0);
         for (TimeCard timeCard : timeCards) {
             if (payPeriod.contains(date)) {
