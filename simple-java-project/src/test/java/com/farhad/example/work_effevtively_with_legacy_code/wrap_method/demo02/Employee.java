@@ -10,7 +10,7 @@ public class Employee {
     private List<Date> payPeriod;
     private double payRate;
 
-    public void pay(Date date) {
+    public void makeLoggedPaymrnt(Date date) {
         logPayment();
         dispatchPayment(date);
     }
