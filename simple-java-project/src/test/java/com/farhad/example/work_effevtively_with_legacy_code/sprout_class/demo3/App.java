@@ -1,0 +1,20 @@
+package com.farhad.example.work_effevtively_with_legacy_code.sprout_class.demo3;
+
+import java.time.LocalDate;
+
+import com.farhad.example.work_effevtively_with_legacy_code.sprout_class.demo3.DatabaseStore.FakeDatabaseStore;
+
+public class App {
+
+    public static void main(String[] args) {
+        DatabaseStore database = new FakeDatabaseStore();
+        QuarterlyReportTableHeaderGenerator producer = new QuarterlyReportTableHeaderGenerator();
+        QuarterlyReportGenerator reportGenerator = 
+            new QuarterlyReportGenerator(producer,
+                database, 
+                LocalDate.now().minusDays(10), 
+                LocalDate.now());
+
+        System.out.println(reportGenerator.generate());
+    }
+}
