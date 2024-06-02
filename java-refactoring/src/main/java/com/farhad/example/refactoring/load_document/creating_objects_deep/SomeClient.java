@@ -1,20 +1,16 @@
 package com.farhad.example.refactoring.load_document.creating_objects_deep;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SomeClient {
 
-    public List<String> doSomething(Assortment assortment) {
-        List<String> titles = assortment.getAlbums()
-            .stream()
-                .map(a -> a.getTitle())
-                .collect(toList());
-        return somethingCleverWith(titles);
+    public String doSomething(Assortment assortment) {
+        List<Track> tracks = assortment.getTracks();
+        return somethingCleverWith(tracks);
     }
 
-    private List<String> somethingCleverWith(List<String> titles) {
-        return titles;
+    private String somethingCleverWith(List<Track> tracks) {
+        return tracks.stream().collect(Collectors.summingInt(Track::getLengthInSeconds)).toString();
     }
 }
