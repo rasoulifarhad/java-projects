@@ -7,12 +7,20 @@ public class Sale {
 
     private Item item;
     
-    private final ArtR56Display display;
+    private final Display display;
 
 
     public void scan(String barcode) {
+        item = findItem(barcode);
         String itemLine = item.getName() 
             + " " + item.getPrice().asDisplayText();
         display.showLine(itemLine);
     }
+
+
+    private Item findItem(String barcode) {
+        return new Item("Milk", new Price(3.99));
+    }
+
+
 }
