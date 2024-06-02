@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuarterlyReportGenerator {
 
-    private final QuarterlyReportTableHeaderProducer producer;
+    private final QuarterlyReportTableHeaderGenerator producer;
     private final DatabaseStore database;
     private final LocalDate beginDate;
     private final LocalDate endDate;
@@ -24,7 +24,7 @@ public class QuarterlyReportGenerator {
         pageText += "<html><head><title>";
         pageText += "Quartly Report";
         pageText += "</title></head><body><table>";
-        pageText += producer.makeHeader();
+        pageText += producer.generate();
 
         if(results.size() > 0) {
 

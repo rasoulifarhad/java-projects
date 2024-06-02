@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
         DatabaseStore database = new FakeDatabaseStore();
-        QuarterlyReportTableHeaderProducer producer = new QuarterlyReportTableHeaderProducer();
+        QuarterlyReportTableHeaderGenerator producer = new QuarterlyReportTableHeaderGenerator();
         QuarterlyReportGenerator reportGenerator = 
             new QuarterlyReportGenerator(producer,
                 database, 
