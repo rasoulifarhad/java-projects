@@ -7,7 +7,7 @@ public class App {
         Department aDepartment = new Department("charge code", aManager);
         Person aPerson = new Person("person name");
         aPerson.setDepartment(aDepartment);
-        Manager manager = aPerson.getDepartment().getManager();
+        Manager manager = aPerson.getManager();
         System.out.println(manager);
     }
 }
