@@ -19,7 +19,7 @@ public class TelephoneNumber {
     }
 
     
-    public String getTelephoneNumber() {
+    public String toString() {
         return String.format("%s %s",areaCode, number);
     }
 

@@ -29,6 +29,6 @@ public class Person {
     }
 
     public String getTelephoneNumber() {
-        return telephoneNumber.getTelephoneNumber();
+        return telephoneNumber.toString();
     }
 }
