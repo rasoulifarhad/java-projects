@@ -3,8 +3,6 @@ package com.farhad.example.refactoring.extract_class.demo2;
 public class Person {
 
     private String name;
-    private String officeAreaCode;
-    private String officeNumber;
     private TelephoneNumber telephoneNumber;
     
 
