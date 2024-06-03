@@ -5,7 +5,12 @@ public class Person {
     private String name;
     private String officeAreaCode;
     private String officeNumber;
+    private TelephoneNumber telephoneNumber;
+    
 
+    public Person() {
+        telephoneNumber = new TelephoneNumber();
+    }
     public String getName() {
         return name;
     }
