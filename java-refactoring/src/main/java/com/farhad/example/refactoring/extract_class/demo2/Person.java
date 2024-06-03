@@ -31,6 +31,6 @@ public class Person {
     }
 
     public String getTelephoneNumber() {
-        return String.format("%s %s",officeAreaCode, officeNumber);
+        return telephoneNumber.getTelephoneNumber();
     }
 }

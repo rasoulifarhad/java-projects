@@ -4,7 +4,7 @@ public class TelephoneNumber {
 
     private String officeAreaCode;
     private String officeNumber;
-    
+
     public String getOfficeAreaCode() {
         return officeAreaCode;
     }
@@ -19,5 +19,8 @@ public class TelephoneNumber {
     }
 
     
+    public String getTelephoneNumber() {
+        return String.format("%s %s",officeAreaCode, officeNumber);
+    }
 
 }
