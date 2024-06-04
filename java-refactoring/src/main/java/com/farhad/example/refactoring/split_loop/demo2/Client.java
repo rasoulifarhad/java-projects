@@ -18,16 +18,26 @@ public class Client {
     }
 
     public Summary summary(Person[] people) {
-        double totalsummary = 0;
-        for (Person person : people) {
-            totalsummary += person.getSalary();
-        }
+        double totalsummary = totalsummary(people);
+        int youngest = youngestAge(people);
+        return new Summary(youngest, totalsummary);
+    }
+
+    private int youngestAge(Person[] people) {
         int youngest = Integer.MAX_VALUE;
         for (Person person : people) {
             if(person.getAge() < youngest){
                 youngest = person.getAge();
             }
         }
-        return new Summary(youngest, totalsummary);
+        return youngest;
+    }
+
+    private double totalsummary(Person[] people) {
+        double totalsummary = 0;
+        for (Person person : people) {
+            totalsummary += person.getSalary();
+        }
+        return totalsummary;
     }
 }
