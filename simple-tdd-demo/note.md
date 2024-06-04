@@ -25,3 +25,5 @@ Kent Beck, Three Rivers Institute
 // Reduce(Bank, String)
 // Sum.plus
 // Expression.times
+
+See https://www.jamesshore.com/v2/projects/lets-play-tdd
