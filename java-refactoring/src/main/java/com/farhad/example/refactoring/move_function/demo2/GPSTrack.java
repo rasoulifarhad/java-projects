@@ -14,12 +14,11 @@ public class GPSTrack {
             return 0;
         };
         int totalTime =  calculateTime.get();
-        double totalDistance = top_calculateDistance(points);
-        double pace = totalTime / 60 / totalDistance;
-        return new TrackSummary(totalTime, totalDistance, pace);
+        double pace = totalTime / 60 / totalDistance(points);
+        return new TrackSummary(totalTime, totalDistance(points), pace);
     }
 
-    public double top_calculateDistance(Point[] points) {
+    public double totalDistance(Point[] points) {
 
         Function<Double, Double> radians = (degrees) -> {
             return degrees * Math.PI /180;
