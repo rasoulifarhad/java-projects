@@ -19,10 +19,6 @@ public class SavingsAccountYear {
         return startingBalance;
     }
 
-    public void deposit(int amount) {
-        startingBalance += amount;
-    }
-
     public int balance() {
         return startingBalance;
     }
