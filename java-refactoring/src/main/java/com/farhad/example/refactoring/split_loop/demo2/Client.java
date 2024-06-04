@@ -21,16 +21,12 @@ public class Client {
         int youngest = Integer.MAX_VALUE;
         double totalsummary = 0;
         for (Person person : people) {
-            if(person.getAge() < youngest){
-                youngest = person.getAge();
-            }
             totalsummary += person.getSalary();
         }
         for (Person person : people) {
             if(person.getAge() < youngest){
                 youngest = person.getAge();
             }
-            totalsummary += person.getSalary();
         }
         return new Summary(youngest, totalsummary);
     }
