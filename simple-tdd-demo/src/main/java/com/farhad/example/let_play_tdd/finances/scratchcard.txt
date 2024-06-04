@@ -1,6 +1,1 @@
-Change SavingsAccount --> SavingsAccountYear
-Ending balance, ether?
 Capital pains
-Replace deposit/withdrawal with transfering between  accounts?
-Refactor SavingsAccountYear to reconcile nextYear() with endingBalance()
-Get ride of SavingsAccountYear()
