@@ -10,7 +10,7 @@ public class SavingsAccountYearTest {
     public void startingBalance() {
         SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
         assertEquals(10_000, account.startingBalance());
-    }
+    } 
     @Test
     public void endingBalance() {
         SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
