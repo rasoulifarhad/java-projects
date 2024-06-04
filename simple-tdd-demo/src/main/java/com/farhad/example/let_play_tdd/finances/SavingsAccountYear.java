@@ -1,11 +1,11 @@
 package com.farhad.example.let_play_tdd.finances;
 
-public class SavingsAccount {
+public class SavingsAccountYear {
 
     private int balance;
 
     
-    public SavingsAccount() {
+    public SavingsAccountYear() {
         this.balance = 0;
     }
 
@@ -21,8 +21,8 @@ public class SavingsAccount {
         balance -= amount;
     }
 
-    public SavingsAccount nextYear(int interestRate) {
-        SavingsAccount result = new SavingsAccount();
+    public SavingsAccountYear nextYear(int interestRate) {
+        SavingsAccountYear result = new SavingsAccountYear();
         result.deposit(balance() + (balance() * interestRate / 100));
         return result;
     }
