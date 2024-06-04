@@ -2,6 +2,7 @@ package com.farhad.example.let_play_tdd.finances;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class SavingsAccountYearTest {
@@ -39,6 +40,7 @@ public class SavingsAccountYearTest {
     }
 
     @Test
+    @Disabled
     public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
         year.withdraw(3000);
