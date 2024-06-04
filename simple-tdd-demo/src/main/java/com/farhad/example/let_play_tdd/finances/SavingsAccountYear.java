@@ -30,4 +30,8 @@ public class SavingsAccountYear {
     public SavingsAccountYear nextYear() {
         return new SavingsAccountYear(this.endingBalance(), interestRate);
     }
+
+    public void withdraw(int amount) {
+        startingBalance -= amount;
+    }
 }

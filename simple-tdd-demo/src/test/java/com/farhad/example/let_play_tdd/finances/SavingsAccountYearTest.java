@@ -31,6 +31,13 @@ public class SavingsAccountYearTest {
         assertEquals(newAccount().interestRate(), newAccount().nextYear().interestRate());
     }
 
+    @Test
+    public void canWithdrawPrincipalWithoutIncurringCapitalGainsTax() {
+        SavingsAccountYear year = newAccount();
+        year.withdraw(1000);
+        assertEquals(9900, year.endingBalance());
+    }
+
     private SavingsAccountYear newAccount() {
         SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
         return account;
