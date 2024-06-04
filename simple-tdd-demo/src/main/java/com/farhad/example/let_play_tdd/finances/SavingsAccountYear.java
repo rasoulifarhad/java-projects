@@ -32,11 +32,15 @@ public class SavingsAccountYear {
     }
 
     public SavingsAccountYear nextYear() {
-        return new SavingsAccountYear(this.endingBalance(), 0);
+        return new SavingsAccountYear(this.endingBalance(), interestRate);
     }
 
     public int endingBalance() {
         return balance() + (balance() * interestRate / 100);
+    }
+
+    public int interestRate() {
+        return interestRate;
     }
 
 

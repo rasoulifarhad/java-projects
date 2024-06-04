@@ -23,5 +23,9 @@ public class SavingsAccountYearTest {
         assertEquals(thisYear.endingBalance(), thisYear.nextYear().startingBalance());
     }
 
-
+    @Test
+    public void nextYearInterestingRateEqualsThisYearIntrestingYear() {
+        SavingsAccountYear thisYear = new SavingsAccountYear(10_000, 10);
+        assertEquals(thisYear.interestRate(), thisYear.nextYear().interestRate());
+    }
 }
