@@ -40,7 +40,8 @@ public class SavingsAccountYear {
     }
 
     public int endingPrincipal() {
-        return this.startingPrincipal() - totalWithdrawn;
+        int result = this.startingPrincipal() - totalWithdrawn;
+        return result < 0 ? 0 : result; 
     }
 
     public SavingsAccountYear nextYear() {
