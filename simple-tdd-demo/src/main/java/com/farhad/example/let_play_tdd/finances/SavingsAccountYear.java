@@ -24,7 +24,7 @@ public class SavingsAccountYear {
     }
 
     public int endingBalance() {
-        return startingBalance() + (startingBalance() * interestRate / 100);
+        return startingBalance + (startingBalance * interestRate / 100);
     }
 
     public int interestRate() {
