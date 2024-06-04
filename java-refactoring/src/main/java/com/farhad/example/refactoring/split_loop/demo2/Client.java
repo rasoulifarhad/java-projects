@@ -18,9 +18,7 @@ public class Client {
     }
 
     public Summary summary(Person[] people) {
-        double totalsummary = totalsummary(people);
-        int youngest = youngestAge(people);
-        return new Summary(youngest, totalsummary);
+        return new Summary(youngestAge(people), totalsummary(people));
     }
 
     private int youngestAge(Person[] people) {
