@@ -1,4 +1,4 @@
-package com.farhad.example.let_play_tdd;
+package com.farhad.example.let_play_tdd.finances;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
