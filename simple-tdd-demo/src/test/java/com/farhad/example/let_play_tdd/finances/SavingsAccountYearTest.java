@@ -40,6 +40,14 @@ public class SavingsAccountYearTest {
     }
 
     @Test
+    public void multipleWithdrawalsInAYear() {
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 10);
+        year.withdraw(1000);
+        year.withdraw(2000);
+        assertEquals(7700, year.endingBalance());
+    }
+
+    @Test
     public void startingPrincipal() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
         assertEquals(3000, year.startingPrincipal());
@@ -61,11 +69,6 @@ public class SavingsAccountYearTest {
         assertEquals(1000, year.endingPrincipal(), "Ending principal");
 
 
-    }
-
-    @Test
-    public void multipleWithdrawalsInAYear() {
-        
     }
 
     @Test

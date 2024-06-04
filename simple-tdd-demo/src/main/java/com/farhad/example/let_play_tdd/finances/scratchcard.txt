@@ -1,2 +1,3 @@
 Capital pains
 Get rid of savingsAccountYear  initializers
+Clean up SavingsAccountYearTest
