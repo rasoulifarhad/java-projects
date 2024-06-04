@@ -23,10 +23,6 @@ public class SavingsAccountYear {
         return startingBalance;
     }
 
-    public void withdraw(int amount) {
-        startingBalance -= amount;
-    }
-
     public SavingsAccountYear nextYear() {
         return new SavingsAccountYear(this.endingBalance(), interestRate);
     }
