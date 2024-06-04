@@ -11,16 +11,16 @@ public class AccountType {
         return premium;
     }
 
-    public double overdraftCharge(int daysOverdrawn) {
+    public double overdraftCharge(Account account) {
         if(isPremium()) {
             double baseCharge = 10;
-            if(daysOverdrawn <= 7) {
+            if(account.getDaysOverdrawn() <= 7) {
                 return baseCharge;
             } else {
-                return baseCharge + (daysOverdrawn -7) * 0.85;
+                return baseCharge + (account.getDaysOverdrawn() -7) * 0.85;
             }
         } else {
-            return daysOverdrawn * 1.75;
+            return account.getDaysOverdrawn() * 1.75;
         }
     }
 

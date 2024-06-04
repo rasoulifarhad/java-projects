@@ -1,5 +1,8 @@
 package com.farhad.example.refactoring.move_between_classes.demo2;
 
+import lombok.Getter;
+
+@Getter
 public class Account {
 
     private AccountType accountType;
@@ -14,7 +17,7 @@ public class Account {
     }
 
     public double overdraftCharge() {
-        return accountType.overdraftCharge(daysOverdrawn);
+        return accountType.overdraftCharge(this);
     }
 
 }
