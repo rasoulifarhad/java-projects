@@ -2,29 +2,33 @@ package com.farhad.example.let_play_tdd.finances;
 
 public class SavingsAccountYear {
 
-    private int balance;
+    private int startingBalance;
     private int interestRate;
     
     public SavingsAccountYear() {
-        this.balance = 0;
+        this.startingBalance = 0;
         this.interestRate = 0;
     }
 
     public SavingsAccountYear(int startingBalance, int interestRate) {
-        this.balance = startingBalance;
+        this.startingBalance = startingBalance;
         this.interestRate = interestRate;
     }
 
+    public int startingBalance() {
+        return startingBalance;
+    }
+
     public void deposit(int amount) {
-        balance += amount;
+        startingBalance += amount;
     }
 
     public int balance() {
-        return balance;
+        return startingBalance;
     }
 
     public void withdraw(int amount) {
-        balance -= amount;
+        startingBalance -= amount;
     }
 
     public SavingsAccountYear nextYear() {
@@ -37,8 +41,5 @@ public class SavingsAccountYear {
         return balance() + (balance() * interestRate / 100);
     }
 
-    public int startingBalance() {
-        return balance;
-    }
 
 }
