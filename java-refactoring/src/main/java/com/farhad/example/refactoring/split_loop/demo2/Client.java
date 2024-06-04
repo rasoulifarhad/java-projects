@@ -1,5 +1,7 @@
 package com.farhad.example.refactoring.split_loop.demo2;
 
+import java.util.stream.Stream;
+
 public class Client {
 
     private static final Client CLIENT = new Client();
@@ -22,20 +24,15 @@ public class Client {
     }
 
     private int youngestAge(Person[] people) {
-        int youngest = Integer.MAX_VALUE;
-        for (Person person : people) {
-            if(person.getAge() < youngest){
-                youngest = person.getAge();
-            }
-        }
-        return youngest;
+        return Stream.of(people)
+            .mapToInt(p -> p.getAge())
+            .min()
+            .getAsInt();
     }
 
     private double totalsummary(Person[] people) {
-        double totalsummary = 0;
-        for (Person person : people) {
-            totalsummary += person.getSalary();
-        }
-        return totalsummary;
+        return Stream.of(people)
+            .mapToDouble(p -> p.getSalary())
+            .reduce(0, (left, right) -> left + right);
     }
 }
