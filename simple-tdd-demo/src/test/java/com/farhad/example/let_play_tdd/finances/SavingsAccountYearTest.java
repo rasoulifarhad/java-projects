@@ -29,4 +29,10 @@ public class SavingsAccountYearTest {
         SavingsAccountYear nextYear = account.nextYear(10);
         assertEquals(11000, nextYear.balance());
     }
+
+    @Test
+    public void endingBalance() {
+        SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
+        assertEquals(11_000, account.endingBalance());
+    }
 }
