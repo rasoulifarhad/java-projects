@@ -19,8 +19,8 @@ public class SavingsAccountYearTest {
 
     @Test
     public void nextYearStartingBalanceShouldEqualThisYearEndingBalance() {
-        SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
-        assertEquals(account.endingBalance(), account.nextYear().startingBalance());
+        SavingsAccountYear thisYear = new SavingsAccountYear(10_000, 10);
+        assertEquals(thisYear.endingBalance(), thisYear.nextYear().startingBalance());
     }
 
 
