@@ -24,6 +24,10 @@ public class SavingsAccountYear {
         return startingBalance;
     }
 
+    public int startingPrincipal() {
+        return startingBalance - capitalGainsAmount;
+    }
+
     public int interestRate() {
         return interestRate;
     }
@@ -40,7 +44,4 @@ public class SavingsAccountYear {
         startingBalance -= amount;
     }
 
-    public int startingPrincipal() {
-        return startingBalance - capitalGainsAmount;
-    }
 }
