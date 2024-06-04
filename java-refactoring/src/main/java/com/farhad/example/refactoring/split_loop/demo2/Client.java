@@ -18,11 +18,11 @@ public class Client {
     }
 
     public Summary summary(Person[] people) {
-        int youngest = Integer.MAX_VALUE;
         double totalsummary = 0;
         for (Person person : people) {
             totalsummary += person.getSalary();
         }
+        int youngest = Integer.MAX_VALUE;
         for (Person person : people) {
             if(person.getAge() < youngest){
                 youngest = person.getAge();
