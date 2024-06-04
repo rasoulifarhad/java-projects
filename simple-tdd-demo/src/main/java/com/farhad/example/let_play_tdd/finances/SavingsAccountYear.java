@@ -27,7 +27,7 @@ public class SavingsAccountYear {
         balance -= amount;
     }
 
-    public SavingsAccountYear nextYear(int interestRate) {
+    public SavingsAccountYear nextYear() {
         SavingsAccountYear result = new SavingsAccountYear();
         result.deposit(balance() + (balance() * interestRate / 100));
         return result;
@@ -35,6 +35,10 @@ public class SavingsAccountYear {
 
     public int endingBalance() {
         return balance() + (balance() * interestRate / 100);
+    }
+
+    public int startingBalance() {
+        return balance;
     }
 
 }
