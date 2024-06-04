@@ -32,7 +32,7 @@ public class SavingsAccountYearTest {
     }
 
     @Test
-    public void canWithdrawPrincipalWithoutIncurringCapitalGainsTax() {
+    public void withdrawingFundsOccursAtBeginingOfTheYear() {
         SavingsAccountYear year = newAccount();
         year.withdraw(1000);
         assertEquals(9900, year.endingBalance());
