@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 public class SavingsAccountYearTest {
  
     @Test
-    public void startingBalance() {
+    public void startingBalanceMatchesConstructor() {
         assertEquals(10_000, newAccount().startingBalance());
     }
 
     @Test
-    public void interestRate() {
+    public void interestRateMatchesConstructor() {
         assertEquals(10, newAccount().interestRate());
     }
 
     @Test
-    public void endingBalance() {
+    public void endingBalanceAppliesInterestRate() {
         assertEquals(11_000, newAccount().endingBalance());
     }
 
     @Test
-    public void nextYearStartingBalanceShouldEqualThisYearEndingBalance() {
+    public void nextYearStartingBalanceEqualsThisYearEndingBalance() {
         assertEquals(newAccount().endingBalance(), newAccount().nextYear().startingBalance());
     }
 
