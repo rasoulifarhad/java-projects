@@ -42,7 +42,7 @@ public class SavingsAccountYearTest {
     @Test
     public void principal() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
-        assertEquals(3000, year.principal());
+        assertEquals(3000, year.startingPrincipal());
     }
 
 

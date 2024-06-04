@@ -40,7 +40,7 @@ public class SavingsAccountYear {
         startingBalance -= amount;
     }
 
-    public int principal() {
+    public int startingPrincipal() {
         return startingBalance - capitalGainsAmount;
     }
 }
