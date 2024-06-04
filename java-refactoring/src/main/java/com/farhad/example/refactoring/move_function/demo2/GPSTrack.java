@@ -10,15 +10,11 @@ public class GPSTrack {
     public TrackSummary trackSummary(Point[] points) {
 
 
-        Supplier<Double> calculateDistance = () -> {
-            return top_calculateDistance(points);
-        };
-
         Supplier<Integer> calculateTime = () -> {
             return 0;
         };
         int totalTime =  calculateTime.get();
-        double totalDistance = calculateDistance.get();
+        double totalDistance = top_calculateDistance(points);
         double pace = totalTime / 60 / totalDistance;
         return new TrackSummary(totalTime, totalDistance, pace);
     }
