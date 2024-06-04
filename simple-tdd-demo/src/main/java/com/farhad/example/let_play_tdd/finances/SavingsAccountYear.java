@@ -34,10 +34,9 @@ public class SavingsAccountYear {
     }
 
     public int endingBalance() {
-        int start = startingBalance;
-        start -= totalWithdrawn;
+        int modifiedStart = startingBalance - totalWithdrawn;
 
-        return start + (start * interestRate / 100);
+        return modifiedStart + (modifiedStart * interestRate / 100);
     }
 
     public int endingPrincipal() {
