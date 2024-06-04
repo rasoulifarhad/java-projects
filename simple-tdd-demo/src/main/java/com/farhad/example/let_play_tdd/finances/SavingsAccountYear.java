@@ -23,12 +23,11 @@ public class SavingsAccountYear {
         return interestRate;
     }
 
-    public SavingsAccountYear nextYear() {
-        return new SavingsAccountYear(this.endingBalance(), interestRate);
-    }
-
     public int endingBalance() {
         return startingBalance + (startingBalance * interestRate / 100);
     }
 
+    public SavingsAccountYear nextYear() {
+        return new SavingsAccountYear(this.endingBalance(), interestRate);
+    }
 }
