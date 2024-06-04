@@ -25,4 +25,13 @@ public class GPSTrack {
     private int calculateTime() {
         return 0;
     }
+
+    public int top_calculateDistance(Point[] points) {
+        int result = 0;
+        for (int i = 0; i < points.length; i++) {
+            result += distance(points[i-1], points[i]);
+        }
+        return result;
+    }
+
 }
