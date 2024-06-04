@@ -6,10 +6,10 @@ import lombok.Value;
 public class TrackSummary {
 
     private int totalTime;
-    private int totalDistance;
-    private int pace;
+    private double totalDistance;
+    private double pace;
 
-    public TrackSummary(int totalTime, int totalDistance, int pace) {
+    public TrackSummary(int totalTime, double totalDistance, double pace) {
         this.totalTime = totalTime;
         this.totalDistance = totalDistance;
         this.pace = pace;
