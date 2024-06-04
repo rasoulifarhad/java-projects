@@ -38,6 +38,15 @@ public class SavingsAccountYearTest {
         assertEquals(9900, year.endingBalance());
     }
 
+    @Test
+    public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        year.withdraw(3000);
+        assertEquals(7700, year.endingBalance());
+        year.withdraw(5000);
+        assertEquals(2000 + 200 - (1250) , year.endingBalance());
+    }
+
     private SavingsAccountYear newAccount() {
         SavingsAccountYear account = new SavingsAccountYear(10_000, 10);
         return account;
