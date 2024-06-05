@@ -29,4 +29,15 @@ public class InstrumentCalculator {
         return numinator / elements.size();
     }
 
+    public Double secondMomentAbout(double point) throws InvalidBasicException {
+        if(elements.isEmpty()) {
+            throw new InvalidBasicException();
+        }
+        double numinator = 0.0;
+        for (Double element : elements) {
+            numinator += Math.pow(element - point, 2.0);
+        }
+        return numinator / elements.size();
+    }
+
 }
