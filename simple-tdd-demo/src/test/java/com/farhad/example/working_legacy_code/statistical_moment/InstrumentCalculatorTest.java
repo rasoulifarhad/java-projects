@@ -23,4 +23,13 @@ public class InstrumentCalculatorTest {
         });
     }
 
+    @Test
+    public void testSecondMoment() throws InvalidBasicException {
+        InstrumentCalculator calculator = new InstrumentCalculator();
+        calculator.addElement(1.0);
+        calculator.addElement(2.0);
+        assertEquals(-0.5, calculator.secondMomentAbout(2.0));
+    }
+
+
 }
