@@ -8,16 +8,24 @@ import java.util.Properties;
 
 public class AddressBook {
 
-    private static String connectionString, username, password;
+    private static AddressBook instance = new AddressBook();
 
-    static {
+    private String connectionString, username, password;
+
+    
+    public AddressBook() {
         Properties props = getProperties();
-        connectionString = props.getProperty("db.connectionString");
-        username = props.getProperty("db.username");
-        password = props.getProperty("db.password");
+        this.connectionString = props.getProperty("db.connectionString");
+        this.username = props.getProperty("db.username");
+        this.password = props.getProperty("db.password");
+
     }
 
     public static Person findByLastName(String s) {
+        return instance.findByLastNameImpl(s);
+    }
+
+    public Person findByLastNameImpl(String s) {
         String query = "SELECT lastName, firstName FROM PEOPLE WHERE lastname = ?";
         Connection conn = null;
         PreparedStatement st = null;
@@ -39,8 +47,6 @@ public class AddressBook {
     }
 
     private static void cleanUp(Connection conn, PreparedStatement st, ResultSet rs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cleanUp'");
     }
 
     private static Properties getProperties() {
