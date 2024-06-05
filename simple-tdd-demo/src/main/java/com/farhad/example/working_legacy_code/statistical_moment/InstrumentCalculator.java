@@ -1,5 +1,8 @@
 package com.farhad.example.working_legacy_code.statistical_moment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // We’re working on a ﬁnancial application, and we need a
 // class that is going to use some high-powered mathematics to verify whether cer-
 // tain commodities should be traded. We need a Java class that calculates some-
@@ -9,11 +12,18 @@ package com.farhad.example.working_legacy_code.statistical_moment;
 // code in the test.
 public class InstrumentCalculator {
 
-    public void addElement(double d) {
+    private List<Double> elements = new ArrayList<>();
+
+    public void addElement(double point) {
+        elements.add(point);
     }
 
-    public Double firstMomentAbout(double d) {
-        return Double.NaN;
+    public Double firstMomentAbout(double point) {
+        double numinator = 0.0;
+        for (Double element : elements) {
+            numinator += (element - point);
+        }
+        return numinator / elements.size();
     }
 
 }
