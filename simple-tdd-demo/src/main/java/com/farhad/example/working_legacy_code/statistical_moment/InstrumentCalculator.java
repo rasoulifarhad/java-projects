@@ -19,14 +19,7 @@ public class InstrumentCalculator {
     }
 
     public Double firstMomentAbout(double point) throws InvalidBasicException {
-        if(elements.isEmpty()) {
-            throw new InvalidBasicException();
-        }
-        double numinator = 0.0;
-        for (Double element : elements) {
-            numinator += (element - point);
-        }
-        return numinator / elements.size();
+        return nthMomentAbout(point, 1.0);
     }
 
     public Double secondMomentAbout(double point) throws InvalidBasicException {
@@ -36,6 +29,17 @@ public class InstrumentCalculator {
         double numinator = 0.0;
         for (Double element : elements) {
             numinator += Math.pow(element - point, 2.0);
+        }
+        return numinator / elements.size();
+    }
+
+    private Double nthMomentAbout(double point, double n) throws InvalidBasicException {
+        if(elements.isEmpty()) {
+            throw new InvalidBasicException();
+        }
+        double numinator = 0.0;
+        for (Double element : elements) {
+            numinator += Math.pow(element - point, n);
         }
         return numinator / elements.size();
     }
