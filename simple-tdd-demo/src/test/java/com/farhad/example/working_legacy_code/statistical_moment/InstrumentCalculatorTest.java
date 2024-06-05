@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class InstrumentCalculatorTest {
 
     @Test
-    public void testFirstMoment() {
+    public void testFirstMoment() throws InvalidBasicException {
         InstrumentCalculator calculator = new InstrumentCalculator();
         calculator.addElement(1.0);
         calculator.addElement(2.0);

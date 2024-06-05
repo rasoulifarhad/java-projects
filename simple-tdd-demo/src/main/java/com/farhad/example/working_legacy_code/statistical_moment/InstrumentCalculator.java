@@ -18,7 +18,10 @@ public class InstrumentCalculator {
         elements.add(point);
     }
 
-    public Double firstMomentAbout(double point) {
+    public Double firstMomentAbout(double point) throws InvalidBasicException {
+        if(elements.isEmpty()) {
+            throw new InvalidBasicException();
+        }
         double numinator = 0.0;
         for (Double element : elements) {
             numinator += (element - point);
