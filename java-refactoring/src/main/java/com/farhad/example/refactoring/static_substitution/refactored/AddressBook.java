@@ -21,6 +21,10 @@ public class AddressBook {
 
     }
 
+    public static void loadInstance(AddressBook arg) {
+        instance = arg;
+    }
+
     public static Person findByLastName(String s) {
         return instance.findByLastNameImpl(s);
     }
@@ -43,7 +47,6 @@ public class AddressBook {
         } finally {
             cleanUp(conn, st, rs);
         }
-
     }
 
     private static void cleanUp(Connection conn, PreparedStatement st, ResultSet rs) {
