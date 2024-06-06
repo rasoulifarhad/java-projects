@@ -19,24 +19,24 @@ public class SavingsAccountYearTest {
 
     @Test
     public void endingBalanceAppliesInterestRate() {
-        assertEquals(11_000, newAccount().endingBalance());
+        assertEquals(11_000, newAccount().endingBalance(25));
     }
 
     @Test
     public void nextYearStartingBalanceEqualsThisYearEndingBalance() {
-        assertEquals(newAccount().endingBalance(), newAccount().nextYear().startingBalance());
+        assertEquals(newAccount().endingBalance(25), newAccount().nextYear(25).startingBalance());
     }
 
     @Test
     public void nextYearInterestingRateEqualsThisYearIntrestingYear() {
-        assertEquals(newAccount().interestRate(), newAccount().nextYear().interestRate());
+        assertEquals(newAccount().interestRate(), newAccount().nextYear(25).interestRate());
     }
 
     @Test
     public void withdrawingFundsOccursAtBeginingOfTheYear() {
         SavingsAccountYear year = newAccount();
         year.withdraw(1000);
-        assertEquals(9900, year.endingBalance());
+        assertEquals(9900, year.endingBalance(25));
     }
 
     @Test
@@ -87,13 +87,21 @@ public class SavingsAccountYearTest {
     }
 
     @Test
+    public void capitalGainsTaxIsIncludedInEndingBalance() {
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
+        year.withdraw(5000);
+        assertEquals(2000, year.capitalGainsWithdrawn());
+        assertEquals(10000 - 5000 - 500 + 450, year.endingBalance(25));
+    }
+
+    @Test
     @Disabled
     public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         year.withdraw(3000);
-        assertEquals(7700, year.endingBalance());
+        assertEquals(7700, year.endingBalance(25));
         year.withdraw(5000);
-        assertEquals(2000 + 200 - (1250) , year.endingBalance());
+        assertEquals(2000 + 200 - (1250) , year.endingBalance(25));
     }
 
     private SavingsAccountYear newAccount() {
