@@ -7,16 +7,15 @@ package com.farhad.example.working_legacy_code.programming_by_difference;
 // Fowarder class).
 public class MessageForwarder {
 
+    private Session session;
+    private String domain;
 
-    public void processMessage(Message message) {
-
-    }
-    public void forwardMessage(Message message) throws MessagingException {
-
-        Session session = new Session();
+    
+    public MimeMessage forwardMessage(Message message) throws MessagingException {
         MimeMessage forward = new MimeMessage(session);
         forward.setFrom(getFromAddress(message));
-    }
+        return forward;
+    }   
 
     // The purpose of this method is to strip out the “from” address of a received
     // mail message and return it so that it can be used as the “from” address of the
@@ -35,7 +34,7 @@ public class MessageForwarder {
     }
 
     public String getDomain() {
-        return "domain";
+        return domain;
     }
 
 

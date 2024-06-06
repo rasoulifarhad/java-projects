@@ -6,17 +6,21 @@ import org.junit.jupiter.api.Test;
 
 public class MessageForwarderTest {
 
-    MimeMessage expectedMessage;
+    Message expectedMessage;
 
     @Test
     public void testAnonymous() throws Exception {
         MessageForwarder forwarder = new MessageForwarder();
-        forwarder.forwardMessage(makeFakeMessage());
+        MimeMessage mimeMessage = forwarder.forwardMessage(makeFakeMessage(forwarder.getDomain()));
+        expectedMessage = new Message(forwarder.getDomain());
+        expectedMessage.from(mimeMessage.getFrom().getAddress());
         assertEquals("anon-members@" + forwarder.getDomain(), 
                 expectedMessage.getFrom().toString());
     }
 
-    private Message makeFakeMessage() {
-        return null;
+    private Message makeFakeMessage(String domain) {
+        Message m = new Message(domain);
+        m.from("fakeFrom");
+        return m;
     } 
 }
