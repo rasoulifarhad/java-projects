@@ -34,7 +34,7 @@ public class SavingsAccountYearTest {
 
     @Test
     public void withdrawingFundsOccursAtBeginingOfTheYear() {
-        SavingsAccountYear year = newAccount();
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 10);
         year.withdraw(1000);
         assertEquals(9900, year.endingBalance(25));
     }
@@ -92,6 +92,7 @@ public class SavingsAccountYearTest {
         year.withdraw(5000);
         assertEquals(2000, year.capitalGainsWithdrawn());
         assertEquals(10000 - 5000 - 500 + 450, year.endingBalance(25));
+        // TODO: need  to withdraw enough money to cover capital gains tax; that money  will also be taxed 
     }
 
     @Test
