@@ -66,4 +66,8 @@ public class SavingsAccountYear {
         return max(0, result);
     }
 
+    public Integer capitalGainsTaxIncurred(int taxRate) {
+        return this.capitalGainsWithdrawn() * taxRate / 100;
+    }
+
 }

@@ -79,8 +79,11 @@ public class SavingsAccountYearTest {
     }
 
     @Test
-    public void capitalGainTaxIncurred() {
-
+    public void capitalGainsTaxIncurred() {
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
+        year.withdraw(5000);
+        assertEquals(2000, year.capitalGainsWithdrawn());
+        assertEquals(500, year.capitalGainsTaxIncurred(25));
     }
 
     @Test
