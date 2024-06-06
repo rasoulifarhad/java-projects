@@ -46,8 +46,6 @@ public class DefectiveLoops {
         public String toString() {
             return String.format("Person{%s, %s, %s}",state, city, name);
         }
-
-        
     }
 }
 
