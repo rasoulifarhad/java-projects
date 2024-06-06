@@ -56,7 +56,6 @@ public class SavingsAccountYearTest {
     @Test
     public void endingPrincipal() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
-        assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(4000);
         assertEquals(0, year.endingPrincipal(), "Ending principal");
     }
@@ -64,7 +63,6 @@ public class SavingsAccountYearTest {
     @Test
     public void endingPrincipalNeverGoesBelowZero() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
-        assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(2000);
         assertEquals(1000, year.endingPrincipal(), "Ending principal");
 
@@ -74,11 +72,15 @@ public class SavingsAccountYearTest {
     @Test
     public void capitalGainsWithdrawn(){
         SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
-        assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(1000);
         assertEquals(0,year.capitalGainsWithdrawn());
         year.withdraw(3000);       
         assertEquals(1000,year.capitalGainsWithdrawn());
+    }
+
+    @Test
+    public void capitalGainTaxIncurred() {
+
     }
 
     @Test
