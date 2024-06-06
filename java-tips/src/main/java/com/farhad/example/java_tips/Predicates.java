@@ -15,9 +15,9 @@ public class Predicates {
 
     private void demo() {
         Db db = new Db(List.of(
-            new WebPage("url#1", "title1", "text 1"),
-            new WebPage("url#2", "title2", "text 2"),
-            new WebPage("url#3", "title3", "text 3")
+            new WebPage("https://www.bbc.com/persian", "Persian language broadcast station and subsidiary of BBC World Service", "BBC Persian is the Persian language broadcast station and subsidiary of BBC World Service which conveys the latest political, social, economical and sport news relevant to Iran, Afghanistan, and Tajikistan, and the world. Its headquarters are in London, United Kingdom."),
+            new WebPage("https://www.radiofarda.com/", "It broadcasts 24 hours a day in the Persian language from its headquarters in the district Hagibor of Prague, Czech Republic.", "Radio Farda is the Iranian branch of the U.S. government-funded Radio Free Europe/Radio Liberty (RFE/RL) external broadcast service for providing \"factual, objective and professional journalism\" to its audiences. It broadcasts 24 hours a day in the Persian language from its headquarters in the district Hagibor of Prague, Czech Republic."),
+            new WebPage("https://dzone.com/", "Read, comment, share, or submit your own article, structured around the appropriate SDLC stage and focus area, to discuss technical topics and techniques.", "DZone.com is one of the world's largest online communities and leading publisher of knowledge resources for software engineering professionals. Every day, thousands of developers come to DZone.com to read about the latest technology trends and learn about new technologies, methodologies, and best practices through shared knowledge.")
         ));
         var result = db.search(t -> true);
         System.out.println("Search:\n(epad OR ephone) AND pear -site:jam.shop");
