@@ -1,5 +1,7 @@
 package com.farhad.example.let_play_tdd.finances;
 
+import static java.lang.Math.max;
+
 public class SavingsAccountYear {
 
     private int startingBalance = 0;
@@ -45,7 +47,7 @@ public class SavingsAccountYear {
 
     public int endingPrincipal() {
         int result = this.startingPrincipal() - totalWithdrawn();
-        return result < 0 ? 0 : result; 
+        return max(0, result);
     }
 
     public SavingsAccountYear nextYear() {
@@ -59,7 +61,7 @@ public class SavingsAccountYear {
 
     public int capitalGainsWithdrawn() {
         int result = (startingPrincipal() - totalWithdrawn()) * -1;
-        return result < 0 ? 0 : result;
+        return max(0, result);
     }
 
 }
