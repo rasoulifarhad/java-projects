@@ -35,7 +35,7 @@ public class MessageForwarder {
     }
 
     public String getDomain() {
-        return domain;
+        return "domain";
     }
 
 
