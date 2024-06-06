@@ -49,13 +49,13 @@ public class SavingsAccountYearTest {
 
     @Test
     public void startingPrincipal() {
-        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         assertEquals(3000, year.startingPrincipal());
     }
 
     @Test
     public void endingPrincipal() {
-        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(4000);
         assertEquals(0, year.endingPrincipal(), "Ending principal");
@@ -63,7 +63,7 @@ public class SavingsAccountYearTest {
 
     @Test
     public void endingPrincipalNeverGoesBelowZero() {
-        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(2000);
         assertEquals(1000, year.endingPrincipal(), "Ending principal");
@@ -73,7 +73,7 @@ public class SavingsAccountYearTest {
 
     @Test
     public void capitalGainsWithdrawn(){
-        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         assertEquals(3000, year.startingPrincipal(), "Starting principal");
         year.withdraw(1000);
         assertEquals(0,year.capitalGainsWithdrawn());
@@ -84,7 +84,7 @@ public class SavingsAccountYearTest {
     @Test
     @Disabled
     public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
-        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 3000, 10);
         year.withdraw(3000);
         assertEquals(7700, year.endingBalance());
         year.withdraw(5000);
