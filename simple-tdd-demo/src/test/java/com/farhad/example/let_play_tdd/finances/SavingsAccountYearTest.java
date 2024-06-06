@@ -72,6 +72,14 @@ public class SavingsAccountYearTest {
     }
 
     @Test
+    public void capitalGainsWithdrawn(){
+        SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);
+        assertEquals(3000, year.startingPrincipal(), "Starting principal");
+        year.withdraw(4000);       
+        assertEquals(1000,year.capitalGainsWithdrawn());
+    }
+
+    @Test
     @Disabled
     public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 7000, 10);

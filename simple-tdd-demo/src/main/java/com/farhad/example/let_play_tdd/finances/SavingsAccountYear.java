@@ -57,4 +57,8 @@ public class SavingsAccountYear {
         // startingBalance -= amount;
     }
 
+    public int capitalGainsWithdrawn() {
+        return (startingPrincipal() - totalWithdrawn()) * -1;
+    }
+
 }
