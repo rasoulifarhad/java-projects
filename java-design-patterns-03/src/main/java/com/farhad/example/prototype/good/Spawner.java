@@ -1,6 +1,17 @@
 package com.farhad.example.prototype.good;
 
-public abstract class Spawner {
+import lombok.RequiredArgsConstructor;
 
-    public abstract Monster spawnMonster();
+@RequiredArgsConstructor
+public class Spawner {
+
+    private final Monster prototype;
+
+    public  Monster spawnMonster(){
+        try {
+            return prototype.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
