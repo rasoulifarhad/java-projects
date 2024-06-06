@@ -10,11 +10,8 @@ public class Message {
 
     private Address from;
     private List<Address> ccs = new ArrayList<>();
-    private String domain;
     
-    public Message(String domain) {
-        this.domain = domain;
-
+    public Message() {
     }
 
     public void from(String from) {

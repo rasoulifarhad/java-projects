@@ -7,4 +7,9 @@ import lombok.Value;
 @AllArgsConstructor
 public class Address {
     private final String value;
+
+    public String toString() {
+        return value;
+    }
+
 }

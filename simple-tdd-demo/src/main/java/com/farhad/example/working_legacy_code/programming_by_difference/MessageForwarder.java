@@ -20,7 +20,7 @@ public class MessageForwarder {
     // The purpose of this method is to strip out the “from” address of a received
     // mail message and return it so that it can be used as the “from” address of the
     // message that is forwarded to list recipients.
-    private InternetAddress getFromAddress(Message message) throws MessagingException {
+    protected InternetAddress getFromAddress(Message message) throws MessagingException {
         Address [] from = message.getFrom();
         if(from != null && from.length > 0) {
             return new InternetAddress(from[0].toString());
