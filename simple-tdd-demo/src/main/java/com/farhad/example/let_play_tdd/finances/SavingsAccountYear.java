@@ -33,18 +33,18 @@ public class SavingsAccountYear {
         return interestRate;
     }
 
-    public int totalWithdrawals() {
+    public int totalWithdrawn() {
         return this.totalWithdrawn;
     }
 
     public int endingBalance() {
-        int modifiedStart = startingBalance - totalWithdrawn;
+        int modifiedStart = startingBalance - totalWithdrawn();
 
         return modifiedStart + (modifiedStart * interestRate / 100);
     }
 
     public int endingPrincipal() {
-        int result = this.startingPrincipal() - totalWithdrawn;
+        int result = this.startingPrincipal() - totalWithdrawn();
         return result < 0 ? 0 : result; 
     }
 

@@ -44,7 +44,7 @@ public class SavingsAccountYearTest {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 10);
         year.withdraw(1000);
         year.withdraw(2000);
-        assertEquals(3000, year.totalWithdrawals());
+        assertEquals(3000, year.totalWithdrawn());
     }
 
     @Test
