@@ -20,6 +20,8 @@ See https://www.martinfowler.com/tags/bad%20things.html
 See https://medium.com/@jonblankenship/using-the-specification-pattern-to-build-a-data-driven-rules-engine-b3db95189ff8
 See https://github.com/jonblankenship/stock-alerts/tree/master
 
+See https://gameprogrammingpatterns.com/prototype.html
+
 ### Command 
 
 The command design pattern is one of the behavioral design patterns. This design pattern can be considered for use when there is clear segregation between requester and executor of an action or a command.
