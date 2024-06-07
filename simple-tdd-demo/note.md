@@ -27,3 +27,5 @@ Kent Beck, Three Rivers Institute
 // Expression.times
 
 See https://www.jamesshore.com/v2/projects/lets-play-tdd
+See https://github.com/jlangr?tab=repositories
+
