@@ -19,12 +19,7 @@ public class User {
         return firstName + " " + lastName;
     }
 
-    public boolean hasExtraAccess() {
-        return subscriptionType == SubscriptionType.VIP 
-                && subscriptionExpirationDate.after(new Date());
-    }
-
     public enum SubscriptionType {
-        NORMAL, VIP
+        STANDARD, VIP
     }
 }

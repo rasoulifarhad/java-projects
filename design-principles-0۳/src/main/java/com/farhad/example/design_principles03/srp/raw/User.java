@@ -25,6 +25,6 @@ public class User {
     }
 
     public enum SubscriptionType {
-        NORMAL, VIP
+        STANDARD, VIP
     }
 }
