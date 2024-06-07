@@ -19,10 +19,28 @@ public class Predicates {
             new WebPage("https://www.radiofarda.com/", "It broadcasts 24 hours a day in the Persian language from its headquarters in the district Hagibor of Prague, Czech Republic.", "Radio Farda is the Iranian branch of the U.S. government-funded Radio Free Europe/Radio Liberty (RFE/RL) external broadcast service for providing \"factual, objective and professional journalism\" to its audiences. It broadcasts 24 hours a day in the Persian language from its headquarters in the district Hagibor of Prague, Czech Republic."),
             new WebPage("https://dzone.com/", "Read, comment, share, or submit your own article, structured around the appropriate SDLC stage and focus area, to discuss technical topics and techniques.", "DZone.com is one of the world's largest online communities and leading publisher of knowledge resources for software engineering professionals. Every day, thousands of developers come to DZone.com to read about the latest technology trends and learn about new technologies, methodologies, and best practices through shared knowledge.")
         ));
-        var result = db.search(t -> true);
-        System.out.println("Search:\n(epad OR ephone) AND pear -site:jam.shop");
+        var result = db.search(
+            (contains("persian").or(contains("article")))
+                .and(contains("and"))
+                .and(Predicate.not(contains("dzone")))
+        );
         System.out.println("\n\nResult:\n" + result);
     }
+
+    Predicate<WebPage> contains(String s) {
+        return titleContains(s).or(textContains(s));
+    }
+
+    Predicate<WebPage> urlContains(String s) {
+        return webPage -> webPage.url.toLowerCase().contains(s.toLowerCase()) ;
+    }
+    Predicate<WebPage> titleContains(String s) {
+        return webPage -> webPage.title.toLowerCase().contains(s.toLowerCase()) ;
+    }
+    Predicate<WebPage> textContains(String s) {
+        return webPage -> webPage.text.toLowerCase().contains(s.toLowerCase()) ;
+    }
+
 
     static class Db {
         
@@ -44,11 +62,11 @@ public class Predicates {
 
         private final String url;
         private final String title;
-        private final String test;
+        private final String text;
 
         @Override
         public String toString() {
-            return String.format("%n%s%n%s%n%s%n",title, url, test);
+            return String.format("%n%s%n%s%n%s%n",title, url, text);
         }
     }
 }
