@@ -1,7 +1,10 @@
 package com.farhad.example.amenity_reservation.rest;
 
+import com.farhad.example.amenity_reservation.model.ReservationDTO;
+import com.farhad.example.amenity_reservation.service.ReservationService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.farhad.example.amenity_reservation.model.ReservationDTO;
-import com.farhad.example.amenity_reservation.service.ReservationService;
-
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import jakarta.validation.Valid;
 
 
 @RestController

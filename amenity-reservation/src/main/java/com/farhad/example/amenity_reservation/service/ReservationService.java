@@ -1,16 +1,14 @@
 package com.farhad.example.amenity_reservation.service;
 
-import java.util.List;
-
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import com.farhad.example.amenity_reservation.domain.Reservation;
 import com.farhad.example.amenity_reservation.domain.User;
 import com.farhad.example.amenity_reservation.model.ReservationDTO;
 import com.farhad.example.amenity_reservation.repos.ReservationRepository;
 import com.farhad.example.amenity_reservation.repos.UserRepository;
 import com.farhad.example.amenity_reservation.util.NotFoundException;
+import java.util.List;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -61,6 +59,9 @@ public class ReservationService {
         reservationDTO.setReservationDate(reservation.getReservationDate());
         reservationDTO.setStartTime(reservation.getStartTime());
         reservationDTO.setEndTime(reservation.getEndTime());
+        reservationDTO.setDateCreated(reservation.getDateCreated());
+        reservationDTO.setLastUpdated(reservation.getLastUpdated());
+        reservationDTO.setAmenityType(reservation.getAmenityType());
         reservationDTO.setUser(reservation.getUser() == null ? null : reservation.getUser().getId());
         return reservationDTO;
     }
@@ -70,6 +71,9 @@ public class ReservationService {
         reservation.setReservationDate(reservationDTO.getReservationDate());
         reservation.setStartTime(reservationDTO.getStartTime());
         reservation.setEndTime(reservationDTO.getEndTime());
+        reservation.setDateCreated(reservationDTO.getDateCreated());
+        reservation.setLastUpdated(reservationDTO.getLastUpdated());
+        reservation.setAmenityType(reservationDTO.getAmenityType());
         final User user = reservationDTO.getUser() == null ? null : userRepository.findById(reservationDTO.getUser())
                 .orElseThrow(() -> new NotFoundException("user not found"));
         reservation.setUser(user);

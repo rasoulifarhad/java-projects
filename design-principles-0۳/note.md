@@ -10,3 +10,5 @@ See https://www.freecodecamp.org/news/object-oriented-programming-basics-oop-cla
 See https://www.freecodecamp.org/news/spring-boot-tutorial-build-fast-modern-java-app/
 See https://github.com/yigiterinc/amenity-reservation-system
 See https://github.com/yigiterinc/CTCI-Solutions
+See https://medium.com/javarevisited/solid-principles-explained-in-java-5b9fca1f5540
+See https://medium.com/@tericcabrel/implement-role-based-access-control-in-spring-boot-3-a31c87c2be5c

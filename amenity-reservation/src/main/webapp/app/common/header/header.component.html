@@ -1,0 +1,21 @@
+<header class="bg-light">
+    <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md">
+            <a routerLink="/" class="navbar-brand">
+                <img ngSrc="logo.png" i18n-alt="@@app.title" alt="AmenityReservation" width="30" height="30" class="d-inline-block align-top">
+                <span class="ps-1" i18n="@@app.title">AmenityReservation</span>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+                    i18n-aria-label="@@navigation.toggle" aria-label="Toggle navigation" aria-controls="navbarToggle" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <ul class="navbar-nav ms-auto">
+                    <li class="navbar-item">
+                        <a routerLink="/" class="nav-link" i18n="@@navigation.home">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

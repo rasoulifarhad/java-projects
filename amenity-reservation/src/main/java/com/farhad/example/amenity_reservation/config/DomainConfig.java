@@ -2,7 +2,6 @@ package com.farhad.example.amenity_reservation.config;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +12,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@EntityScan("io.bootify.my_app.domain")
-@EnableJpaRepositories("io.bootify.my_app.repos")
+@EntityScan("com.farhad.example.amenity_reservation.domain")
+@EnableJpaRepositories("com.farhad.example.amenity_reservation.repos")
 @EnableTransactionManagement
 @EnableJpaAuditing(dateTimeProviderRef = "auditingDateTimeProvider")
 public class DomainConfig {

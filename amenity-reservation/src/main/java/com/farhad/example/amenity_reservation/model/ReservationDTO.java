@@ -1,9 +1,9 @@
 package com.farhad.example.amenity_reservation.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +21,12 @@ public class ReservationDTO {
 
     @Schema(type = "string", example = "18:30")
     private LocalTime endTime;
+
+    private OffsetDateTime dateCreated;
+
+    private OffsetDateTime lastUpdated;
+
+    private AmenityType amenityType;
 
     private Long user;
 
