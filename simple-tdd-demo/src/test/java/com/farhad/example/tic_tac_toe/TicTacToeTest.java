@@ -90,7 +90,18 @@ public class TicTacToeTest {
         ticTacToe.play(1, 2); // O
         ticTacToe.play(2, 2); // X
         ticTacToe.play(1, 3); // O
-        String actual = ticTacToe.play(3, 3); // O
+        String actual = ticTacToe.play(3, 3); // X
         assertEquals("X is the winner", actual);    
     }
+
+    @Test
+    public void whenPlayAndBottomTopDiagonalLineThenWinner() {
+        ticTacToe.play(1, 3); // X
+        ticTacToe.play(1, 1); // O
+        ticTacToe.play(2, 2); // X
+        ticTacToe.play(1, 2); // O
+        String actual = ticTacToe.play(3, 1); // X
+        assertEquals("X is the winner", actual);    
+    }
+
 }
