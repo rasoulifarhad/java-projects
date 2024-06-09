@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class JavaStreamAndFilesFind {
@@ -34,7 +35,7 @@ public class JavaStreamAndFilesFind {
     }
 
     private void demoStreams() {
-        var words = Stream.of("a", "an", "before", "being", "cannot", "death", "do", "first", "great"))
+        var words = Stream.of("a", "an", "before", "being", "cannot", "death", "do", "first", "great");
         words.filter(w -> w.length() > 4).forEach(System.out::println);
 
         Stream<Integer> ints = Stream.generate(new Supplier<Integer>() {
