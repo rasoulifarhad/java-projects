@@ -26,10 +26,22 @@ public class Ship {
     }
 
     public void receiveCommands(String command) {
-        if(command.charAt(0) == 'b') {
-            location.backward();
-        } else {
-            location.forward();
+        switch (command.charAt(0)) {
+            case 'f':
+                location.forward();
+                break;
+            case 'b':
+                location.backward();
+                break;
+            case 'l':
+                location.turnLeft();
+                break;
+            case 'r':
+                location.turnRight();
+                break;
+        
+            default:
+                break;
         }
     }
 

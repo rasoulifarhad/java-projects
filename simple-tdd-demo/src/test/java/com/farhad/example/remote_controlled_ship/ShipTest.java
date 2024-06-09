@@ -83,4 +83,19 @@ public class ShipTest {
         assertEquals(expected, ship.getLocation());
     }
 
+    @Test
+    public void whenReceivedCommandsLThenTurnLeft() {
+        Location expected = location.copy();
+        expected.turnLeft();
+        ship.receiveCommands("l");
+        assertEquals(expected, ship.getLocation());
+    }
+
+    @Test
+    public void whenReceivedCommandsRThenTurnRight() {
+        Location expected = location.copy();
+        expected.turnRight();
+        ship.receiveCommands("r");
+        assertEquals(expected, ship.getLocation());
+    }
 }
