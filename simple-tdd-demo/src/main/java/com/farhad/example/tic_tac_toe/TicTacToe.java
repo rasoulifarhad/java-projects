@@ -2,6 +2,9 @@ package com.farhad.example.tic_tac_toe;
 
 public class TicTacToe {
 
+
+    private static final int SIZE = 3;
+
     private Character[][] board  = {
         {'\0', '\0', '\0'},
         {'\0', '\0', '\0'},
@@ -36,7 +39,7 @@ public class TicTacToe {
     }
 
 private boolean isWin() {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < SIZE; i++) {
         if(board[0][i] == lastPlayer
             && board[1][i] == lastPlayer
             && board[2][i] == lastPlayer) {
