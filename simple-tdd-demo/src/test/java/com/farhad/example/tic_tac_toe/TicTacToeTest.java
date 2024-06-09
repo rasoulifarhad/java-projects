@@ -1,5 +1,6 @@
 package com.farhad.example.tic_tac_toe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -45,4 +46,8 @@ public class TicTacToeTest {
         
     }
 
+    @Test
+    public void givenFirstTurnWhenNextPlayerThenX() {
+        assertEquals('X', ticTacToe.nextPlayer());
+    }
 }
