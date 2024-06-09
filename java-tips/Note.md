@@ -22,3 +22,7 @@ See https://github.com/PacktPublishing/Designing-Hexagonal-Architecture-with-Jav
 See https://github.com/PacktPublishing/Jakarta-EE-Application-Development
 See https://github.com/PacktPublishing/Learn-Java-with-Projects
 
+See https://github.com/raeperd/realworld-springboot-java/blob/master/src/main/java/io/github/raeperd/realworld/domain/article/comment/Comment.java
+See https://github.com/gabrielgua/realworld-springboot/blob/master/src/main/java/com/gabrielgua/realworld/domain/model/Article.java
+See https://github.com/gabrielgua/realworld-springboot/blob/master/src/main/java/com/gabrielgua/realworld/domain/model/Article.java
+See https://codebase.show/projects/realworld?category=backend&language=java
