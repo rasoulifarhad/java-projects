@@ -56,4 +56,6 @@ public class TicTacToeTest {
         ticTacToe.play(1, 1);
         assertEquals('O', ticTacToe.nextPlayer());
     }
+
+
 }

@@ -19,3 +19,6 @@ We can split this requirement into three tests:
 - If the last turn was played by X , then the next turn should be played by O
 - If the last turn was played by O , then the next turn should be played by X
 
+Requirement 3
+
+A player wins by being the first to connect a line of friendly pieces from one side or corner of the board to the other.
