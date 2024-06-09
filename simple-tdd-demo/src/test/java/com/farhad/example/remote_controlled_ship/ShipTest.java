@@ -42,4 +42,12 @@ public class ShipTest {
         ship.moveForward();
         assertEquals(expected, ship.getLocation());
     }
+
+    @Test
+    public void whenMoveBackwardThenBackward() {
+        Location expected = location.copy();
+        expected.backward();
+        ship.moveBackward();
+        assertEquals(expected, ship.getLocation());
+    }
 }
