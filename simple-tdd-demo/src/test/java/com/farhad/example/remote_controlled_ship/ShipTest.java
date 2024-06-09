@@ -21,4 +21,25 @@ public class ShipTest {
     public void whenInstantiatedThenLocationIsSet() {
         assertEquals(location, ship.getLocation());
     }
+
+    // @Test
+    // public void givenNorthWhenMoveForwardThenYDecreases() {
+    //     ship.moveForward();
+    //     assertEquals(12, ship.getLocation().getPoint().getY());
+    // }
+     
+    // @Test
+    // public void givenEastWhenMoveForwardThenXIncrease() {
+    //     ship.getLocation().setDirection(Direction.EAST);
+    //     ship.moveForward();
+    //     assertEquals(22, ship.getLocation().getPoint().getX());
+    // }
+
+    @Test
+    public void whenMoveForwardThenForward() {
+        Location expected = location.copy();
+        expected.forward();
+        ship.moveForward();
+        assertEquals(expected, ship.getLocation());
+    }
 }

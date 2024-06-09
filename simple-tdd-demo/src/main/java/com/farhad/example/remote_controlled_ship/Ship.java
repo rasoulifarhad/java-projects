@@ -9,5 +9,9 @@ public class Ship {
 
     private final Location location;
 
+    public boolean moveForward() {
+        return location.forward();
+    }
+
 
 }
