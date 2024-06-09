@@ -34,28 +34,23 @@ public class TicTacToe {
         setBox(x, y, lastPlayer);
         if(isWin()){
             return lastPlayer + " is the winner";
+        } else if(isDraw()) {
+            return "The result is draw";
         }
         return "No winner";
     }
 
-// private boolean isWin() {
-//     int playerTotal = lastPlayer * SIZE;
-//     for (int i = 0; i < SIZE; i++) {
-//         if(board[0][i] + board[1][i] + board[2][i] == playerTotal) {
-//             return true; 
-//         } 
-//         if(board[i][0] + board[i][1] + board[i][2] == playerTotal) {
-//             return true;
-//         }
-//         if(board[0][0] + board[1][1] + board[2][2] == playerTotal) {
-//             return true;
-//         }
-//         if(board[0][2] + board[1][1] + board[2][0] == playerTotal) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
+    private boolean isDraw() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if(board[i][j] == '\0') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private boolean isWin() {
         int playerTotal = lastPlayer * SIZE;
         char diagonal1 = '\0';
