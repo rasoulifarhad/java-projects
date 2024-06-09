@@ -29,15 +29,22 @@ public class TicTacToe {
         checkAxis(y);
         lastPlayer = nextPlayer();
         setBox(x, y, lastPlayer);
-        for (int i = 0; i < 3; i++) {
-            if(board[0][i] == lastPlayer
-                && board[1][i] == lastPlayer
-                && board[2][i] == lastPlayer) {
-                return lastPlayer + " is the winner";
-            }
+        if(isWin()){
+            return lastPlayer + " is the winner";
         }
         return "No winner";
     }
+
+private boolean isWin() {
+    for (int i = 0; i < 3; i++) {
+        if(board[0][i] == lastPlayer
+            && board[1][i] == lastPlayer
+            && board[2][i] == lastPlayer) {
+            return true;
+        }
+    }
+    return false;
+}
 
     public char nextPlayer() {
         if(lastPlayer == 'X') {
