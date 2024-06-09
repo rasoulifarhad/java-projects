@@ -36,4 +36,13 @@ public class TicTacToeTest {
         
     }
 
+    @Test
+    void whenOccupiedThenRuntimeException() {
+        ticTacToe.play(2, 1);
+        assertThrows(RuntimeException.class, () -> {
+            ticTacToe.play(2, 1);
+        });
+        
+    }
+
 }
