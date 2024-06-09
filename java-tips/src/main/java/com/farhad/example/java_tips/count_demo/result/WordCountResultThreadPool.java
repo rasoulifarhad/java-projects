@@ -1,8 +1,11 @@
 package com.farhad.example.java_tips.count_demo.result;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
@@ -25,7 +28,7 @@ public class WordCountResultThreadPool {
         return a;
     };
 
-    public List<String> count(List<String> lines, int limit) {
+    public List<String> count(List<String> lines, int limit) throws InterruptedException, ExecutionException {
         var factory = ForkJoinPool.defaultForkJoinWorkerThreadFactory;
         Thread.UncaughtExceptionHandler exceptionHandler = (t, e) ->  {
             System.err.println(t.getName());
