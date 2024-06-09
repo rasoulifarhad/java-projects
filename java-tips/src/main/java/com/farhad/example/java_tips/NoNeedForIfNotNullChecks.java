@@ -1,5 +1,7 @@
 package com.farhad.example.java_tips;
 
+import static java.util.Optional.ofNullable;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,12 +97,20 @@ public class NoNeedForIfNotNullChecks {
         }
 
         boolean overlap(DateRange dateRange) {
-            return false;
+            return contains(dateRange.from) || contains(dateRange.to);
         }
 
         boolean contains(Date date) {
-            return false;
+            return ofNullable(this).flatMap(r -> 
+                        ofNullable(r.to).flatMap(t -> 
+                            ofNullable(r.from).map(f -> 
+                                date.compareTo(t) <= 0 && f.compareTo(date) <= 0
+                            )
+                        )
+                    ).orElse(false);
         }
+
+        
     }
 
 
