@@ -22,3 +22,5 @@ We can split this requirement into three tests:
 Requirement 3
 
 A player wins by being the first to connect a line of friendly pieces from one side or corner of the board to the other.
+
+If no winning condition is fulfilled, then there is no winner.
