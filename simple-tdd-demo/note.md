@@ -28,4 +28,5 @@ Kent Beck, Three Rivers Institute
 
 See https://www.jamesshore.com/v2/projects/lets-play-tdd
 See https://github.com/jlangr?tab=repositories
-
+See https://github.com/PacktPublishing/Test-Driven-Java-Development-Second-Edition
+See https://github.com/PacktPublishing/Test-Driven-Development-with-Java
