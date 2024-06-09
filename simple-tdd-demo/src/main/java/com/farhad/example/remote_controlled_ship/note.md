@@ -30,3 +30,13 @@ MMRMMRMRRM
 Output:
 1 3 N
 5 1 E
+
+
+Requirement 1
+
+You are given the initial starting point (x, y) of a ship and the direction (N, S, E, or W) it is facing.
+
+Requirement 2
+
+
+Implement commands that move the ship forward and backward (f and b).

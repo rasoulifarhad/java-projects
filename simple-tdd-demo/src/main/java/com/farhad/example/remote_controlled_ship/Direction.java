@@ -24,4 +24,14 @@ public enum Direction {
         return Direction.NONE;
     }
 
+    Direction turnLeft() {
+        int index = (value + 3) % 4;
+        return Direction.values()[index];
+    }
+
+    Direction turnRight() {
+        int index = (value + 1) % 4;
+        return Direction.values()[index];
+    }
+
 }
