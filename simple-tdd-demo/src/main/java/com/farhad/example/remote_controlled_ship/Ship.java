@@ -2,14 +2,12 @@ package com.farhad.example.remote_controlled_ship;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Getter
 @AllArgsConstructor
 public class Ship {
 
-    private final Location location;
+    private Location location;
     private Planet planet;
 
     public boolean moveForward() {
