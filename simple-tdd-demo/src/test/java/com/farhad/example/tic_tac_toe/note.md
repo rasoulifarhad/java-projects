@@ -25,3 +25,5 @@ A player wins by being the first to connect a line of friendly pieces from one s
 
 - If no winning condition is fulfilled, then there is no winner.
 - The player wins when the whole horizontal line is occupied by his pieces.
+- The player wins when the whole vertical line is occupied by his pieces.
+- The player wins when the whole diagonal line from the top-left to bottom-right is occupied by his pieces.
