@@ -40,3 +40,7 @@ Requirement 2
 
 
 Implement commands that move the ship forward and backward (f and b).
+
+Requirement 3
+
+Implement commands that turn the ship left and right (l and r).
