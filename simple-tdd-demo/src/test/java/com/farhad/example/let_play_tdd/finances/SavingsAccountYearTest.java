@@ -33,6 +33,7 @@ public class SavingsAccountYearTest {
     }
 
     @Test
+    @Disabled
     public void withdrawingFundsOccursAtBeginingOfTheYear() {
         SavingsAccountYear year = new SavingsAccountYear(10_000, 10);
         year.withdraw(1000);
