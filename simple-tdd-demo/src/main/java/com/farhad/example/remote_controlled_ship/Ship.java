@@ -25,8 +25,12 @@ public class Ship {
         location.turnRight();
     }
 
-    public void receiveCommands(String string) {
-        location.forward();
+    public void receiveCommands(String command) {
+        if(command.charAt(0) == 'b') {
+            location.backward();
+        } else {
+            location.forward();
+        }
     }
 
 

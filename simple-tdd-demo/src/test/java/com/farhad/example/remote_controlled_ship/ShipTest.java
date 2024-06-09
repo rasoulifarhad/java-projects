@@ -74,4 +74,13 @@ public class ShipTest {
         ship.receiveCommands("f");
         assertEquals(expected, ship.getLocation());
     }
+
+    @Test
+    public void whenReceivedCommandsBThenBackward() {
+        Location expected = location.copy();
+        expected.backward();
+        ship.receiveCommands("b");
+        assertEquals(expected, ship.getLocation());
+    }
+
 }
