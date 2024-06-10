@@ -2,6 +2,9 @@ package com.farhad.example.remote_controlled_ship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +19,10 @@ public class ShipTest {
 
         Point max = new Point(50, 50);
         location = new Location(new Point(21, 13), Direction.NORTH);
-        planet = new Planet(max);
+        List<Point> obstacles = new ArrayList<>();
+        obstacles.add(new Point(44, 44));
+        obstacles.add(new Point(45, 46));        
+        planet = new Planet(max, obstacles);
         ship = new Ship(location, planet);
     }
 
@@ -116,5 +122,26 @@ public class ShipTest {
     @Test
     public void whenInstantiatedThenPlanetIsStored() {
         assertEquals(planet, ship.getPlanet());
+    }
+
+    @Test
+    public void givenDirectionEAndXEqualsMaxXWhenReceiveCommandsFThenWrap() {
+        location.setDirection(Direction.EAST);
+        location.getPoint().setX(planet.getMax().getX());
+        ship.receiveCommands("f");
+        assertEquals(1, location.getX());
+    }
+
+    @Test
+    public void whenReceiveCommandsThenStopOnObstacle() {
+        List<Point> obstacles = new ArrayList<>();
+        obstacles.add(new Point(location.getX() + 1, location.getY()));
+        ship.getPlanet().setObstacles(obstacles);
+        Location expected = location.copy();
+        expected.turnRight();
+        expected.turnLeft();
+        expected.backward(new Point(0, 0), new ArrayList<>());
+        ship.receiveCommands("rflb");
+        assertEquals(expected, ship.getLocation());
     }
 }

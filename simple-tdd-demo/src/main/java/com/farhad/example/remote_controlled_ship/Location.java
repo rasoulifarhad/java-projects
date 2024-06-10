@@ -65,10 +65,10 @@ public class Location {
             case SOUTH:
                 y = wrap(getY() + fw, max.getY());
             break;
-            case WEST:
+            case EAST:
                 x = wrap(getX() + fw, max.getX());
             break;
-            case EAST:
+            case WEST:
                 x = wrap(getX() - fw, max.getX());
             break;
         

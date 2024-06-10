@@ -53,3 +53,7 @@ Requirement 5
 
 
 Implement wrapping from one edge of the grid to another.
+
+Requirement 6
+
+Implement surface detection before each move to a new position. If a command encounters a surface, the ship aborts the move, stays on the current position, and reports the obstacle.
