@@ -44,6 +44,18 @@ public class Connect4 {
         }
     }
 
+    public boolean isFinished() {
+        int numOfDiscs = 0;
+        for (int col = 0; col < COLUMNS; col++) {
+            numOfDiscs += getNumberOfDiscsInColumn(col);
+        }
+        if(numOfDiscs >= ROWS * COLUMNS) {
+            System.out.println("It is a draw.");
+            return true;
+        }
+        return false;
+    }
+
     public void switchPlayer() {
         currentPlayer =  Color.RED == currentPlayer ? Color.GREEN : Color.RED;
         System.out.println("Current turn: " + currentPlayer);
