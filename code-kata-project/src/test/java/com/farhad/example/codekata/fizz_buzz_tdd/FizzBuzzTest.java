@@ -22,4 +22,12 @@ public class FizzBuzzTest {
         String actual = fizzBuzz.trasnsform(valueToTransform);
         assertEquals(transformedValue, actual);
     }
+
+    @Test
+    public void givenInt2ShouldReturnString2() {
+        int valueToTransform = 2;
+        String transformedValue = "2";
+        String actual = fizzBuzz.trasnsform(valueToTransform);
+        assertEquals(transformedValue, actual);
+    }
 }
