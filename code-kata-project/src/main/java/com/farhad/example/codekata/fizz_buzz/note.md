@@ -11,3 +11,12 @@ whole numbers above 0 (does not include
    * 10 as input return "Buzz"
 4. If input is a multiple of 3 and 5 return "FizzBuzz"
    * 30 as input return "FizzBuzz"
+  
+
+TDD is pretty straight forward
+
+1. Add a simple test
+2. Run all the tests and see the new one fail
+3. Make a simple change
+4. Run all the tests and see the new one pass
+5. Repeat until done  
