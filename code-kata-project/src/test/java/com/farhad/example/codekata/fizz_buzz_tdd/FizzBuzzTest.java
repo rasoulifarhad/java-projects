@@ -17,6 +17,9 @@ public class FizzBuzzTest {
 
     @Test
     public void givenInt1ShouldReturnString1() {
-        assertEquals("1", fizzBuzz.trasnsform(1));
+        int valueToTransform = 1;
+        String transformedValue = "1";
+        String actual = fizzBuzz.trasnsform(valueToTransform);
+        assertEquals(transformedValue, actual);
     }
 }
