@@ -1,11 +1,13 @@
 package com.farhad.example.connect4.test_the_last_implementation;
 
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 public class Connect4 {
 
     private static final int COLUMNS = 7;
     private static final int ROWS = 6;
+    private static final String DELIMITER = "|";
 
     private Color[][] board = new Color[COLUMNS][ROWS];
 
@@ -32,8 +34,19 @@ public class Connect4 {
         }
     }
 
+    public void printBoard() {
+        for (int row = ROWS -1; row >= 0; --row) {
+            StringJoiner stringJoiner = new StringJoiner(DELIMITER, DELIMITER, DELIMITER)
+            for (int col = 0; col < COLUMNS; col++) {
+                stringJoiner.add(board[col][row].toString());
+            }
+            System.out.println(stringJoiner.toString());
+        }
+    }
+
     public void switchPlayer() {
         currentPlayer =  Color.RED == currentPlayer ? Color.GREEN : Color.RED;
+        System.out.println("Current turn: " + currentPlayer);
     }
 
     public void putDisc(int column) {
@@ -41,8 +54,16 @@ public class Connect4 {
             int numberOfDiscs = getNumberOfDiscsInColumn(column - 1);
             if(numberOfDiscs < ROWS) {
                 board[column - 1][numberOfDiscs] = currentPlayer;
+                printBoard();
                 switchPlayer();
+            } else {
+                System.out.println(numberOfDiscs);
+                System.out.println("There is no room for a new disc in this column");
+                printBoard();
             }
+        } else {
+            System.out.println("Column out of bounds");
+            printBoard();
         }
     }
 
