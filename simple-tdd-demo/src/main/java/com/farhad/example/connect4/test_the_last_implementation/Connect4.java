@@ -9,6 +9,8 @@ public class Connect4 {
 
     private Color[][] board = new Color[COLUMNS][ROWS];
 
+    private Color currentPlayer = Color.RED;
+
     public enum Color {
         RED('R'), GREEN('G'), EMPTY(' ');
 
@@ -30,5 +32,29 @@ public class Connect4 {
         }
     }
 
+    public void switchPlayer() {
+        currentPlayer =  Color.RED == currentPlayer ? Color.GREEN : Color.RED;
+    }
+
+    public void putDisc(int column) {
+        if(column > 0 && column <= COLUMNS) {
+            int numberOfDiscs = getNumberOfDiscsInColumn(column - 1);
+            if(numberOfDiscs < ROWS) {
+                board[column - 1][numberOfDiscs] = currentPlayer;
+                switchPlayer();
+            }
+        }
+    }
+
+    private int getNumberOfDiscsInColumn(int column) {
+        int row;
+        for (row = 0; row < ROWS; row++) {
+            if (Color.EMPTY == board[column][row]) {
+                return row;
+            }
+
+        }
+        return row;
+    }
     
 }
