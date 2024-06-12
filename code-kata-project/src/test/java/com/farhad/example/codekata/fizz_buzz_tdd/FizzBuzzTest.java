@@ -17,6 +17,6 @@ public class FizzBuzzTest {
 
     @Test
     public void givenIntegerOf1ShouldReturnStringOf1() {
-        assertEquals("1", fizzBuzz.convert(1));
+        assertEquals("1", fizzBuzz.trasnsform(1));
     }
 }
