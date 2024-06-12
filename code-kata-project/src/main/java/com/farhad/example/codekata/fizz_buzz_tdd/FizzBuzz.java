@@ -6,12 +6,6 @@ public class FizzBuzz {
         if(source == 1 || source == 2 || source == 3) {
             return String.valueOf(source);        
         }
-        if(source == 2) {
-            return String.valueOf(source);        
-        }
-        if(source == 3) {
-            return String.valueOf(source);        
-        }
         throw new IllegalArgumentException("WE BROKE SOMETHING");
     }
 
