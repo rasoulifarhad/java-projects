@@ -29,10 +29,12 @@ public class NumberGuessingGame {
             }
         }
         if (win) {
+            System.out.println();
             System.out.println("Congratulations! You guessed the number.");
             System.out.println("The number was " + numberToGuess);
             System.out.println("It took you " + numberOfTries + " tries" );
         } else {
+            System.out.println();
             System.out.println("Oppssss!.");
             System.out.println("The number was " + numberToGuess);
         }
