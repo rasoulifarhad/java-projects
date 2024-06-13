@@ -38,4 +38,14 @@ public class FizzBuzzTest {
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void givenInput6ReturnsFizz() {
+        int sourceInput = 6;
+        String expected = "Fizz";
+
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
+
 }
