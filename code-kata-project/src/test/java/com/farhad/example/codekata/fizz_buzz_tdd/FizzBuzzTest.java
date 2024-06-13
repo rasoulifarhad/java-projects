@@ -64,6 +64,18 @@ public class FizzBuzzTest {
         assertEquals(expected, actual);
     }
 
+    @Test 
+    public void givenMultipleOf3And5ReturnsFizzBuzz() {
+        final int multiplicand = 3 * 5;
+        final String expected = "FizzBuzz";
+        final List<Integer> multiplierList = Arrays.asList(1, 2, 3);
+        final int randIndex = new Random().nextInt(3);
+        final int multiplier = multiplierList.get(randIndex);
+        final int sourceInput = multiplier * multiplicand;
+        final String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
+
     @Test
     public void given15ReturnsFizzBuzz() {
         final int sourceInput = 1 * (3 * 5);
