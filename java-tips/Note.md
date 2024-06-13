@@ -26,3 +26,20 @@ See https://github.com/raeperd/realworld-springboot-java/blob/master/src/main/ja
 See https://github.com/gabrielgua/realworld-springboot/blob/master/src/main/java/com/gabrielgua/realworld/domain/model/Article.java
 See https://github.com/gabrielgua/realworld-springboot/blob/master/src/main/java/com/gabrielgua/realworld/domain/model/Article.java
 See https://codebase.show/projects/realworld?category=backend&language=java
+
+See https://github.com/diegopacheco/Elegant.Objects.vol.2/tree/main
+See https://quinngil.com/2022/02/24/tdd-like-you-mean-it-10/
+See https://quinngil.com/uobjects/
+See https://github.com/MyTurnyet/BadElevator/blob/main/src/main/java/Elevator/Elevator.java
+See https://github.com/diegopacheco/java-pocs/tree/master/pocs/Java8-samples
+See https://github.com/diegopacheco/system-design-101
+See https://github.com/diegopacheco/java-by-experiments
+See https://github.com/diegopacheco/decks
+See https://github.com/diegopacheco/Elegant.Objects.vol.2
+See https://github.com/diegopacheco/redis-training
+See https://github.com/diegopacheco/99-problems
+See https://github.com/diegopacheco/java-design-patterns
+See https://github.com/diegopacheco/java-pocs/tree/master
+See https://github.com/ByteByteGoHq/system-design-101
+See https://github.com/ByteByteGoHq/ml-bytebytego
+See https://www.yegor256.com/2016/04/26/why-inputstream-design-is-wrong.html
