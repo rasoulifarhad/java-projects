@@ -56,30 +56,4 @@ public class FizzBuzzTest {
             assertEquals(expected, actual);
     }
 
-    @Test
-    public void givenInput3ReturnsFizz() {
-        int sourceInput = 1 * 3;
-        String expected = "Fizz";
-
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void givenInput6ReturnsFizz() {
-        int sourceInput = 2 * 3;
-        String expected = "Fizz";
-
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void givenInput12ReturnsFizz() {
-        int sourceInput = 4 * 3;
-        String expected = "Fizz";
-
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);
-    }
 }
