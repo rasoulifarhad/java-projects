@@ -2,7 +2,9 @@ package com.farhad.example.codekata.fizz_buzz_tdd;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -56,22 +58,16 @@ public class FizzBuzzTest {
             assertEquals(expected, actual);
     }
 
-    @SuppressWarnings("unchecked")
     @Test 
     public void givenMultipleOf5ReturnsFizz() {
         int multiplicand = 5;
         String expected = "Buzz";
-        Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
-            {
-             put(1 * multiplicand,expected);
-             put(2 * multiplicand,expected); 
-             put(4 * multiplicand,expected); 
-            }};
-        Map.Entry<Integer, String> entry = 
-                regressionValues.entrySet()
-                    .toArray(
-                        new Map.Entry[0])[new Random().nextInt(3)];
-        String actual = fizzBuzz.trasnsform(entry.getKey());
+        List<Integer> regressionValues = Arrays.asList(
+            1 * multiplicand,
+            2 * multiplicand,
+            4 * multiplicand);
+        int sourceInput = regressionValues.get(new Random().nextInt(3));
+        String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
 
