@@ -64,7 +64,8 @@ public class FizzBuzzTest {
         String expected = "Buzz";
         List<Integer> regressionValues = Arrays.asList(1, 2, 4);
         int randIndex = new Random().nextInt(3);
-        int sourceInput = regressionValues.get(randIndex) * multiplicand;
+        int elementAt = regressionValues.get(randIndex);
+        int sourceInput = elementAt * multiplicand;
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
