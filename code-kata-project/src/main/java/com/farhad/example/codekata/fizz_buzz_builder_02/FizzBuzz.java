@@ -8,7 +8,7 @@ public class FizzBuzz implements IFizzBuzz {
         this(new FizzBuzzBuilder());
     }
 
-    public FizzBuzz(IFizzBuzzBuilder fizzBuzzBuilder) {
+    private FizzBuzz(IFizzBuzzBuilder fizzBuzzBuilder) {
         this.fizzBuzzBuilder = fizzBuzzBuilder;
     }
 

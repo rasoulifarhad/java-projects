@@ -11,7 +11,7 @@ public class FizzBuzz implements IFizzBuzz {
                                 new ToStringLink()))));
     }
 
-    public FizzBuzz(IFizzBuzz fizzBuzz) {
+    protected FizzBuzz(IFizzBuzz fizzBuzz) {
         this._next = fizzBuzz;
     }
 
