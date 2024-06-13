@@ -66,10 +66,17 @@ public class FizzBuzzTest {
 
     @Test
     public void given15ReturnsFizzBuzz() {
-        int sourceInput = 15;
-        String expected = "FizzBuzz";
-        String actual = fizzBuzz.trasnsform(sourceInput);
+        final int sourceInput = 15;
+        final String expected = "FizzBuzz";
+        final String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void given30ReturnsFizzBuzz() {
+        final int sourceInput = 30;
+        final String expected = "FizzBuzz";
+        final String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
 }
