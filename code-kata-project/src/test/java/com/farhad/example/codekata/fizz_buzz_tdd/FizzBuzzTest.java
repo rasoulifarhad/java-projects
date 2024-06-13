@@ -48,4 +48,12 @@ public class FizzBuzzTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void givenInput9ReturnsFizz() {
+        int sourceInput = 3 * 3;
+        String expected = "Fizz";
+
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
 }
