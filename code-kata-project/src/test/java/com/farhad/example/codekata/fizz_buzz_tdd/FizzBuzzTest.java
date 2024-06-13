@@ -23,9 +23,8 @@ public class FizzBuzzTest {
     public void givenInputReturnStringOfInput() {
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {put(1,"1");
-             put(2,"2");
-             put(4,"4");}};
-        int valueToTransform = 1 + new Random().nextInt(3);;
+             put(2,"2");}};
+        int valueToTransform = 1 + new Random().nextInt(2);
         String transformedValue = regressionValues.get(valueToTransform);
         String actual = fizzBuzz.trasnsform(valueToTransform);
         assertEquals(transformedValue, actual);
@@ -33,8 +32,10 @@ public class FizzBuzzTest {
 
     @Test
     public void givenInput3ReturnsFizz() {
+        int valueToTransform = 3;
+        String transformedValue = "Fizz";
 
-        String actual = fizzBuzz.trasnsform(3);
-        assertEquals("Fizz", actual);
+        String actual = fizzBuzz.trasnsform(valueToTransform);
+        assertEquals(transformedValue, actual);
     }
 }
