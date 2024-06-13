@@ -60,11 +60,12 @@ public class FizzBuzzTest {
     @Test 
     public void givenMultipleOf5ReturnsFizz() {
         int multiplicand = 5;
+        String returnValue = "Buzz";
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {
-             put(1 * multiplicand,"Buzz");
-             put(2 * multiplicand,"Buzz"); 
-             put(4 * multiplicand,"Buzz"); 
+             put(1 * multiplicand,returnValue);
+             put(2 * multiplicand,returnValue); 
+             put(4 * multiplicand,returnValue); 
             }};
         Map.Entry<Integer, String> entry = 
                 regressionValues.entrySet()
