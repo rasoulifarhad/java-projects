@@ -3,13 +3,13 @@ package com.farhad.example.codekata.fizz_buzz_tdd;
 public class FizzBuzz {
 
     public String trasnsform(int source) {
-        if(source == 20) {
+        if(source == 4 * 5) {
             return "Buzz";
         }
-        if(source == 10) {
+        if(source == 2 * 5) {
             return "Buzz";
         }
-        if(source == 5) {
+        if(source == 1 * 5) {
             return "Buzz";
         }
 
