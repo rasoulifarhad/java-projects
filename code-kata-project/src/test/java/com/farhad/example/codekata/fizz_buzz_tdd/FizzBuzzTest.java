@@ -30,4 +30,11 @@ public class FizzBuzzTest {
         String actual = fizzBuzz.trasnsform(valueToTransform);
         assertEquals(transformedValue, actual);
     }
+
+    @Test
+    public void passIn3GetBackFizz() {
+
+        String actual = fizzBuzz.trasnsform(3);
+        assertEquals("Fizz", actual);
+    }
 }
