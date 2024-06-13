@@ -56,31 +56,22 @@ public class FizzBuzzTest {
             assertEquals(expected, actual);
     }
 
+    @SuppressWarnings("unchecked")
     @Test 
-    public void given5ReturnsBuzz() {
-
-        int sourceInput = 1 * 5;
-        String expected = "Buzz";
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);    
-    }
-
-    @Test 
-    public void given10ReturnsBuzz() {
-
-        int sourceInput = 2 * 5;
-        String expected = "Buzz";
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);    
-    }
-
-    @Test 
-    public void given20ReturnsBuzz() {
-
-        int sourceInput = 4 * 5;
-        String expected = "Buzz";
-        String actual = fizzBuzz.trasnsform(sourceInput);
-        assertEquals(expected, actual);    
+    public void givenMultipleOf5ReturnsFizz() {
+        Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
+            {
+             put(1 * 5,"Buzz");
+             put(2 * 5,"Buzz"); 
+             put(4 * 5,"Buzz"); 
+            }};
+        Map.Entry<Integer, String> entry = 
+                regressionValues.entrySet()
+                    .toArray(
+                        new Map.Entry[0])[new Random().nextInt(3)];
+        String expected = entry.getValue();
+        String actual = fizzBuzz.trasnsform(entry.getKey());
+        assertEquals(expected, actual);
     }
 
 }
