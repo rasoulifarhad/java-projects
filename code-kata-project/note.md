@@ -32,3 +32,6 @@ See https://www.yegor256.com/2015/07/06/public-static-literals.html
 See https://www.yegor256.com/2017/05/16/monikers.html
 See https://www.yegor256.com/2014/12/01/orm-offensive-anti-pattern.html
 See https://www.yegor256.com/2016/04/19/object-must-not-be-configurable.html
+
+
+The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
