@@ -26,3 +26,10 @@ Requirement
 
     Return the string form of the number
 
+Eefactor  code
+
+- No Getters (or Setters)
+- No Primitives
+- Interface for Behavior Contracts
+
+See https://quinngil.com/uobjects/
