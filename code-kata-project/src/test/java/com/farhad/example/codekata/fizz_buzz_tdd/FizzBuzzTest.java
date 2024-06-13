@@ -49,8 +49,8 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void givenInput9ReturnsFizz() {
-        int sourceInput = 3 * 3;
+    public void givenInput12ReturnsFizz() {
+        int sourceInput = 4 * 3;
         String expected = "Fizz";
 
         String actual = fizzBuzz.trasnsform(sourceInput);

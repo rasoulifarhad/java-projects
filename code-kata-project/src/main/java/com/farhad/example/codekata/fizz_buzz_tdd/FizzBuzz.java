@@ -3,7 +3,7 @@ package com.farhad.example.codekata.fizz_buzz_tdd;
 public class FizzBuzz {
 
     public String trasnsform(int source) {
-        if(source == 3 * 3) {
+        if(source == 4 * 3) {
             return "Fizz";
         }
         if(source == 2 * 3) {
