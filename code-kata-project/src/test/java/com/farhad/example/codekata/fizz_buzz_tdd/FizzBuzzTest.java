@@ -32,7 +32,7 @@ public class FizzBuzzTest {
 
     @Test
     public void givenInput3ReturnsFizz() {
-        int sourceInput = 3;
+        int sourceInput = 1 * 3;
         String expected = "Fizz";
 
         String actual = fizzBuzz.trasnsform(sourceInput);

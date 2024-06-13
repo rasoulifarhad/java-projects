@@ -6,7 +6,7 @@ public class FizzBuzz {
         if(source == 2 * 3) {
             return "Fizz";
         }
-        if(source == 3) {
+        if(source == 1 * 3) {
             return "Fizz";
         }
         return String.valueOf(source);        
