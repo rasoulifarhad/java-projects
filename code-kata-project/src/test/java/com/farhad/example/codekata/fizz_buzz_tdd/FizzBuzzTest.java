@@ -24,43 +24,43 @@ public class FizzBuzzTest {
     @SuppressWarnings("unchecked")
     @Test
     public void givenInputReturnStringOfInput() {
-        Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
+        final Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {
              put(1,"1");
              put(2,"2");
              put(4,"4");
             }
         };
-        Map.Entry<Integer, String> entry = 
+        final Map.Entry<Integer, String> entry = 
              regressionValues.entrySet()
                  .toArray(
                      new Map.Entry[0])[new Random().nextInt(3)];
-        String expected = entry.getValue();
-        String actual = fizzBuzz.trasnsform(entry.getKey());
+        final String expected = entry.getValue();
+        final String actual = fizzBuzz.trasnsform(entry.getKey());
         assertEquals(expected, actual);
     }
 
     @Test 
     public void givenMultipleOf3ReturnsFizz() {
-        int multiplicand = 3;
-        String expected = "Fizz";
-        List<Integer> multiplierList = Arrays.asList(1, 2, 4);
-        int randIndex = new Random().nextInt(3);
-        int multiplier = multiplierList.get(randIndex);
-        int sourceInput = multiplier * multiplicand;
-        String actual = fizzBuzz.trasnsform(sourceInput);
+        final int multiplicand = 3;
+        final String expected = "Fizz";
+        final List<Integer> multiplierList = Arrays.asList(1, 2, 4);
+        final int randIndex = new Random().nextInt(3);
+        final int multiplier = multiplierList.get(randIndex);
+        final int sourceInput = multiplier * multiplicand;
+        final String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
 
     @Test 
     public void givenMultipleOf5ReturnsFizz() {
-        int multiplicand = 5;
-        String expected = "Buzz";
-        List<Integer> multiplierList = Arrays.asList(1, 2, 4);
-        int randIndex = new Random().nextInt(3);
-        int multiplier = multiplierList.get(randIndex);
-        int sourceInput = multiplier * multiplicand;
-        String actual = fizzBuzz.trasnsform(sourceInput);
+        final int multiplicand = 5;
+        final String expected = "Buzz";
+        final List<Integer> multiplierList = Arrays.asList(1, 2, 4);
+        final int randIndex = new Random().nextInt(3);
+        final int multiplier = multiplierList.get(randIndex);
+        final int sourceInput = multiplier * multiplicand;
+        final String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
 
