@@ -64,4 +64,12 @@ public class FizzBuzzTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void given15ReturnsFizzBuzz() {
+        int sourceInput = 15;
+        String expected = "FizzBuzz";
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
+
 }
