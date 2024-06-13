@@ -40,22 +40,16 @@ public class FizzBuzzTest {
         assertEquals(expected, actual);
     }
 
-    @SuppressWarnings("unchecked")
     @Test 
     public void givenMultipleOf3ReturnsFizz() {
-        Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
-            {
-             put(1 * 3,"Fizz");
-             put(2 * 3,"Fizz");
-             put(4 * 3,"Fizz");
-            }};
-            Map.Entry<Integer, String> entry = 
-                regressionValues.entrySet()
-                    .toArray(
-                        new Map.Entry[0])[new Random().nextInt(3)];
-            String expected = entry.getValue();
-            String actual = fizzBuzz.trasnsform(entry.getKey());
-            assertEquals(expected, actual);
+        int multiplicand = 3;
+        String expected = "Fizz";
+        List<Integer> multiplierList = Arrays.asList(1, 2, 4);
+        int randIndex = new Random().nextInt(3);
+        int multiplier = multiplierList.get(randIndex);
+        int sourceInput = multiplier * multiplicand;
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
     }
 
     @Test 
