@@ -24,18 +24,18 @@ public class FizzBuzzTest {
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {put(1,"1");
              put(2,"2");}};
-        int valueToTransform = 1 + new Random().nextInt(2);
-        String transformedValue = regressionValues.get(valueToTransform);
-        String actual = fizzBuzz.trasnsform(valueToTransform);
-        assertEquals(transformedValue, actual);
+        int sourceInput = 1 + new Random().nextInt(2);
+        String expected = regressionValues.get(sourceInput);
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void givenInput3ReturnsFizz() {
-        int valueToTransform = 3;
-        String transformedValue = "Fizz";
+        int sourceInput = 3;
+        String expected = "Fizz";
 
-        String actual = fizzBuzz.trasnsform(valueToTransform);
-        assertEquals(transformedValue, actual);
+        String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
     }
 }
