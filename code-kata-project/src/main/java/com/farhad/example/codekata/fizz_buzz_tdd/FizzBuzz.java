@@ -3,6 +3,9 @@ package com.farhad.example.codekata.fizz_buzz_tdd;
 public class FizzBuzz {
 
     public String trasnsform(int source) {
+        if(0 == source % 5) {
+            return "Buzz";
+        }
         if(source == 4 * 5) {
             return "Buzz";
         }
