@@ -59,7 +59,7 @@ public class FizzBuzzTest {
     @Test 
     public void given5ReturnsBuzz() {
 
-        int sourceInput = 5;
+        int sourceInput = 1 * 5;
         String expected = "Buzz";
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);    
@@ -68,7 +68,7 @@ public class FizzBuzzTest {
     @Test 
     public void given10ReturnsBuzz() {
 
-        int sourceInput = 10;
+        int sourceInput = 2 * 5;
         String expected = "Buzz";
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);    
@@ -77,7 +77,7 @@ public class FizzBuzzTest {
     @Test 
     public void given20ReturnsBuzz() {
 
-        int sourceInput = 20;
+        int sourceInput = 4 * 5;
         String expected = "Buzz";
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);    
