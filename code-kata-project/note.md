@@ -25,3 +25,10 @@ See https://github.com/emilybache?tab=repositories&q=&type=&language=java&sort=
 
 See https://github.com/ChristopherJBarclay/OOP-with-Java-part-1/tree/master
 
+See https://quinngil.com/2019/01/14/uobjects-chain-of-command/
+See https://quinngil.com/2018/03/11/uobjects-fluent-types/
+See https://quinngil.com/2022/01/06/tdd-like-you-mean-it-04/
+See https://www.yegor256.com/2015/07/06/public-static-literals.html
+See https://www.yegor256.com/2017/05/16/monikers.html
+See https://www.yegor256.com/2014/12/01/orm-offensive-anti-pattern.html
+See https://www.yegor256.com/2016/04/19/object-must-not-be-configurable.html
