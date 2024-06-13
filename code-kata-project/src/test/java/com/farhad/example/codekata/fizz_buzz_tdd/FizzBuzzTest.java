@@ -79,4 +79,13 @@ public class FizzBuzzTest {
         final String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void given45ReturnsFizzBuzz() {
+        final int sourceInput = 3 * (3 * 5);
+        final String expected = "FizzBuzz";
+        final String actual = fizzBuzz.trasnsform(sourceInput);
+        assertEquals(expected, actual);
+    }
+
 }
