@@ -60,18 +60,17 @@ public class FizzBuzzTest {
     @Test 
     public void givenMultipleOf5ReturnsFizz() {
         int multiplicand = 5;
-        String returnValue = "Buzz";
+        String expected = "Buzz";
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {
-             put(1 * multiplicand,returnValue);
-             put(2 * multiplicand,returnValue); 
-             put(4 * multiplicand,returnValue); 
+             put(1 * multiplicand,expected);
+             put(2 * multiplicand,expected); 
+             put(4 * multiplicand,expected); 
             }};
         Map.Entry<Integer, String> entry = 
                 regressionValues.entrySet()
                     .toArray(
                         new Map.Entry[0])[new Random().nextInt(3)];
-        String expected = entry.getValue();
         String actual = fizzBuzz.trasnsform(entry.getKey());
         assertEquals(expected, actual);
     }
