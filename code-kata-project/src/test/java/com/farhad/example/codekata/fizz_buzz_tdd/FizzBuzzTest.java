@@ -40,7 +40,7 @@ public class FizzBuzzTest {
 
     @SuppressWarnings("unchecked")
     @Test 
-    public void givenInputMultipleOf3ReturnsFizz() {
+    public void givenMultipleOf3ReturnsFizz() {
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {
              put(1 * 3,"Fizz");
@@ -57,7 +57,7 @@ public class FizzBuzzTest {
     }
 
     @Test 
-    public void givenInputOf5ReturnsBuzz() {
+    public void given5ReturnsBuzz() {
 
         int sourceInput = 5;
         String expected = "Buzz";
