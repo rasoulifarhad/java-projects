@@ -62,11 +62,8 @@ public class FizzBuzzTest {
     public void givenMultipleOf5ReturnsFizz() {
         int multiplicand = 5;
         String expected = "Buzz";
-        List<Integer> regressionValues = Arrays.asList(
-            1 * multiplicand,
-            2 * multiplicand,
-            4 * multiplicand);
-        int sourceInput = regressionValues.get(new Random().nextInt(3));
+        List<Integer> regressionValues = Arrays.asList(1, 2, 4);
+        int sourceInput = regressionValues.get(new Random().nextInt(3)) * multiplicand;
         String actual = fizzBuzz.trasnsform(sourceInput);
         assertEquals(expected, actual);
     }
