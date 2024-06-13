@@ -32,7 +32,7 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void passIn3GetBackFizz() {
+    public void givenInput3ReturnsFizz() {
 
         String actual = fizzBuzz.trasnsform(3);
         assertEquals("Fizz", actual);
