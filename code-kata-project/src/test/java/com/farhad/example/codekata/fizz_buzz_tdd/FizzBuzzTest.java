@@ -59,11 +59,12 @@ public class FizzBuzzTest {
     @SuppressWarnings("unchecked")
     @Test 
     public void givenMultipleOf5ReturnsFizz() {
+        int multiplicand = 5;
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {
-             put(1 * 5,"Buzz");
-             put(2 * 5,"Buzz"); 
-             put(4 * 5,"Buzz"); 
+             put(1 * multiplicand,"Buzz");
+             put(2 * multiplicand,"Buzz"); 
+             put(4 * multiplicand,"Buzz"); 
             }};
         Map.Entry<Integer, String> entry = 
                 regressionValues.entrySet()
