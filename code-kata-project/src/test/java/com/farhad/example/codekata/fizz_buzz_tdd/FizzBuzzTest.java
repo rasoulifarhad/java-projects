@@ -19,15 +19,41 @@ public class FizzBuzzTest {
         fizzBuzz = new FizzBuzz();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void givenInputReturnStringOfInput() {
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
-            {put(1,"1");
-             put(2,"2");}};
-        int sourceInput = 1 + new Random().nextInt(2);
-        String expected = regressionValues.get(sourceInput);
-        String actual = fizzBuzz.trasnsform(sourceInput);
+            {
+             put(1,"1");
+             put(2,"2");
+             put(4,"4");
+            }
+        };
+        Map.Entry<Integer, String> entry = 
+             regressionValues.entrySet()
+                 .toArray(
+                     new Map.Entry[0])[new Random().nextInt(3)];
+        String expected = entry.getValue();
+        String actual = fizzBuzz.trasnsform(entry.getKey());
         assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test 
+    public void givenInputMultipleOf3ReturnsFizz() {
+        Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
+            {
+             put(1 * 3,"Fizz");
+             put(2 * 3,"Fizz");
+             put(4 * 3,"Fizz");
+            }};
+            Map.Entry<Integer, String> entry = 
+                regressionValues.entrySet()
+                    .toArray(
+                        new Map.Entry[0])[new Random().nextInt(3)];
+            String expected = entry.getValue();
+            String actual = fizzBuzz.trasnsform(entry.getKey());
+            assertEquals(expected, actual);
     }
 
     @Test
