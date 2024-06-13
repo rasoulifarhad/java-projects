@@ -24,7 +24,7 @@ public class FizzBuzzTest {
         Map<Integer, String> regressionValues = new HashMap<Integer, String>() {
             {put(1,"1");
              put(2,"2");
-             put(3,"3");}};
+             put(4,"4");}};
         int valueToTransform = 1 + new Random().nextInt(3);;
         String transformedValue = regressionValues.get(valueToTransform);
         String actual = fizzBuzz.trasnsform(valueToTransform);
