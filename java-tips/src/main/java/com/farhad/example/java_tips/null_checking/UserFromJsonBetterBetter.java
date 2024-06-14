@@ -13,14 +13,11 @@ public class UserFromJsonBetterBetter  implements User {
 
     @Override
     public String greeting() {
-        if(json == null) return "Please Log In";
-        if(name() == null) return "Hi!";
         return "Hi " + name() + "!";
     }
     
     private String name() {
         IOurJObject jObject = new JsonParserBetter().parse(json);
-        if(jObject == null) return null;
         return jObject.value(nameKey);
     }
 
