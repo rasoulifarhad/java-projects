@@ -29,7 +29,7 @@ public class MoneyTest {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int divisor =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
-        Money actual = subject.divideMoney(divisor);
+        Money actual = subject.divide(divisor);
         assertEquals(String.format("[amount=%.1f][currency=CUR]", value / divisor), actual.asString());
     }
 

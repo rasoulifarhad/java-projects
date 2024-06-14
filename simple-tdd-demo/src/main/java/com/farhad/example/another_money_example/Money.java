@@ -18,7 +18,7 @@ public class Money {
         return new Money(amount * multiplicand, currency);
     }
 
-    public Money divideMoney(int divisor) {
+    public Money divide(int divisor) {
         return new Money(amount / divisor, currency);
     }
 
