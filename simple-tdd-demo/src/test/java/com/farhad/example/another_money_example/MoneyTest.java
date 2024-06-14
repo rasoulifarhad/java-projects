@@ -20,7 +20,7 @@ public class MoneyTest {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
-        Money actual = subject.timesMoney(multiplicand);
+        Money actual = subject.times(multiplicand);
         assertEquals(String.format("[amount=%s][currency=CUR]", value * multiplicand), actual.asString());
     }
 

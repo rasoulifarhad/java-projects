@@ -14,7 +14,7 @@ public class Money {
         return new Money(this.amount + addend.amount, currency);
     }
 
-    public Money timesMoney(int multiplicand) {
+    public Money times(int multiplicand) {
         return new Money(amount * multiplicand, currency);
     }
 
