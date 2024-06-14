@@ -42,12 +42,6 @@ public class MoneyTest {
         assertEquals(value / divisor, actual);
     }
 
-    @Test 
-    public void plusExists() {
-        Money subject = new TestMoney(5, "");
-        Money actual = subject.plus(subject);
-    }
-
     @Test
     public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
         Money five = new TestMoney(5, "CUR");
