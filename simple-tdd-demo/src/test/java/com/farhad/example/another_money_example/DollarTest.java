@@ -22,4 +22,13 @@ public class DollarTest {
 
         assertEquals(7, actual);
     }
+
+    @Test 
+    public void nineDollarsHasValue() {
+        Dollar subject = new Dollar(9);
+        int actual = subject.value();
+
+        assertEquals(9, actual);
+    }
+
 }
