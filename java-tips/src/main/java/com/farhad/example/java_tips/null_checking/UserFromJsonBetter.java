@@ -11,25 +11,26 @@ public class UserFromJsonBetter implements User {
     private final String json;
     private String nameKey;
 
-    
     @Override
     public String greeting() {
-        String greeting = null;
-        if(json == null) greeting = "Please Log In";
-        String name = name();
-        if(greeting == null && name != null ) greeting = "Hi " + name + "!";
-        if(greeting == null ) greeting = "Hi!";
-        return greeting;
+        if(json == null) return "Please Log In";
+        if(name() == null) return "Hi!";
+        return "Hi " + name() + "!";
     }
+    
+    // @Override
+    // public String greeting() {
+    //     String greeting = null;
+    //     if(json == null) greeting = "Please Log In";
+    //     String name = name();
+    //     if(greeting == null && name != null ) greeting = "Hi " + name + "!";
+    //     if(greeting == null ) greeting = "Hi!";
+    //     return greeting;
+    // }
 
     private String name() {
         IOurJObject jObject = new JsonParser().parse(json);
         return jObject.value(nameKey);
     }
 
-    public String anotherGreeting() {
-        if(json == null) return "Please Log In";
-        if(name() == null) return "Hi!";
-        return "Hi " + name() + "!";
-    }
 }
