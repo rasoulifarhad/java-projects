@@ -1,8 +1,8 @@
-package com.farhad.example.java_tips.null_checking.demo1.our;
+package com.farhad.example.java_tips.null_checking.demo4.our;
 
-import com.farhad.example.java_tips.null_checking.demo1.lib.JObject;
+import com.farhad.example.java_tips.null_checking.demo4.lib.JObject;
 
-public class JsonParserBetter  implements IJsonParser {
+public class JsonParser  implements IJsonParser {
 
     @Override
     public IOurJObject parse(String json) {

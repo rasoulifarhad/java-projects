@@ -1,4 +1,4 @@
-package com.farhad.example.java_tips.null_checking.demo1.our;
+package com.farhad.example.java_tips.null_checking.demo3.our;
 
 public class NullJsonObject implements IOurJObject{
 

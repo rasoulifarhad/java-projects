@@ -1,13 +1,13 @@
-package com.farhad.example.java_tips.null_checking.demo1;
+package com.farhad.example.java_tips.null_checking.demo2;
 
 
-import com.farhad.example.java_tips.null_checking.demo1.our.IOurJObject;
-import com.farhad.example.java_tips.null_checking.demo1.our.JsonParser;
+import com.farhad.example.java_tips.null_checking.demo2.our.IOurJObject;
+import com.farhad.example.java_tips.null_checking.demo2.our.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserFromJsonBetter implements User {
+public class UserFromJson implements User {
 
     private final String json;
     private String nameKey;

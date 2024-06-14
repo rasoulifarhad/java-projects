@@ -1,22 +1,20 @@
-package com.farhad.example.java_tips.null_checking.demo1;
+package com.farhad.example.java_tips.null_checking.demo3;
 
-import com.farhad.example.java_tips.null_checking.demo1.our.IJsonParser;
-import com.farhad.example.java_tips.null_checking.demo1.our.IOurJObject;
-import com.farhad.example.java_tips.null_checking.demo1.our.JsonParserBetter;
+import com.farhad.example.java_tips.null_checking.demo3.our.IJsonParser;
+import com.farhad.example.java_tips.null_checking.demo3.our.IOurJObject;
+import com.farhad.example.java_tips.null_checking.demo3.our.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserFromJsonBetterBetter  implements User {
+public class UserFromJson  implements User {
 
     private final String json;
     private final IJsonParser jParser;
     private String nameKey;
 
-
-    
-    public UserFromJsonBetterBetter(String json) {
-        this(json, new JsonParserBetter() );
+    public UserFromJson(String json) {
+        this(json, new JsonParser() );
     }
 
     @Override
