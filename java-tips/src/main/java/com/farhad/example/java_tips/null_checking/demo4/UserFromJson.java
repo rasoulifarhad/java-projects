@@ -19,9 +19,5 @@ public class UserFromJson  implements User {
     public IName name() {
         return new Name(jParser.parse(json));
     }
-    @Override
-    public IGreeting greeting() {
-        return name().greeting();
-    }
     
 }
