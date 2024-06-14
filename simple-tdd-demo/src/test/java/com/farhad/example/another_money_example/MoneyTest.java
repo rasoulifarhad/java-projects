@@ -35,4 +35,11 @@ public class MoneyTest {
         assertEquals("[amount=20][currency=CUR]", actual);
     }
 
+    private static class TestMoney extends Money {
+
+        protected TestMoney(int amount, String currency) {
+            super(amount, currency);
+        }
+    }
+    
 }
