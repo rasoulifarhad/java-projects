@@ -11,7 +11,7 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        return new HackMoney(this.amount + addend.amount, currency);
+        return new Money(this.amount + addend.amount, currency);
     }
 
     public double times(int multiplicand) {
@@ -26,50 +26,16 @@ public class Money {
         return String.format("[amount=%.1f][currency=%s]",amount, currency);
     }
     
-    public static Euro euro(double amount) {
-        return new Euro(amount);
+    public static Money euro(double amount) {
+        return new Money(amount, "EUR");
     }
 
-    public static Dollar dollar(double amount) {
-        return new Dollar(amount);
+    public static Money dollar(double amount) {
+        return new Money(amount, "USD");
     }
     
     public static Money won(double amount){
         return new Money(amount, "KRW");
     }
 
-    private static final class Euro extends Money {
-
-        public Euro(double amount) {
-            super(amount, "EUR");
-        }
-    
-    }
-    
-    private static final class Dollar extends Money {
-
-
-        public Dollar(double amount) {
-            super(amount, "USD");
-        }
-    
-    }
-    
-    // private static final class Won extends Money {
-
-
-    //     public Won(double amount) {
-    //         super(amount, "KRW");
-    //     }
-    
-    // }
-
-
-    private static final class HackMoney extends Money {
-
-        protected HackMoney(double amount, String currency) {
-            super(amount, currency);
-        }
-
-    }
 }
