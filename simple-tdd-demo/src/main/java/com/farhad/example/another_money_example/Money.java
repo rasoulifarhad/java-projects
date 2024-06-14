@@ -61,10 +61,6 @@ public abstract class Money {
 
     public double divide(int divisor) {
         return Double.valueOf(amount) / divisor;
-        // if(divisor == 10) {
-        //     return 1000;
-        // }
-        // return 1000.5;
     }
 
 }
