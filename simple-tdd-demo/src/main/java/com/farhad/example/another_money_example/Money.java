@@ -51,13 +51,29 @@ public class Money {
 
     @Override
     public boolean equals(Object obj) {
+        if(referenceEquals(obj)) {
+            return true;
+        }
+        if(!classEquals(obj)) {
+            return false;
+        }
+        return equalsMoney((Money) obj);
+    }
+    
+    private boolean referenceEquals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
+        return false;
+
+    }
+
+    private boolean classEquals(Object obj) {
         if (getClass() != obj.getClass())
             return false;
-        Money other = (Money) obj;
+        return true;
+    }
+
+    private boolean equalsMoney(Money other) {
         if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
             return false;
         if (currency == null) {
@@ -67,6 +83,4 @@ public class Money {
             return false;
         return true;
     }
-    
-    
 }
