@@ -1,6 +1,7 @@
 package com.farhad.example.java_tips.isolate_3rd_party_code.isolated;
 
-import com.farhad.example.java_tips.isolate_3rd_party_code.raw.lib.JObject;
+import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.IOurJObject;
+import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ public class UserFromJson implements User {
     }
 
     private String name() {
-        JObject jObject = JObject.parse(json);
+        IOurJObject jObject = new JsonParser().parse(json);
         return jObject.value(nameKey);
     }
 
