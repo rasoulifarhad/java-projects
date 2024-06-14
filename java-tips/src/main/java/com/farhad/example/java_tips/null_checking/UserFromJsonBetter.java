@@ -18,6 +18,12 @@ public class UserFromJsonBetter implements User {
         return "Hi " + name() + "!";
     }
     
+    private String name() {
+        IOurJObject jObject = new JsonParser().parse(json);
+        if(jObject == null) return null;
+        return jObject.value(nameKey);
+    }
+
     // @Override
     // public String greeting() {
     //     String greeting = null;
@@ -27,10 +33,5 @@ public class UserFromJsonBetter implements User {
     //     if(greeting == null ) greeting = "Hi!";
     //     return greeting;
     // }
-
-    private String name() {
-        IOurJObject jObject = new JsonParser().parse(json);
-        return jObject.value(nameKey);
-    }
 
 }
