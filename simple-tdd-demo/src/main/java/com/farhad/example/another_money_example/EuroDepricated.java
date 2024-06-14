@@ -1,8 +1,8 @@
 package com.farhad.example.another_money_example;
 
-public class Euro extends Money {
+public class EuroDepricated extends Money {
 
-    public Euro(int amount) {
+    public EuroDepricated(int amount) {
         super(amount, "EUR");
     }
 

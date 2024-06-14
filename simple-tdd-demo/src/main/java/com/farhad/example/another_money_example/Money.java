@@ -21,5 +21,16 @@ public abstract class Money {
         return String.format("[amount=%s][currency=%s]",amount, currency);
     }
     
+    public static Euro euro(int amount) {
+        return new Euro(amount);
+    }
 
+    private static class Euro extends Money {
+
+        public Euro(int amount) {
+            super(amount, "EUR");
+        }
+    
+    }
+    
 }
