@@ -18,12 +18,8 @@ public class Money {
         return new Money(amount * multiplicand, currency);
     }
 
-    public double divide(int divisor) {
-        return amount / divisor;
-    }
-
     public Money divideMoney(int divisor) {
-        return new Money(divide(divisor), currency);
+        return new Money(amount / divisor, currency);
     }
 
     public String asString() {

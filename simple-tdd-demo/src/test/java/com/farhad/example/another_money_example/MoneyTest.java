@@ -25,15 +25,6 @@ public class MoneyTest {
     }
 
     @Test
-    public void divideExists() {
-        double value = Double.valueOf(1 + new Random().nextInt(20));
-        int divisor =  1 + new Random().nextInt(20);
-        TestMoney subject = new TestMoney(value, "CUR");
-        double actual = subject.divideMoney(divisor).divide(1);
-        assertEquals(value / divisor, actual);
-    }
-
-    @Test
     public void divideMoneyExists() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int divisor =  1 + new Random().nextInt(20);
