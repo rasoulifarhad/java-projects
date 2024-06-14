@@ -10,10 +10,11 @@ public class Name implements IName {
     private final IOurJObject jObject;
     private String nameKey;
 
-    
+
     @Override
-    public String name() {
-        return jObject.value(nameKey);
+    public String printableName() {
+        String value = jObject.value(nameKey);
+        return value == null ? "" : " " + value;
     }
 
 }

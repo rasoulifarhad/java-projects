@@ -21,7 +21,7 @@ public class UserFromJson  implements User {
     public String greeting() {
         IOurJObject jObject = jParser.parse(json);
         IName name = new Name(jObject);
-        return "Hi " + name.name() + "!";
+        return "Hi " + name.printableName() + "!";
     }
     
 }
