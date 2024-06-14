@@ -3,8 +3,11 @@ package com.farhad.example.another_money_example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class DollarTest {
+
 
 
     @Test 
@@ -15,12 +18,13 @@ public class DollarTest {
         assertEquals(5, actual);
     }
 
-    @Test 
-    public void savenDollarsHasValue() {
-        Dollar subject = new Dollar(7);
+    @ParameterizedTest
+    @ValueSource(ints = {5, 7, 9})
+    public void savenDollarsHasValue(int input) {
+        Dollar subject = new Dollar(input);
         int actual = subject.value();
 
-        assertEquals(7, actual);
+        assertEquals(input, actual);
     }
 
     @Test 
