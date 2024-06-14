@@ -13,13 +13,7 @@ public class Dollar {
     }
 
     public int times(int multiplicand) {
-        if(amount == 7 && multiplicand == 3) {
-            return 7 * 3;
-        }
-        if(amount == 5 && multiplicand == 2) {
-            return 5 * 2;
-        }
-        throw new RuntimeException("whoops");
+        return amount *multiplicand;
     }
     
 
