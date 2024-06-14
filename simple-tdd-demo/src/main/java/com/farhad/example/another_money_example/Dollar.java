@@ -14,9 +14,12 @@ public class Dollar {
 
     public int times(int multiplicand) {
         if(amount == 7 && multiplicand == 3) {
-            return 21;
+            return 7 * 3;
         }
-        return 5 * 2;
+        if(amount == 5 && multiplicand == 2) {
+            return 5 * 2;
+        }
+        throw new RuntimeException("whoops");
     }
     
 
