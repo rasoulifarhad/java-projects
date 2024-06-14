@@ -26,4 +26,13 @@ public class MoneyTest {
         assertEquals(value * multiplicand, actual);
     }
 
+    @Test
+    public void asStringExists() {
+
+        Money money = new TestMoney(20, "CUR");
+        String actual = money.asString();
+
+        assertEquals("[amount=20][currency=CUR]", actual);
+    }
+
 }

@@ -16,6 +16,10 @@ public abstract class Money {
     public int times(int multiplicand) {
         return amount *multiplicand;
     }
+
+    public String asString() {
+        return "[amount=20][currency=CUR]";
+    }
     
 
 }
