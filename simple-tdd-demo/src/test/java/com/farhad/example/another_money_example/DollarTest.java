@@ -7,20 +7,6 @@ import org.junit.jupiter.api.Test;
 public class DollarTest {
 
     @Test
-    public void derivesFromMoney() {
-        Money money = new DollarDeprecated(20);
-    }
-
-    @Test
-    public void asStringReturnsValueAndCurrency() {
-
-        Money money = new DollarDeprecated(20);
-        String actual = money.asString();
-
-        assertEquals("[amount=20][currency=USD]", actual);
-    }
-    
-    @Test
     public void derivesFromMoney2() {
         Money money = Money.dollar(20);
     }
