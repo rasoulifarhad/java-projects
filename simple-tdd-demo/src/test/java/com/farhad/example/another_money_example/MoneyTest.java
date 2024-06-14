@@ -9,14 +9,22 @@ import org.junit.jupiter.api.Test;
 public class MoneyTest {
 
     @Test
-    public void euroValueByMultiplicandShouldBeExpected() {
-        int value = 1 + new Random().nextInt(20);
+    public void moneyValueByMultiplicandShouldBeExpectedMoney() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
-        TestMoney subject = new TestMoney(value, "USD");
+        TestMoney subject = new TestMoney(value, "CUR");
         double actual = subject.times(multiplicand);
         assertEquals(value * multiplicand, actual);
     }
 
+    @Test
+    public void moneyValueByMultiplicandShouldBeExpectedMoney1() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        int multiplicand =  1 + new Random().nextInt(20);
+        TestMoney subject = new TestMoney(value, "CUR");
+        Money actual = subject.timesMoney(multiplicand);
+        assertEquals(String.format("[amount=%s][currency=CUR]", value * multiplicand), actual.asString());
+    }
     @Test
     public void asStringExists() {
 
@@ -35,13 +43,6 @@ public class MoneyTest {
         assertEquals(value / divisor, actual);
     }
 
-    private static class TestMoney extends Money {
-
-        protected TestMoney(double amount, String currency) {
-            super(amount, currency);
-        }
-    }
-
     @Test 
     public void plusExists() {
         Money subject = new TestMoney(5, "");
@@ -57,4 +58,13 @@ public class MoneyTest {
         assertEquals("[amount=15.0][currency=CUR]", actual.asString());
     }
     
+
+    private static class TestMoney extends Money {
+
+        protected TestMoney(double amount, String currency) {
+            super(amount, currency);
+        }
+
+    }
+
 }
