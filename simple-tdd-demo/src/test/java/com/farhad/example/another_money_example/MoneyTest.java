@@ -46,7 +46,6 @@ public class MoneyTest {
     public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
         Money five = new TestMoney(5, "CUR");
         Money ten = new TestMoney(10, "CUR");
-
         Money actual = five.plus(ten);
         assertEquals("[amount=15.0][currency=CUR]", actual.asString());
     }
