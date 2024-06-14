@@ -10,4 +10,6 @@ Out of our requirements, let's start with the simple one
 Multiple the money!
 
 
-    5 USD * 2 = 10 USD
+5 USD * 2 = 10 USD --> Done
+
+10 EUR * 2 = 20 EUR --> Done
