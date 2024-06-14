@@ -13,3 +13,5 @@ Multiple the money!
 5 USD * 2 = 10 USD --> Done
 
 10 EUR * 2 = 20 EUR --> Done
+
+4002 KRW / 4 = 1000.5 KRW
