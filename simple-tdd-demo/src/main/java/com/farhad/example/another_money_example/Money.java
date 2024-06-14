@@ -9,6 +9,10 @@ public abstract class Money {
         this.currency = currency;
     }
 
+    public Money plus(Money addend) {
+        return new HackMoney(this.amount + addend.amount, currency);
+    }
+
     public double times(int multiplicand) {
         return amount * multiplicand;
     }
@@ -59,9 +63,12 @@ public abstract class Money {
     
     }
 
-    public Money plus(Money subject) {
-        return this;
+
+    private static final class HackMoney extends Money {
+
+        protected HackMoney(double amount, String currency) {
+            super(amount, currency);
+        }
+
     }
-
-
 }
