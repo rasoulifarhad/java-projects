@@ -1,5 +1,7 @@
 package com.farhad.example.another_money_example;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class DollarTest {
@@ -9,4 +11,13 @@ public class DollarTest {
         Money money = new Dollar(20);
     }
 
+    @Test
+    public void asStringReturnsValueAndCurrency() {
+
+        Money money = new Dollar(20);
+        String actual = money.asString();
+
+        assertEquals("[amount=20][currency=USD]", actual);
+    }
+    
 }

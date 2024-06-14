@@ -12,7 +12,7 @@ public class EuroTest {
         Money money = new Euro(20);
     }
 
-        @Test
+    @Test
     public void asStringReturnsValueAndCurrency() {
 
         Money money = new Euro(20);
