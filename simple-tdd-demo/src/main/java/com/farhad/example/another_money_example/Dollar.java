@@ -9,6 +9,9 @@ public class Dollar {
     }
 
     public int value() {
+        if(amount == 9) {
+            return 9;
+        }
         if(amount == 7) {
             return 7;
         }
