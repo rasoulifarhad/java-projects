@@ -1,24 +1,28 @@
 package com.farhad.example.another_money_example;
 
 public abstract class Money {
-    private int amount;
+    private double amount;
     private String currency;
 
-    protected Money(int amount, String currency) {
+    protected Money(double amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
 
-    public int value() {
+    public double value() {
         return amount;
     }
 
-    public int times(int multiplicand) {
-        return amount *multiplicand;
+    public double times(int multiplicand) {
+        return amount * multiplicand;
+    }
+
+    public double divide(int divisor) {
+        return amount / divisor;
     }
 
     public String asString() {
-        return String.format("[amount=%s][currency=%s]",amount, currency);
+        return String.format("[amount=%.1f][currency=%s]",amount, currency);
     }
     
     public static Euro euro(int amount) {
@@ -59,8 +63,5 @@ public abstract class Money {
     
     }
 
-    public double divide(int divisor) {
-        return Double.valueOf(amount) / divisor;
-    }
 
 }

@@ -12,7 +12,7 @@ public class MoneyTest {
     public void euroReturnsConstructedValue() {
         int value = 1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "USD");
-        int actual = subject.value();
+        double actual = subject.value();
 
         assertEquals(value, actual);
     }
@@ -22,7 +22,7 @@ public class MoneyTest {
         int value = 1 + new Random().nextInt(20);
         int multiplicand =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "USD");
-        int actual = subject.times(multiplicand);
+        double actual = subject.times(multiplicand);
         assertEquals(value * multiplicand, actual);
     }
 
@@ -32,7 +32,7 @@ public class MoneyTest {
         Money money = new TestMoney(20, "CUR");
         String actual = money.asString();
 
-        assertEquals("[amount=20][currency=CUR]", actual);
+        assertEquals("[amount=20.0][currency=CUR]", actual);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class MoneyTest {
 
     private static class TestMoney extends Money {
 
-        protected TestMoney(int amount, String currency) {
+        protected TestMoney(double amount, String currency) {
             super(amount, currency);
         }
     }
