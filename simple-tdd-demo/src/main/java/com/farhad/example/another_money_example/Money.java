@@ -19,13 +19,6 @@ public abstract class Money {
 
     public String asString() {
         return String.format("[amount=%s][currency=%s]",amount, currency);
-        // if(currency.equals("USD")) {
-        //     return  "[amount=20][currency=USD]";
-        // }
-        // if(currency.equals("EUR")) {
-        //     return  "[amount=20][currency=EUR]";
-        // }
-        // return "[amount=20][currency=CUR]";
     }
     
 
