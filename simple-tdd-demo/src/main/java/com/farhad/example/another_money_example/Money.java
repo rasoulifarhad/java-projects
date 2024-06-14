@@ -59,5 +59,9 @@ public abstract class Money {
     
     }
 
+    public Money plus(Money subject) {
+        return this;
+    }
+
 
 }

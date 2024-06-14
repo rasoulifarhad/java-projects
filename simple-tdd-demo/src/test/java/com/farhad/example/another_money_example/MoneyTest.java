@@ -41,5 +41,20 @@ public class MoneyTest {
             super(amount, currency);
         }
     }
+
+    @Test 
+    public void plusExists() {
+        Money subject = new TestMoney(5, "");
+        Money actual = subject.plus(subject);
+    }
+
+    @Test
+    public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
+        Money five = new TestMoney(5, "CUR");
+        Money ten = new TestMoney(10, "CUR");
+
+        Money actual = five.plus(ten);
+        assertEquals("[amount=15.0][currency=CUR]", actual);
+    }
     
 }
