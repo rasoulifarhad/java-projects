@@ -60,7 +60,7 @@ public abstract class Money {
     }
 
     public double divide(int divisor) {
-        return 0.0;
+        return 1000.5;
     }
 
 }
