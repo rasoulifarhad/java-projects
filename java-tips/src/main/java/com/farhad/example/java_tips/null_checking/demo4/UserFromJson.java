@@ -12,8 +12,6 @@ public class UserFromJson  implements User {
     private final String json;
     private final IJsonParser jParser;
     private String nameKey;
-
-
     
     public UserFromJson(String json) {
         this(json, new JsonParser() );
@@ -21,13 +19,9 @@ public class UserFromJson  implements User {
 
     @Override
     public String greeting() {
-        return "Hi " + name() + "!";
+        IOurJObject jObject = jParser.parse(json);
+        IName name = new Name(jObject);
+        return "Hi " + name.name() + "!";
     }
     
-    private String name() {
-        // IJsonParser jParser = new JsonParserBetter(); // no  new inline
-        IOurJObject jObject = jParser.parse(json);
-        return jObject.value(nameKey);
-    }
-
 }
