@@ -6,4 +6,8 @@ public class Dollar {
         //TODO Auto-generated constructor stub
     }
 
+    public int value() {
+        return 0;
+    }
+
 }
