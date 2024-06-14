@@ -1,7 +1,7 @@
 package com.farhad.example.java_tips.null_checking;
 
-import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.IOurJObject;
-import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.JsonParser;
+import com.farhad.example.java_tips.null_checking.our.IOurJObject;
+import com.farhad.example.java_tips.null_checking.our.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 
