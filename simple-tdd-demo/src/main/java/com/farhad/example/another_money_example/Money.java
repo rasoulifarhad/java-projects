@@ -25,21 +25,21 @@ public abstract class Money {
         return String.format("[amount=%.1f][currency=%s]",amount, currency);
     }
     
-    public static Euro euro(int amount) {
+    public static Euro euro(double amount) {
         return new Euro(amount);
     }
 
-    public static Dollar dollar(int amount) {
+    public static Dollar dollar(double amount) {
         return new Dollar(amount);
     }
     
-    public static Money won(int amount){
+    public static Money won(double amount){
         return new Won(amount);
     }
 
     private static final class Euro extends Money {
 
-        public Euro(int amount) {
+        public Euro(double amount) {
             super(amount, "EUR");
         }
     
@@ -48,7 +48,7 @@ public abstract class Money {
     private static final class Dollar extends Money {
 
 
-        public Dollar(int amount) {
+        public Dollar(double amount) {
             super(amount, "USD");
         }
     
@@ -57,7 +57,7 @@ public abstract class Money {
     private static final class Won extends Money {
 
 
-        public Won(int amount) {
+        public Won(double amount) {
             super(amount, "KRW");
         }
     

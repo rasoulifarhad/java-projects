@@ -20,4 +20,8 @@ public class WonTest {
         assertEquals("[amount=20.0][currency=KRW]", actual);
     }
 
+    @Test
+    public void wonTakesDouble() {
+        Money money = Money.won(20.5);
+    }
 }

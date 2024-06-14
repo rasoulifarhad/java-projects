@@ -21,4 +21,9 @@ public class EuroTest {
         assertEquals("[amount=20.0][currency=EUR]", actual);
     }
 
+    @Test
+    public void euroTakesDouble() {
+        Money money = Money.euro(20.5);
+    }
+
 }
