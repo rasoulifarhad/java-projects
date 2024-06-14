@@ -22,6 +22,10 @@ public class Money {
         return amount / divisor;
     }
 
+    public Money divideMoney(int divisor) {
+        return new Money(divide(divisor), currency);
+    }
+
     public String asString() {
         return String.format("[amount=%.1f][currency=%s]",amount, currency);
     }
