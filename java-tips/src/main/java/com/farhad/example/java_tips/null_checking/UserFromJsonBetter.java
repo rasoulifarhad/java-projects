@@ -1,12 +1,17 @@
 package com.farhad.example.java_tips.null_checking;
 
+import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.IOurJObject;
+import com.farhad.example.java_tips.isolate_3rd_party_code.isolated.our.JsonParser;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class UserFromJsonBetter implements User {
 
     private final String json;
+    private String nameKey;
 
+    
     @Override
     public String greeting() {
         String greeting = null;
@@ -18,7 +23,8 @@ public class UserFromJsonBetter implements User {
     }
 
     private String name() {
-        return null;
+        IOurJObject jObject = new JsonParser().parse(json);
+        return jObject.value(nameKey);
     }
 
     public String anotherGreeting() {
