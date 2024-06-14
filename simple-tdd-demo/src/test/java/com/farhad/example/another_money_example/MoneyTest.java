@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
@@ -54,4 +58,17 @@ public class MoneyTest {
     public void eurosAndWonAreNotEqual() {
         assertFalse(Money.euro(12.0).equals(Money.won(12.0)));
     }
+
+    @Test
+    public void differentTypesAreNotEqual() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        Money usd = Money.dollar(value);
+        Money eur = Money.euro(value);
+        Money won = Money.won(value);
+        List<Money> shuffled = new ArrayList<>(Arrays.asList(usd, eur, won));
+        Collections.shuffle(shuffled);
+        boolean actual = shuffled.get(0).equals(shuffled.get(1));
+        assertFalse(actual);
+    }
+
 }
