@@ -9,10 +9,7 @@ public class Dollar {
     }
 
     public int value() {
-        if(amount == 7 || amount == 9) {
-            return amount;
-        }
-        return 5;
+        return amount;
     }
 
 }
