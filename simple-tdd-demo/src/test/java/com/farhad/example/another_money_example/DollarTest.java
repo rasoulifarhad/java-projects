@@ -13,6 +13,6 @@ public class DollarTest {
     @Test 
     public void DollarProvidesValue() {
         Dollar dollar = new Dollar(5);
-        int actual = ollar.value();
+        int actual = dollar.value();
     }
 }
