@@ -21,7 +21,7 @@ public class UserFromJson  implements User {
     }
     @Override
     public String greeting() {
-        return "Hi " + name().printableName() + "!";
+        return name().greeting();
     }
     
 }
