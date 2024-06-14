@@ -23,6 +23,8 @@ public class DollarTest {
     @Test
     public void dollarTakesDouble() {
         Money money = Money.dollar(20.5);
+        String actual = money.asString();
+        assertEquals("[amount=20.5][currency=USD]", actual);
     }
 
 }

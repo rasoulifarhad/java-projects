@@ -24,6 +24,8 @@ public class EuroTest {
     @Test
     public void euroTakesDouble() {
         Money money = Money.euro(20.5);
+        String actual = money.asString();
+        assertEquals("[amount=20.5][currency=EUR]", actual);
     }
 
 }

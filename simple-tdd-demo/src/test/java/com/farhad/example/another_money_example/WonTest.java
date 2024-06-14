@@ -23,5 +23,7 @@ public class WonTest {
     @Test
     public void wonTakesDouble() {
         Money money = Money.won(20.5);
+        String actual = money.asString();
+        assertEquals("[amount=20.5][currency=KRW]", actual);
     }
 }
