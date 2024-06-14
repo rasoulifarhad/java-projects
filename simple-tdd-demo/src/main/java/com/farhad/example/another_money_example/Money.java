@@ -1,6 +1,7 @@
 package com.farhad.example.another_money_example;
 
-public abstract class Money {
+public class Money {
+    
     private double amount;
     private String currency;
 
@@ -34,7 +35,7 @@ public abstract class Money {
     }
     
     public static Money won(double amount){
-        return new Won(amount);
+        return new Money(amount, "KRW");
     }
 
     private static final class Euro extends Money {
@@ -54,14 +55,14 @@ public abstract class Money {
     
     }
     
-    private static final class Won extends Money {
+    // private static final class Won extends Money {
 
 
-        public Won(double amount) {
-            super(amount, "KRW");
-        }
+    //     public Won(double amount) {
+    //         super(amount, "KRW");
+    //     }
     
-    }
+    // }
 
 
     private static final class HackMoney extends Money {
