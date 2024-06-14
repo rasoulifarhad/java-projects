@@ -30,7 +30,7 @@ public class MoneyTest {
         int multiplicand =  1 + new Random().nextInt(20);
         Money subject = Money.dollar(value);
         Money actual = subject.times(multiplicand);
-        assertEquals(String.format("[amount=%s][currency=USD]", value * multiplicand), actual.asString());
+        assertEquals(Money.dollar(value * multiplicand), actual);
     }
 
     @Test
