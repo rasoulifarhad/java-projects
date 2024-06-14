@@ -42,6 +42,13 @@ public class MoneyTest {
         assertEquals(1000.5, actual);
     }
 
+    @Test
+    public void divideExists2() {
+        Money subject = new TestMoney(10000, "CUR");
+        double actual = subject.divide(10);
+        assertEquals(1000, actual);
+    }
+
     private static class TestMoney extends Money {
 
         protected TestMoney(int amount, String currency) {
