@@ -7,7 +7,7 @@ public class Dollar {
     }
 
     public int value() {
-        return 0;
+        return 5;
     }
 
 }
