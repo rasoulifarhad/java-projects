@@ -19,6 +19,15 @@ public class DollarTest {
     }
 
     @Test
+    public void dollarValueByMultiplicandShouldBeExpected() {
+        int value = 1 + new Random().nextInt(20);
+        int multiplicand =  1 + new Random().nextInt(20);
+        Dollar subject = new Dollar(value);
+        int actual = subject.times(multiplicand);
+        assertEquals(value * multiplicand, actual);
+    }
+
+    @Test
     public void fivenDollarsTimes2ShouldBe10() {
         Dollar subject = new Dollar(5);
         int actual = subject.times(2);
