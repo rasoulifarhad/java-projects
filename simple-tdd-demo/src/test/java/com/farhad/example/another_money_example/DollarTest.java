@@ -17,6 +17,6 @@ public class DollarTest {
         Money money = Money.dollar(20);
         String actual = money.asString();
 
-        assertEquals("[amount=20][currency=USD]", actual);
+        assertEquals("[amount=20.0][currency=USD]", actual);
     }
 }

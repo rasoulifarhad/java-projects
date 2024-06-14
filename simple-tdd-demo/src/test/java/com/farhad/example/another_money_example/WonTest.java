@@ -17,7 +17,7 @@ public class WonTest {
         Money money = Money.won(20);
         String actual = money.asString();
 
-        assertEquals("[amount=20][currency=KRW]", actual);
+        assertEquals("[amount=20.0][currency=KRW]", actual);
     }
 
 }
