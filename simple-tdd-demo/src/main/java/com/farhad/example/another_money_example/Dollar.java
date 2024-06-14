@@ -12,4 +12,9 @@ public class Dollar {
         return amount;
     }
 
+    public int times(int factor) {
+        return 0;
+    }
+    
+
 }
