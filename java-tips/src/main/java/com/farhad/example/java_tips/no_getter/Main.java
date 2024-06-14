@@ -8,6 +8,9 @@ public class Main {
 
         UserDataRecord userBetter = new UserDataRecord("boy")    ;
         System.out.println(displayGreeting(userBetter));
+
+        displayGreeting(new UserFromDatabase("user from db"));
+        displayGreeting(new UserFromJson("User fromjson"));
     }
 
     public static String displayGreeting(UserDataRecordBad user) {
@@ -16,5 +19,9 @@ public class Main {
 
     public static String displayGreeting(UserDataRecord user) {
         return user.greeting();
+    }
+
+    public static void displayGreeting(User user) {
+        System.out.println(user.greeting());
     }
 }
