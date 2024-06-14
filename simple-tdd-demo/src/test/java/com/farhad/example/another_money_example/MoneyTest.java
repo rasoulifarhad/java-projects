@@ -71,4 +71,13 @@ public class MoneyTest {
         assertFalse(actual);
     }
 
+    @Test
+    public void SameTypesAreEqual() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        List<Money> source = new ArrayList<>(Arrays.asList(Money.euro(value), Money.won(value), Money.dollar(value)));
+        List<Money> compare = new ArrayList<>(Arrays.asList(Money.euro(value), Money.won(value), Money.dollar(value)));
+        int index = new Random().nextInt(source.size());
+        boolean actual = source.get(index).equals(compare.get(index));
+        assertTrue(actual);
+    }
 }
