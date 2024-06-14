@@ -28,6 +28,10 @@ public abstract class Money {
     public static Dollar dollar(int amount) {
         return new Dollar(amount);
     }
+    
+    public static Money won(int amount){
+        return new Won(amount);
+    }
 
     private static class Euro extends Money {
 
@@ -46,4 +50,13 @@ public abstract class Money {
     
     }
     
+    private static class Won extends Money {
+
+
+        public Won(int amount) {
+            super(amount, "WON");
+        }
+    
+    }
+
 }

@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 public class DollarTest {
 
     @Test
-    public void derivesFromMoney2() {
+    public void derivesFromMoney() {
         Money money = Money.dollar(20);
     }
 
     @Test
-    public void asStringReturnsValueAndCurrency2() {
+    public void asStringReturnsValueAndCurrency() {
 
         Money money = Money.dollar(20);
         String actual = money.asString();

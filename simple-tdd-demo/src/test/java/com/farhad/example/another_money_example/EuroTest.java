@@ -8,12 +8,12 @@ public class EuroTest {
 
 
     @Test
-    public void derivesFromMoney2() {
+    public void derivesFromMoney() {
         Money money = Money.euro(20);
     }
 
     @Test
-    public void asStringReturnsValueAndCurrency2() {
+    public void asStringReturnsValueAndCurrency() {
 
         Money money = Money.euro(20);
         String actual = money.asString();
