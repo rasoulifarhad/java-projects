@@ -21,4 +21,9 @@ public class UserFromJsonBetter implements User {
         return null;
     }
 
+    public String anotherGreeting() {
+        if(json == null) return "Please Log In";
+        if(name() == null) return "Hi!";
+        return "Hi " + name() + "!";
+    }
 }
