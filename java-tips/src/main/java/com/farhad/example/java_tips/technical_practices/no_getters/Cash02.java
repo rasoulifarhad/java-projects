@@ -18,7 +18,8 @@ public class Cash02 {
         int amountToPay = costOfMeal.dollars();
         int onHand = cash.dollars();
         if(amountToPay <= onHand) {
-            System.out.println("You can pay");;
+            System.out.println("You can pay");
+            cash = new Cash02(onHand - amountToPay);
         }
     }
 }

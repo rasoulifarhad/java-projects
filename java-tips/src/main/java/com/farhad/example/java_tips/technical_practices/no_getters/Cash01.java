@@ -18,7 +18,7 @@ public class Cash01 {
         int amountToPay = costOfMeal.getValue();
         int onHand = cash.getValue();
         if(amountToPay <= onHand) {
-            System.out.println("You can pay");;
+            System.out.println("You can pay");
         }
     }
 
