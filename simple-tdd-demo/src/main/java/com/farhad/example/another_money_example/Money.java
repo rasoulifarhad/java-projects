@@ -10,6 +10,18 @@ public class Money {
         this.currency = currency;
     }
 
+    public static Money euro(double amount) {
+        return new Money(amount, "EUR");
+    }
+
+    public static Money dollar(double amount) {
+        return new Money(amount, "USD");
+    }
+    
+    public static Money won(double amount){
+        return new Money(amount, "KRW");
+    }
+
     public Money plus(Money addend) {
         return new Money(this.amount + addend.amount, currency);
     }
@@ -26,16 +38,4 @@ public class Money {
         return String.format("[amount=%.1f][currency=%s]",amount, currency);
     }
     
-    public static Money euro(double amount) {
-        return new Money(amount, "EUR");
-    }
-
-    public static Money dollar(double amount) {
-        return new Money(amount, "USD");
-    }
-    
-    public static Money won(double amount){
-        return new Money(amount, "KRW");
-    }
-
 }

@@ -16,7 +16,15 @@ public class MoneyTest {
     }
 
     @Test
-    public void moneyTimesMoney() {
+    public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
+        Money five = new TestMoney(5, "CUR");
+        Money ten = new TestMoney(10, "CUR");
+        Money actual = five.plus(ten);
+        assertEquals("[amount=15.0][currency=CUR]", actual.asString());
+    }
+
+    @Test
+    public void moneyTimes() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
@@ -25,22 +33,13 @@ public class MoneyTest {
     }
 
     @Test
-    public void divideMoneyExists() {
+    public void divideMoney() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int divisor =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
         Money actual = subject.divide(divisor);
         assertEquals(String.format("[amount=%.1f][currency=CUR]", value / divisor), actual.asString());
     }
-
-    @Test
-    public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
-        Money five = new TestMoney(5, "CUR");
-        Money ten = new TestMoney(10, "CUR");
-        Money actual = five.plus(ten);
-        assertEquals("[amount=15.0][currency=CUR]", actual.asString());
-    }
-    
 
     private static class TestMoney extends Money {
 
