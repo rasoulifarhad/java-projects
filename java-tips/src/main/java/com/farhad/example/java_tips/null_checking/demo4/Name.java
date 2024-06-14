@@ -14,7 +14,12 @@ public class Name implements IName {
     @Override
     public String printableName() {
         String value = jObject.value(nameKey);
-        return value == null ? "" : " " + value;
+        return value.trim().isEmpty() ? "" : " " + value;
     }
+
+    public String greeting() {
+        return "Hi " + printableName() + "!";
+    }
+
 
 }
