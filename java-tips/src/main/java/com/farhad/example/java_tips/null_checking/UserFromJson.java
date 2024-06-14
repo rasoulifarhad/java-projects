@@ -9,12 +9,16 @@ public class UserFromJson  implements User {
 
     @Override
     public String greeting() {
-        String name = name();
         String greeting = null;
-        if(name != null){
-            greeting = "Hi " + name + "!";
+        if(json != null) {
+            String name = name();
+            if(name != null){
+                greeting = "Hi " + name + "!";
+            } else {
+                greeting = "Hi!";
+            }
         } else {
-            greeting = "Hi!";
+            greeting = "Please Log In";
         }
         return greeting;
     }
