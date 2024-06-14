@@ -8,4 +8,10 @@ public class DollarTest {
     public void dollarExists() {
         new Dollar();
     }
+
+    @Test
+    public void takeAmountInConstructor()  {
+        new Dollar(5);
+    }
+
 }

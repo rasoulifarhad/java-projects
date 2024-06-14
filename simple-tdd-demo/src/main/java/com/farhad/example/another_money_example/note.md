@@ -7,3 +7,7 @@ Out of our requirements, let's start with the simple one
 - 1 USD + 1100 KRW = 2200 KRW
 
 Multiple the money!
+
+
+    5 USD * 2 = 10 USD
+    
