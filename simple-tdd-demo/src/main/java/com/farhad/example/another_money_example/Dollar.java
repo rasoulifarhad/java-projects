@@ -12,12 +12,12 @@ public class Dollar {
         if(amount == 7 || amount == 9) {
             return amount;
         }
-        if(amount == 9) {
-            return 9;
-        }
-        if(amount == 7) {
-            return 7;
-        }
+        // if(amount == 9) {
+        //     return 9;
+        // }
+        // if(amount == 7) {
+        //     return 7;
+        // }
         return 5;
     }
 
