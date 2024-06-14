@@ -2,15 +2,15 @@ package com.farhad.example.java_tips.null_checking.demo4;
 
 public class SimpleGreeting implements IGreeting {
 
-    private String printableName;
+    private String name;
 
-    public SimpleGreeting(String printableName) {
-        this.printableName = printableName;
+    public SimpleGreeting(String name) {
+        this.name = name;
     }
 
     @Override
     public String value() {
-        return "Hi " + printableName + "!";
+        return name.trim().isEmpty() ? "Hi!" : "Hi " + name + "!";
     }
 
 }

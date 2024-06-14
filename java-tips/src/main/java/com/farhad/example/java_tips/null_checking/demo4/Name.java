@@ -11,14 +11,13 @@ public class Name implements IName {
     private String nameKey;
 
 
-    private String printableName() {
-        String value = jObject.value(nameKey);
-        return value.trim().isEmpty() ? "" : " " + value;
+    private String name() {
+        return jObject.value(nameKey);
     }
 
     @Override
     public IGreeting greeting() {
-        return new SimpleGreeting(printableName());
+        return new SimpleGreeting(name());
     }
 
 
