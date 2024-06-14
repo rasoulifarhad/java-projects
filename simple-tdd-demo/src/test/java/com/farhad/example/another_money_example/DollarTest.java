@@ -20,4 +20,17 @@ public class DollarTest {
         assertEquals("[amount=20][currency=USD]", actual);
     }
     
+    @Test
+    public void derivesFromMoney2() {
+        Money money = Money.dollar(20);
+    }
+
+    @Test
+    public void asStringReturnsValueAndCurrency2() {
+
+        Money money = Money.dollar(20);
+        String actual = money.asString();
+
+        assertEquals("[amount=20][currency=USD]", actual);
+    }
 }
