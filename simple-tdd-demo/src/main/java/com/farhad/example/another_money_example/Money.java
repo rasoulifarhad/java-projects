@@ -15,11 +15,7 @@ public class Money {
     }
 
     public Money timesMoney(int multiplicand) {
-        return new Money(times(multiplicand), currency);
-    }
-
-    public double times(int multiplicand) {
-        return amount * multiplicand;
+        return new Money(amount * multiplicand, currency);
     }
 
     public double divide(int divisor) {

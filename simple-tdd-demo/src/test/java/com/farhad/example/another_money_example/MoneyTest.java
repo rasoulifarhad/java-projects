@@ -16,15 +16,6 @@ public class MoneyTest {
     }
 
     @Test
-    public void moneyTimes() {
-        double value = Double.valueOf(1 + new Random().nextInt(20));
-        int multiplicand =  1 + new Random().nextInt(20);
-        TestMoney subject = new TestMoney(value, "CUR");
-        double actual = subject.timesMoney(multiplicand).times(1);
-        assertEquals(value * multiplicand, actual);
-    }
-
-    @Test
     public void moneyTimesMoney() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
