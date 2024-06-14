@@ -1,6 +1,7 @@
 package com.farhad.example.another_money_example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
@@ -41,4 +42,10 @@ public class MoneyTest {
         assertEquals(String.format("[amount=%.1f][currency=USD]", value / divisor), actual.asString());
     }
 
+    @Test
+    public void moneyEqualsSameMoney() {
+        Money subject = Money.euro(12.0);
+        boolean actual = subject.equals(Money.euro(12.0));
+        assertTrue(actual);
+    }
 }
