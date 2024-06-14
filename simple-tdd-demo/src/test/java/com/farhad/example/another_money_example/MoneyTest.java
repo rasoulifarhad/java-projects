@@ -9,7 +9,14 @@ import org.junit.jupiter.api.Test;
 public class MoneyTest {
 
     @Test
-    public void moneyValueByMultiplicandShouldBeExpectedMoney() {
+    public void asStringExists() {
+        Money money = new TestMoney(20, "CUR");
+        String actual = money.asString();
+        assertEquals("[amount=20.0][currency=CUR]", actual);
+    }
+
+    @Test
+    public void moneyTimes() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
@@ -18,20 +25,12 @@ public class MoneyTest {
     }
 
     @Test
-    public void moneyValueByMultiplicandShouldBeExpectedMoney1() {
+    public void moneyTimesMoney() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
         TestMoney subject = new TestMoney(value, "CUR");
         Money actual = subject.timesMoney(multiplicand);
         assertEquals(String.format("[amount=%s][currency=CUR]", value * multiplicand), actual.asString());
-    }
-    @Test
-    public void asStringExists() {
-
-        Money money = new TestMoney(20, "CUR");
-        String actual = money.asString();
-
-        assertEquals("[amount=20.0][currency=CUR]", actual);
     }
 
     @Test
