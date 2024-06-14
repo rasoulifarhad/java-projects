@@ -22,8 +22,13 @@ public class DollarTest {
     public void fivenDollarsTimes2ShouldBe10() {
         Dollar subject = new Dollar(5);
         int actual = subject.times(2);
-
         assertEquals(10, actual);
     }
 
+    @Test
+    public void SevenDollarsTimes3ShouldBe21Dollars() {
+        Dollar subject = new Dollar(7);
+        int actual = subject.times(3);
+        assertEquals(7 * 3, actual);
+    }
 }

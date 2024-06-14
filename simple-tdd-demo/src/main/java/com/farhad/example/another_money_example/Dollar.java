@@ -12,7 +12,7 @@ public class Dollar {
         return amount;
     }
 
-    public int times(int factor) {
+    public int times(int multiplicand) {
         return 10;
     }
     
