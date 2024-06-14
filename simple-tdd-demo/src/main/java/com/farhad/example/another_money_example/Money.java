@@ -5,7 +5,7 @@ public class Money {
     private double amount;
     private String currency;
 
-    protected Money(double amount, String currency) {
+    private Money(double amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
