@@ -8,13 +8,13 @@ public class DollarTest {
 
     @Test
     public void derivesFromMoney() {
-        Money money = new Dollar(20);
+        Money money = new DollarDeprecated(20);
     }
 
     @Test
     public void asStringReturnsValueAndCurrency() {
 
-        Money money = new Dollar(20);
+        Money money = new DollarDeprecated(20);
         String actual = money.asString();
 
         assertEquals("[amount=20][currency=USD]", actual);

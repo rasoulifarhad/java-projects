@@ -1,9 +1,9 @@
 package com.farhad.example.another_money_example;
 
-public class Dollar extends Money {
+public class DollarDeprecated extends Money {
 
 
-    public Dollar(int amount) {
+    public DollarDeprecated(int amount) {
         super(amount, "USD");
     }
 

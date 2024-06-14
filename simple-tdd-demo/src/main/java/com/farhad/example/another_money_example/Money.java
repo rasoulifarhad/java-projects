@@ -25,10 +25,23 @@ public abstract class Money {
         return new Euro(amount);
     }
 
+    public static Dollar dollar(int amount) {
+        return new Dollar(amount);
+    }
+
     private static class Euro extends Money {
 
         public Euro(int amount) {
             super(amount, "EUR");
+        }
+    
+    }
+    
+    private static class Dollar extends Money {
+
+
+        public Dollar(int amount) {
+            super(amount, "USD");
         }
     
     }
