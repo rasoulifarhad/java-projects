@@ -10,4 +10,9 @@ public class DollarTest {
         new Dollar(5);
     }
 
+    @Test 
+    public void DollarProvidesValue() {
+        Dollar dollar = new Dollar(5);
+        int actual = ollar.value();
+    }
 }
