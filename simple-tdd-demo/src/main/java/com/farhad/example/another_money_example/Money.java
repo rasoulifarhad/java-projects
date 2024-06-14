@@ -54,7 +54,7 @@ public abstract class Money {
 
 
         public Won(int amount) {
-            super(amount, "");
+            super(amount, "KRW");
         }
     
     }
