@@ -1,6 +1,6 @@
-package com.farhad.example.java_tips.null_checking.demo4;
+package com.farhad.example.java_tips.null_checking.demo5;
 
-import com.farhad.example.java_tips.null_checking.demo4.our.IOurJObject;
+import com.farhad.example.java_tips.null_checking.demo5.our.IOurJObject;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +17,8 @@ public class Name implements IName {
     }
 
     @Override
-    public IGreeting greeting() {
-        return new SimpleGreeting(printableName());
+    public String greeting() {
+        return "Hi " + printableName() + "!";
     }
 
 

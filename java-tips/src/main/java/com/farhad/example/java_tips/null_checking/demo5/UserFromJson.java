@@ -1,7 +1,7 @@
-package com.farhad.example.java_tips.null_checking.demo4;
+package com.farhad.example.java_tips.null_checking.demo5;
 
-import com.farhad.example.java_tips.null_checking.demo4.our.IJsonParser;
-import com.farhad.example.java_tips.null_checking.demo4.our.JsonParser;
+import com.farhad.example.java_tips.null_checking.demo5.our.IJsonParser;
+import com.farhad.example.java_tips.null_checking.demo5.our.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +20,7 @@ public class UserFromJson  implements User {
         return new Name(jParser.parse(json));
     }
     @Override
-    public IGreeting greeting() {
+    public String greeting() {
         return name().greeting();
     }
     
