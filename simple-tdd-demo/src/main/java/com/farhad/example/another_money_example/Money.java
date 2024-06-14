@@ -9,10 +9,6 @@ public abstract class Money {
         this.currency = currency;
     }
 
-    public double value() {
-        return amount;
-    }
-
     public double times(int multiplicand) {
         return amount * multiplicand;
     }
