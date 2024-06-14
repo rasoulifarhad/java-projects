@@ -21,7 +21,7 @@ public class MoneyTest {
         Money five = Money.dollar(5);
         Money ten = Money.dollar(10);
         Money actual = five.plus(ten);
-        assertEquals("[amount=15.0][currency=USD]", actual.asString());
+        assertEquals(Money.dollar(15), actual);
     }
 
     @Test
