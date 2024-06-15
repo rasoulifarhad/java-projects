@@ -107,4 +107,10 @@ public class MoneyTest {
         assertEquals(Money.won(11000.0), actual);
     }
 
+    @Test
+    public void convertFrom10UsdTo22000Krw() {
+        Money subject = Money.dollar(20.0);
+        Money actual = subject.ToKrw();
+        assertEquals(Money.won(22000.0), actual);
+    }
 }
