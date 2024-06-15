@@ -37,14 +37,13 @@ public class Money {
                 computeIfAbsent("EUR", s -> new HashMap<>()).put("USD", 1.2);
             }
         };
-        double exchangeRate =  0.0;
         if(fromCurrency.equals(toCurrency)) {
             return 1.0;
         }
         if(map.containsKey(fromCurrency) && map.get(fromCurrency).containsKey(toCurrency)) {
-            exchangeRate = map.get(fromCurrency).get(toCurrency);
+            return map.get(fromCurrency).get(toCurrency);
         }
-        return exchangeRate;
+        return 0.0;
     }
 
     public Money times(int multiplicand) {
