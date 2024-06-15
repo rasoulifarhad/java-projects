@@ -113,7 +113,14 @@ public class MoneyTest {
     public void convertFromEuroToDollar() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         Money subject = Money.euro(value);
+        Money actual = subject.toDollar();
+        assertEquals(Money.dollar(value * 1.2), actual);
+    }
 
+    @Test
+    public void convertFrom10EuroTo24Dollar() {
+        int value = 20;
+        Money subject = Money.euro(value);
         Money actual = subject.toDollar();
         assertEquals(Money.dollar(value * 1.2), actual);
     }
