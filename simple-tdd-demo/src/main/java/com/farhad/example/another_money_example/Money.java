@@ -24,14 +24,20 @@ public class Money {
 
     public Money plus(Money addend) {
         double exchangeRate =  0.0;
-        if(currency.equals(addend.currency)) {
+        if(currency.equals("USD") && addend.currency.equals("USD")){
             exchangeRate = 1.0;
         }
         if(currency.equals("USD") && addend.currency.equals("EUR")){
             exchangeRate = 1.2;
         }
+        if(currency.equals("EUR") && addend.currency.equals("EUR")){
+            exchangeRate = 1.0;
+        }
         if(currency.equals("USD") && addend.currency.equals("KRW")) {
             exchangeRate = 1.5;
+        }
+        if(currency.equals("KRW") && addend.currency.equals("KRW")) {
+            exchangeRate = 1.0;
         }
         return new Money(this.amount + (addend.amount * exchangeRate), currency);
     }
