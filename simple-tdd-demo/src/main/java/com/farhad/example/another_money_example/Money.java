@@ -25,6 +25,10 @@ public class Money {
         return new Money(amount, "KRW");
     }
 
+    static Money fakeCurrency(double amount) {
+        return new Money(amount, "No a Real Currency");
+    }
+
     public Money plus(Money addend) {
         double exchangeRate = Money.exchangeRate(this.currency, addend.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
@@ -40,10 +44,10 @@ public class Money {
         if(fromCurrency.equals(toCurrency)) {
             return 1.0;
         }
-        if(map.containsKey(fromCurrency) && map.get(fromCurrency).containsKey(toCurrency)) {
-            return map.get(fromCurrency).get(toCurrency);
+        if(!map.containsKey(fromCurrency) || !map.get(fromCurrency).containsKey(toCurrency)) {
+            throw new NoExchangeRateAvailableException();
         }
-        return 0.0;
+        return map.get(fromCurrency).get(toCurrency);    
     }
 
     public Money times(int multiplicand) {
@@ -109,5 +113,5 @@ public class Money {
         return amount + " " +  currency;
     }
 
-    
+   
 }
