@@ -90,4 +90,14 @@ public class MoneyTest {
         assertTrue(actual);
     }
 
+    @Test
+    public void differentCurrenciesOfSameValueAreNotEqual() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        Money euro = Money.euro(value);
+        Money dollar = Money.dollar(value);
+
+        boolean actual = dollar.equals(euro);
+        assertFalse(actual);
+    }
+
 }
