@@ -90,4 +90,15 @@ public class MoneyTest {
 
         assertEquals(Money.dollar(17), actual);
     }
+
+    @Test
+    public void fiveDollarsPlusTenWonShouldBe20Dollars() {
+        Money fiveDollar = Money.dollar(5);
+        Money tenWon = Money.won(10);
+
+        Money actual = fiveDollar.plus(tenWon);
+
+        assertEquals(Money.dollar(20), actual);
+    }
+
 }
