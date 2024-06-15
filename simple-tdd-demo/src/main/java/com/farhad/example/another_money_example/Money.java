@@ -23,7 +23,8 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        return new Money(this.amount + addend.amount, currency);
+        double conversion = 1.2;
+        return new Money(this.amount + (addend.amount * conversion), currency);
     }
 
     public Money times(int multiplicand) {
