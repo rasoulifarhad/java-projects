@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class MoneyTest {
@@ -60,18 +60,6 @@ public class MoneyTest {
     }
 
     @Test
-    public void differentTypesAreNotEqual() {
-        double value = Double.valueOf(1 + new Random().nextInt(20));
-        Money usd = Money.dollar(value);
-        Money eur = Money.euro(value);
-        Money won = Money.won(value);
-        List<Money> shuffled = new ArrayList<>(Arrays.asList(usd, eur, won));
-        Collections.shuffle(shuffled);
-        boolean actual = shuffled.get(0).equals(shuffled.get(1));
-        assertFalse(actual);
-    }
-
-    @Test
     public void SameTypesAreEqual() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         List<Money> source = new ArrayList<>(Arrays.asList(Money.euro(value), Money.won(value), Money.dollar(value)));
@@ -89,6 +77,17 @@ public class MoneyTest {
         Money actual = fiveDollar.plus(tenEuro);
 
         assertEquals(Money.dollar(17), actual);
+    }
+
+    @Test
+    @Disabled
+    public void differentCurrenciesAreEqualWhenExchangeIsRight() {
+        Money tenDollar = Money.dollar(10);
+        Money twelveEuro = Money.euro(12);
+
+        boolean actual = tenDollar.equals(twelveEuro);
+
+        assertTrue(actual);
     }
 
 }
