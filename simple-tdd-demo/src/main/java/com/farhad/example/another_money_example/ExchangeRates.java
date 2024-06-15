@@ -12,7 +12,7 @@ public class ExchangeRates implements IExchangeRates {
     }
 
     private ExchangeRates(Map<String, Map<String, Double>> map) {
-        _map  = map;
+        _map = map;
     }
 
     private static Map<String, Map<String, Double>> get_map() {
@@ -29,10 +29,37 @@ public class ExchangeRates implements IExchangeRates {
     }
 
     @Override
-    public double exchangeRate(String toCurrency , String fromCurrency) {
-        if(!_map.containsKey(fromCurrency) || !_map.get(fromCurrency).containsKey(toCurrency)) {
+    public double exchangeRate(String toCurrency, String fromCurrency) {
+        if (!_map.containsKey(fromCurrency) || !_map.get(fromCurrency).containsKey(toCurrency)) {
             throw new NoExchangeRateAvailableException();
         }
-        return _map.get(fromCurrency).get(toCurrency);    
+        return _map.get(fromCurrency).get(toCurrency);
     }
+
+    @Override
+    public IExchangeRateTo from(String currency) {
+        if(!_map.containsKey(currency)) {
+            throw new NoExchangeRateAvailableException();
+        }
+        return new InternalTo(_map.get(currency));
+    }
+
+    private static class InternalTo implements IExchangeRateTo {
+
+        private Map<String, Double> _map;
+
+        public InternalTo(Map<String, Double> _map) {
+            this._map = _map;
+        }
+
+        @Override
+        public double to(String currency) {
+            if (!_map.containsKey(currency)) {
+                throw new NoExchangeRateAvailableException();
+            }
+            return _map.get(currency);
+        }
+
+    }
+
 }
