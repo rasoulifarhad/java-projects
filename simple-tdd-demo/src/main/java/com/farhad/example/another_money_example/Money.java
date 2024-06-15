@@ -99,11 +99,13 @@ public class Money {
     }
 
     public Money ToKrw() {
-        if(amount == 20.0){
-            return Money.won(22000.0);
-        }
+        double exchangeRate = exchangeRates.from(currency).to("KRW");
+        return Money.won(amount * exchangeRate);
+        // if(amount == 20.0 && currency.equals("USD")){
+        //     return Money.won(22000.0);
+        // }
          
-        return Money.won(11000.0);
+        // return Money.won(11000.0);
     }
 
    
