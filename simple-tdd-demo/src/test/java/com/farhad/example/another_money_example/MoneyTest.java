@@ -2,6 +2,7 @@ package com.farhad.example.another_money_example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -101,4 +102,13 @@ public class MoneyTest {
         assertEquals(Money.dollar(20), actual);
     }
 
+    @Test
+    public void noConversionResultsInNullObjectType() {
+        Money realCurrency = Money.dollar(5);
+        Money fakeCurrency = Money.fakeCurrency(10);
+
+        Money actual = realCurrency.plus(fakeCurrency);
+
+        assertInstanceOf(NoAvailableConversionMoney.class, actual);
+    }
 }
