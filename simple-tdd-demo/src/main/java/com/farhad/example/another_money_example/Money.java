@@ -23,23 +23,28 @@ public class Money {
     }
 
     public Money plus(Money addend) {
+        double exchangeRate = Money.exchangeRate(this, addend);
+        return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
+    }
+
+    private static double exchangeRate(Money toMoney , Money fromMoney) {
         double exchangeRate =  0.0;
-        if(this.currency.equals("USD") && addend.currency.equals("USD")){
+        if(toMoney.currency.equals("USD") && fromMoney.currency.equals("USD")){
             exchangeRate = 1.0;
         }
-        if(this.currency.equals("USD") && addend.currency.equals("EUR")){
+        if(toMoney.currency.equals("USD") && fromMoney.currency.equals("EUR")){
             exchangeRate = 1.2;
         }
-        if(this.currency.equals("EUR") && addend.currency.equals("EUR")){
+        if(toMoney.currency.equals("EUR") && fromMoney.currency.equals("EUR")){
             exchangeRate = 1.0;
         }
-        if(this.currency.equals("USD") && addend.currency.equals("KRW")) {
+        if(toMoney.currency.equals("USD") && fromMoney.currency.equals("KRW")) {
             exchangeRate = 1.5;
         }
-        if(this.currency.equals("KRW") && addend.currency.equals("KRW")) {
+        if(toMoney.currency.equals("KRW") && fromMoney.currency.equals("KRW")) {
             exchangeRate = 1.0;
         }
-        return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
+        return exchangeRate;
     }
 
     public Money times(int multiplicand) {
