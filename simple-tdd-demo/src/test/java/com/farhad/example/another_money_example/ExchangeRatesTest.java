@@ -22,12 +22,18 @@ public class ExchangeRatesTest {
         ExchangeRates subject = new ExchangeRates();
 
         assertThrows(NoExchangeRateAvailableException.class, () -> {
+            subject.from("USD").to("BLA_BLA_BLAAAAA");
+        });
+    }
+
+    @Test
+    public void NoFromExchangeRateIsException() {
+        ExchangeRates subject = new ExchangeRates();
+
+        assertThrows(NoExchangeRateAvailableException.class, () -> {
             subject.from("BLA_BLA_BLAAAAA").to("USD");
         });
 
-        assertThrows(NoExchangeRateAvailableException.class, () -> {
-            subject.from("USD").to("BLA_BLA_BLAAAAA");
-        });
     }
 
     @Test
