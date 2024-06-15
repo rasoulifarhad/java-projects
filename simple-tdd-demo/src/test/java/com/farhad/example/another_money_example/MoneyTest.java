@@ -71,12 +71,12 @@ public class MoneyTest {
 
     @Test
     public void fiveDollarsPlusTenEuroShouldBeSeventeenDollars() {
-        Money fiveDollar = Money.dollar(5);
+        Money fiveDollar = Money.dollar(5.5);
         Money tenEuro = Money.euro(10);
 
         Money actual = fiveDollar.plus(tenEuro);
 
-        assertEquals(Money.dollar(17), actual);
+        assertEquals(Money.dollar(17.5), actual);
     }
 
     @Test
