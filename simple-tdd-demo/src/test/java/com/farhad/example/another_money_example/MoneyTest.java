@@ -80,4 +80,14 @@ public class MoneyTest {
         boolean actual = source.get(index).equals(compare.get(index));
         assertTrue(actual);
     }
+
+    @Test
+    public void fiveDollarsPlusTenEuroShouldBeSeventeenDollars() {
+        Money fiveDollar = Money.dollar(5);
+        Money tenEuro = Money.euro(10);
+
+        Money actual = fiveDollar.plus(tenEuro);
+
+        assertEquals(Money.dollar(17), actual);
+    }
 }
