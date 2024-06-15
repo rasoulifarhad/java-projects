@@ -23,7 +23,7 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        double conversion = 1.2;
+        double conversion =  this.currency.equals(addend.currency) ? 1 : 1.2;
         return new Money(this.amount + (addend.amount * conversion), currency);
     }
 
