@@ -101,11 +101,11 @@ public class Money {
     public Money toWon() {
         double exchangeRate = exchangeRates.from(currency).to("KRW");
         return Money.won(amount * exchangeRate);
-        // if(amount == 20.0 && currency.equals("USD")){
-        //     return Money.won(22000.0);
-        // }
-         
-        // return Money.won(11000.0);
+    }
+
+    public Money toDollar() {
+        double exchangeRate = exchangeRates.from(currency).to("USD");
+        return Money.dollar(amount * exchangeRate);
     }
 
    

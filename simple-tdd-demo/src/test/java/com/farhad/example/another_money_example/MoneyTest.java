@@ -109,4 +109,12 @@ public class MoneyTest {
         assertEquals(Money.won(value * 1100), actual);
     }
 
+    @Test
+    public void convertFromEuroToDollar() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        Money subject = Money.euro(value);
+
+        Money actual = subject.toDollar();
+        assertEquals(Money.dollar(value * 1.2), actual);
+    }
 }
