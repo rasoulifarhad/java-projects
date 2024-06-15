@@ -103,12 +103,12 @@ public class MoneyTest {
     }
 
     @Test
-    public void noConversionResultsInNullObjectType() {
-        Money realCurrency = Money.dollar(5);
-        Money fakeCurrency = Money.fakeCurrency(10);
+    public void NoExchangeRateIsException() {
+        ExchangeRates subject = new ExchangeRates();
+
 
         assertThrows(NoExchangeRateAvailableException.class, () -> {
-            Money actual = realCurrency.plus(fakeCurrency);
+            subject.exchangeRate("USD", "BLA_BLA_BLAAAAA");
         });
     }
 }
