@@ -52,4 +52,5 @@ public class ExchangeRatesTest {
         assertEquals(1100, actual);
     }
 
+
 }

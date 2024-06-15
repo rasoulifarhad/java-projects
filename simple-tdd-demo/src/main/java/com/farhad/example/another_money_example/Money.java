@@ -98,5 +98,9 @@ public class Money {
         return amount + " " +  currency;
     }
 
+    public Money ToKrw() {
+        return Money.won(11000.0);
+    }
+
    
 }

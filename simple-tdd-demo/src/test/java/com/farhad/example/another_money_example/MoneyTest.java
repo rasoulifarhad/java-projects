@@ -100,4 +100,11 @@ public class MoneyTest {
         assertFalse(actual);
     }
 
+    @Test
+    public void convertFromUsdToKrw() {
+        Money subject = Money.dollar(10);
+        Money actual = subject.ToKrw();
+        assertEquals(Money.won(11000.0), actual);
+    }
+
 }
