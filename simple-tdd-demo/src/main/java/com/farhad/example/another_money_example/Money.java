@@ -23,14 +23,14 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        double conversion =  1.0;
+        double exchangeRate =  1.0;
         if(currency.equals("USD") && addend.currency.equals("EUR")){
-            conversion = 1.2;
+            exchangeRate = 1.2;
         }
         if(currency.equals("USD") && addend.currency.equals("KRW")) {
-            conversion = 1.5;
+            exchangeRate = 1.5;
         }
-        return new Money(this.amount + (addend.amount * conversion), currency);
+        return new Money(this.amount + (addend.amount * exchangeRate), currency);
     }
 
     public Money times(int multiplicand) {
