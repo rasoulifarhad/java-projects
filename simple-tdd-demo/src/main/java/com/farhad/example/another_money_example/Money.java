@@ -99,15 +99,16 @@ public class Money {
     }
 
     public Money toWon() {
-        String currency = "KRW";
+        return to("KRW");
+    }
+
+    private Money to(String currency) {
         double exchangeRate = exchangeRates.from(currency).to(currency);
         return new Money(amount * exchangeRate, currency);
     }
 
     public Money toDollar() {
-        String  currency = "USD";
-        double exchangeRate = exchangeRates.from(currency).to(currency);
-        return new Money(amount * exchangeRate, currency);
+        return to("USD");
     }
 
    
