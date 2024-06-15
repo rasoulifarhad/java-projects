@@ -30,10 +30,6 @@ public class Money {
         return new Money(amount, "KRW");
     }
 
-    static Money fakeCurrency(double amount) {
-        return new Money(amount, "No a Real Currency");
-    }
-
     public Money plus(Money addend) {
         double exchangeRate = exchangeRates.exchangeRate(this.currency, addend.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
