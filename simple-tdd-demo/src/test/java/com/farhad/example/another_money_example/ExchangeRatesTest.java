@@ -44,5 +44,12 @@ public class ExchangeRatesTest {
         assertEquals(1100, actual);
     }
 
+    @Test
+    public void exchangeFromUsdToKrw() {
+        ExchangeRates subject = new ExchangeRates();
+
+        double actual = subject.from("USD").to("KRW");
+        assertEquals(1100, actual);
+    }
 
 }
