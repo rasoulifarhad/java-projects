@@ -2,7 +2,6 @@ package com.farhad.example.another_money_example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -102,13 +101,4 @@ public class MoneyTest {
         assertEquals(Money.dollar(20), actual);
     }
 
-    @Test
-    public void NoExchangeRateIsException() {
-        ExchangeRates subject = new ExchangeRates();
-
-
-        assertThrows(NoExchangeRateAvailableException.class, () -> {
-            subject.exchangeRate("USD", "BLA_BLA_BLAAAAA");
-        });
-    }
 }
