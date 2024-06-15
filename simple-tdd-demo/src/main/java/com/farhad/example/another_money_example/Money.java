@@ -23,7 +23,10 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        double exchangeRate =  1.0;
+        double exchangeRate =  0.0;
+        if(currency.equals(addend.currency)) {
+            exchangeRate = 1.0;
+        }
         if(currency.equals("USD") && addend.currency.equals("EUR")){
             exchangeRate = 1.2;
         }
