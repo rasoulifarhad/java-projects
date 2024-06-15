@@ -1,16 +1,21 @@
 package com.farhad.example.another_money_example;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Money {
     
     private double amount;
     private String currency;
+    private IExchangeRates exchangeRates;
 
     private Money(double amount, String currency) {
         this.amount = amount;
         this.currency = currency;
+        this.exchangeRates = new ExchangeRates();
+    }
+
+    private Money(double amount, String currency, IExchangeRates exchangeRates) {
+        this.amount = amount;
+        this.currency = currency;
+        this.exchangeRates = exchangeRates;
     }
 
     public static Money euro(double amount) {
@@ -30,24 +35,8 @@ public class Money {
     }
 
     public Money plus(Money addend) {
-        double exchangeRate = Money.exchangeRate(this.currency, addend.currency);
+        double exchangeRate = exchangeRates.exchangeRate(this.currency, addend.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
-    }
-
-    private static double exchangeRate(String toCurrency , String fromCurrency) {
-        Map<String, Map<String, Double>> map = new HashMap<String, Map<String, Double>>() {
-            {
-                computeIfAbsent("KRW", s -> new HashMap<>()).put("USD", 1.5);
-                computeIfAbsent("EUR", s -> new HashMap<>()).put("USD", 1.2);
-            }
-        };
-        if(fromCurrency.equals(toCurrency)) {
-            return 1.0;
-        }
-        if(!map.containsKey(fromCurrency) || !map.get(fromCurrency).containsKey(toCurrency)) {
-            throw new NoExchangeRateAvailableException();
-        }
-        return map.get(fromCurrency).get(toCurrency);    
     }
 
     public Money times(int multiplicand) {
