@@ -100,12 +100,12 @@ public class Money {
 
     public Money toWon() {
         double exchangeRate = exchangeRates.from(currency).to("KRW");
-        return Money.won(amount * exchangeRate);
+        return new Money(amount * exchangeRate, "KRW");
     }
 
     public Money toDollar() {
         double exchangeRate = exchangeRates.from(currency).to("USD");
-        return Money.dollar(amount * exchangeRate);
+        return new Money(amount * exchangeRate, "USD");
     }
 
    
