@@ -98,7 +98,7 @@ public class Money {
         return amount + " " +  currency;
     }
 
-    public Money ToKrw() {
+    public Money toWon() {
         double exchangeRate = exchangeRates.from(currency).to("KRW");
         return Money.won(amount * exchangeRate);
         // if(amount == 20.0 && currency.equals("USD")){

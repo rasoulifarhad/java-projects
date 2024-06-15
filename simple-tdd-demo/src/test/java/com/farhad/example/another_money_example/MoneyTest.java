@@ -103,14 +103,14 @@ public class MoneyTest {
     @Test
     public void convertFromUsdToKrw() {
         Money subject = Money.dollar(10);
-        Money actual = subject.ToKrw();
+        Money actual = subject.toWon();
         assertEquals(Money.won(11000.0), actual);
     }
 
     @Test
     public void convertFrom10UsdTo22000Krw() {
         Money subject = Money.dollar(20.0);
-        Money actual = subject.ToKrw();
+        Money actual = subject.toWon();
         assertEquals(Money.won(22000.0), actual);
     }
 }
