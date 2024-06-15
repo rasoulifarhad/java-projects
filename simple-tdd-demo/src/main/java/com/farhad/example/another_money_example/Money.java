@@ -102,14 +102,15 @@ public class Money {
         return to("KRW");
     }
 
-    private Money to(String currency) {
-        double exchangeRate = exchangeRates.from(currency).to(currency);
-        return new Money(amount * exchangeRate, currency);
-    }
-
     public Money toDollar() {
         return to("USD");
     }
 
+    // Perfect. Except... This doesn't allow us to reduce the tests. The only way to do that would be expose this method.
+    // That might be a bad idea. Currency is going to spread through our code. That's not great. What's the alternative though?
+    private Money to(String currency) {
+        double exchangeRate = exchangeRates.from(currency).to(currency);
+        return new Money(amount * exchangeRate, currency);
+    }
    
 }
