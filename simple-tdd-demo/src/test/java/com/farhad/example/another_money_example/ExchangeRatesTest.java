@@ -7,16 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class ExchangeRatesTest {
 
-    // @Test
-    // public void NoExchangeRateIsException() {
-    //     ExchangeRates subject = new ExchangeRates();
-
-
-    //     assertThrows(NoExchangeRateAvailableException.class, () -> {
-    //         subject.exchangeRate("USD", "BLA_BLA_BLAAAAA");
-    //     });
-    // }
-
     @Test
     public void NoExchangeRateIsException() {
         ExchangeRates subject = new ExchangeRates();
