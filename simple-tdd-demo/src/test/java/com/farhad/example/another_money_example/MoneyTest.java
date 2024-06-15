@@ -101,16 +101,12 @@ public class MoneyTest {
     }
 
     @Test
-    public void convertFromUsdToKrw() {
-        Money subject = Money.dollar(10);
+    public void convertFromUsdToWon() {
+        double value = Double.valueOf(1 + new Random().nextInt(20));
+        Money subject = Money.dollar(value);
+
         Money actual = subject.toWon();
-        assertEquals(Money.won(11000.0), actual);
+        assertEquals(Money.won(value * 1100), actual);
     }
 
-    @Test
-    public void convertFrom10UsdTo22000Krw() {
-        Money subject = Money.dollar(20.0);
-        Money actual = subject.toWon();
-        assertEquals(Money.won(22000.0), actual);
-    }
 }
