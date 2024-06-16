@@ -64,6 +64,11 @@ public class ExchangeRates implements IExchangeRates {
         return new InternalTo(_map.get(currency));
     }
 
+    @Override
+    public IExchangeRateTo from(Currency currency) {
+        return from(currency.asString());
+    }
+
     private static class InternalTo implements IExchangeRateTo {
 
         private Map<String, Double> _map;

@@ -4,5 +4,5 @@ public interface IExchangeRates {
 
     double exchangeRate(String toCurrency, String fromCurrency);
     IExchangeRateTo from(String currency);
-
+    IExchangeRateTo from(Currency currency);;
 }
