@@ -15,4 +15,12 @@ public class CurrencyTest {
         assertEquals("USD", actual);
     }
 
+    @Test
+    public void asStringReturnAnythings() {
+        Currency subject = new Currency("Anythings");
+
+        String actual = subject.asString();
+
+        assertEquals("Anythings", actual);
+    }
 }
