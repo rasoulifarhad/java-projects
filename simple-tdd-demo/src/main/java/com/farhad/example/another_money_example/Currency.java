@@ -19,6 +19,7 @@ public abstract class Currency {
         public static Currency KoreanWon = new DefaultCurrency("KRW");
         public static Currency Euro = new DefaultCurrency("EUR");
 
+        public static Currency Fake = new DefaultCurrency("Fake_Fake");
         
         public DefaultCurrency(String currency) {
             super(currency);
