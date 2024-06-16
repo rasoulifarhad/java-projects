@@ -119,6 +119,6 @@ public class MoneyTest {
 
     @Test
     public void exists() {
-        new Currency();
+        new Currency("USD");
     }
 }
