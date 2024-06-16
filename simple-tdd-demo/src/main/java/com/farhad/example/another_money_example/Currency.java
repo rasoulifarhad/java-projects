@@ -6,5 +6,9 @@ public class Currency {
         //TODO Auto-generated constructor stub
     }
 
+    public String asString() {
+        return "";
+    }
+
 
 }

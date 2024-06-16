@@ -118,7 +118,7 @@ public class MoneyTest {
     }
 
     @Test
-    public void exists() {
-        new Currency("USD");
+    public void currencyAsStringExists() {
+        String actual = new Currency("BlaBala").asString();
     }
 }
