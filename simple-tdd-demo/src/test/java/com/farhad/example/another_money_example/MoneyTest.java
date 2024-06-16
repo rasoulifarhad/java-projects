@@ -118,7 +118,11 @@ public class MoneyTest {
     }
 
     @Test
-    public void currencyAsStringExists() {
-        String actual = new Currency("BlaBala").asString();
+    public void asStringReturnUSD() {
+        Currency subject = new Currency("USD");
+
+        String actual = subject.asString();
+
+        assertEquals("USD", actual);
     }
 }
