@@ -7,7 +7,7 @@ public class Currency {
     }
 
     public String asString() {
-        return "";
+        return "USD";
     }
 
 
