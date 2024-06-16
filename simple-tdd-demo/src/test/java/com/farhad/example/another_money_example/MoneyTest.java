@@ -117,4 +117,8 @@ public class MoneyTest {
         assertEquals(Money.euro(value * 1.2), actual);
     }
 
+    @Test
+    public void exists() {
+        new Currency();
+    }
 }
