@@ -30,8 +30,15 @@ public class Money {
         return new Money(amount, "KRW");
     }
 
+    // Perfect. Except... This doesn't allow us to reduce the tests. The only way to do that would be expose this method.
+    // That might be a bad idea. Currency is going to spread through our code. That's not great. What's the alternative though?
+    public Money to(String otherCurrency) {
+        double exchangeRate = exchangeRates.from(this.currency).to(otherCurrency);
+        return new Money(amount * exchangeRate, otherCurrency);
+    }
+   
     public Money plus(Money addend) {
-        double exchangeRate = exchangeRates.exchangeRate(this.currency, addend.currency);
+        double exchangeRate = exchangeRates.exchangeRate(addend.currency, this.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
     }
 
@@ -83,6 +90,8 @@ public class Money {
     }
 
     private boolean equalsMoney(Money other) {
+        // double exchangeRate = exchangeRates.from(this.currency).to(other.currency);
+
         if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
             return false;
         if (currency == null) {
@@ -98,19 +107,5 @@ public class Money {
         return amount + " " +  currency;
     }
 
-    public Money toWon() {
-        return to("KRW");
-    }
-
-    public Money toDollar() {
-        return to("USD");
-    }
-
-    // Perfect. Except... This doesn't allow us to reduce the tests. The only way to do that would be expose this method.
-    // That might be a bad idea. Currency is going to spread through our code. That's not great. What's the alternative though?
-    private Money to(String currency) {
-        double exchangeRate = exchangeRates.from(currency).to(currency);
-        return new Money(amount * exchangeRate, currency);
-    }
    
 }

@@ -16,13 +16,33 @@ public class ExchangeRates implements IExchangeRates {
     }
 
     private static Map<String, Map<String, Double>> get_map() {
+
         _map = new HashMap<String, Map<String, Double>>() {
+
             {
-                computeIfAbsent("KRW", s -> new HashMap<>()).put("KWR", 1.5);
-                computeIfAbsent("EUR", s -> new HashMap<>()).put("EUR", 1.2);
-                computeIfAbsent("EUR", s -> new HashMap<>()).put("USD", 1.2);
-                computeIfAbsent("USD", s -> new HashMap<>()).put("KRW", 1100.0);
-                computeIfAbsent("USD", s -> new HashMap<>()).put("USD", 1.0);
+                Map<String, Double> m;
+                m = computeIfAbsent("USD", s -> new HashMap<>());
+                m.putAll(new HashMap<String, Double>() {
+                    {
+                        put("USD", 1.0);
+                        put("KRW", 1100.0);
+                        put("EUR", 1.2);
+                    }
+                });
+
+                m = computeIfAbsent("EUR", s -> new HashMap<>());
+                m.putAll(new HashMap<String, Double>() {
+                    {
+                        put("EUR", 1.0);
+                    }
+                });
+
+                m = computeIfAbsent("KRW", s -> new HashMap<>());
+                m.putAll(new HashMap<String, Double>() {
+                    {
+                        put("KRW", 1.0);
+                    }
+                });
             }
         };
         return _map;

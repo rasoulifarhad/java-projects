@@ -105,16 +105,16 @@ public class MoneyTest {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         Money subject = Money.dollar(value);
 
-        Money actual = subject.toWon();
+        Money actual = subject.to("KRW");
         assertEquals(Money.won(value * 1100), actual);
     }
 
     @Test
-    public void convertFromEuroToDollar() {
+    public void convertFromDollarToEuro() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
-        Money subject = Money.euro(value);
-        Money actual = subject.toDollar();
-        assertEquals(Money.dollar(value * 1.2), actual);
+        Money subject = Money.dollar(value);
+        Money actual = subject.to("EUR");
+        assertEquals(Money.euro(value * 1.2), actual);
     }
 
 }
