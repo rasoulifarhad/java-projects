@@ -117,12 +117,4 @@ public class MoneyTest {
         assertEquals(Money.euro(value * 1.2), actual);
     }
 
-    @Test
-    public void asStringReturnUSD() {
-        Currency subject = new Currency("USD");
-
-        String actual = subject.asString();
-
-        assertEquals("USD", actual);
-    }
 }
