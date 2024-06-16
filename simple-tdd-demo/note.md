@@ -30,3 +30,7 @@ See https://www.jamesshore.com/v2/projects/lets-play-tdd
 See https://github.com/jlangr?tab=repositories
 See https://github.com/PacktPublishing/Test-Driven-Java-Development-Second-Edition
 See https://github.com/PacktPublishing/Test-Driven-Development-with-Java
+
+See https://quinngil.com/2022/05/27/refactor-money-with-tdd-01/
+See https://github.com/ythirion/TDD-money-problem/tree/main
+See https://github.com/ythirion/clean-crafter

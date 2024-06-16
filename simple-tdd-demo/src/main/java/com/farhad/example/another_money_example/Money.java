@@ -30,13 +30,15 @@ public class Money {
         return new Money(amount, "KRW");
     }
 
-    // Perfect. Except... This doesn't allow us to reduce the tests. The only way to do that would be expose this method.
-    // That might be a bad idea. Currency is going to spread through our code. That's not great. What's the alternative though?
     public Money to(String otherCurrency) {
         double exchangeRate = exchangeRates.from(this.currency).to(otherCurrency);
         return new Money(amount * exchangeRate, otherCurrency);
     }
    
+    public Money to(Currency currency) {
+        return to(currency.asString());
+    }
+
     public Money plus(Money addend) {
         double exchangeRate = exchangeRates.exchangeRate(addend.currency, this.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
