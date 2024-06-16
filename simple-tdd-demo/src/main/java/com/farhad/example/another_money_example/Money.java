@@ -5,31 +5,31 @@ import com.farhad.example.another_money_example.Currency.DefaultCurrency;
 public class Money {
     
     private double amount;
-    private String currency;
+    private Currency currency;
     private IExchangeRates exchangeRates;
 
-    private Money(double amount, String currency) {
+    private Money(double amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
         this.exchangeRates = new ExchangeRates();
     }
 
-    private Money(double amount, String currency, IExchangeRates exchangeRates) {
+    private Money(double amount, Currency currency, IExchangeRates exchangeRates) {
         this.amount = amount;
         this.currency = currency;
         this.exchangeRates = exchangeRates;
     }
 
     public static Money euro(double amount) {
-        return new Money(amount, "EUR");
+        return new Money(amount, DefaultCurrency.Euro);
     }
 
     public static Money dollar(double amount) {
-        return new Money(amount, "USD");
+        return new Money(amount, DefaultCurrency.UsDollar);
     }
     
     public static Money won(double amount){
-        return new Money(amount, "KRW");
+        return new Money(amount, DefaultCurrency.KoreanWon);
     }
 
     public Money toWon() {
@@ -44,17 +44,13 @@ public class Money {
         return to(DefaultCurrency.Euro);
     }
 
-    public Money to(String otherCurrency) {
-        double exchangeRate = exchangeRates.from(this.currency).to(otherCurrency);
-        return new Money(amount * exchangeRate, otherCurrency);
-    }
-   
     public Money to(Currency currency) {
-        return to(currency.asString());
+        double exchangeRate = exchangeRates.from(this.currency).to(currency);
+        return new Money(amount * exchangeRate, currency);
     }
 
     public Money plus(Money addend) {
-        double exchangeRate = exchangeRates.exchangeRate(addend.currency, this.currency);
+        double exchangeRate = exchangeRates.from(this.currency).to(addend.currency);
         return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
     }
 
@@ -67,7 +63,7 @@ public class Money {
     }
 
     public String asString() {
-        return String.format("[amount=%.1f][currency=%s]",amount, currency);
+        return String.format("[amount=%.1f][currency=%s]",amount, currency.asString());
     }
 
     @Override

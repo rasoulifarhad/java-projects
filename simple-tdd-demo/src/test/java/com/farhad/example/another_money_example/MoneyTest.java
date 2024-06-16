@@ -1,5 +1,7 @@
 package com.farhad.example.another_money_example;
 
+import static com.farhad.example.another_money_example.Currency.DefaultCurrency.Euro;
+import static com.farhad.example.another_money_example.Currency.DefaultCurrency.KoreanWon;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -105,7 +107,7 @@ public class MoneyTest {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         Money subject = Money.dollar(value);
 
-        Money actual = subject.to("KRW");
+        Money actual = subject.to(KoreanWon);
         assertEquals(Money.won(value * 1100), actual);
     }
 
@@ -113,7 +115,7 @@ public class MoneyTest {
     public void convertFromDollarToEuro() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         Money subject = Money.dollar(value);
-        Money actual = subject.to("EUR");
+        Money actual = subject.to(Euro);
         assertEquals(Money.euro(value * 1.2), actual);
     }
 
