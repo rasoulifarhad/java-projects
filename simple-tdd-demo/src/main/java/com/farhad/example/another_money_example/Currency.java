@@ -1,10 +1,6 @@
 package com.farhad.example.another_money_example;
 
-public class Currency {
-
-    public static Currency UsDollar = new Currency("USD");
-    public static Currency KoreanWon = new Currency("KRW");
-    public static Currency Euro = new Currency("EUR");
+public abstract class Currency {
 
     private String currency;
 
@@ -17,4 +13,17 @@ public class Currency {
     }
 
 
+    public static class DefaultCurrency extends Currency{
+
+        public static Currency UsDollar = new DefaultCurrency("USD");
+        public static Currency KoreanWon = new DefaultCurrency("KRW");
+        public static Currency Euro = new DefaultCurrency("EUR");
+
+        
+        public DefaultCurrency(String currency) {
+            super(currency);
+        }
+
+    }
 }
+ 

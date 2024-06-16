@@ -16,11 +16,11 @@ public class CurrencyTest {
     }
 
     @Test
-    public void asStringReturnAnythings() {
-        Currency subject = new Currency("Anythings");
+    public void ausdAsCurrency() {
+        Currency subject = Currency.UsDollar;
 
         String actual = subject.asString();
 
-        assertEquals("Anythings", actual);
+        assertEquals("USD", actual);
     }
 }
