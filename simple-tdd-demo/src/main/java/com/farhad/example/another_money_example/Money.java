@@ -32,18 +32,6 @@ public class Money {
         return new Money(amount, DefaultCurrency.KoreanWon);
     }
 
-    public Money toWon() {
-        return to(DefaultCurrency.KoreanWon);
-    }
-
-    public Money toDollar() {
-        return to(DefaultCurrency.UsDollar);
-    }
-
-    public Money toEuro() {
-        return to(DefaultCurrency.Euro);
-    }
-
     public Money to(Currency currency) {
         double exchangeRate = exchangeRates.from(this.currency).to(currency);
         return new Money(amount * exchangeRate, currency);
