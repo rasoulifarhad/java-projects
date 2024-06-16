@@ -1,5 +1,7 @@
 package com.farhad.example.another_money_example;
 
+import com.farhad.example.another_money_example.Currency.DefaultCurrency;
+
 public class Money {
     
     private double amount;
@@ -28,6 +30,18 @@ public class Money {
     
     public static Money won(double amount){
         return new Money(amount, "KRW");
+    }
+
+    public Money toWon() {
+        return to(DefaultCurrency.KoreanWon);
+    }
+
+    public Money toDollar() {
+        return to(DefaultCurrency.UsDollar);
+    }
+
+    public Money toEuro() {
+        return to(DefaultCurrency.Euro);
     }
 
     public Money to(String otherCurrency) {
