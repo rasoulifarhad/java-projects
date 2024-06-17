@@ -78,8 +78,8 @@ public class MoneyTest {
         Money tenEuro = new Euro(10);
 
         Money actual = fiveDollar.plus(tenEuro);
-
-        assertEquals(new UsDollar(17.5), actual);
+        Money expected = new UsDollar(17.5);
+        assertTrue(actual.equals(expected));
     }
 
     @Test
@@ -87,8 +87,7 @@ public class MoneyTest {
     public void differentCurrenciesAreEqualWhenExchangeIsRight() {
         Money tenDollar = new UsDollar(10);
         Money twelveEuro = new Euro(12);
-
-        boolean actual = twelveEuro.isSameAs(tenDollar);
+        boolean actual = twelveEuro.equals(tenDollar);
 
         assertTrue(actual);
     }

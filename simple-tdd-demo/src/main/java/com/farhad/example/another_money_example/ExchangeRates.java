@@ -58,7 +58,7 @@ public static final class InMemoryExchangeRates extends ExchangeRates {
                     {
                         put(UsDollar, 1.0);
                         put(KoreanWon, 1100.0);
-                        // put(Euro, 1.2);
+                        put(Euro, 1.2);
                     }
                 });
 
