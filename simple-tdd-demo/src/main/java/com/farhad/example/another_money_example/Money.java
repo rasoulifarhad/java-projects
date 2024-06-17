@@ -1,17 +1,13 @@
 package com.farhad.example.another_money_example;
 
-import com.farhad.example.another_money_example.Currency.DefaultCurrency;
-
 public class Money {
     
     private double amount;
     private Currency currency;
     private IExchangeRates exchangeRates;
 
-    public Money(double amount, Currency currency) {
-        this.amount = amount;
-        this.currency = currency;
-        this.exchangeRates = new ExchangeRates();
+    protected Money(double amount, Currency currency) {
+        this(amount, currency, new ExchangeRates());
     }
 
     private Money(double amount, Currency currency, IExchangeRates exchangeRates) {
@@ -21,15 +17,15 @@ public class Money {
     }
 
     public static Money euro(double amount) {
-        return new Money(amount, DefaultCurrency.Euro);
+        return new Euro(amount);
     }
 
     public static Money dollar(double amount) {
-        return new Money(amount, DefaultCurrency.UsDollar);
+        return new UsDollar(amount);
     }
     
     public static Money won(double amount){
-        return new Money(amount, DefaultCurrency.KoreanWon);
+        return new KoreanWon(amount);
     }
 
     public Money to(Currency currency) {

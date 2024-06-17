@@ -14,8 +14,6 @@ import java.util.Random;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.farhad.example.another_money_example.Currency.DefaultCurrency;
-
 public class MoneyTest {
 
     @Test
@@ -128,26 +126,16 @@ public class MoneyTest {
 
         List<Money> source = new ArrayList<>(
             Arrays.asList(
-                new Money(value, DefaultCurrency.Euro),
-                new Money(value, DefaultCurrency.KoreanWon),
-                new Money(value, DefaultCurrency.UsDollar)));
+                new Euro(value), new KoreanWon(value), new UsDollar(value)));
 
         List<Money> compare = new ArrayList<>(
             Arrays.asList(
-                new Money(value, DefaultCurrency.Euro),
-                new Money(value, DefaultCurrency.KoreanWon),
-                new Money(value, DefaultCurrency.UsDollar)));
+                new Euro(value), new KoreanWon(value), new UsDollar(value)));
 
         int index = new Random().nextInt(source.size());
         boolean actual = source.get(index).equals(compare.get(index));
         assertTrue(actual);
     }
 
-    @Test
-    public void usDolllarExists() {
-        Money subject = new UsDollar();
-        Money actual = subject.to(DefaultCurrency.UsDollar);
-        assertEquals(subject, actual);;
-    }
 
 }
