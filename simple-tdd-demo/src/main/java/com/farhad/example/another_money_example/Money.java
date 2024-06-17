@@ -1,5 +1,7 @@
 package com.farhad.example.another_money_example;
 
+import com.farhad.example.another_money_example.ExchangeRates.InMemoryExchangeRates;
+
 public abstract class Money {
     
     private double amount;

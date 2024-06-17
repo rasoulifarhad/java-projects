@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import com.farhad.example.another_money_example.ExchangeRates.InMemoryExchangeRates;
+
 public class ExchangeRatesTest {
 
     @Test
