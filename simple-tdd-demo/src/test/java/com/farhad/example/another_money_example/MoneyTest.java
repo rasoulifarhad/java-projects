@@ -18,55 +18,55 @@ public class MoneyTest {
 
     @Test
     public void asStringExists() {
-        Money money = Money.dollar(20);
+        Money money = new UsDollar(20);
         String actual = money.asString();
         assertEquals("[amount=20.0][currency=USD]", actual);
     }
 
     @Test
     public void fiveCurrencyPlus10CurrencyShouldBe15Currency() {
-        Money five = Money.dollar(5);
-        Money ten = Money.dollar(10);
+        Money five = new UsDollar(5);
+        Money ten = new UsDollar(10);
         Money actual = five.plus(ten);
-        assertEquals(Money.dollar(15), actual);
+        assertEquals(new UsDollar(15), actual);
     }
 
     @Test
     public void moneyTimes() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int multiplicand =  1 + new Random().nextInt(20);
-        Money subject = Money.dollar(value);
+        Money subject = new UsDollar(value);
         Money actual = subject.times(multiplicand);
-        assertEquals(Money.dollar(value * multiplicand), actual);
+        assertEquals(new UsDollar(value * multiplicand), actual);
     }
 
     @Test
     public void divideMoney() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
         int divisor =  1 + new Random().nextInt(20);
-        Money subject = Money.dollar(value);
+        Money subject = new UsDollar(value);
         Money actual = subject.divide(divisor);
-        assertEquals(Money.dollar(value / divisor), actual);
+        assertEquals(new UsDollar(value / divisor), actual);
     }
 
     @Test
     public void moneyEqualsSameMoney() {
-        Money subject = Money.euro(12.0);
-        boolean actual = subject.equals(Money.euro(12.0));
+        Money subject = new Euro(12.0);
+        boolean actual = subject.equals(new Euro(12.0));
         assertTrue(actual);
     }
 
     @Test
     @Disabled
     public void eurosAndWonAreNotEqual() {
-        assertFalse(Money.euro(12.0).equals(Money.won(12.0)));
+        assertFalse(new Euro(12.0).equals(new KoreanWon(12.0)));
     }
 
     @Test
     public void SameTypesAreEqual() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
-        List<Money> source = new ArrayList<>(Arrays.asList(Money.euro(value), Money.won(value), Money.dollar(value)));
-        List<Money> compare = new ArrayList<>(Arrays.asList(Money.euro(value), Money.won(value), Money.dollar(value)));
+        List<Money> source = new ArrayList<>(Arrays.asList(new Euro(value), new KoreanWon(value), new UsDollar(value)));
+        List<Money> compare = new ArrayList<>(Arrays.asList(new Euro(value), new KoreanWon(value), new UsDollar(value)));
         int index = new Random().nextInt(source.size());
         boolean actual = source.get(index).equals(compare.get(index));
         assertTrue(actual);
@@ -74,19 +74,19 @@ public class MoneyTest {
 
     @Test
     public void fiveDollarsPlusTenEuroShouldBeSeventeenDollars() {
-        Money fiveDollar = Money.dollar(5.5);
-        Money tenEuro = Money.euro(10);
+        Money fiveDollar = new UsDollar(5.5);
+        Money tenEuro = new Euro(10);
 
         Money actual = fiveDollar.plus(tenEuro);
 
-        assertEquals(Money.dollar(17.5), actual);
+        assertEquals(new UsDollar(17.5), actual);
     }
 
     @Test
     // @Disabled
     public void differentCurrenciesAreEqualWhenExchangeIsRight() {
-        Money tenDollar = Money.dollar(10);
-        Money twelveEuro = Money.euro(12);
+        Money tenDollar = new UsDollar(10);
+        Money twelveEuro = new Euro(12);
 
         boolean actual = twelveEuro.equals(tenDollar);
 
@@ -96,8 +96,8 @@ public class MoneyTest {
     @Test
     public void differentCurrenciesOfSameValueAreNotEqual() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
-        Money euro = Money.euro(value);
-        Money dollar = Money.dollar(value);
+        Money euro = new Euro(value);
+        Money dollar = new UsDollar(value);
 
         boolean actual = euro.equals(dollar);
         assertFalse(actual);
@@ -106,18 +106,18 @@ public class MoneyTest {
     @Test
     public void convertFromUsdToWon() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
-        Money subject = Money.dollar(value);
+        Money subject = new UsDollar(value);
 
         Money actual = subject.to(KoreanWon);
-        assertEquals(Money.won(value * 1100), actual);
+        assertEquals(new KoreanWon(value * 1100), actual);
     }
 
     @Test
     public void convertFromDollarToEuro() {
         double value = Double.valueOf(1 + new Random().nextInt(20));
-        Money subject = Money.dollar(value);
+        Money subject = new UsDollar(value);
         Money actual = subject.to(Euro);
-        assertEquals(Money.euro(value * 1.2), actual);
+        assertEquals(new Euro(value * 1.2), actual);
     }
 
     @Test

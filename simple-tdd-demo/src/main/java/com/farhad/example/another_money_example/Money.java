@@ -1,6 +1,6 @@
 package com.farhad.example.another_money_example;
 
-public class Money {
+public abstract class Money {
     
     private double amount;
     private Currency currency;
@@ -16,34 +16,22 @@ public class Money {
         this.exchangeRates = exchangeRates;
     }
 
-    public static Money euro(double amount) {
-        return new Euro(amount);
-    }
-
-    public static Money dollar(double amount) {
-        return new UsDollar(amount);
-    }
-    
-    public static Money won(double amount){
-        return new KoreanWon(amount);
-    }
-
     public Money to(Currency currency) {
         double exchangeRate = exchangeRates.from(this.currency).to(currency);
-        return new Money(amount * exchangeRate, currency);
+        return new InnerMoney(amount * exchangeRate, currency);
     }
 
     public Money plus(Money addend) {
         double exchangeRate = exchangeRates.from(this.currency).to(addend.currency);
-        return new Money(this.amount + (addend.amount * exchangeRate), this.currency);
+        return new InnerMoney(this.amount + (addend.amount * exchangeRate), this.currency);
     }
 
     public Money times(int multiplicand) {
-        return new Money(amount * multiplicand, currency);
+        return new InnerMoney(amount * multiplicand, currency);
     }
 
     public Money divide(int divisor) {
-        return new Money(amount / divisor, currency);
+        return new InnerMoney(amount / divisor, currency);
     }
 
     public String asString() {
@@ -80,8 +68,9 @@ public class Money {
     }
 
     private boolean classEquals(Object obj) {
-        if (getClass() != obj.getClass())
-            return false;
+        // if (getClass() != obj.getClass())
+        //     return false;
+        // return true;
         return true;
     }
 
@@ -95,5 +84,11 @@ public class Money {
         return amount + " " +  currency;
     }
 
-   
+   private  static class InnerMoney  extends Money {
+
+    protected InnerMoney(double amount, Currency currency) {
+        super(amount, currency);
+    }
+
+   }
 }

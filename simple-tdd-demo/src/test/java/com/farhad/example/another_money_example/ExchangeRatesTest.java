@@ -31,12 +31,12 @@ public class ExchangeRatesTest {
 
     @Test
     public void fiveDollarsPlusTenEuroShouldBeSeventeenDollars() {
-        Money fiveDollar = Money.dollar(5);
-        Money tenEuro = Money.euro(10);
+        Money fiveDollar = new UsDollar(5);
+        Money tenEuro = new Euro(10);
 
         Money actual = fiveDollar.plus(tenEuro);
 
-        assertEquals(Money.dollar(17), actual);
+        assertEquals(new UsDollar(17), actual);
     }
 
     @Test
