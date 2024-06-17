@@ -8,7 +8,7 @@ public class Money {
     private Currency currency;
     private IExchangeRates exchangeRates;
 
-    private Money(double amount, Currency currency) {
+    public Money(double amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
         this.exchangeRates = new ExchangeRates();
