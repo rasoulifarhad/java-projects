@@ -12,7 +12,7 @@ public class ExchangeRatesTest {
 
     @Test
     public void NoExchangeRateIsException() {
-        ExchangeRates subject = new ExchangeRates();
+        ExchangeRates subject = new InMemoryExchangeRates();
 
         assertThrows(NoExchangeRateAvailableException.class, () -> {
             subject.from(UsDollar).to(Fake);
@@ -21,7 +21,7 @@ public class ExchangeRatesTest {
 
     @Test
     public void NoFromExchangeRateIsException() {
-        ExchangeRates subject = new ExchangeRates();
+        ExchangeRates subject = new InMemoryExchangeRates();
 
         assertThrows(NoExchangeRateAvailableException.class, () -> {
             subject.from(Fake);
@@ -41,7 +41,7 @@ public class ExchangeRatesTest {
 
     @Test
     public void exchangeFromUsdToKrw() {
-        ExchangeRates subject = new ExchangeRates();
+        ExchangeRates subject = new InMemoryExchangeRates();
 
         double actual = subject.from(UsDollar).to(KoreanWon);
         assertEquals(1100, actual);

@@ -7,7 +7,7 @@ public abstract class Money {
     private IExchangeRates exchangeRates;
 
     protected Money(double amount, Currency currency) {
-        this(amount, currency, new ExchangeRates());
+        this(amount, currency, new InMemoryExchangeRates());
     }
 
     private Money(double amount, Currency currency, IExchangeRates exchangeRates) {
