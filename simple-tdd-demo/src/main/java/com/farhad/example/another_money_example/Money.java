@@ -18,14 +18,13 @@ public abstract class Money {
         this.exchangeRates = exchangeRates;
     }
 
+    public Money plus(Money addend) {
+        return new InnerMoney(this.amount + (addend.to(this.currency).amount), this.currency);
+    }
+
     public Money to(Currency currency) {
         double exchangeRate = exchangeRates.from(this.currency).to(currency);
         return new InnerMoney(amount * exchangeRate, currency);
-    }
-
-    public Money plus(Money addend) {
-        double exchangeRate = exchangeRates.from(addend.currency).to(this.currency);
-        return new InnerMoney(this.amount + (addend.amount * exchangeRate), this.currency);
     }
 
     public Money times(int multiplicand) {
@@ -77,8 +76,7 @@ public abstract class Money {
     }
 
     private boolean equalsMoney(Money other) {
-        double exchangeRate = exchangeRates.from(other.currency).to(this.currency);
-        return this.amount == (other.amount * exchangeRate);
+        return this.amount == other.to(this.currency).amount;
     }
 
     public boolean isSameAs(Money other) {
