@@ -1,9 +1,11 @@
 package com.farhad.example.another_money_example;
 
+import static com.farhad.example.another_money_example.Currency.DefaultCurrency.Euro;
+import static com.farhad.example.another_money_example.Currency.DefaultCurrency.KoreanWon;
+import static com.farhad.example.another_money_example.Currency.DefaultCurrency.UsDollar;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.farhad.example.another_money_example.Currency.DefaultCurrency;
 
 public abstract class ExchangeRates implements IExchangeRates {
 
@@ -51,26 +53,27 @@ public static final class InMemoryExchangeRates extends ExchangeRates {
 
             {
                 Map<Currency, Double> m;
-                m = computeIfAbsent(DefaultCurrency.UsDollar, s -> new HashMap<>());
+                m = computeIfAbsent(UsDollar, s -> new HashMap<>());
                 m.putAll(new HashMap<Currency, Double>() {
                     {
-                        put(DefaultCurrency.UsDollar, 1.0);
-                        put(DefaultCurrency.KoreanWon, 1100.0);
-                        put(DefaultCurrency.Euro, 1.2);
+                        put(UsDollar, 1.0);
+                        put(KoreanWon, 1100.0);
+                        // put(Euro, 1.2);
                     }
                 });
 
-                m = computeIfAbsent(DefaultCurrency.Euro, s -> new HashMap<>());
+                m = computeIfAbsent(Euro, s -> new HashMap<>());
                 m.putAll(new HashMap<Currency, Double>() {
                     {
-                        put(DefaultCurrency.Euro, 1.0);
+                        put(Euro, 1.0);
+                        put(UsDollar, 1.2);
                     }
                 });
 
-                m = computeIfAbsent(DefaultCurrency.KoreanWon, s -> new HashMap<>());
+                m = computeIfAbsent(KoreanWon, s -> new HashMap<>());
                 m.putAll(new HashMap<Currency, Double>() {
                     {
-                        put(DefaultCurrency.KoreanWon, 1.0);
+                        put(KoreanWon, 1.0);
                     }
                 });
             }
