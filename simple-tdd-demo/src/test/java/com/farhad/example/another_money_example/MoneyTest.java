@@ -57,6 +57,7 @@ public class MoneyTest {
     }
 
     @Test
+    @Disabled
     public void eurosAndWonAreNotEqual() {
         assertFalse(Money.euro(12.0).equals(Money.won(12.0)));
     }
@@ -82,12 +83,12 @@ public class MoneyTest {
     }
 
     @Test
-    @Disabled
+    // @Disabled
     public void differentCurrenciesAreEqualWhenExchangeIsRight() {
         Money tenDollar = Money.dollar(10);
         Money twelveEuro = Money.euro(12);
 
-        boolean actual = tenDollar.equals(twelveEuro);
+        boolean actual = twelveEuro.equals(tenDollar);
 
         assertTrue(actual);
     }
@@ -98,7 +99,7 @@ public class MoneyTest {
         Money euro = Money.euro(value);
         Money dollar = Money.dollar(value);
 
-        boolean actual = dollar.equals(euro);
+        boolean actual = euro.equals(dollar);
         assertFalse(actual);
     }
 

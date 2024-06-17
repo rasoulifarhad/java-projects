@@ -90,16 +90,8 @@ public class Money {
     }
 
     private boolean equalsMoney(Money other) {
-        // double exchangeRate = exchangeRates.from(this.currency).to(other.currency);
-
-        if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
-            return false;
-        if (currency == null) {
-            if (other.currency != null)
-                return false;
-        } else if (!currency.equals(other.currency))
-            return false;
-        return true;
+        double exchangeRate = exchangeRates.from(other.currency).to(this.currency);
+        return this.amount == (other.amount * exchangeRate);
     }
 
     @Override
