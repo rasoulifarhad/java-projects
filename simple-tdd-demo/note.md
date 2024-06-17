@@ -34,3 +34,13 @@ See https://github.com/PacktPublishing/Test-Driven-Development-with-Java
 See https://quinngil.com/2022/05/27/refactor-money-with-tdd-01/
 See https://github.com/ythirion/TDD-money-problem/tree/main
 See https://github.com/ythirion/clean-crafter
+
+
+Some bonus techniques when working in projects.
+
+- PrivateCtor - Utility class to access private constructors
+- No Primitives - Exchange Rate returns a double
+- MicroObjects - We haven't hit the size limit yet; 
+- ToSystemType - 
+- ...
+- ...
