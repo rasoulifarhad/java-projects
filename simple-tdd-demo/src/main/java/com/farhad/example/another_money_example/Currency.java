@@ -15,6 +15,9 @@ public abstract class Currency {
         return this.currency;
     }
 
+    public String toString() {
+        return asString();
+    }
 
     public static class DefaultCurrency extends Currency{
 

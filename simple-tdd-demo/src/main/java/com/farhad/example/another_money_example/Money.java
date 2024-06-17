@@ -68,15 +68,19 @@ public abstract class Money {
     }
 
     private boolean classEquals(Object obj) {
-        // if (getClass() != obj.getClass())
-        //     return false;
-        // return true;
+        if (!Money.class.isAssignableFrom(obj.getClass())) 
+            return false;
         return true;
+        // return true;
     }
 
     private boolean equalsMoney(Money other) {
         double exchangeRate = exchangeRates.from(other.currency).to(this.currency);
         return this.amount == (other.amount * exchangeRate);
+    }
+
+    public boolean isSameAs(Money other) {
+        return other == null ? false : equalsMoney(other);
     }
 
     @Override
