@@ -24,7 +24,7 @@ public abstract class Money {
     }
 
     public Money plus(Money addend) {
-        double exchangeRate = exchangeRates.from(this.currency).to(addend.currency);
+        double exchangeRate = exchangeRates.from(addend.currency).to(this.currency);
         return new InnerMoney(this.amount + (addend.amount * exchangeRate), this.currency);
     }
 
