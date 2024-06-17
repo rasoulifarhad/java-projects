@@ -18,9 +18,9 @@
 		<delombok-maven-plugin.version>1.18.20.0</delombok-maven-plugin.version>
 		<lombok.version>1.18.26</lombok.version>
 		<slf4j.version>2.0.6</slf4j.version> 
-		<jbehave.core.version>4.8.3</jbehave.core.version>
-		<jbehave.web.version>4.8.3</jbehave.web.version>
-		<jbehave.site.version>3.4</jbehave.site.version>		
+		<jbehave.core.version>5.2.0</jbehave.core.version>
+		<jbehave.web.version>5.2.0</jbehave.web.version>
+		<jbehave.site.version>3.5</jbehave.site.version>		
 	</properties>
 
 	<dependencyManagement>
@@ -149,7 +149,7 @@
 			<plugin>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-maven-plugin</artifactId>
-			<version>${jbehave.version}</version>
+			<version>${jbehave.core.version}</version>
 			</plugin>
 		</plugins>
 		</pluginManagement>	

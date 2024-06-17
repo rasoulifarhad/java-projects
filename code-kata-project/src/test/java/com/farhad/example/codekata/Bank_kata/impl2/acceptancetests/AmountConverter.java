@@ -1,25 +1,19 @@
 package com.farhad.example.codekata.Bank_kata.impl2.acceptancetests;
 
-import java.lang.reflect.Type;
+public class AmountConverter  /*implements ParameterConverter<Amount> */{
 
-import org.jbehave.core.steps.ParameterConverters.ParameterConverter;
+    // @Override
+    // public boolean accept(Type type) {
+    //     if (type instanceof Class<?>) {
+		// 	return Amount.class.isAssignableFrom((Class<?>) type);
+		// }
+		// return false;   
+    // }
 
-import com.farhad.example.codekata.Bank_kata.impl2.domain.Amount;
-
-public class AmountConverter  implements ParameterConverter<Amount> {
-
-    @Override
-    public boolean accept(Type type) {
-        if (type instanceof Class<?>) {
-			return Amount.class.isAssignableFrom((Class<?>) type);
-		}
-		return false;   
-    }
-
-    @Override
-    public Amount convertValue(String value, Type type) {
-		return Amount.amountOf(Integer.valueOf(value));   
-    }
+    // @Override
+    // public Amount convertValue(String value, Type type) {
+		// return Amount.amountOf(Integer.valueOf(value));   
+    // }
 
     
 }
