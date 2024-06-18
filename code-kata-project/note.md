@@ -35,4 +35,14 @@ See https://www.yegor256.com/2016/04/19/object-must-not-be-configurable.html
 See https://quinngil.com/uobjects/
 See https://quinngil.com/2022/02/24/tdd-like-you-mean-it-10/
 See https://quinngil.com/microobjects-technical-practices/
+See https://github.com/emilybache/EventParserDesignKata
+
+See https://github.com/emilybache/Email-Sender-Refactoring-Kata
+See https://github.com/emilybache/starter
+See https://github.com/isidore/Necklace-Refactoring-Kata
+See https://github.com/JayBazuzi/Refactoring-Kata-Lift-Pass-Pricing
+See https://github.com/JayBazuzi/CustomerSync-Refactoring-Kata
+See https://github.com/MyTurnyet/99bottles_java
+
+
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.

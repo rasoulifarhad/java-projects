@@ -2,52 +2,38 @@ package com.farhad.example.another_money_example;
 
 import com.farhad.example.another_money_example.ExchangeRates.InMemoryExchangeRates;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+
 public abstract class Money {
     
-    private double amount;
-    private Currency currency;
-    private IExchangeRates exchangeRates;
 
-    protected Money(double amount, Currency currency) {
-        this(amount, currency, new InMemoryExchangeRates());
+    public static final double _double(Money origin) {
+        return origin.amountValue();
     }
 
-    private Money(double amount, Currency currency, IExchangeRates exchangeRates) {
-        this.amount = amount;
-        this.currency = currency;
-        this.exchangeRates = exchangeRates;
+    public static final Currency _currency(Money origin) {
+        return origin.currencyValue();
     }
 
-    public Money plus(Money addend) {
-        return new InnerMoney(this.amount + (addend.to(this.currency).amount), this.currency);
-    }
+    protected abstract double amountValue();
 
-    public Money to(Currency currency) {
-        double exchangeRate = exchangeRates.from(this.currency).to(currency);
-        return new InnerMoney(amount * exchangeRate, currency);
-    }
+    protected abstract Currency currencyValue();
 
     public Money times(int multiplicand) {
-        return new InnerMoney(amount * multiplicand, currency);
+        return new TimesMney(this, multiplicand);
     }
 
     public Money divide(int divisor) {
-        return new InnerMoney(amount / divisor, currency);
+        return new DivideMoney(this, divisor);
     }
 
-    public String asString() {
-        return String.format("[amount=%.1f][currency=%s]",amount, currency.asString());
+    public Money plus(Money addend) {
+        return new PlusMoney(this, addend);
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        long temp;
-        temp = Double.doubleToLongBits(amount);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((currency == null) ? 0 : currency.hashCode());
-        return result;
+    public Money to(Currency currency) {
+        return new ConvertToMoney(this, currency);
     }
 
     @Override
@@ -60,6 +46,22 @@ public abstract class Money {
         }
         return equalsMoney((Money) obj);
     }
+
+    public String asString() {
+        return String.format("[amount=%.1f][currency=%s]",amountValue(), currencyValue().asString());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = Double.doubleToLongBits(amountValue());
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((currencyValue() == null) ? 0 : currencyValue().hashCode());
+        return result;
+    }
+
     
     private boolean referenceEquals(Object obj) {
         if (this == obj)
@@ -76,7 +78,7 @@ public abstract class Money {
     }
 
     private boolean equalsMoney(Money other) {
-        return this.amount == other.to(this.currency).amount;
+        return this.amountValue() == other.to(this.currencyValue()).amountValue();
     }
 
     public boolean isSameAs(Money other) {
@@ -85,14 +87,87 @@ public abstract class Money {
 
     @Override
     public String toString() {
-        return amount + " " +  currency;
+        return amountValue() + " " +  currencyValue();
     }
 
-   private  static class InnerMoney  extends Money {
+   @RequiredArgsConstructor
+   public static class TimesMney extends Money {
 
-    protected InnerMoney(double amount, Currency currency) {
-        super(amount, currency);
+    private final Money origin;
+    private final int multiplicand;
+
+    @Override
+    protected double amountValue() {
+        return _double(origin) * multiplicand;
     }
 
+    @Override
+    protected Currency currencyValue() {
+        return _currency(origin);
+    }
+
+   }
+
+   @RequiredArgsConstructor
+   public static class DivideMoney extends Money {
+
+    private final Money origin;
+    private final int divisor;
+
+    @Override
+    protected double amountValue() {
+        return _double(origin) / divisor;
+    }
+
+    @Override
+    protected Currency currencyValue() {
+        return _currency(origin);
+    }
+
+   }
+
+   @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+   public static class  ConvertToMoney extends Money {
+   
+    private final Money origin;
+    private final Currency toCurrency;
+    private final IExchangeRates exchangeRates;
+
+
+    public ConvertToMoney(Money origin, Currency toCurrency) {
+        this(origin, toCurrency, new InMemoryExchangeRates());
+    }
+
+
+    @Override
+    protected double amountValue() {
+        return _double(origin) * exchangeRates.from(_currency(origin)).to(toCurrency);
+    }
+
+
+    @Override
+    protected Currency currencyValue() {
+        return toCurrency;
+    }
+
+   }
+
+   @RequiredArgsConstructor
+   public static class PlusMoney extends Money {
+
+    private final Money augend;
+    private final Money addend;
+
+    @Override
+    protected double amountValue() {
+        return _double(augend) + _double(addend.to(currencyValue()));
+    }
+
+    @Override
+    protected Currency currencyValue() {
+        return _currency(augend);
+    }
+   
+    
    }
 }
