@@ -1,5 +1,7 @@
 package com.farhad.example.another_money_example;
 
+import static com.farhad.example.another_money_example.Money.EqualMoney.bool;
+
 import com.farhad.example.another_money_example.ExchangeRates.InMemoryExchangeRates;
 
 import lombok.AccessLevel;
@@ -36,6 +38,10 @@ public abstract class Money {
         return new ConvertToMoney(this, currency);
     }
 
+    private boolean equals(Money other) {
+        return bool(new EqualMoney(this, other));
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(referenceEquals(obj)) {
@@ -44,7 +50,7 @@ public abstract class Money {
         if(!classEquals(obj)) {
             return false;
         }
-        return equalsMoney((Money) obj);
+        return equals((Money) obj);
     }
 
     @Override
@@ -70,15 +76,6 @@ public abstract class Money {
         if (!Money.class.isAssignableFrom(obj.getClass())) 
             return false;
         return true;
-        // return true;
-    }
-
-    private boolean equalsMoney(Money other) {
-        return this.amountValue() == other.to(this.currencyValue()).amountValue();
-    }
-
-    public boolean isSameAs(Money other) {
-        return other == null ? false : equalsMoney(other);
     }
 
     @Override
@@ -167,7 +164,27 @@ public abstract class Money {
     protected Currency currencyValue() {
         return _currency(augend);
     }
-   
+   }
+
+   @RequiredArgsConstructor
+   public static class EqualMoney {
+
+    private static final double tolerance = 0.0001;
+
+    private final Money lhs;
+    private final Money rhs;
+
+    public static boolean bool(EqualMoney origin){
+        return origin.value();
+    }
+
+    private boolean value() {
+        double lhsAmount = _double(lhs);
+        Currency lhsCurrency = _currency(lhs);
+        double convertedAmount = _double(rhs.to(lhsCurrency));
+        return Math.abs(lhsAmount - convertedAmount) < tolerance;
+    }
+
     
    }
 }
