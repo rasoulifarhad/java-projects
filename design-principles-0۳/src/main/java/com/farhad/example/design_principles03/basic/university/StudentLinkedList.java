@@ -58,9 +58,9 @@ public class StudentLinkedList implements StudentList {
         
         StudentList students;
         students = new StudentLinkedList();
-        Student s1 = new Student("s1", "address1");
+        Student s1 = new UndergraduatedStudent("s1", "address1");
         students.add(s1);
-        s1 = new Student("s2", "address2");
+        s1 = new UndergraduatedStudent("s2", "address2");
         students.add(s1);
         students.print();
 

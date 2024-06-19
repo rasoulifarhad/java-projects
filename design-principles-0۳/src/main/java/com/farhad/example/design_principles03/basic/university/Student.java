@@ -3,7 +3,7 @@ package com.farhad.example.design_principles03.basic.university;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Student {
+public abstract class Student {
 
     private static double minimumGPA;
     @Getter
@@ -35,6 +35,13 @@ public class Student {
         return minimumGPA;
     }
 
+
+    public boolean isInGoodStanding() {
+        return gpa >= getGPACutoff();
+    }
+
+    protected abstract double getGPACutoff();
+
     // grade point average
     // it changes when a student gets a grade for a course.
     @Getter
@@ -64,7 +71,7 @@ public class Student {
 
     public static void main(String[] args) {
         
-        Student aStudent = new Student("me");
+        Student aStudent = new UndergraduatedStudent("me");
         Student.setMinimumGPA(2.0);;
         Course aCourse = new Course("1", "name");
         aStudent.addCourse(aCourse);
@@ -77,8 +84,8 @@ public class Student {
         aStudent.assignGrade(aCourse, 'B');
         System.out.println(aStudent.getGpa());
 
-        Student student1 = new Student("Tom", "1 Main Street");
-        Student student2 = new Student("Tom", "1 Main Street");
+        Student student1 = new UndergraduatedStudent("Tom", "1 Main Street");
+        Student student2 = new UndergraduatedStudent("Tom", "1 Main Street");
         System.out.println(student1.equals(student2));
 
     }
