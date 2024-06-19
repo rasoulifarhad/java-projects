@@ -29,3 +29,7 @@ When no more discs can be inserted, the game finishes and it is considered a dra
 Requirement 6
 
 if a player inserts a disc and connects more than three discs of his color in a straight vertical line, then that player wins.
+
+Requirement 7
+
+If a player inserts a disc and connects more than three discs of his color in a straight horizontal line, then that player wins.

@@ -64,7 +64,17 @@ public class Connect4Tdd {
             if(winPattern.matcher(vertical).matches()) {
                 winner = color;
             }
-    
+        }
+        if (winner.isEmpty()) {
+            String color = board[row][column];
+            String horizontal = IntStream.range(0, COLUMNS)
+                .mapToObj(c -> board[row][c])
+                .reduce(String::concat)
+                .get();
+            Pattern winPattern = Pattern.compile(".*" + color + "{" + DISC_TO_WIN +  "}.*");
+            if(winPattern.matcher(horizontal).matches()) {
+                winner = color;
+            }
         }
     }
 

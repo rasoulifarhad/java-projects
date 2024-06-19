@@ -127,4 +127,16 @@ public class Connect4TddTest {
         assertThat(subject.getWinner(), is("R"));
     }
 
+    @Test 
+    public void when4HorizontalDiscsAreConnectedThenPlayerWins() {
+        int column;
+        for (column = 0; column < 3; column++) {
+            subject.putDiscInColumn(column); // R
+            subject.putDiscInColumn(column); // G
+        }
+        assertThat(subject.getWinner(), isEmptyString());
+        subject.putDiscInColumn(column); // R
+        assertThat(subject.getWinner(), is("R"));
+    }
+
 }
