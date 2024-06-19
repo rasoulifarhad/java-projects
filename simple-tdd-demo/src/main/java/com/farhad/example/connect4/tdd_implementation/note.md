@@ -33,3 +33,7 @@ if a player inserts a disc and connects more than three discs of his color in a 
 Requirement 7
 
 If a player inserts a disc and connects more than three discs of his color in a straight horizontal line, then that player wins.
+
+Requirement 8
+
+If a player inserts a disc and connects more than three discs of his colour in a straight diagonal line, then that player wins.

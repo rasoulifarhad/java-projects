@@ -54,27 +54,51 @@ public class Connect4Tdd {
     }
 
     private void checkWinner(int row, int column) {
+        String color = board[row][column];
+        Pattern winPattern = Pattern.compile(".*" + color + "{" + DISC_TO_WIN +  "}.*");
         if(winner.isEmpty()) {
-            String color = board[row][column];
             String vertical = IntStream.range(0, ROWS)
                 .mapToObj(r -> board[r][column])
                 .reduce(String::concat)
                 .get();
-            Pattern winPattern = Pattern.compile(".*" + color + "{" + DISC_TO_WIN +  "}.*");
             if(winPattern.matcher(vertical).matches()) {
                 winner = color;
             }
         }
         if (winner.isEmpty()) {
-            String color = board[row][column];
             String horizontal = IntStream.range(0, COLUMNS)
                 .mapToObj(c -> board[row][c])
                 .reduce(String::concat)
                 .get();
-            Pattern winPattern = Pattern.compile(".*" + color + "{" + DISC_TO_WIN +  "}.*");
             if(winPattern.matcher(horizontal).matches()) {
                 winner = color;
             }
+        }
+
+        if(winner.isEmpty()) {
+            int start = Math.min(row, column);
+            int r = row - start;
+            int c = column - start;
+            StringJoiner stringJoiner = new StringJoiner("");
+            do {
+                stringJoiner.add(board[r++][c++]);
+            } while( r < ROWS && c < COLUMNS);
+            if (winPattern.matcher(stringJoiner.toString()).matches()) {
+                winner = color;
+            }
+        }
+        if(winner.isEmpty()) {
+            int start = Math.min(ROWS - row - 1, column);
+            int r = row + start;
+            int c = column - start;
+            StringJoiner stringJoiner = new StringJoiner("");
+            do {
+                stringJoiner.add(board[r--][c++]);
+            } while( r >= 0 && c < COLUMNS);
+            if (winPattern.matcher(stringJoiner.toString()).matches()) {
+                winner = color;
+            }
+
         }
     }
 
@@ -100,6 +124,7 @@ public class Connect4Tdd {
     }
     
     private void printBoard() {
+        System.out.println();
         for (int row = ROWS - 1; row >= 0; row--) {
             StringJoiner stringJoiner = new StringJoiner(DELIMITER,DELIMITER,DELIMITER);
             Stream.of(board[row])
@@ -114,5 +139,22 @@ public class Connect4Tdd {
 
     public String getWinner() {
         return winner;
+    }
+
+    public static void main(String[] args) {
+        Connect4Tdd game = new Connect4Tdd(new PrintStream(System.out));
+        int [] gamePlay = new int[] {1, 2, 2, 3, 4, 3, 3, 4, 4, 5, 4};
+        for (int column : gamePlay) {
+            game.putDiscInColumn(column);
+        }
+        System.out.println(game.getWinner());
+
+        Connect4Tdd game2 = new Connect4Tdd(new PrintStream(System.out));
+        int [] gamePlay2 = new int[] {3, 4, 2, 3, 2, 2, 1, 1, 1, 1};
+        for (int column : gamePlay2) {
+            game2.putDiscInColumn(column);
+        }
+        System.out.println(game2.getWinner());
+
     }
 }

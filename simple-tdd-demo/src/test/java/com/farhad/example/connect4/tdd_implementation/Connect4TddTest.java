@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -137,6 +138,34 @@ public class Connect4TddTest {
         assertThat(subject.getWinner(), isEmptyString());
         subject.putDiscInColumn(column); // R
         assertThat(subject.getWinner(), is("R"));
+    }
+
+    @Test 
+    public void when4Diagonal1DiscsAreConnectedThenThatPlayerWins() {
+        int [] gamePlay = new int[] {1, 2, 2, 3, 4, 3, 3, 4, 4, 5, 4};
+        for (int column : gamePlay) {
+            subject.putDiscInColumn(column);
+        }
+        System.out.println(subject.getWinner());
+        assertThat(subject.getWinner(), is("R"));
+    }
+
+    @Test 
+    public void when4Diagonal2DiscsAreConnectedThenThatPlayerWins() {
+        int [] gamePlay = new int[] {3, 4, 2, 3, 2, 2, 1, 1, 1, 1};
+        for (int column : gamePlay) {
+            subject.putDiscInColumn(column);
+        }
+        assertThat(subject.getWinner(), is("G"));
+    }
+
+    @Test
+    public void t() {
+        Pattern p = Pattern.compile(".*R{4}.*");
+        assertTrue(p.matcher("RRRR ").matches());
+        assertTrue(p.matcher("RRRR ").matches());
+        assertTrue(p.matcher("RRRR ").matches());
+        assertTrue(p.matcher("RRRR ").matches());
     }
 
 }
