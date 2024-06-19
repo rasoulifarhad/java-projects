@@ -27,4 +27,15 @@ public class Student {
     }
 
 
+    public static void main(String[] args) {
+        
+        Student aStudent = new Student();
+        Course aCourse = new Course();
+        aStudent.addCourse(aCourse);
+
+        // The implied meaning is that the student has completed the 
+        // course (aCourse) with a grade of ’B’.
+        aStudent.assignGrade(aCourse, 'B');
+        System.out.println(aStudent.getGpa());
+    }
 }
