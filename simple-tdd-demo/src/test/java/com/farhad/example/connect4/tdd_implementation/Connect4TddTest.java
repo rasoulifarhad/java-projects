@@ -3,6 +3,7 @@ package com.farhad.example.connect4.tdd_implementation;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyString;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -113,6 +114,17 @@ public class Connect4TddTest {
             }
         }
         assertTrue(subject.isFinished(), "The game must be finished");
+    }
+
+    @Test 
+    public void when4VerticalDiscsAreConnectedThenPlayerWins() {
+        for (int row = 0; row < 3; row++) {
+            subject.putDiscInColumn(1); // R
+            subject.putDiscInColumn(2); // G
+        }
+        assertThat(subject.getWinner(), isEmptyString());
+        subject.putDiscInColumn(1); // R
+        assertThat(subject.getWinner(), is("R"));
     }
 
 }
