@@ -3,7 +3,9 @@ package com.farhad.example.connect4.tdd_implementation;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -97,4 +99,20 @@ public class Connect4TddTest {
         assertThat(output.toString(), 
             containsString("| |R| | | | | |"));
     }
+
+    @Test
+    public void whenTheGameStartsItIsNotFinished() {
+        assertFalse(subject.isFinished(), "The game must not be finished");
+    }
+
+    @Test
+    public void whenNoDiscCanBeIntroducedTheGameIsFinished() {
+        for (int row = 0; row < 6; row++) {
+            for (int column = 0; column < 7; column++) {
+                subject.putDiscInColumn(column);
+            }
+        }
+        assertTrue(subject.isFinished(), "The game must be finished");
+    }
+
 }
