@@ -5,6 +5,7 @@ import lombok.Setter;
 
 public class Student {
 
+    private static double minimumGPA;
     @Getter
     @Setter
     private String name;
@@ -25,6 +26,14 @@ public class Student {
         this.name = studentName;
         this.address = studentAddress;
     }   
+
+    public static void setMinimumGPA(double newMinimum) {
+        minimumGPA = newMinimum;
+    }
+
+    public static double getMinimumGPA() {
+        return minimumGPA;
+    }
 
     // grade point average
     // it changes when a student gets a grade for a course.
@@ -51,6 +60,7 @@ public class Student {
     public static void main(String[] args) {
         
         Student aStudent = new Student("me");
+        Student.setMinimumGPA(2.0);;
         Course aCourse = new Course();
         aStudent.addCourse(aCourse);
 
