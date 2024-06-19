@@ -2,6 +2,7 @@ package com.farhad.example.design_principles03.srp.good;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
