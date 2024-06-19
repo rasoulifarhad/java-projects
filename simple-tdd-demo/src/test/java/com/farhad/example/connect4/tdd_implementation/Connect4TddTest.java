@@ -62,4 +62,17 @@ public class Connect4TddTest {
             subject.putDiscInColumn(column);
         }, "No more room in column " + column);
     }
+
+    @Test
+    public void whenFirstPlayerPlaysThenDiscColorIsRed() {
+        assertThat(subject.getCurrentPlayer(), is("R"));
+    }
+
+    @Test
+    public void whenSecondPlayerPlaysThenDiscColorIsGreen() {
+        int column = 1;
+        subject.putDiscInColumn(column);
+        assertThat(subject.getCurrentPlayer(), is("G"));
+    }
+
 }

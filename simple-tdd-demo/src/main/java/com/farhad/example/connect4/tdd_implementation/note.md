@@ -10,3 +10,8 @@ We can split this requirement into the following tests:
 - When a disc is inserted into the board, the total number of discs increases
 - When a disc is put outside the boundaries, a Runtime Exception is thrown
 - When a disc is inserted in to a column and there's no room available for it, then a Runtime Exception is thrown
+
+
+Requirement 3
+
+It is a two-person game, so there is one colour for each player. One player uses red ('R') and the other one uses green ('G'). Players alternate turns, inserting one disc every time.

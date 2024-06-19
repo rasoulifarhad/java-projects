@@ -5,9 +5,12 @@ import java.util.stream.IntStream;
 
 public class Connect4Tdd {
 
+    private static final String RED = "R";
+    private static final String GREEN = "G";
     private static final String EMPTY = " ";
     private static final int COLUMNS = 7;
     private static final int ROWS = 6;
+    private String currentPlayer = RED;
 
     private String[][] board = new String[ROWS][COLUMNS];
 
@@ -34,8 +37,13 @@ public class Connect4Tdd {
         checkColumn(column);
         int row = getNumberOfDiscsInColumn(column);
         checkPositionToInsert(row, column);
-        board[row][column] = "X";
+        board[row][column] = currentPlayer;
+        switchPlayer();
         return row;
+    }
+
+    private void switchPlayer() {
+        currentPlayer = RED.equals(currentPlayer) ? GREEN : RED;
     }
 
     private void checkPositionToInsert(int row, int column) {
@@ -48,6 +56,10 @@ public class Connect4Tdd {
         if (column < 0 || column >= COLUMNS) {
             throw new RuntimeException("Invalid column " + column);
         }
+    }
+
+    public Object getCurrentPlayer() {
+        return currentPlayer;
     }
 
 }
