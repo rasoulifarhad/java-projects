@@ -14,7 +14,7 @@ public class Student {
     private String address;
 
     public Student() {
-        
+
     }
 
     public Student(String studentName) {
@@ -43,6 +43,10 @@ public class Student {
         computeGPA();
     }
 
+    @Override
+    public String toString() {
+        return String.format("Name %s Address %s  GPA %.2f",name, address, gpa);
+    }
 
     public static void main(String[] args) {
         
