@@ -57,6 +57,11 @@ public class Student {
         return String.format("Name %s Address %s  GPA %.2f",name, address, gpa);
     }
 
+    public boolean equals(Object anObject) {
+        Student student = (Student) anObject; 
+        return student.name.equals(name) && student.address.equals(address);
+    }
+
     public static void main(String[] args) {
         
         Student aStudent = new Student("me");
@@ -71,5 +76,10 @@ public class Student {
         // a grade of ‘B’.
         aStudent.assignGrade(aCourse, 'B');
         System.out.println(aStudent.getGpa());
+
+        Student student1 = new Student("Tom", "1 Main Street");
+        Student student2 = new Student("Tom", "1 Main Street");
+        System.out.println(student1.equals(student2));
+
     }
 }
