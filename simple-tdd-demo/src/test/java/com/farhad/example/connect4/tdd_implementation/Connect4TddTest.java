@@ -1,8 +1,13 @@
 package com.farhad.example.connect4.tdd_implementation;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,10 +15,14 @@ import org.junit.jupiter.api.Test;
 public class Connect4TddTest {
 
     private Connect4Tdd subject;
+    private OutputStream output;
 
     @BeforeEach
     public void srtup() {
-        subject = new Connect4Tdd();
+        output = new ByteArrayOutputStream();
+        subject = new Connect4Tdd(
+            new PrintStream(output)
+        );
     }
 
     @Test
@@ -75,4 +84,17 @@ public class Connect4TddTest {
         assertThat(subject.getCurrentPlayer(), is("G"));
     }
 
+    @Test
+    public void whenAskedForCurrentPlayerTheOutputNotice() {
+        subject.getCurrentPlayer();
+        assertThat(output.toString(), containsString("Player R turn"));
+    }
+    @Test
+    public void whenADiscIsIntroducedTheBoardIsPrinted() {
+
+        int column = 1;
+        subject.putDiscInColumn(column);
+        assertThat(output.toString(), 
+            containsString("| |R| | | | | |"));
+    }
 }

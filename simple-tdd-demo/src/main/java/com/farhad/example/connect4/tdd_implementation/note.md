@@ -15,3 +15,8 @@ We can split this requirement into the following tests:
 Requirement 3
 
 It is a two-person game, so there is one colour for each player. One player uses red ('R') and the other one uses green ('G'). Players alternate turns, inserting one disc every time.
+
+
+Requirement 4
+
+We want feedback when either an event or an error occurs within the game. The output shows the status of the board on every move.
