@@ -36,7 +36,7 @@ public class Student {
 
     public static void main(String[] args) {
         
-        Student aStudent = new Student();
+        Student aStudent = new Student("me");
         Course aCourse = new Course();
         aStudent.addCourse(aCourse);
 
