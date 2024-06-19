@@ -61,7 +61,7 @@ public class Student {
         
         Student aStudent = new Student("me");
         Student.setMinimumGPA(2.0);;
-        Course aCourse = new Course();
+        Course aCourse = new Course("1", "name");
         aStudent.addCourse(aCourse);
 
         // The implied meaning is that the student has completed the 
