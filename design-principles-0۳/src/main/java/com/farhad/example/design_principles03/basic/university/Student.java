@@ -13,6 +13,10 @@ public class Student {
     @Setter
     private String address;
 
+    public Student() {
+        
+    }
+
     public Student(String studentName) {
         this(studentName, null);
     }   
