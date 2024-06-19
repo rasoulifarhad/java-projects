@@ -19,7 +19,7 @@ public class Student {
 
     public Student(String studentName, String studentAddress) {
         this.name = studentName;
-        this.studentAddress = studentAddress;
+        this.address = studentAddress;
     }   
 
     // grade point average
