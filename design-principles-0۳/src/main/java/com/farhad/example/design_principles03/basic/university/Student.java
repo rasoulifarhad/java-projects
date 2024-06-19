@@ -14,8 +14,14 @@ public class Student {
     private String address;
 
     public Student(String studentName) {
-        this.name = studentName;
+        this(studentName, null);
     }   
+
+    public Student(String studentName, String studentAddress) {
+        this.name = studentName;
+        this.studentAddress = studentAddress;
+    }   
+
     // grade point average
     // it changes when a student gets a grade for a course.
     @Getter
