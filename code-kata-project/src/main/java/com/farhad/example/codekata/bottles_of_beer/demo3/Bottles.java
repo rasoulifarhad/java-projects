@@ -22,7 +22,7 @@ public class Bottles {
                     .mapToInt(i -> tempArray[tempArray.length - i]);
     }
 
-    private String verse(int number) {
+    public String verse(int number) {
         switch (number) {
             case 0:
                 return (
@@ -45,7 +45,7 @@ public class Bottles {
                     "Take one down and pass it around, " +
                     "1 bottle of beer on the wall.\n"
                 );
-                    default:
+            default:
                 return (
                     number +       " bottles of beer on the wall, " +
                     number +       " bottles of beer.\n" +
