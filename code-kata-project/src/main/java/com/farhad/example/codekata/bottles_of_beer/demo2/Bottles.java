@@ -33,39 +33,39 @@ public class Bottles {
     }
 
     private String challenge(int bottles) {
-        return challengeBottlesOfBeer(bottles)
+        return challengeBottlesOfBeverage(bottles)
                 + " "
                 + onWall()
                 + ", "
-                + challengeBottlesOfBeer(bottles)
+                + challengeBottlesOfBeverage(bottles)
                 + ".\n";
     }
 
     private String response(int bottles) {
         return goToTheStoreOrTakeOneDown(bottles)
                 + ", "
-                + responseBottlesOfBeer(bottles)
+                + responseBottlesOfBeverage(bottles)
                 + " "
                 + onWall()
                 + ".\n";
     }
 
-    private String responseBottlesOfBeer(int bottles) {
+    private String responseBottlesOfBeverage(int bottles) {
         bottles = bottles - 1 < 0 ? 99 : bottles - 1;
         return bottleCount(bottles)
                 + " "
                 + pluralizedChallengBottleForm(bottles)
                 + " of "
-                + beer();
+                + beverage();
     }
 
-    private String challengeBottlesOfBeer(int bottles) {
+    private String challengeBottlesOfBeverage(int bottles) {
 
         return bottleCount(bottles)
                 + " "
                 + pluralizedChallengBottleForm(bottles)
                 + " of "
-                + beer();
+                + beverage();
     }
 
     private String onWall() {
@@ -74,8 +74,8 @@ public class Bottles {
 
     private String goToTheStoreOrTakeOneDown(int bottles) {
         return isAllOut(bottles) 
-                    ? buyNewBeer() 
-                    : drinkBeer(bottles);
+                    ? buyNewBeverage() 
+                    : drinkBeverage(bottles);
     }
 
     private String bottleCount(int bottles) {
@@ -83,26 +83,26 @@ public class Bottles {
     }
 
     private String pluralizedChallengBottleForm(int bottles) {
-        return isLastBeer(bottles) 
+        return isLastBeverage(bottles) 
                     ? "bottle" 
                     : "bottles";
     }
 
-    private String beer() {
+    private String beverage() {
         return "beer";
     }
 
-    private String buyNewBeer() {
+    private String buyNewBeverage() {
         return "Go to the store and buy some more";
     }
 
-    private String drinkBeer(int bottles) {
+    private String drinkBeverage(int bottles) {
         return "Take " 
                 + itOrOne(bottles) 
                 + " down and pass it around";
     }
 
-    private boolean isLastBeer(int bottles) {
+    private boolean isLastBeverage(int bottles) {
         return bottles == 1;
     }
 
@@ -111,11 +111,7 @@ public class Bottles {
     }
 
     private String itOrOne(int bottles) {
-        return isLastBeer(bottles) ? "it" : "one";
+        return isLastBeverage(bottles) ? "it" : "one";
     }
-
-    // private String pluralizedResponseBottleForm(int bottles) {
-    // return bottles == 1 ? "bottle" : "bottles";
-    // }
 
 }
