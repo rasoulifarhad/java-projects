@@ -9,14 +9,24 @@ public class Bottles {
         return verses(99, 0);
     }
 
-    private String verses(int startFrom, int downTo) {
-        return IntStream.rangeClosed(downTo, startFrom)
-            .map(i -> downTo + (startFrom - i))
-            .mapToObj(v -> verse(v))
-            .collect(Collectors.joining("\n"));
-            
+    private String verses(int bottlesAtStart, int bottlesAtEnd) {
+        return downTo(bottlesAtEnd, bottlesAtStart)
+                    .mapToObj(v -> verse(v))
+                    .collect(Collectors.joining("\n"));
     }
 
+    private IntStream downTo(int bottlesAtStart, int bottlesAtEnd) {
+        return IntStream
+                    .rangeClosed(bottlesAtEnd, bottlesAtStart)
+                    .map(i -> bottlesAtEnd + (bottlesAtStart - i));
+    }
+
+    public IntStream reverseOrderStream(IntStream intStream) {
+        int [] tempArray = intStream.toArray();
+        return IntStream.range(1, tempArray.length + 1)
+                    .boxed()
+                    .mapToInt(i -> tempArray[tempArray.length - i]);
+    }
 
     private String verse(int number) {
         switch (number) {
