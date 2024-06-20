@@ -10,15 +10,9 @@ public class Bottles {
     }
 
     private String verses(int bottlesAtStart, int bottlesAtEnd) {
-        return downTo(bottlesAtEnd, bottlesAtStart)
-                    .mapToObj(v -> verse(v))
-                    .collect(Collectors.joining("\n"));
-    }
-
-    private IntStream downTo(int bottlesAtStart, int bottlesAtEnd) {
-        return IntStream
-                    .rangeClosed(bottlesAtEnd, bottlesAtStart)
-                    .map(i -> bottlesAtEnd + (bottlesAtStart - i));
+         return reverseOrderStream(IntStream.rangeClosed(bottlesAtEnd, bottlesAtStart))
+            .mapToObj(b -> verse(b))
+            .collect(Collectors.joining("\n"));
     }
 
     public IntStream reverseOrderStream(IntStream intStream) {
@@ -36,8 +30,7 @@ public class Bottles {
                 return verseOfOne();
             case 2:
                 return verseOfTwo();
-        
-            default:
+                    default:
                 return highVerse(number);
         }
     }
