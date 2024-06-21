@@ -137,6 +137,8 @@ public class BottlesTest {
     }
 
 
+    // The text needed for 100 verses is fairly lengthy, and you may resist writing 
+    // out the full string because of concerns about duplication.
     @Test
     public void theWholeSong() {
         String expected = 
