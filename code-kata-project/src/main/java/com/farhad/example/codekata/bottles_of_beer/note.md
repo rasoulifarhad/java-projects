@@ -363,3 +363,21 @@ Number | xxxx?
 6 | six-packed
 n | bottles
 
+
+
+That horizontal refactoring required a fair amount of explanation. Here’s a reminder of the key actions:
+
+1. identified verse 2 and default as the most similar cases
+2. worked from left to right
+3. changed verse 2 case to replace hard coded 2 with ${number} (twice)
+4. changed verse 2 case to replace hard coded 1 with ${number-1}
+5. identified "bottle" and "bottles" as the next difference
+6. chose container for the name of the concept represented by this difference
+7. created empty container method
+8. changed container to return "bottles"
+9. changed verse default case to send container in place of "bottles"
+10. changed container to take number argument
+11. added conditional logic to container to return "bottle" or "bottles" based on number
+12. changed verse default case to pass number-1 to this.container()
+13. changed verse 2 case to send this.container(number-1) in place of "bottle"
+14. deleted verse 2 case
