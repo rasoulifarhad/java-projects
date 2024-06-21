@@ -318,3 +318,38 @@ Here song is the intention, and verses(99, 0) is the implementation. There’s a
 new requirement: 
 
 users have requested that you alter the 99 Bottles code to output "1 six-pack" in each place where it currently says "6 bottles."
+
+
+Open Closed Flowchart:
+
+     /-----------------------------------------------\
+     |                                                |
+     V        NO                       NO             |
+Is it open? ------> Do you know how  ------> Remove the easiest to 
+                    to make it open?               fix/best 
+                                             underestood code smell
+
+
+Flocking Rules
+
+1. Select the things that are most alike.
+2. Find the smallest difference between them.
+3. Make the simplest change that will remove that difference.  
+
+Changes to code can be subdivided into four distinct steps:
+
+1. parse the new code
+2. parse and execute it
+3. parse, execute and use its result
+4. delete unused code                                           
+
+As you’re following the flocking rules:
+
+- For now, change only one line at a time.
+- Run the tests after every change.
+- If the tests fail, undo and make a better change.
+
+Difference holds the key to understanding. If two concrete examples represent the same abstraction and they contain a difference, that difference must represent a smaller abstraction within the larger one. If you can name the difference, you’ve identified that smaller abstraction.
+
+
+To reduce the verse switch statement to a single line of code, the rules say to first identify the things that are most alike. This means that you should select the two branches that are most alike, and focus on making them identical.
