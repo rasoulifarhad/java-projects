@@ -15,12 +15,6 @@ public class Bottles {
                     .map(i -> startVerse - i + endVerse )
                     .mapToObj(v -> verse(v))
                     .collect(joining("\n"));
-        
-        // StringJoiner stringJoiner = new StringJoiner("\n");
-        // for (int v = startVerse; v >= endVerse ; v--) {
-        //     stringJoiner.add(verse(v));
-        // }
-        // return stringJoiner.toString();
     }
 
     public String verse(int number) {
