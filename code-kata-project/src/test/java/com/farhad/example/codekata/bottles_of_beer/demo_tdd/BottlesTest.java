@@ -61,11 +61,26 @@ public class BottlesTest {
     @Test
     public void verse0() {
         String expected = 
-        "No more bottles of beer on the wall, " + 
-        "no more bottles of beer.\n" +
-        "Go to the store and buy some more, " +
-        "99 bottles of beer on the wall.\n";
-assertThat(expected, is(new Bottles().verse(0)));
+            "No more bottles of beer on the wall, " + 
+            "no more bottles of beer.\n" +
+            "Go to the store and buy some more, " +
+            "99 bottles of beer on the wall.\n";
+        assertThat(expected, is(new Bottles().verse(0)));
+    }
+
+    @Test
+    public void aCoupleVerses() {
+        String expected = 
+            "99 bottles of beer on the wall, " +
+            "99 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "98 bottles of beer on the wall.\n" +
+            "\n" +
+            "98 bottles of beer on the wall, " +
+            "98 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "97 bottles of beer on the wall.\n";
+    assertThat(expected, is(new Bottles().verses(99,98)));
     }
 
 }
