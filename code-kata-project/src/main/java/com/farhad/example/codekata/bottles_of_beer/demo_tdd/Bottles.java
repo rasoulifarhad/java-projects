@@ -1,21 +1,29 @@
 package com.farhad.example.codekata.bottles_of_beer.demo_tdd;
 
+import java.util.StringJoiner;
+
 public class Bottles {
 
     public String verses(int startVerse, int endVerse) {
-        if(startVerse == 99) {
-            return 
-                verse(99) + 
-                "\n" +
-                verse(98);
-        } else {
-            return 
-                verse(2) + 
-                "\n" +
-                verse(1) + 
-                "\n" +
-                verse(0);
+
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (int v = startVerse; v >= endVerse ; v--) {
+            stringJoiner.add(verse(v));
         }
+        return stringJoiner.toString();
+        // if(startVerse == 99) {
+        //     return 
+        //         verse(99) + 
+        //         "\n" +
+        //         verse(98);
+        // } else {
+        //     return 
+        //         verse(2) + 
+        //         "\n" +
+        //         verse(1) + 
+        //         "\n" +
+        //         verse(0);
+        // }
     }
 
     public String verse(int number) {
