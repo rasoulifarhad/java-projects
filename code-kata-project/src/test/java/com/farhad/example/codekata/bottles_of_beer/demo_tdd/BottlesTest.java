@@ -419,7 +419,7 @@ public class BottlesTest {
             "Take one down and pass it around, 7 bottles of beer on the wall.\n" +
             "\n" +
             "7 bottles of beer on the wall, 7 bottles of beer.\n" +
-            "Take one down and pass it around, 6 bottles of beer on the wall.\n" +
+            "Take one down and pass it around, 1 six-pack of beer on the wall.\n" +
             "\n" +
             "1 six-pack of beer on the wall, 1 six-pack of beer.\n" +
             "Take one down and pass it around, 5 bottles of beer on the wall.\n" +
@@ -452,6 +452,16 @@ public class BottlesTest {
             "Take one down and pass it around, " +
             "5 bottles of beer on the wall.\n";
         assertThat(expected, is(new Bottles().verse(6)));
+    }
+
+    @Test
+    public void verse7() {
+        String expected = 
+            "7 bottles of beer on the wall, " +
+            "7 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "1 six-pack of beer on the wall.\n";
+        assertThat(expected, is(new Bottles().verse(7)));
     }
 
 }
