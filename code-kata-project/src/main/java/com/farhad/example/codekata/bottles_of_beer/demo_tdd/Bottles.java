@@ -47,13 +47,6 @@ public class Bottles {
                     "Take one down and pass it around, " +
                     "1 six-pack of beer on the wall.\n"
                 );
-            case 2:
-                return (
-                    number + " bottles of beer on the wall, " +
-                    number + " bottles of beer.\n" +
-                    "Take one down and pass it around, " +
-                    (number - 1) + " " + container(number-1) + " of beer on the wall.\n"
-                );
             default:
                 return (
                     number + " bottles of beer on the wall, " +
