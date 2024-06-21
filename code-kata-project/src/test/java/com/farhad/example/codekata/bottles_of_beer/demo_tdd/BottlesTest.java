@@ -28,4 +28,14 @@ public class BottlesTest {
         assertThat(expected, is(new Bottles().verse(3)));
     }
 
+    @Test
+    public void verse97() {
+        String expected = 
+            "97 bottles of beer on the wall, " +
+            "97 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "96 bottles of beer on the wall.\n";
+        assertThat(expected, is(new Bottles().verse(97)));
+    }
+
 }
