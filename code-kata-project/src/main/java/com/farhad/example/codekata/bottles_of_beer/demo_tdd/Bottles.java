@@ -3,10 +3,19 @@ package com.farhad.example.codekata.bottles_of_beer.demo_tdd;
 public class Bottles {
 
     public String verses(int startVerse, int endVerse) {
-        return 
-            verse(99) + 
-            "\n" +
-            verse(98);
+        if(startVerse == 99) {
+            return 
+                verse(99) + 
+                "\n" +
+                verse(98);
+        } else {
+            return 
+                verse(2) + 
+                "\n" +
+                verse(1) + 
+                "\n" +
+                verse(0);
+        }
     }
 
     public String verse(int number) {
