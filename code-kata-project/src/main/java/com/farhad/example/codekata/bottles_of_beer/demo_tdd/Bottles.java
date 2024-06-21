@@ -52,17 +52,23 @@ public class Bottles {
                     number + " bottles of beer on the wall, " +
                     number + " bottles of beer.\n" +
                     "Take one down and pass it around, " +
-                    (number - 1) + " bottle" + " of beer on the wall.\n"
+                    (number - 1) + " " + container(number-1) + " of beer on the wall.\n"
                 );
             default:
                 return (
                     number + " bottles of beer on the wall, " +
                     number + " bottles of beer.\n" +
                     "Take one down and pass it around, " +
-                    (number - 1) + " bottles" + " of beer on the wall.\n"
+                    (number - 1) + " " + container(number-1) + " of beer on the wall.\n"
                 );
         }
     }
 
-
+    String container(int nmumber) {
+        if(nmumber == 1) {
+            return "bottle";
+        } else {
+            return "bottles";
+        }
+    }
 }

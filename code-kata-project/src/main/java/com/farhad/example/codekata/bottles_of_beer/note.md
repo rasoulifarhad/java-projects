@@ -353,3 +353,13 @@ Difference holds the key to understanding. If two concrete examples represent th
 
 
 To reduce the verse switch statement to a single line of code, the rules say to first identify the things that are most alike. This means that you should select the two branches that are most alike, and focus on making them identical.
+
+The general rule is that the name of a thing should be one level of abstraction higher than the thing itself. The strings "bottle/bottles/six-pack" are instances of some category, and the task is to name that category using language of the domain.
+
+
+Number | xxxx?
+| ---- | ----| 
+1 | bottle
+6 | six-packed
+n | bottles
+
