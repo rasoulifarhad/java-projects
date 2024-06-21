@@ -102,4 +102,10 @@ public class BottlesTest {
             "99 bottles of beer on the wall.\n";
         assertThat(expected, is(new Bottles().verses(2,0)));
     }
+
+    @Test
+    public void theWholeSong() {
+        assertThat(new Bottles().verses(99, 0), is(new Bottles().song()));
+    }
+
 }
