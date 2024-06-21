@@ -4,9 +4,9 @@ public class Bottles {
 
     public String verses(int startVerse, int endVerse) {
         return 
-            verse(startVerse) + 
+            verse(99) + 
             "\n" +
-            verse(endVerse);
+            verse(98);
     }
 
     public String verse(int number) {
