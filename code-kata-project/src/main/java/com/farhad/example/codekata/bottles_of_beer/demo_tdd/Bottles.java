@@ -11,19 +11,6 @@ public class Bottles {
             stringJoiner.add(verse(v));
         }
         return stringJoiner.toString();
-        // if(startVerse == 99) {
-        //     return 
-        //         verse(99) + 
-        //         "\n" +
-        //         verse(98);
-        // } else {
-        //     return 
-        //         verse(2) + 
-        //         "\n" +
-        //         verse(1) + 
-        //         "\n" +
-        //         verse(0);
-        // }
     }
 
     public String verse(int number) {
