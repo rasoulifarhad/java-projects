@@ -100,6 +100,6 @@ public class BottlesTest {
             "no more bottles of beer.\n" +
             "Go to the store and buy some more, " +
             "99 bottles of beer on the wall.\n";
-assertThat(expected, is(new Bottles().verses(2,0)));
+        assertThat(expected, is(new Bottles().verses(2,0)));
     }
 }
