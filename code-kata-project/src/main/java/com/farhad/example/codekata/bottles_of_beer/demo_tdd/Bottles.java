@@ -1,6 +1,8 @@
 package com.farhad.example.codekata.bottles_of_beer.demo_tdd;
 
-import java.util.StringJoiner;
+import static java.util.stream.Collectors.joining;
+
+import java.util.stream.IntStream;
 
 public class Bottles {
 
@@ -9,12 +11,16 @@ public class Bottles {
     }
 
     public String verses(int startVerse, int endVerse) {
-
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (int v = startVerse; v >= endVerse ; v--) {
-            stringJoiner.add(verse(v));
-        }
-        return stringJoiner.toString();
+        return IntStream.rangeClosed(endVerse, startVerse)
+                    .map(i -> startVerse - i + endVerse )
+                    .mapToObj(v -> verse(v))
+                    .collect(joining("\n"));
+        
+        // StringJoiner stringJoiner = new StringJoiner("\n");
+        // for (int v = startVerse; v >= endVerse ; v--) {
+        //     stringJoiner.add(verse(v));
+        // }
+        // return stringJoiner.toString();
     }
 
     public String verse(int number) {

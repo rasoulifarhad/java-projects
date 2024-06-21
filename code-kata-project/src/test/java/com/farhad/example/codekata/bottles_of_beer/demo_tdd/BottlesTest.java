@@ -1,10 +1,10 @@
 package com.farhad.example.codekata.bottles_of_beer.demo_tdd;
 
 
+import static java.util.stream.Collectors.joining;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -114,13 +114,15 @@ public class BottlesTest {
         assertThat(new Bottles().verses(99, 0), is(new Bottles().song()));
     }
 
+    // Consider what just happened. The original test asserts that sending song
+    // produces the same result as running the code currently contained in song.
     @Test
     @Disabled
     public void theWholeSongAgainBadly() {
         Bottles bottles = new Bottles();
         String expected = revRange(0, 99)
             .mapToObj(v -> bottles.verse(v))
-            .collect(Collectors.joining("\n"));
+            .collect(joining("\n"));
         assertThat(expected, is(new Bottles().song()));
     }
 
