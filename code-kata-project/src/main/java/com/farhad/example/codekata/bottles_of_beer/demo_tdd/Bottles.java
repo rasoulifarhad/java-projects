@@ -4,16 +4,10 @@ public class Bottles {
 
     public String verses(int startVerse, int endVerse) {
         return 
-            "99 bottles of beer on the wall, " +
-            "99 bottles of beer.\n" +
-            "Take one down and pass it around, " +
-            "98 bottles of beer on the wall.\n" +
+            verse(startVerse) + 
             "\n" +
-            "98 bottles of beer on the wall, " +
-            "98 bottles of beer.\n" +
-            "Take one down and pass it around, " +
-            "97 bottles of beer on the wall.\n";
-}
+            verse(endVerse);
+    }
 
     public String verse(int number) {
         switch (number) {
