@@ -313,3 +313,8 @@ Using the verses method to request the entire song, however, requires significan
 - that the song ends on verse 0
 
 Here song is the intention, and verses(99, 0) is the implementation. There’s a big difference between wanting the lyrics for a range of verses, and wanting the lyrics for the entire song. The verses method is in the public API, so it must continue to exist, but its existence doesn’t obviate the need for song. Senders of the song message want all of the verses, and they oughtn’t be forced to trouble themselves with details about how this happens.
+
+
+new requirement: 
+
+users have requested that you alter the 99 Bottles code to output "1 six-pack" in each place where it currently says "6 bottles."
