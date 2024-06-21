@@ -65,10 +65,6 @@ public class Bottles {
     }
 
     String container(int nmumber) {
-        if(nmumber == 1) {
-            return "bottle";
-        } else {
-            return "bottles";
-        }
+        return "";
     }
 }
