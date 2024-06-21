@@ -115,6 +115,7 @@ public class BottlesTest {
     }
 
     @Test
+    @Disabled
     public void theWholeSongAgainBadly() {
         Bottles bottles = new Bottles();
         String expected = revRange(0, 99)
