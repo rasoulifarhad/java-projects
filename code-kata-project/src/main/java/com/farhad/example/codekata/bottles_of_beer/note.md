@@ -299,3 +299,17 @@ Take it down and pass it around, no more bottles of beer on the wall.
 
 No more bottles of beer on the wall, no more bottles of beer. 
 Go to the store and buy some more, 99 bottles of beer on the wall.
+
+
+The song method imposes a single dependency; to use it, you need only know its name.
+
+Using the verses method to request the entire song, however, requires significantly more knowledge. The sender must know:
+
+- the name of the verses method
+- that the method requires two arguments
+- that the first argument is the verse on which to start
+- that the second argument is the verse on which to end
+- that the song starts on verse 99
+- that the song ends on verse 0
+
+Here song is the intention, and verses(99, 0) is the implementation. There’s a big difference between wanting the lyrics for a range of verses, and wanting the lyrics for the entire song. The verses method is in the public API, so it must continue to exist, but its existence doesn’t obviate the need for song. Senders of the song message want all of the verses, and they oughtn’t be forced to trouble themselves with details about how this happens.

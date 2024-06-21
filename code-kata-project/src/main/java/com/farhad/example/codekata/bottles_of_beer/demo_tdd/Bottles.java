@@ -4,6 +4,10 @@ import java.util.StringJoiner;
 
 public class Bottles {
 
+    public String song() {
+        return verses(99, 0);
+    }
+
     public String verses(int startVerse, int endVerse) {
 
         StringJoiner stringJoiner = new StringJoiner("\n");
