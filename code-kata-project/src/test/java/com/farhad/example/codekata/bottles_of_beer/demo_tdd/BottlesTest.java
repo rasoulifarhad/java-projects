@@ -57,4 +57,15 @@ public class BottlesTest {
             "no more bottles of beer on the wall.\n";
         assertThat(expected, is(new Bottles().verse(1)));
     }
+
+    @Test
+    public void verse0() {
+        String expected = 
+        "No more bottles of beer on the wall, " + 
+        "no more bottles of beer.\n" +
+        "Go to the store and buy some more, " +
+        "99 bottles of beer on the wall.\n";
+assertThat(expected, is(new Bottles().verse(0)));
+    }
+
 }
