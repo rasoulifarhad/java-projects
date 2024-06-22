@@ -2,6 +2,7 @@ package com.farhad.example.tic_tac_toe_v2.mongo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -10,15 +11,18 @@ import static org.mockito.Mockito.verify;
 import org.jongo.MongoCollection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 public class TicTacToeCollectionSpecTest {
 
     private TicTacToeCollection collection;
+    private TicTacToeBean bean;
+    private MongoCollection mongoCollection;
 
     @BeforeEach
     public void setup() {
         collection = spy(new TicTacToeCollection());
+        bean = new TicTacToeBean(3, 2, 1, 'Y');
+        mongoCollection = mock(MongoCollection.class);
     }
 
     @Test
@@ -41,18 +45,14 @@ public class TicTacToeCollectionSpecTest {
 
     @Test
     public void whenSaveMoveThenInvokeMongoCollectionSave() {
-        TicTacToeBean bean = new TicTacToeBean(3, 2, 1, 'Y');
-        MongoCollection mongoCollection = mock(MongoCollection.class);
-        Mockito.doReturn(mongoCollection).when(collection).getMongoCollection();
+        doReturn(mongoCollection).when(collection).getMongoCollection();
         collection.saveMove(bean);
         verify(mongoCollection, times(1)).save(bean);
     }
 
     @Test
     public void whenSaveMoveThenReturnTrue() {
-        TicTacToeBean bean = new TicTacToeBean(3, 2, 1, 'Y');
-        MongoCollection mongoCollection = mock(MongoCollection.class);
-        Mockito.doReturn(mongoCollection).when(collection).getMongoCollection();
+        doReturn(mongoCollection).when(collection).getMongoCollection();
         assertTrue(collection.saveMove(bean));
     }
 }
