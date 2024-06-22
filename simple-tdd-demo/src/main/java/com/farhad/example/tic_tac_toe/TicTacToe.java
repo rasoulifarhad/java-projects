@@ -3,6 +3,10 @@ package com.farhad.example.tic_tac_toe;
 public class TicTacToe {
 
 
+    private static final String NO_WINNER = "No winner";
+
+    private static final String RESULT_DRAW = "The result is draw";
+
     private static final int SIZE = 3;
 
     private Character[][] board  = {
@@ -35,9 +39,9 @@ public class TicTacToe {
         if(isWin(x, y)){
             return lastPlayer + " is the winner";
         } else if(isDraw()) {
-            return "The result is draw";
+            return RESULT_DRAW;
         }
-        return "No winner";
+        return NO_WINNER;
     }
 
     private boolean isDraw() {
