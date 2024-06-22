@@ -1,6 +1,7 @@
 package com.farhad.example.tic_tac_toe_v2.mongo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -39,11 +40,19 @@ public class TicTacToeCollectionSpecTest {
     }
 
     @Test
-    public void whenSaveMoveThenIbnvokeMongoCollectionSave() {
+    public void whenSaveMoveThenInvokeMongoCollectionSave() {
         TicTacToeBean bean = new TicTacToeBean(3, 2, 1, 'Y');
         MongoCollection mongoCollection = mock(MongoCollection.class);
         Mockito.doReturn(mongoCollection).when(collection).getMongoCollection();
         collection.saveMove(bean);
         verify(mongoCollection, times(1)).save(bean);
+    }
+
+    @Test
+    public void whenSaveMoveThenReturnTrue() {
+        TicTacToeBean bean = new TicTacToeBean(3, 2, 1, 'Y');
+        MongoCollection mongoCollection = mock(MongoCollection.class);
+        Mockito.doReturn(mongoCollection).when(collection).getMongoCollection();
+        assertTrue(collection.saveMove(bean));
     }
 }
