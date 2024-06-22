@@ -21,4 +21,8 @@ public class TicTacToeCollection {
 
     }
 
+    public void saveMove(TicTacToeBean bean) {
+        getMongoCollection().save(bean);
+    }
+
 }
