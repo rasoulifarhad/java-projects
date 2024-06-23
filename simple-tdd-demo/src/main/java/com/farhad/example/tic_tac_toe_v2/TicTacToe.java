@@ -34,7 +34,9 @@ public class TicTacToe {
 
     protected TicTacToe(TicTacToeCollection ticTacToeCollection) {
         this.ticTacToeCollection = ticTacToeCollection;
-        ticTacToeCollection.drop();
+        if (!ticTacToeCollection.drop()){
+            throw new RuntimeException("Dropping db collection failed");
+        }
     }
 
    public String play(int x, int y) {
