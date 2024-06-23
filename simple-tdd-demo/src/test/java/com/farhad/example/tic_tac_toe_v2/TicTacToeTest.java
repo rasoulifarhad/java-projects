@@ -1,10 +1,14 @@
 package com.farhad.example.tic_tac_toe_v2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeCollection;
 
 // Tic-tac-toe is a paper-and-pencil game for two players, X and O,
 // who take turns marking the spaces in a 3×3 grid. The player who
@@ -12,12 +16,14 @@ import org.junit.jupiter.api.Test;
 // or diagonal row, wins the game.
 public class TicTacToeTest {
 
+    private TicTacToeCollection tacToeCollection;
     private TicTacToe ticTacToe;
 
 
     @BeforeEach 
     public void setup() {
-        ticTacToe = new TicTacToe();
+        tacToeCollection = mock(TicTacToeCollection.class);
+        ticTacToe = new TicTacToe(tacToeCollection);
     }
 
 
@@ -116,5 +122,10 @@ public class TicTacToeTest {
         ticTacToe.play(3, 3);
         String actual = ticTacToe.play(3, 2);
         assertEquals("The result is draw", actual);
+    }
+
+    @Test
+    public void whenInstantiatedThenSetCollection() {
+        assertNotNull(ticTacToe.getTicTacToeCollection());
     }
 }

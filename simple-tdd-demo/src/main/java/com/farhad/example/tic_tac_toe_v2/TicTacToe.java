@@ -1,5 +1,10 @@
 package com.farhad.example.tic_tac_toe_v2;
 
+import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeCollection;
+
+import lombok.AccessLevel;
+import lombok.Getter;
+
 public class TicTacToe {
 
 
@@ -9,6 +14,9 @@ public class TicTacToe {
 
     private static final int SIZE = 3;
 
+    @Getter(value = AccessLevel.PROTECTED)
+    private TicTacToeCollection ticTacToeCollection;
+
     private Character[][] board  = {
         {'\0', '\0', '\0'},
         {'\0', '\0', '\0'},
@@ -16,6 +24,15 @@ public class TicTacToe {
     };
 
     private char lastPlayer = '\0';
+
+    public TicTacToe() {
+        this(new TicTacToeCollection());
+    }
+
+    protected TicTacToe(TicTacToeCollection ticTacToeCollection) {
+        this.ticTacToeCollection = ticTacToeCollection;
+    }
+
 
     private void setBox(int x, int y, char lastPlayer) {
         if(board[x -1][y - 1] != '\0') {
