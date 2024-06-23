@@ -55,11 +55,10 @@ public class TicTacToe {
     }
 
     private void setBox(int x, int y, char lastPlayer, TicTacToeBean move) {
-        if(board[x -1][y - 1] != '\0') {
+        if(board[move.getX() -1][move.getY() - 1] != '\0') {
             throw new RuntimeException("Box is occupied");
         } else {
-            board[x -1][y - 1] = lastPlayer;
-        }
+            board[move.getX() -1][move.getY() - 1] = move.getPlayer();        }
     }
 
     private boolean isDraw() {
