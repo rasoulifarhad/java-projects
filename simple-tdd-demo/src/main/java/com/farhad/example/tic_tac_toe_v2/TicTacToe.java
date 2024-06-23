@@ -18,6 +18,8 @@ public class TicTacToe {
     @Getter(value = AccessLevel.PROTECTED)
     private TicTacToeCollection ticTacToeCollection;
 
+    private int turn = 0;
+
     private Character[][] board  = {
         {'\0', '\0', '\0'},
         {'\0', '\0', '\0'},
@@ -38,7 +40,7 @@ public class TicTacToe {
         checkAxis(x);
         checkAxis(y);
         lastPlayer = nextPlayer();
-        setBox(new TicTacToeBean(1, x, y, lastPlayer));
+        setBox(new TicTacToeBean(++turn, x, y, lastPlayer));
         if(isWin(x, y)){
             return lastPlayer + " is the winner";
         } else if(isDraw()) {
