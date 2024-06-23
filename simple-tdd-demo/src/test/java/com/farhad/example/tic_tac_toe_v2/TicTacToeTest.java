@@ -3,6 +3,8 @@ package com.farhad.example.tic_tac_toe_v2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -25,6 +27,9 @@ public class TicTacToeTest {
     @BeforeEach 
     public void setup() {
         collection = mock(TicTacToeCollection.class);
+        doReturn(true)
+            .when(collection)
+            .saveMove(any(TicTacToeBean.class));
         ticTacToe = new TicTacToe(collection);
     }
 
@@ -136,5 +141,14 @@ public class TicTacToeTest {
         TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
         ticTacToe.play(move.getX(), move.getY());
         verify(collection).saveMove(move);
+    }
+
+    @Test
+    public void whenPlayAndSaveReturnsFalseThenThrowException() {
+        doReturn(false).when(collection).saveMove(any(TicTacToeBean.class));
+        TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
+        assertThrows(RuntimeException.class, () -> {
+            ticTacToe.play(move.getX(), move.getY());
+        });
     }
 }

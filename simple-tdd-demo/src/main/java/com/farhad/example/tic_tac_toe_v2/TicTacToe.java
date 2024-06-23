@@ -58,7 +58,9 @@ public class TicTacToe {
             throw new RuntimeException("Box is occupied");
         } else {
             board[move.getX() -1][move.getY() - 1] = move.getPlayer();        
-            getTicTacToeCollection().saveMove(move);
+            if(!getTicTacToeCollection().saveMove(move)){
+                throw new RuntimeException("Saving to db failed");
+            }
         }
     }
 
