@@ -59,8 +59,8 @@ public class TicTacToe {
             throw new RuntimeException("Box is occupied");
         } else {
             board[move.getX() -1][move.getY() - 1] = move.getPlayer();        
+            ticTacToeCollection.saveMove(move);
         }
-        ticTacToeCollection.saveMove(move);
     }
 
     private boolean isDraw() {
