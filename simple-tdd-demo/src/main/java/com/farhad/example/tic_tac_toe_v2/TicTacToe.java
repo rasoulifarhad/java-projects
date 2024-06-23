@@ -38,8 +38,7 @@ public class TicTacToe {
         checkAxis(x);
         checkAxis(y);
         lastPlayer = nextPlayer();
-        TicTacToeBean move = new TicTacToeBean(1, x, y, lastPlayer);
-        setBox(move);
+        setBox(new TicTacToeBean(1, x, y, lastPlayer));
         if(isWin(x, y)){
             return lastPlayer + " is the winner";
         } else if(isDraw()) {
