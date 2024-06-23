@@ -39,7 +39,7 @@ public class TicTacToe {
         checkAxis(y);
         lastPlayer = nextPlayer();
         TicTacToeBean move = new TicTacToeBean(1, x, y, lastPlayer);
-        setBox(x, y, lastPlayer, move);
+        setBox(move);
         if(isWin(x, y)){
             return lastPlayer + " is the winner";
         } else if(isDraw()) {
@@ -54,7 +54,7 @@ public class TicTacToe {
         }
     }
 
-    private void setBox(int x, int y, char lastPlayer, TicTacToeBean move) {
+    private void setBox(TicTacToeBean move) {
         if(board[move.getX() -1][move.getY() - 1] != '\0') {
             throw new RuntimeException("Box is occupied");
         } else {
