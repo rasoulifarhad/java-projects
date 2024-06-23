@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeBean;
 import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeCollection;
 
 // Tic-tac-toe is a paper-and-pencil game for two players, X and O,
@@ -16,14 +18,14 @@ import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeCollection;
 // or diagonal row, wins the game.
 public class TicTacToeTest {
 
-    private TicTacToeCollection tacToeCollection;
+    private TicTacToeCollection collection;
     private TicTacToe ticTacToe;
 
 
     @BeforeEach 
     public void setup() {
-        tacToeCollection = mock(TicTacToeCollection.class);
-        ticTacToe = new TicTacToe(tacToeCollection);
+        collection = mock(TicTacToeCollection.class);
+        ticTacToe = new TicTacToe(collection);
     }
 
 
@@ -127,5 +129,12 @@ public class TicTacToeTest {
     @Test
     public void whenInstantiatedThenSetCollection() {
         assertNotNull(ticTacToe.getTicTacToeCollection());
+    }
+
+    @Test
+    public void whenPlayThenSaveMoveIsInvoked() {
+        TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
+        ticTacToe.play(move.getX(), move.getY());
+        verify(collection).saveMove(move);
     }
 }

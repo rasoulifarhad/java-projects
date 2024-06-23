@@ -1,5 +1,6 @@
 package com.farhad.example.tic_tac_toe_v2;
 
+import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeBean;
 import com.farhad.example.tic_tac_toe_v2.mongo.TicTacToeCollection;
 
 import lombok.AccessLevel;
@@ -33,13 +34,18 @@ public class TicTacToe {
         this.ticTacToeCollection = ticTacToeCollection;
     }
 
-
-    private void setBox(int x, int y, char lastPlayer) {
-        if(board[x -1][y - 1] != '\0') {
-            throw new RuntimeException("Box is occupied");
-        } else {
-            board[x -1][y - 1] = lastPlayer;
+   public String play(int x, int y) {
+        checkAxis(x);
+        checkAxis(y);
+        lastPlayer = nextPlayer();
+        TicTacToeBean move = new TicTacToeBean(1, x, y, lastPlayer);
+        setBox(x, y, lastPlayer, move);
+        if(isWin(x, y)){
+            return lastPlayer + " is the winner";
+        } else if(isDraw()) {
+            return RESULT_DRAW;
         }
+        return NO_WINNER;
     }
 
     private void checkAxis(int axis) {
@@ -48,17 +54,12 @@ public class TicTacToe {
         }
     }
 
-   public String play(int x, int y) {
-        checkAxis(x);
-        checkAxis(y);
-        lastPlayer = nextPlayer();
-        setBox(x, y, lastPlayer);
-        if(isWin(x, y)){
-            return lastPlayer + " is the winner";
-        } else if(isDraw()) {
-            return RESULT_DRAW;
+    private void setBox(int x, int y, char lastPlayer, TicTacToeBean move) {
+        if(board[x -1][y - 1] != '\0') {
+            throw new RuntimeException("Box is occupied");
+        } else {
+            board[x -1][y - 1] = lastPlayer;
         }
-        return NO_WINNER;
     }
 
     private boolean isDraw() {
