@@ -30,8 +30,9 @@ public class TicTacToeCollection {
         }
     }
 
-    public void drop() {
-        getMongoCollection().drop();;
+    public boolean drop() {
+        getMongoCollection().drop();
+        return true;
     }
 
 }
