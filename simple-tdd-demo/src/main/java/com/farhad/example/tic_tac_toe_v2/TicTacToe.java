@@ -34,6 +34,7 @@ public class TicTacToe {
 
     protected TicTacToe(TicTacToeCollection ticTacToeCollection) {
         this.ticTacToeCollection = ticTacToeCollection;
+        ticTacToeCollection.drop();
     }
 
    public String play(int x, int y) {

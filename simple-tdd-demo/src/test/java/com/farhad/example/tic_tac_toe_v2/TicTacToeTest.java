@@ -28,6 +28,7 @@ public class TicTacToeTest {
     @BeforeEach 
     public void setup() {
         collection = mock(TicTacToeCollection.class);
+        doReturn(true).when(collection).drop();
         doReturn(true)
             .when(collection)
             .saveMove(any(TicTacToeBean.class));
@@ -162,5 +163,19 @@ public class TicTacToeTest {
         ticTacToe.play(move2.getX(), move2.getY());
         verify(collection, times(1)).saveMove(move2);
     }
+
+    @Test
+    public void whenInstanstiatedThenDropCollection() {
+        verify(collection, times(1)).drop();
+    }
+
+    @Test
+    public void whenInstantiatedAndDropReturnsFalseThenThrowException() {
+        doReturn(false).when(collection).drop();
+        assertThrows(RuntimeException.class, () -> {
+            new TicTacToe(collection);
+        });
+    }
+
 
 }

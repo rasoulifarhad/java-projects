@@ -17,5 +17,8 @@ public class TicTacToeBean {
         this.player = player;
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("Turn: %d; X: %d; Y: %d; Player: %s",turn, x, y, player);
+    }
 }
