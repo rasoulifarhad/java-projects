@@ -58,7 +58,9 @@ public class TicTacToe {
         if(board[move.getX() -1][move.getY() - 1] != '\0') {
             throw new RuntimeException("Box is occupied");
         } else {
-            board[move.getX() -1][move.getY() - 1] = move.getPlayer();        }
+            board[move.getX() -1][move.getY() - 1] = move.getPlayer();        
+        }
+        ticTacToeCollection.saveMove(move);
     }
 
     private boolean isDraw() {
