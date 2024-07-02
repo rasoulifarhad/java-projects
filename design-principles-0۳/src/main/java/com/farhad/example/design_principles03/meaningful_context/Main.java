@@ -2,6 +2,13 @@ package com.farhad.example.design_principles03.meaningful_context;
 
 public class Main {
 
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.printGuessStatics('T', 2);
+
+        GuessStaticsMessage message = new GuessStaticsMessage();
+        main.print(message.make('T', 2));
+    }
 
     private void printGuessStatics(char candidate, int count) {
         String number;
@@ -16,7 +23,7 @@ public class Main {
             verb = "is";
             pluralModifier = "";
         } else {
-            number = "";
+            number = Integer.toString(count);
             verb = "are";
             pluralModifier = "s";
         }
