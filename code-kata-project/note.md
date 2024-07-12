@@ -43,6 +43,16 @@ See https://github.com/isidore/Necklace-Refactoring-Kata
 See https://github.com/JayBazuzi/Refactoring-Kata-Lift-Pass-Pricing
 See https://github.com/JayBazuzi/CustomerSync-Refactoring-Kata
 See https://github.com/MyTurnyet/99bottles_java
+See http://garajeando.blogspot.com/2014/04/kata-uglytrivia-legacy-code-refactoring.html
+See https://gist.github.com/trikitrok/fe2bdfb7d4f0edd20f79#file-gamelast-java
+See https://github.com/Codesai/practice-program-java
+See https://github.com/Codesai/practice_program_js_audiense
+See https://github.com/Codesai/curso-tdd-js
+See https://github.com/Codesai/curso-tdd-java
+See https://github.com/Codesai/auction_house_ddd
+See https://github.com/Codesai/GildedRoseMeetup
+See https://github.com/Codesai/kata-social-networking-hexagonal-architecture
+See https://github.com/Codesai/code-smells-refactoring-training-java
 
 
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
