@@ -53,6 +53,7 @@ See https://github.com/Codesai/auction_house_ddd
 See https://github.com/Codesai/GildedRoseMeetup
 See https://github.com/Codesai/kata-social-networking-hexagonal-architecture
 See https://github.com/Codesai/code-smells-refactoring-training-java
-
+See https://github.com/sandromancuso/Bank-kata/tree/master
+See https://github.com/sandromancuso/shopping-basket
 
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
