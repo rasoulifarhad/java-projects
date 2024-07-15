@@ -56,5 +56,8 @@ See https://github.com/Codesai/code-smells-refactoring-training-java
 See https://github.com/sandromancuso/Bank-kata/tree/master
 See https://github.com/sandromancuso/shopping-basket
 See https://github.com/emilybache/Theatrical-Players-Refactoring-Kata/tree/main
+See https://github.com/emilybache/Horse-Kata/tree/master
+See https://github.com/emilybache/Email-Sender-Refactoring-Kata/tree/master
+See https://github.com/emilybache/Theater-Kata
 
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
