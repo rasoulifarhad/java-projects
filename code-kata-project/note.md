@@ -59,5 +59,7 @@ See https://github.com/emilybache/Theatrical-Players-Refactoring-Kata/tree/main
 See https://github.com/emilybache/Horse-Kata/tree/master
 See https://github.com/emilybache/Email-Sender-Refactoring-Kata/tree/master
 See https://github.com/emilybache/Theater-Kata
+See https://github.com/LearnWithLlew/DuplicationKata.java
+See https://github.com/orgs/LearnWithLlew/repositories
 
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
