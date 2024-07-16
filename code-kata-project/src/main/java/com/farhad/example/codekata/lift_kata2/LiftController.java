@@ -18,7 +18,7 @@ public class LiftController implements ILiftController {
 
     @Override
     public int getCurrentFloor() {
-        return 0;
+        return 1;
     }
 
     @Override
