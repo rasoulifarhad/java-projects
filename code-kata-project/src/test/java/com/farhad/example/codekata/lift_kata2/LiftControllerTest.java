@@ -8,7 +8,7 @@ public class LiftControllerTest {
     private ILiftController lift = new LiftController();
 
     @Test
-    public void displaysInitialFloor() {
+    public void displaysFirstFloorIfStartAt1InitialFloor() {
         Assertions.assertThat( new LiftController(1).getCurrentFloor()).isEqualTo(1);
     }
 }
