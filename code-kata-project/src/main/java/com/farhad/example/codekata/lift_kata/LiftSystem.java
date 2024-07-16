@@ -1,5 +1,8 @@
 package com.farhad.example.codekata.lift_kata;
 
+import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,15 +16,19 @@ public class LiftSystem {
     private final List<Lift> lifts;
 
     public List<Integer> getFloorsInDescendingOrder() {
-        return Collections.emptyList();
+        List<Integer> shallowCopy = new ArrayList<>(floors);
+        Collections.reverse(shallowCopy);
+        return shallowCopy;
     }
 
     public List<Call> getCallsForFloor(int floor) {
-        return Collections.emptyList();
+        return calls.stream()
+            .filter(call -> call.getFloor() == floor)
+            .collect(toList());
     }
 
     public List<Lift> getLifts() {
-        return Collections.emptyList();
+        return lifts;
     }
 
     public void tick() {
