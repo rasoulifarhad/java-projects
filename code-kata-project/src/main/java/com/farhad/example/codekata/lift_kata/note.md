@@ -51,3 +51,7 @@ Lifts do not respond immediately or do everything at once. To simplify handling 
 To simplify things, Lifts only accept new calls and requests when they are on a floor. (Then we don't have to model what happens when they are between floors).
 
 The starting code has a Lift class with basic attributes like a floor, requests and doors. Can you build on this code and create something that fulfills all the desired features? Consider Object-Oriented design principles. Can you make Lift and LiftSystem into a well-designed encapsulated objects?
+
+
+
+See https://github.com/emilybache/Lift-Kata
