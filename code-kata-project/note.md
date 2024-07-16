@@ -62,5 +62,9 @@ See https://github.com/emilybache/Theater-Kata
 See https://github.com/LearnWithLlew/DuplicationKata.java
 See https://github.com/orgs/LearnWithLlew/repositories
 See https://github.com/emilybache/Racing-Car-Katas/tree/main/Java
+See https://kata-log.rocks/lift-kata
+See https://github.com/emilybache/Lift-Kata
+
+
 
 The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming. - Donald Knuth.
