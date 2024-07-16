@@ -8,8 +8,10 @@ import java.util.Optional;
 
 public class LiftController implements ILiftController {
 
+    private int floor;
 
     public LiftController(int initialFloor) {
+        this.floor = initialFloor;
     }
 
     public LiftController() {
@@ -18,7 +20,7 @@ public class LiftController implements ILiftController {
 
     @Override
     public int getCurrentFloor() {
-        return 1;
+        return this.floor;
     }
 
     @Override
