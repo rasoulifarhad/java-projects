@@ -9,6 +9,6 @@ public class LiftControllerTest {
 
     @Test
     public void displaysInitialFloor() {
-        Assertions.assertThat(lift.getCurrentFloor()).isEqualTo(0);
+        Assertions.assertThat( new LiftController(1).getCurrentFloor()).isEqualTo(1);
     }
 }
