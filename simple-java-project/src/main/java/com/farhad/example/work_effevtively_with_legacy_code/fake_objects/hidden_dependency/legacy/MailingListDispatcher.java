@@ -7,6 +7,8 @@ import java.util.EnumSet;
 //
 // If there was some way to replace the MailService object with a fake, we could 
 // sense through the fake and get some feedback as we change the class.
+//
+// we can use is Parameterize Constructor.
 public class MailingListDispatcher {
 
     private static final int MAIL_OK = 1;
