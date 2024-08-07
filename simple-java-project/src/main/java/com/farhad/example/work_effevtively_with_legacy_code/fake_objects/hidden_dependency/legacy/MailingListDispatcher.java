@@ -4,6 +4,9 @@ import java.util.EnumSet;
 
 // The fundamental problem here is that the dependency on MailService is hidden 
 // in the MailingListDispatcher constructor.
+//
+// If there was some way to replace the MailService object with a fake, we could 
+// sense through the fake and get some feedback as we change the class.
 public class MailingListDispatcher {
 
     private static final int MAIL_OK = 1;
