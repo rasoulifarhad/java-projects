@@ -9,14 +9,27 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iirita
 // validateCustomer calls we’ve made over the life of the validator .
 public class CreditValidator {
 
+    private RGHConnection connection;
+    private CreditMaster master;
+    private String validatorId;
+
     public CreditValidator(RGHConnection connection,
                            CreditMaster master,
                            String validatorId) {
+                            this.connection = connection;
+                            this.master = master;
+                            this.validatorId = validatorId;
 
     }
 
     Certificate validateCustomer(Customer customer) throws InvalidCredit {
         //
-        return new Certificate();
+        RFIDReport rfidReport = connection.RFDIReportFor(customer.getId());
+        //
+        //
+        Certificate certificate = new Certificate();
+        //
+        //
+        return certificate;
     }
 }

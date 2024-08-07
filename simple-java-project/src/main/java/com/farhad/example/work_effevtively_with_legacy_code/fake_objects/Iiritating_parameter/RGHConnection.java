@@ -15,4 +15,38 @@ public class RGHConnection {
         this.name = name;
         this.passwd = passwd;
     }
+
+    public void connect() {
+
+    }
+
+    public void disconnect() {
+
+    }
+
+    public void retry() {
+
+    }
+
+    public RFIDReport RFDIReportFor(int id) {
+        RFIDReport rfidReport = new RFIDReport();
+        //
+        //
+        return rfidReport;
+    }
+
+    public ACTIOReport ACTIOReportFor(int customerId) {
+        ACTIOReport actioReport = new ACTIOReport();
+        //
+        //
+        return actioReport;
+    }
+
+    private RFPacket formPacket() {
+        RFPacket rfPacket = new RFPacket();
+        //
+        //
+        return rfPacket;
+
+    }
 }
