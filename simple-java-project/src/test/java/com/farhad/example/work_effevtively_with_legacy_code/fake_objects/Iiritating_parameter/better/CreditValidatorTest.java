@@ -22,6 +22,11 @@ public class CreditValidatorTest {
     }
 
     @Test
+    public void testCreateNullArgument() throws Exception {
+        CreditValidator validator = new CreditValidator(null, null, "a");
+    }
+
+    @Test
     public void testAllPassed100Percent() throws Exception {
         FakeRGHConnection connection = new FakeRGHConnection();
 
