@@ -4,7 +4,7 @@ import java.io.IOException;
 
 // When an RGHConnection is constructed, it connects with a server. The connection 
 // uses that server to get all of the reports it needs to validate a customer’s credit.
-public class RGHConnection {
+public class RGHConnection implements IRGHConnection {
 
     private int port;
     private String name;
@@ -16,18 +16,21 @@ public class RGHConnection {
         this.passwd = passwd;
     }
 
+    @Override
     public void connect() {
 
     }
 
+    @Override
     public void disconnect() {
 
     }
 
-    public void retry() {
+    private void retry() {
 
     }
 
+    @Override
     public RFIDReport RFDIReportFor(int id) {
         RFIDReport rfidReport = new RFIDReport();
         //
@@ -35,6 +38,7 @@ public class RGHConnection {
         return rfidReport;
     }
 
+    @Override
     public ACTIOReport ACTIOReportFor(int customerId) {
         ACTIOReport actioReport = new ACTIOReport();
         //

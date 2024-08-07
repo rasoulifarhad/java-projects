@@ -24,7 +24,7 @@ public class RGHConnection {
 
     }
 
-    public void retry() {
+    private void retry() {
 
     }
 

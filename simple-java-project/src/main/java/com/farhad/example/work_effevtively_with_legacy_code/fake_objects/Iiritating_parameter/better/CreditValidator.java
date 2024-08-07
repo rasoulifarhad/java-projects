@@ -9,11 +9,11 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iirita
 // validateCustomer calls we’ve made over the life of the validator .
 public class CreditValidator {
 
-    private RGHConnection connection;
+    private IRGHConnection connection;
     private CreditMaster master;
     private String validatorId;
 
-    public CreditValidator(RGHConnection connection,
+    public CreditValidator(IRGHConnection connection,
                            CreditMaster master,
                            String validatorId) {
                             this.connection = connection;
