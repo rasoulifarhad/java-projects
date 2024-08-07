@@ -2,6 +2,8 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.hidden
 
 import java.util.EnumSet;
 
+// The fundamental problem here is that the dependency on MailService is hidden 
+// in the MailingListDispatcher constructor.
 public class MailingListDispatcher {
 
     private static final int MAIL_OK = 1;
@@ -17,11 +19,11 @@ public class MailingListDispatcher {
         ML_REPEATOFF
     }
 
-    private MaiService service;
+    private MailService service;
     private int status;
     
     public MailingListDispatcher() {
-        service = new MaiService();
+        service = new MailService();
         status = MAIL_OK;
 
         int clientType = 12;
