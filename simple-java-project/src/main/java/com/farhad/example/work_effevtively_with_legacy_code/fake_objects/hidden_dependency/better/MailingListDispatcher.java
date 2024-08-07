@@ -28,7 +28,7 @@ public class MailingListDispatcher {
     private int status;
     
     public MailingListDispatcher() {
-        initialize(new MailService());
+        this(new MailService());
     }
 
     public MailingListDispatcher(MailService service) {
