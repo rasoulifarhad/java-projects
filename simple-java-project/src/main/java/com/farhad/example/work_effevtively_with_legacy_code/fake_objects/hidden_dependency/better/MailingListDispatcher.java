@@ -24,18 +24,18 @@ public class MailingListDispatcher {
         ML_REPEATOFF
     }
 
-    private MailService service;
+    private IMailService service;
     private int status;
     
     public MailingListDispatcher() {
         this(new MailService());
     }
 
-    public MailingListDispatcher(MailService service) {
+    public MailingListDispatcher(IMailService service) {
         initialize(service);
     }
 
-    void initialize(MailService service) {
+    void initialize(IMailService service) {
         this.service = service;
         status = MAIL_OK;
 
