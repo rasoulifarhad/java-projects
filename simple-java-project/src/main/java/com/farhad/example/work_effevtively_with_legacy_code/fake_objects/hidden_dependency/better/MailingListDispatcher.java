@@ -32,10 +32,6 @@ public class MailingListDispatcher {
     }
 
     public MailingListDispatcher(IMailService service) {
-        initialize(service);
-    }
-
-    void initialize(IMailService service) {
         this.service = service;
         status = MAIL_OK;
 
@@ -56,6 +52,5 @@ public class MailingListDispatcher {
     public void addRecipient(MailTxmId id, MailAddress address) {
 
     }
-
-    
+   
 }
