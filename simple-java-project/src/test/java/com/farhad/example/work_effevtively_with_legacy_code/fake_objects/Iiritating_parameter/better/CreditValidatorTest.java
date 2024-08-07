@@ -24,9 +24,8 @@ public class CreditValidatorTest {
     @Test
     public void testAllPassed100Percent() throws Exception {
         FakeRGHConnection connection = new FakeRGHConnection();
-        CreditMaster master = new CreditMaster("crm2.mas", true);
 
-        CreditValidator validator = new CreditValidator(connection, master, "a");
+        CreditValidator validator = new CreditValidator(connection, null, "a");
 
         connection.report = new RFIDReport();
 
