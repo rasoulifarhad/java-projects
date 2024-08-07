@@ -27,7 +27,15 @@ public class MailingListDispatcher {
     private MailService service;
     private int status;
     
+    public MailingListDispatcher() {
+        initialize(new MailService());
+    }
+
     public MailingListDispatcher(MailService service) {
+        initialize(service);
+    }
+
+    void initialize(MailService service) {
         this.service = service;
         status = MAIL_OK;
 
@@ -39,7 +47,6 @@ public class MailingListDispatcher {
         } else {
             status = MAIL_OFFLINE;
         }
-
     }
 
     public void sendMessage(String message) {
