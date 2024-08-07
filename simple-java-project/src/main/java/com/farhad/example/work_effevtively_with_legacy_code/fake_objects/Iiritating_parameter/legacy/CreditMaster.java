@@ -1,4 +1,4 @@
-package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iiritating_parameter;
+package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iiritating_parameter.legacy;
 
 // CreditMaster gives us some policy information that we use in our credit 
 // decisions. On construction, a CreditMaster loads the information from

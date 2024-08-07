@@ -1,4 +1,4 @@
-package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iiritating_parameter;
+package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.Iiritating_parameter.legacy;
 
 // One of the many responsibilities of this class is to tell us whether customers
 // have valid credit. If they do, we get back a certiﬁcate that tells us how much
