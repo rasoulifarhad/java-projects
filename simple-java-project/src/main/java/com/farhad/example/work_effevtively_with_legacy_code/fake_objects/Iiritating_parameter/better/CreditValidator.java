@@ -34,6 +34,6 @@ public class CreditValidator {
     }
 
     public Double getValidationPercent() {
-        return 0.0;
+        return 100.0;
     }
 }
