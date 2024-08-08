@@ -2,10 +2,20 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.irrita
 
 public class PermitRepository {
 
-    private static final PermitRepository INSTANCE = new PermitRepository();
+    private static PermitRepository instance = null;
     
+    private PermitRepository() {
+
+    }
+
+    public static void setTestingInstance(PermitRepository newInstance) {
+        instance = newInstance;
+    }
     public static PermitRepository getInstance() {
-        return INSTANCE;
+        if(instance == null) {
+            instance = new PermitRepository();
+        }
+        return instance;
     }
 
     public Permit findAssociatedPermit(PermitNotice notice) {
