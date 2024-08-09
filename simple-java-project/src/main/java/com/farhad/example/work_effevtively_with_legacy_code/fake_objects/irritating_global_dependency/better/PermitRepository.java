@@ -19,6 +19,18 @@ public class PermitRepository {
     }
 
     public Permit findAssociatedPermit(PermitNotice notice) {
+        // open  permit database
+        // ...
+
+        // select using values in notice
+        // ...
+
+        // verify we have only one matching permit, if not report error
+        // ...
+
+        // return the matching permit
+        //...
+        
         return null;
     }
 
