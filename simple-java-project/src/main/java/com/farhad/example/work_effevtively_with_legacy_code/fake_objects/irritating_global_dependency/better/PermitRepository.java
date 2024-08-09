@@ -4,7 +4,7 @@ public class PermitRepository {
 
     private static PermitRepository instance = null;
     
-    private PermitRepository() {
+    protected PermitRepository() {
 
     }
 
@@ -30,7 +30,7 @@ public class PermitRepository {
 
         // return the matching permit
         //...
-        
+
         return null;
     }
 
