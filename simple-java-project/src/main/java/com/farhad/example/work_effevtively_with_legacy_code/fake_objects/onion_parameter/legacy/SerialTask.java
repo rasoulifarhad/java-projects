@@ -2,4 +2,7 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.onion_
 
 public class SerialTask {
 
+    public void run() {
+        
+    }
 }
