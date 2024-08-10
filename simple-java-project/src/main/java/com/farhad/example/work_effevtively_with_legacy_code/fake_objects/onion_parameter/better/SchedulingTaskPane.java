@@ -8,9 +8,9 @@ package com.farhad.example.work_effevtively_with_legacy_code.fake_objects.onion_
 // SerialTask .
 public class SchedulingTaskPane extends SchedulerPane {
 
-    private SchedulingTask task;
+    private ISchedulingTask task;
 
-    public SchedulingTaskPane(SchedulingTask task) {
+    public SchedulingTaskPane(ISchedulingTask task) {
         this.task = task;
     }
 }
