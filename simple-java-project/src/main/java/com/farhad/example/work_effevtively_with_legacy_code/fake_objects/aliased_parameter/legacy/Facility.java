@@ -7,6 +7,13 @@ public class Facility {
     
     private Permit basePermit;
 
+    
+
+    public Facility() {
+    }
+
+
+
     public Facility(int facilityCode, String owner, PermitNotice notice) throws PermitViolation {
 
         Permit associatedPermit = PermitRepository.getInstance().findAssociatedPermit(notice);

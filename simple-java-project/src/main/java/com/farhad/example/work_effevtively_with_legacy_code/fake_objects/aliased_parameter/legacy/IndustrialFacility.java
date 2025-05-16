@@ -4,10 +4,8 @@ public class IndustrialFacility extends Facility {
 
     Permit basPermit;
 
-    
-
     public IndustrialFacility(int facilityCode, String owner, OriginationPermit permit) throws PermitViolation {
-
+        
         Permit associatedPermit = 
             PermitRepository.getInstance()
                 .findAssociatedFromOrigination(permit);
