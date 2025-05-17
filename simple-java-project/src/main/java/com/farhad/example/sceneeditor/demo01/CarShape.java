@@ -1,13 +1,13 @@
-package com.farhad.example.sceneeditor;
+package com.farhad.example.sceneeditor.demo01;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 
-public class HouseShape implements SceneShape {
+public class CarShape implements SceneShape {
 
     private boolean selected;
-   
-    public HouseShape() {
+
+    public CarShape() {
         selected = false;
     }
 
@@ -22,6 +22,11 @@ public class HouseShape implements SceneShape {
     }
 
     @Override
+    public boolean contains(Point2D aPoint) {
+        return false;
+    }
+
+    @Override
     public void draw(Graphics2D g2) {
     }
 
@@ -29,9 +34,5 @@ public class HouseShape implements SceneShape {
     public void translate(int dx, int dy) {
     }
 
-    @Override
-    public boolean contains(Point2D aPoint) {
-        return false;
-    }
-
+    
 }
