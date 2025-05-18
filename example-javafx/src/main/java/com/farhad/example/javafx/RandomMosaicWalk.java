@@ -2,18 +2,22 @@ package com.farhad.example.javafx;
 
 public class RandomMosaicWalk {
 
+    final static int ROWS = 16;
+    final static int COLUMNS = 20;
+    final static int SQUARE_SIZE = 25;
+
     static int currentRow;
     static int currentColumn;
 
     public static void main(String[] args) {
-        Mosaic.open(16, 20, 25, 25);
+        Mosaic.open(ROWS, COLUMNS, SQUARE_SIZE, SQUARE_SIZE);
         fillWithRandomColors();
-        currentRow = 8;
-        currentColumn = 10;
+        currentRow = ROWS / 2;
+        currentColumn = COLUMNS / 2;
         while (true) {
             changeToRandomColor(currentRow, currentColumn);
             randomMove();
-            Mosaic.delay(100);
+            Mosaic.delay(5);
         }
     }
 
@@ -21,16 +25,16 @@ public class RandomMosaicWalk {
         int direction = (int)(4 * Math.random());
         switch (direction) {
             case 0:
-                currentRow = (currentRow - 1 < 0) ? 15 : currentRow - 1;
+                currentRow = (currentRow - 1 < 0) ? (ROWS - 1) : currentRow - 1;
                 break;
             case 1:
-                currentColumn = (currentColumn + 1) % 20;
+                currentColumn = (currentColumn + 1) % COLUMNS;
                 break;
             case 2:
-                currentRow = (currentRow + 1) % 16;
+                currentRow = (currentRow + 1) % ROWS;
                 break;
             case 3:
-                currentColumn = (currentColumn - 1 < 0) ? 19 : currentColumn - 1;
+                currentColumn = (currentColumn - 1 < 0) ? (COLUMNS - 1) : currentColumn - 1;
                 break;
         }
     }
@@ -43,8 +47,8 @@ public class RandomMosaicWalk {
     }
 
     private static void fillWithRandomColors() {
-        for (int row = 0; row < 16; row++) {
-            for (int col = 0; col < 20; col++) {
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
                 changeToRandomColor(row, col);
             }
                 
