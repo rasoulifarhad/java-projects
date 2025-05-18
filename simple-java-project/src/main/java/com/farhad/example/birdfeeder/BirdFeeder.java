@@ -11,13 +11,14 @@ public class BirdFeeder {
     private Integer lightLevel;
     private Sensor sensor;
     private List<FeedingDoor> feedingDoors;
-
+    private List<Song> songs;
 
     public BirdFeeder() {
         feedingDoors =  new ArrayList<>();
         sensor = new Sensor();
         feedingDoors.add(new FeedingDoor());
         lightLevel = 0;
+        songs = new ArrayList<>();
     }
 
     public BirdFeeder(Sensor sensor, List<FeedingDoor> feedingDoors) {
@@ -58,4 +59,15 @@ public class BirdFeeder {
         return lightLevel < OFF_THRESHOLD;
     }
 
+    public void addSong(Song song) {
+        songs.add(song);
+    }
+
+    public List<Song> getSongs() {
+        return new ArrayList<>(songs);
+    }
+
+    public List<FeedingDoor> getFeedingDoor() {
+        return new ArrayList<>(feedingDoors);
+    }
 }
