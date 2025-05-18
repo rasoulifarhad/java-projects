@@ -4,7 +4,7 @@ public class RandomMosaicWalk {
 
     final static int ROWS = 16;
     final static int COLUMNS = 20;
-    final static int SQUARE_SIZE = 25;
+    final static int SQUARE_SIZE = 35;
 
     static int currentRow;
     static int currentColumn;
