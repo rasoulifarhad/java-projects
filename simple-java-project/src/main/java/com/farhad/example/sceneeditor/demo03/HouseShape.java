@@ -1,11 +1,11 @@
-package com.farhad.example.sceneeditor.demo01;
+package com.farhad.example.sceneeditor.demo03;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class HouseShape  implements SceneShape {
+public class HouseShape extends SelectableShape {
 
     private int x;
     private int y;
@@ -16,7 +16,6 @@ public class HouseShape  implements SceneShape {
         this.y = y;
         this.width = width;
     }
-
 
     @Override
     public void draw(Graphics2D g2) {
@@ -42,12 +41,6 @@ public class HouseShape  implements SceneShape {
     public boolean contains(Point2D aPoint) {
         return x <= aPoint.getX() && aPoint.getX() <= x + width 
                    && y <= aPoint.getY() && aPoint.getY() <= y + 2 * width;    
-    }
-
-    @Override
-    public void drawSelection(Graphics2D g2) {
-        Rectangle2D.Double base = new Rectangle2D.Double(x, y + width, width, width);
-        g2.fill(base);
     }
 
 }
