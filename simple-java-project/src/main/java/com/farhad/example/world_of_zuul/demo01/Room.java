@@ -1,7 +1,7 @@
 package com.farhad.example.world_of_zuul.demo01;
 
 public class Room {
-    
+
     private String description;
     public Room northExit;
     public Room southExit;
@@ -13,16 +13,16 @@ public class Room {
     }
 
     public void setExits(Room northExit, Room southExit, Room eastExit, Room westExit) {
-        if(northExit != null){
+        if (northExit != null) {
             this.northExit = northExit;
         }
-        if(southExit != null){
+        if (southExit != null) {
             this.southExit = southExit;
         }
-        if(eastExit != null){
+        if (eastExit != null) {
             this.eastExit = eastExit;
         }
-        if(westExit != null){
+        if (westExit != null) {
             this.westExit = westExit;
         }
     }
@@ -30,6 +30,5 @@ public class Room {
     public String getDescription() {
         return description;
     }
-    
-    
+
 }

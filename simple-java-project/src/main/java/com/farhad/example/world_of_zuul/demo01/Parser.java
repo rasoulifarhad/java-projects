@@ -14,7 +14,7 @@ public class Parser {
 
     public Command getCommand() {
         String inputLine;
-        String word1 =  null;
+        String word1 = null;
         String word2 = null;
 
         System.out.println("> ");
@@ -22,19 +22,18 @@ public class Parser {
         inputLine = reader.nextLine();
 
         Scanner tokenizer = new Scanner(inputLine);
-        if(tokenizer.hasNext()) {
+        if (tokenizer.hasNext()) {
             word1 = tokenizer.next();
-            if(tokenizer.hasNext()) {
+            if (tokenizer.hasNext()) {
                 word2 = tokenizer.next();
             }
         }
 
-        if(commandWords.isCommand(word1)) {
+        if (commandWords.isCommand(word1)) {
             return new Command(word1, word2);
         } else {
             return new Command(null, word2);
         }
     }
 
-    
 }

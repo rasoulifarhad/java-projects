@@ -19,7 +19,7 @@ public class Game {
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        
+
         // initialise room exits
         outside.setExits(null, theater, lab, pub);
         theater.setExits(null, null, null, outside);
@@ -27,7 +27,7 @@ public class Game {
         lab.setExits(outside, office, null, null);
         office.setExits(null, null, null, lab);
 
-        currentRoom = outside;  // start game outside        
+        currentRoom = outside; // start game outside
     }
 
     public void play() {
@@ -43,7 +43,7 @@ public class Game {
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
-        if(command.isUnknown()) {
+        if (command.isUnknown()) {
             System.out.println("I don't know what you mean...");
             return false;
         }
@@ -51,11 +51,9 @@ public class Game {
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
             printHelp();
-        }
-        else if (commandWord.equals("go")) {
+        } else if (commandWord.equals("go")) {
             goRoom(command);
-        }
-        else if (commandWord.equals("quit")) {
+        } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
 
@@ -70,33 +68,31 @@ public class Game {
         System.out.println();
         System.out.println("You are " + currentRoom.getDescription());
         System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
+        if (currentRoom.northExit != null) {
             System.out.print("north ");
         }
-        if(currentRoom.eastExit != null) {
+        if (currentRoom.eastExit != null) {
             System.out.print("east ");
         }
-        if(currentRoom.southExit != null) {
+        if (currentRoom.southExit != null) {
             System.out.print("south ");
         }
-        if(currentRoom.westExit != null) {
+        if (currentRoom.westExit != null) {
             System.out.print("west ");
         }
-        System.out.println();    
+        System.out.println();
     }
 
-    private void printHelp() 
-    {
+    private void printHelp() {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println("   go quit help");
-    }   
-    
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
+    }
+
+    private void goRoom(Command command) {
+        if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
             return;
@@ -106,55 +102,53 @@ public class Game {
 
         // Try to leave current room.
         Room nextRoom = null;
-        if(direction.equals("north")) {
+        if (direction.equals("north")) {
             nextRoom = currentRoom.northExit;
         }
-        if(direction.equals("east")) {
+        if (direction.equals("east")) {
             nextRoom = currentRoom.eastExit;
         }
-        if(direction.equals("south")) {
+        if (direction.equals("south")) {
             nextRoom = currentRoom.southExit;
         }
-        if(direction.equals("west")) {
+        if (direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        }
-        else {
+        } else {
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
-            if(currentRoom.northExit != null) {
+            if (currentRoom.northExit != null) {
                 System.out.print("north ");
             }
-            if(currentRoom.eastExit != null) {
+            if (currentRoom.eastExit != null) {
                 System.out.print("east ");
             }
-            if(currentRoom.southExit != null) {
+            if (currentRoom.southExit != null) {
                 System.out.print("south ");
             }
-            if(currentRoom.westExit != null) {
+            if (currentRoom.westExit != null) {
                 System.out.print("west ");
             }
             System.out.println();
         }
     }
 
-    /** 
+    /**
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
+     * 
      * @return true, if this command quits the game, false otherwise.
      */
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
+    private boolean quit(Command command) {
+        if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
+        } else {
+            return true; // signal that we want to quit
         }
-        else {
-            return true;  // signal that we want to quit
-        }
-    }    
+    }
 }
