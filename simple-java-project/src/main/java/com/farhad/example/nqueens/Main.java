@@ -59,6 +59,7 @@ public class Main {
         }
         System.out.println("-");
     }
+    
     private static void moveQueen() {
         row++;
     }
