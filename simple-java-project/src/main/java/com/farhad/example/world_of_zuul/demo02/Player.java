@@ -7,6 +7,7 @@ public class Player {
     private Items items;
     private double maxWeight = 1;
 
+
     public Player(String name) {
         this.name = name;
         items = new Items();
@@ -64,5 +65,9 @@ public class Player {
             canPick = false;
         }
         return canPick;
+    }
+
+    public Item eat(String itemName) {
+        return null;
     }    
 }

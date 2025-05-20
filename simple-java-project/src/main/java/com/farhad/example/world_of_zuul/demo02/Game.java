@@ -82,6 +82,8 @@ public class Game {
             drop(command);
         } else if (commandWord.equals("items")) {
             printItems();
+        } else if (commandWord.equals("eat")) {
+            eat(command);
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -118,6 +120,20 @@ public class Game {
             System.out.println("Can't pick up the item: " + itemName);
         } else {
             System.out.println("Picked up " + item.getDescription());
+        }
+    }
+
+    private void eat(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("What do you want to eat?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        Item item = currentPlayer.eat(itemName);
+        if (item == null) {
+            System.out.println("Could not eat " + itemName);
+        } else {
+            System.out.println("Ate " + item.getDescription());
         }
     }
 
