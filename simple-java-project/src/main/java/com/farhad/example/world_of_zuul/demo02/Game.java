@@ -59,9 +59,11 @@ public class Game {
             printHelp();
         } else if (commandWord.equals("go")) {
             goRoom(command);
+        }else if(commandWord.equals("look")) {
+            look();
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
-        }
+        } 
 
         return wantToQuit;
     }
@@ -123,4 +125,7 @@ public class Game {
         System.out.println(currentRoom.getLongDescription());
     }
 
+    private void look() {
+        System.out.println(currentRoom.getLongDescription());
+    }
 }
