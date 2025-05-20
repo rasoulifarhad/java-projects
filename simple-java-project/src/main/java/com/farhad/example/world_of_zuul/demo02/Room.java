@@ -2,6 +2,7 @@ package com.farhad.example.world_of_zuul.demo02;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Room {
 
@@ -23,5 +24,14 @@ public class Room {
 
     public Room getExit(String direction) {
         return exits.get(direction);
+    }
+
+    public String getExitString() {
+        String  returnString = "Exits: ";
+        Set<String> keys = exits.keySet();
+        for (String exit : keys) {
+            returnString += " " + exits.get(exit);
+        }
+        return returnString;
     }
 }
