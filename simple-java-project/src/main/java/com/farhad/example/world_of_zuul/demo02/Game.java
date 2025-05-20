@@ -18,30 +18,37 @@ public class Game {
     }
 
     private Room createRooms() {
-        Room outside, theater, pub, lab, office, cellar;
+        Room outside, theatre, pub, lab, office, cellar;
 
         // create the rooms
+       // create the rooms
         outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
+        theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        cellar = new Room("in the cellar");
-
+        
+        // put items in the room
+        pub.addItem(new Item("beer", "a tasty beer", 0.5));
+        pub.addItem(new Item("wine", "a dusty bottle of old wine", 0.75));
+        lab.addItem(new Item("computer", "a brand new computer", 30));
+        theatre.addItem(new Item("cookie", "a magic cookie", 0.1));
+        
         // initialise room exits
-        outside.setExit("south", theater);
-        outside.setExit("east", lab);
+        outside.setExit("east", theatre);
+        outside.setExit("south", lab);
         outside.setExit("west", pub);
-        theater.setExit("west", outside);
-        pub.setExit("south", outside);
+
+        theatre.setExit("west", outside);
+
+        pub.setExit("east", outside);
+
         lab.setExit("north", outside);
-        lab.setExit("south", office);
+        lab.setExit("east", office);
+
         office.setExit("west", lab);
-        office.setExit("down", cellar);
-        cellar.setExit("up", office);
-
-
-        return outside; // start game outside
+        
+        return outside;
     }
 
     public void play() {
@@ -82,7 +89,7 @@ public class Game {
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        printLocationInfo();
+        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
     }
 
 
@@ -110,7 +117,7 @@ public class Game {
             System.out.println("There is no door!");
         } else {
             currentPlayer.enterRoom(nextRoom);
-            printLocationInfo();
+            System.out.println(currentPlayer.getLongDescription());
         }
     }
 
@@ -134,7 +141,4 @@ public class Game {
         System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
     }
 
-   private void printLocationInfo() {
-        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
-    }
 }

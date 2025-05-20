@@ -8,12 +8,12 @@ public class Room {
 
     private String description;
     private Map<String, Room> exits;
-    private Map<String, Item> items;
+    private Items items;
 
     public Room(String description) {
         this.description = description;
         this.exits = new HashMap<>();
-        this.items = new HashMap<>();
+        this.items = new Items();
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -25,7 +25,7 @@ public class Room {
     }
 
     public String getLongDescription() {
-        return "You are " + description +  ".\n" + getExitString() + "\n" + getItemString();
+        return "You are " + description +  ".\n" + getExitString() + "\n" + items.getLongItemString();
     }
 
     public Room getExit(String direction) {
@@ -41,16 +41,17 @@ public class Room {
         return returnString;
     }
 
-    public String getItemString() {
-        String listOfItems= " Items:";
-        Set<String> keys = items.keySet();
-        for (String item : keys) {
-            listOfItems += " " + item;
-        }
-        return listOfItems;
-    }
 
     public void addItem(Item item) {
         items.put(item.getName(), item);
     }
+
+    public Item getItem(String name) {
+        return items.get(name);
+    }
+
+    public Item removeItem(String name) {
+        return items.remove(name);
+    }
+
 }
