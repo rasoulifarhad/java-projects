@@ -21,19 +21,19 @@ public class Game {
         Room outside, theatre, pub, lab, office, cellar;
 
         // create the rooms
-       // create the rooms
+        // create the rooms
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        
+
         // put items in the room
         pub.addItem(new Item("beer", "a tasty beer", 0.5));
         pub.addItem(new Item("wine", "a dusty bottle of old wine", 0.75));
         lab.addItem(new Item("computer", "a brand new computer", 30));
         theatre.addItem(new Item("cookie", "a magic cookie", 0.1));
-        
+
         // initialise room exits
         outside.setExit("east", theatre);
         outside.setExit("south", lab);
@@ -47,7 +47,7 @@ public class Game {
         lab.setExit("east", office);
 
         office.setExit("west", lab);
-        
+
         return outside;
     }
 
@@ -74,45 +74,60 @@ public class Game {
             printHelp();
         } else if (commandWord.equals("go")) {
             goRoom(command);
-        }else if(commandWord.equals("look")) {
+        } else if (commandWord.equals("look")) {
             look();
+        } else if (commandWord.equals("take")) {
+            take(command);
+        } else if (commandWord.equals("drop")) {
+            drop(command);
+        } else if (commandWord.equals("items")) {
+            printItems();
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
-        } 
+        }
 
         return wantToQuit;
     }
 
-    private void printWelcome() {
-        System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
-        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
+    private void printItems() {
+        System.out.println(currentPlayer.getItemsString());
     }
 
+    private void drop(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("What do you want to drop?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        Item item = currentPlayer.dropItem(itemName);
+        if (item == null) {
+            System.out.println("You don't carry the item: " + itemName);
+        } else {
+            System.out.println("Dropped " + item.getDescription());
+        }
+    }
 
-    private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println(parser.getCommands());
+    private void take(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("What do you want to take?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        Item item = currentPlayer.pickUpItem(itemName);
+        if (item == null) {
+            System.out.println("Can't pick up the item: " + itemName);
+        } else {
+            System.out.println("Picked up " + item.getDescription());
+        }
     }
 
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
             return;
         }
-
         String direction = command.getSecondWord();
-
-        // Try to leave current room.
         Room nextRoom = currentPlayer.getCurrentRoom().getExit(direction);
-
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
@@ -132,13 +147,29 @@ public class Game {
             System.out.println("Quit what?");
             return false;
         } else {
-            return true; // signal that we want to quit
+            return true;
         }
     }
 
-
     private void look() {
         System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
+    }
+
+    private void printWelcome() {
+        System.out.println();
+        System.out.println("Welcome to the World of Zuul!");
+        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Type 'help' if you need help.");
+        System.out.println();
+        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
+    }
+
+    private void printHelp() {
+        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("around at the university.");
+        System.out.println();
+        System.out.println("Your command words are:");
+        System.out.println(parser.getCommands());
     }
 
 }
