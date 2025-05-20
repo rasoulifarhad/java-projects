@@ -9,11 +9,11 @@ public class Game {
     public Game() {
         parser = new Parser();
         currentPlayer = createPlayer();
-        currentPlayer.setRoom(createRooms());
+        currentPlayer.enterRoom(createRooms());
     }
 
     public Player createPlayer() {
-        return new Player("player", 100.0);
+        return new Player("player");
     }
 
     private Room createRooms() {
@@ -108,7 +108,7 @@ public class Game {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
-            currentPlayer.setCurrentRoom(nextRoom);
+            currentPlayer.enterRoom(nextRoom);
             printLocationInfo();
         }
     }

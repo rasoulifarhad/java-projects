@@ -25,7 +25,7 @@ public class Room {
     }
 
     public String getLongDescription() {
-        return "You are " + description +  ".\n" + getExitString();
+        return "You are " + description +  ".\n" + getExitString() + "\n" + getItemString();
     }
 
     public Room getExit(String direction) {
@@ -41,36 +41,16 @@ public class Room {
         return returnString;
     }
 
-    public String listItems() {
-        String listOfItems= " has:";
-        if(items.isEmpty() ) {
-            listOfItems += " nothing";
-        } else {
-            Set<String> keys = items.keySet();
-            for (String item : keys) {
-                listOfItems += " " + item;
-            }
+    public String getItemString() {
+        String listOfItems= " Items:";
+        Set<String> keys = items.keySet();
+        for (String item : keys) {
+            listOfItems += " " + item;
         }
         return listOfItems;
     }
 
-    public String look(){
-        return getExitString() + "\n" + listItems();
-    }        
-
-    public boolean contains(String itemName) {
-        return items.containsKey(itemName);
-    }
-
-    public Item getItem(String itemName) {
-        return items.get(itemName); 
-    }
-
-    public Item take(String itemName) {
-        return items.remove(itemName);
-    }
-
-    public void store(Item item) {
+    public void addItem(Item item) {
         items.put(item.getName(), item);
     }
 }
