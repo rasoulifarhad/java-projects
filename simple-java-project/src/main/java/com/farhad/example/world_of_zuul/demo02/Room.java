@@ -3,10 +3,10 @@ package com.farhad.example.world_of_zuul.demo02;
 public class Room {
 
     private String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
 
     public Room(String description) {
         this.description = description;
@@ -31,4 +31,19 @@ public class Room {
         return description;
     }
 
+    public Room getExit(String direction) {
+        if (direction.equals("north")) {
+            return northExit;
+        }
+        if (direction.equals("east")) {
+            return eastExit;
+        }
+        if (direction.equals("south")) {
+            return southExit;
+        }
+        if (direction.equals("west")) {
+            return westExit;
+        }
+        return null;
+    }
 }

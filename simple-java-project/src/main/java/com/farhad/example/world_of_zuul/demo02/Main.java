@@ -11,6 +11,12 @@ package com.farhad.example.world_of_zuul.demo02;
 // Room A Room object represents a location in a game. Rooms can have exits that lead to other rooms.
 // Game The Game class is the main class of the game. It sets the game up, and then enters a loop to 
 //      read and execute commands. It also contains the code that implements each user command.
+//
+// The first task we will attempt is to add a new direction of movement. Currently, a player
+// can move in four directions: north, east, south, and west. We want to allow for multilevel
+// buildings (or cellars, or dungeons, or whatever you later want to add to your game) and
+// add up and down as possible directions. A player can then type "go down" to move, say,
+// down into a cellar.
 
 public class Main {
 
