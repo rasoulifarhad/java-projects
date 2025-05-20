@@ -13,10 +13,12 @@ public class CommandWords {
         return false;
     }
 
-    public void showAll() {
+    public String getCommandList() {
+        String commands = "";
         for (String command : validCommands) {
-            System.out.print(command + "  ");
+            commands += command + "  ";
         }
-        System.out.println();
+        return commands;
+
     }
 }
