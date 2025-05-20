@@ -2,14 +2,19 @@ package com.farhad.example.world_of_zuul.demo02;
 
 public class Item {
 
+    private String name;
     private String description;
     private double weight;
-    private boolean canTake;
+    private boolean canBePickedUp;
 
-    public Item(String description, double weight, boolean canTake) {
+    public Item(String name, String description, double weight) {
+        this.name = name;
         this.description = description;
         this.weight = weight;
-        this.canTake = canTake;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -20,9 +25,6 @@ public class Item {
         return weight;
     }
 
-    public boolean isCanTake() {
-        return canTake;
-    }
-
+    
     
 }

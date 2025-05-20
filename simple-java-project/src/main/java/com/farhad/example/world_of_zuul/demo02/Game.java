@@ -3,14 +3,20 @@ package com.farhad.example.world_of_zuul.demo02;
 public class Game {
 
     private Parser parser;
-    private Room currentRoom;
+    // private Room currentRoom;
+    private Player currentPlayer;
 
     public Game() {
         parser = new Parser();
-        createRooms();
+        currentPlayer = createPlayer();
+        currentPlayer.setRoom(createRooms());
     }
 
-    private void createRooms() {
+    public Player createPlayer() {
+        return new Player("player", 100.0);
+    }
+
+    private Room createRooms() {
         Room outside, theater, pub, lab, office, cellar;
 
         // create the rooms
@@ -33,7 +39,8 @@ public class Game {
         office.setExit("down", cellar);
         cellar.setExit("up", office);
 
-        currentRoom = outside; // start game outside
+
+        return outside; // start game outside
     }
 
     public void play() {
@@ -96,12 +103,12 @@ public class Game {
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = currentPlayer.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
-            currentRoom = nextRoom;
+            currentPlayer.setCurrentRoom(nextRoom);
             printLocationInfo();
         }
     }
@@ -121,11 +128,12 @@ public class Game {
         }
     }
 
-    private void printLocationInfo() {
-        System.out.println(currentRoom.getLongDescription());
-    }
 
     private void look() {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
+    }
+
+   private void printLocationInfo() {
+        System.out.println(currentPlayer.getCurrentRoom().getLongDescription());
     }
 }
