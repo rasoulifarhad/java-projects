@@ -12,4 +12,11 @@ public class CommandWords {
         }
         return false;
     }
+
+    public void showAll() {
+        for (String command : validCommands) {
+            System.out.print(command + "  ");
+        }
+        System.out.println();
+    }
 }
