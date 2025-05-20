@@ -13,19 +13,8 @@ public class Room {
         this.exits = new HashMap<>();
     }
 
-    public void setExits(Room northExit, Room southExit, Room eastExit, Room westExit) {
-        if (northExit != null) {
-            exits.put("north", northExit);
-        }
-        if (southExit != null) {
-            exits.put("south", southExit);
-        }
-        if (eastExit != null) {
-            exits.put("east", eastExit);
-        }
-        if (westExit != null) {
-            exits.put("west", westExit);
-        }
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction, neighbor);
     }
 
     public String getDescription() {
