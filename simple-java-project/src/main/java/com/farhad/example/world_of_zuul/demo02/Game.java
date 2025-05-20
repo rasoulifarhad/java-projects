@@ -120,9 +120,7 @@ public class Game {
     }
 
     private void printLocationInfo() {
-        System.out.println("You are " + currentRoom.getDescription());
-        currentRoom.getExitString();
-        System.out.println();
+        System.out.println(currentRoom.getLongDescription());
     }
 
 }

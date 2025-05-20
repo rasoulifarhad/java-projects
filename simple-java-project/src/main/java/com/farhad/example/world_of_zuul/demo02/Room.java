@@ -22,6 +22,10 @@ public class Room {
         return description;
     }
 
+    public String getLongDescription() {
+        return "You are " + description +  ".\n" + getExitString();
+    }
+
     public Room getExit(String direction) {
         return exits.get(direction);
     }
