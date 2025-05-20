@@ -8,8 +8,9 @@ public class Game {
 
     public Game() {
         parser = new Parser();
+        Room startRoom = createRooms();
         currentPlayer = createPlayer();
-        currentPlayer.enterRoom(createRooms());
+        currentPlayer.enterRoom(startRoom);
     }
 
     public Player createPlayer() {
